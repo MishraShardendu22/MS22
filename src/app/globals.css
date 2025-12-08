@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+/* ------------------------------
+   M Sport Dark Theme - Global Vars
+------------------------------ */
+
+:root {
+  /* Core Dark Base */
+  --background: #0a0d11;
+  --foreground: #e5eaf0;
+
+  --surface: #0f141a;
+  --surface-elevated: #141b24;
+  --border: #1e2630;
+
+  /* Text */
+  --text-primary: #e5eaf0;
+  --text-secondary: #9aa4af;
+  --text-disabled: #6b7280;
+
+  /* Near-Black BMW Blue */
+  --blue-primary: #0e1b2b;
+  --blue-hover: #142a44;
+  --blue-active: #1b3f6b;
+
+  /* Yellow-Green Accent */
+  --lime-primary: #aeea00;
+  --lime-hover: #c4ff1a;
+  --lime-dark: #445a00;
+
+  /* Minimal M Red */
+  --red-accent: #c1121f;
+
+  /* Status */
+  --success: #1ec98b;
+  --warning: #eab308;
+  --error: #dc2626;
+  --info: #38bdf8;
+}
+
+/* ------------------------------
+   Tailwind Theme Bridge
+------------------------------ */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-border: var(--border);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-disabled: var(--text-disabled);
+
+  --color-blue-primary: var(--blue-primary);
+  --color-blue-hover: var(--blue-hover);
+  --color-blue-active: var(--blue-active);
+
+  --color-lime-primary: var(--lime-primary);
+  --color-lime-hover: var(--lime-hover);
+  --color-lime-dark: var(--lime-dark);
+
+  --color-red-accent: var(--red-accent);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --color-info: var(--info);
+
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+/* ------------------------------
+   Global Base Styles
+------------------------------ */
+
+html,
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ------------------------------
+   Selection + Focus Styling
+------------------------------ */
+
+::selection {
+  background: var(--lime-primary);
+  color: #000000;
+}
+
+:focus-visible {
+  outline: 2px solid var(--lime-primary);
+  outline-offset: 2px;
+}
+
+/* ------------------------------
+   Motion Kill Switch
+------------------------------ */
+
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+  animation: none !important;
+  transition: none !important;
+}
