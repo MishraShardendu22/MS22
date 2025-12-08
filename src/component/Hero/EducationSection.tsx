@@ -1,0 +1,154 @@
+'use client';
+
+import { Language } from '@/static/info/header';
+import { Calendar, MapPin, Globe, GraduationCap, School, ExternalLink, BookOpen } from 'lucide-react';
+
+export const EducationSection = () => {
+
+  return (
+    <div className="max-w-[1400px] mx-auto">
+      {/* Academic Journey Header */}
+      <div className="text-center mb-8 md:mb-10">
+        <div className="flex items-center justify-center gap-3 mb-3">
+          <div className="w-10 h-10 rounded-xl bg-linear-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center ring-2 ring-cyan-500/30">
+            <GraduationCap className="w-5 h-5 text-cyan-400" />
+          </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-linear-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+            Academic Journey
+          </h2>
+        </div>
+        <p className="text-gray-400 text-sm md:text-base">Academic journey through diverse learning experiences and achievements</p>
+      </div>
+      
+      {/* Education Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        {/* Higher Education with Languages */}
+        <div className="group bg-linear-to-br from-gray-900/90 to-gray-950/90 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-gray-800 hover:border-cyan-500/50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-cyan-500/20">
+          {/* Header */}
+          <div className="flex items-start justify-between mb-5">
+            <div className="flex items-start gap-4">
+              <div className="w-14 h-14 shrink-0 rounded-xl bg-linear-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center ring-2 ring-cyan-500/30 group-hover:ring-cyan-500/50 transition-all">
+                <GraduationCap className="w-7 h-7 text-cyan-400" />
+              </div>
+              <div className="flex-1">
+                <div className="inline-block px-3 py-1 bg-cyan-500/10 text-cyan-400 text-xs font-semibold rounded-full mb-2">
+                  Higher Education
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-gray-100 leading-tight mb-2">
+                  Indian Institute of Information Technology, Dharwad
+                </h3>
+              </div>
+            </div>
+            <a
+              href="https://iiitdwd.ac.in/website-team/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="shrink-0 w-8 h-8 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 flex items-center justify-center transition-all group/link"
+              aria-label="Visit IIIT Dharwad Website Team"
+            >
+              <ExternalLink className="w-4 h-4 text-cyan-400 group-hover/link:scale-110 transition-transform" />
+            </a>
+          </div>
+
+          {/* Details */}
+          <div className="space-y-3 mb-5">
+            <div className="flex items-center gap-2 text-sm text-gray-400">
+              <Calendar className="w-4 h-4 shrink-0 text-cyan-400/70" />
+              <span className="font-medium">2023 - 2027</span>
+            </div>
+            <div className="flex items-start gap-2 text-sm text-gray-400">
+              <MapPin className="w-4 h-4 shrink-0 text-cyan-400/70 mt-0.5" />
+              <span>Dharwad, Karnataka, India</span>
+            </div>
+          </div>
+
+          {/* Course Info */}
+          <div className="pt-5 border-t border-gray-800 mb-5">
+            <div className="flex items-start gap-2">
+              <BookOpen className="w-4 h-4 text-cyan-400 mt-1 shrink-0" />
+              <div>
+                <p className="text-sm font-semibold text-gray-300 mb-1">Computer Science and Engineering</p>
+                <p className="text-xs text-gray-500">Focusing on software development and emerging technologies</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Languages Section */}
+          <div className="pt-5 border-t border-gray-800">
+            <div className="flex items-center gap-2 mb-3">
+              <Globe className="w-4 h-4 text-cyan-400" />
+              <h3 className="text-sm font-semibold text-gray-300">Communication</h3>
+            </div>
+            <div className="flex gap-2 flex-wrap">
+              {Language.map((lang) => (
+                <span
+                  key={lang}
+                  className="px-3 py-1.5 rounded-full bg-linear-to-r from-gray-800/60 to-gray-700/60 border border-cyan-500/20 text-cyan-300 font-medium text-xs hover:border-cyan-500/40 hover:shadow-md hover:shadow-cyan-500/20 transition-all"
+                >
+                  {lang}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* School Education */}
+        <div className="group bg-linear-to-br from-gray-900/90 to-gray-950/90 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-gray-800 hover:border-cyan-500/50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-cyan-500/20">
+          {/* Header */}
+          <div className="flex items-start gap-4 mb-5">
+            <div className="w-14 h-14 shrink-0 rounded-xl bg-linear-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center ring-2 ring-cyan-500/30 group-hover:ring-cyan-500/50 transition-all">
+              <School className="w-7 h-7 text-cyan-400" />
+            </div>
+            <div className="flex-1">
+              <div className="inline-block px-3 py-1 bg-cyan-500/10 text-cyan-400 text-xs font-semibold rounded-full mb-2">
+                School Education
+              </div>
+              <h3 className="text-lg md:text-xl font-bold text-gray-100 leading-tight mb-2">
+                Delhi Public School, Kalyanpur
+              </h3>
+            </div>
+          </div>
+
+          {/* Details */}
+          <div className="space-y-3 mb-5">
+            <div className="flex items-center gap-2 text-sm text-gray-400">
+              <Calendar className="w-4 h-4 shrink-0 text-cyan-400/70" />
+              <span className="font-medium">2008 - 2022</span>
+            </div>
+            <div className="flex items-start gap-2 text-sm text-gray-400">
+              <MapPin className="w-4 h-4 shrink-0 text-cyan-400/70 mt-0.5" />
+              <span>Kanpur, Uttar Pradesh, India</span>
+            </div>
+          </div>
+
+          {/* Grades */}
+          <div className="pt-5 border-t border-gray-800 space-y-4">
+            {/* Class 12th */}
+            <div className="bg-gray-800/40 rounded-lg p-4 hover:bg-gray-800/60 transition-all">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-semibold text-gray-300">Class 12th</span>
+                <span className="text-2xl font-bold text-cyan-400">96.4%</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <BookOpen className="w-3 h-3 text-cyan-400/70" />
+                <p className="text-xs text-gray-500">PCM and Computer Science</p>
+              </div>
+            </div>
+
+            {/* Class 10th */}
+            <div className="bg-gray-800/40 rounded-lg p-4 hover:bg-gray-800/60 transition-all">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-semibold text-gray-300">Class 10th</span>
+                <span className="text-2xl font-bold text-cyan-400">84%</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <BookOpen className="w-3 h-3 text-cyan-400/70" />
+                <p className="text-xs text-gray-500">All Subjects</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};

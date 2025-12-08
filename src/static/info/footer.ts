@@ -1,10 +1,22 @@
-import { Book, Code2Icon, CompassIcon, GithubIcon, LinkedinIcon, LockKeyhole, MailIcon, XIcon, YoutubeIcon } from "lucide-react"
+import { Book, Code2Icon, CompassIcon, GithubIcon, LinkedinIcon, LockKeyhole, MailIcon, TwitterIcon, XIcon, YoutubeIcon, FolderGit2, Briefcase, PenTool, ShieldCheck } from "lucide-react"
 
 export const QuickLinks = {
-    Projects: '/projects',
-    Experience: '/experience',
-    TechBlogs: '/blogs',
-    AdminPortal: '/admin',
+    Projects: {
+        url: '/projects',
+        icon: FolderGit2,
+    },
+    Experience: {
+        url: '/experience',
+        icon: Briefcase,
+    },
+    TechBlogs: {
+        url: '/blogs',
+        icon: PenTool,
+    },
+    AdminPortal: {
+        url: '/admin',
+        icon: ShieldCheck,
+    },
 }
 
 export const MyWebsites = {
@@ -34,7 +46,7 @@ export const SocialMedia = {
 
     Twitter: {
         url: 'https://x.com/Shardendu_M',
-        icon: XIcon,
+        icon: TwitterIcon,
     },
     LinkedIn: {
         url: 'https://www.linkedin.com/in/shardendumishra22',
