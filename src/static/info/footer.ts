@@ -68,3 +68,15 @@ export const CodingProfiles = {
         icon: Code2Icon
     },
 }
+
+
+export const images = {
+    go : {
+        loc: "/go.avif",
+        alt: "Golang Logo"
+    },
+    fedora: {
+        loc: "/fedora.avif",
+        alt: "Fedora Logo"
+    }
+}

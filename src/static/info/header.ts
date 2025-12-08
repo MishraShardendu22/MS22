@@ -2,8 +2,8 @@ import { Education, Introduction, SocialLink } from "./types";
 import { GraduationCap, School, BookOpen } from "lucide-react";
 import { Github, Linkedin, FileText, Mail } from "lucide-react";
 
-export const Icon: string = "/public/Icon.png";
-export const professionalImage:string = "/public/Professional.avif";
+export const Icon: string = "/public/icon.avif";
+export const professionalImage:string = "/public/professional.avif";
 
 export const mail: SocialLink = {
     url: "mishrashardendu22@gmail.com",
