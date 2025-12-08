@@ -4,4 +4,12 @@ export interface ApiResponse<T> {
   data: T
 }
 
-export type SkillsResponse = string[] 
+export interface SkillsResponse {
+  skills: string[]
+  page: number
+  limit: number
+  total: number
+  total_pages: number
+  has_next: boolean
+  has_previous: boolean
+} 

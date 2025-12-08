@@ -4,13 +4,17 @@ import { useEffect, useState } from 'react'
 import { skillsAPI } from '@/static/api/api.request'
 import { Code2, ChevronLeft, ChevronRight } from 'lucide-react'
 import { LoadingState } from '@/component/Loading/LoadingState'
-import { ErrorState } from '@/component/Error/ErrorState'
+import { ErrorState } from '../states'
+
 
 export default function SkillsDisplay() {
   const [skills, setSkills] = useState<string[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [currentPage, setCurrentPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
+  const [hasNext, setHasNext] = useState(false)
+  const [hasPrevious, setHasPrevious] = useState(false)
   
   const skillsPerPage = 15
 
@@ -18,9 +22,12 @@ export default function SkillsDisplay() {
     const fetchSkills = async () => {
       try {
         setLoading(true)
-        const response = await skillsAPI.getSkills()
+        const response = await skillsAPI.getSkills(currentPage, skillsPerPage)
         console.log('Fetched skills:', response)
-        setSkills(response.data)
+        setSkills(response.data.skills)
+        setTotalPages(response.data.total_pages)
+        setHasNext(response.data.has_next)
+        setHasPrevious(response.data.has_previous)
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An error occurred')
       } finally {
@@ -29,31 +36,18 @@ export default function SkillsDisplay() {
     }
 
     fetchSkills()
-  }, [])
-
-  const totalPages = Math.ceil(skills.length / skillsPerPage)
-  const startIndex = (currentPage - 1) * skillsPerPage
-  const endIndex = startIndex + skillsPerPage
-  const currentSkills = skills.slice(startIndex, endIndex)
+  }, [currentPage])
 
   const nextPage = () => {
-    if (currentPage < totalPages) {
+    if (hasNext) {
       setCurrentPage(currentPage + 1)
     }
   }
 
   const prevPage = () => {
-    if (currentPage > 1) {
+    if (hasPrevious) {
       setCurrentPage(currentPage - 1)
     }
-  }
-
-  if (loading) {
-    return <LoadingState message="Loading skills..." variant="cyan" />
-  }
-
-  if (error) {
-    return <ErrorState title="Error Loading Skills" message={error} variant="red" />
   }
 
   return (
@@ -81,35 +75,45 @@ export default function SkillsDisplay() {
             Technologies and tools I work with to build innovative solutions
           </p>
         </div>
-        <div className="flex flex-wrap justify-center gap-2 md:gap-2 mb-6 min-h-[250px] content-start">
-          {currentSkills.map((skill, index) => (
-            <span
-              key={`${skill}-${startIndex + index}`}
-              className="skill-badge group px-5 md:px-6 py-2.5 md:py-3 rounded-xl bg-linear-to-br from-gray-900/80 to-gray-950/80 backdrop-blur-sm border border-gray-800 hover:border-cyan-500/50 text-gray-300 hover:text-cyan-400 font-semibold text-sm md:text-base shadow-lg hover:shadow-xl hover:shadow-cyan-500/20 transition-colors duration-500 cursor-default"
-            >
-              {skill}
-            </span>
-          ))}
+
+        {/* Skills Grid or Loading/Error State */}
+        <div className="mb-6 min-h-[250px]">
+          {loading ? (
+            <LoadingState message="Loading skills..." variant="cyan" />
+          ) : error ? (
+            <ErrorState title="Error Loading Skills" message={error} variant="red" />
+          ) : (
+            <div className="flex flex-wrap justify-center gap-2 md:gap-2 content-start">
+              {skills.map((skill, index) => (
+                <span
+                  key={`${skill}-${index}`}
+                  className="skill-badge group px-5 md:px-6 py-2.5 md:py-3 rounded-xl bg-linear-to-br from-gray-900/80 to-gray-950/80 backdrop-blur-sm border border-gray-800 hover:border-cyan-500/50 text-gray-300 hover:text-cyan-400 font-semibold text-sm md:text-base shadow-lg hover:shadow-xl hover:shadow-cyan-500/20 transition-colors duration-500 cursor-default"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
 
         {totalPages > 1 && (
-          <div className="flex items-center justify-center gap-1">
+          <div className="flex items-center justify-center gap-4">
             <button
               onClick={prevPage}
-              disabled={currentPage === 1}
-              className="flex items-center gap-2 px-4  rounded-lg bg-gray-900/50 border border-gray-800 hover:border-cyan-500/30 text-gray-400 hover:text-cyan-400 transition-colors duration-500 disabled:opacity-30 disabled:cursor-not-allowed"
+              disabled={!hasPrevious}
+              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-900/50 border border-gray-800 hover:border-cyan-500/30 text-gray-400 hover:text-cyan-400 transition-colors duration-500 disabled:opacity-30 disabled:cursor-not-allowed"
             >
               <ChevronLeft className="w-4 h-4" />
               <span className="text-sm font-medium">Previous</span>
             </button>
 
-            <span className="text-gray-400 text-sm">
+            <span className="text-gray-400 text-sm font-medium px-2">
               Page <span className="text-cyan-400 font-bold">{currentPage}</span> of <span className="text-cyan-400 font-bold">{totalPages}</span>
             </span>
 
             <button
               onClick={nextPage}
-              disabled={currentPage === totalPages}
+              disabled={!hasNext}
               className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-900/50 border border-gray-800 hover:border-cyan-500/30 text-gray-400 hover:text-cyan-400 transition-colors duration-500 disabled:opacity-30 disabled:cursor-not-allowed"
             >
               <span className="text-sm font-medium">Next</span>

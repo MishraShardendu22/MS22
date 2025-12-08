@@ -41,12 +41,12 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
   }, [])
 
   return (
-    <div className="flex items-center justify-center w-full min-h-screen bg-gradient-to-b from-black via-gray-950 to-black overflow-hidden">
+    <div className="flex items-center justify-center w-full min-h-screen bg-linear-to-b from-black via-gray-950 to-black overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-500/5 rounded-full blur-3xl"></div>
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f08_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f08_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f08_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f08_1px,transparent_1px)] bg-size-[4rem_4rem]"></div>
       </div>
 
       <div className="relative w-full max-w-4xl px-8 z-10">
@@ -54,7 +54,7 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
         {/* Alert Icon */}
         <div className="flex justify-center mb-8">
           <div className="relative">
-            <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-red-500/20 to-orange-500/20 flex items-center justify-center ring-2 ring-red-500/30">
+            <div className="w-24 h-24 rounded-2xl bg-linear-to-br from-red-500/20 to-orange-500/20 flex items-center justify-center ring-2 ring-red-500/30">
               <AlertTriangle className="w-12 h-12 text-red-400" />
             </div>
             {/* Pulsing ring */}
@@ -134,7 +134,7 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
           {reset && (
             <button
               onClick={reset}
-              className="group flex items-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500 hover:from-red-600 hover:via-orange-600 hover:to-yellow-600 text-white font-semibold text-lg shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 transition-all hover:scale-105"
+              className="group flex items-center gap-3 px-8 py-4 rounded-xl bg-linear-to-r from-red-500 via-orange-500 to-yellow-500 hover:from-red-600 hover:via-orange-600 hover:to-yellow-600 text-white font-semibold text-lg shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 transition-all hover:scale-105"
             >
               <RefreshCw className="w-5 h-5 group-hover:rotate-180 transition-transform duration-500" />
               <span>Try Again</span>

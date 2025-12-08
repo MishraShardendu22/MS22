@@ -30,7 +30,7 @@ export const FooterSection = () => {
   };
 
   return (
-    <footer className="relative bg-linear-to-b from-transparent via-gray-950/80 to-black pt-24 pb-10 px-4 sm:px-6 md:px-8 overflow-hidden">
+    <footer className="relative bg-linear-to-b from-transparent via-gray-950/50 to-transparent pt-24 pb-10 px-4 sm:px-6 md:px-8 overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl"></div>

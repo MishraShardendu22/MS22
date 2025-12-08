@@ -1,57 +1,91 @@
 'use client'
 
-import { AlertCircle } from 'lucide-react'
+import ErrorPage from './Error'
+import { AlertTriangle, RefreshCw } from 'lucide-react'
 
 interface ErrorStateProps {
   title?: string
-  message: string
+  message?: string
   variant?: 'red' | 'orange' | 'yellow'
+  fullPage?: boolean
+  onRetry?: () => void
 }
 
-export const ErrorState = ({ 
-  title = 'Error', 
-  message,
-  variant = 'red'
-}: ErrorStateProps) => {
-  const colorClasses = {
+const InlineError = ({ title = 'Error', message, variant = 'red', onRetry }: ErrorStateProps) => {
+  const colors = {
     red: {
-      bg: 'bg-red-500/5',
+      bg: 'from-red-500/20 to-orange-500/20',
       ring: 'ring-red-500/30',
-      icon: 'bg-red-500/10 text-red-400',
-      title: 'text-red-400'
+      icon: 'text-red-400',
+      button: 'from-red-500 via-orange-500 to-yellow-500 hover:from-red-600 hover:via-orange-600 hover:to-yellow-600',
+      shadow: 'shadow-red-500/30 hover:shadow-red-500/50',
+      border: 'border-red-900/30',
+      text: 'text-red-400'
     },
     orange: {
-      bg: 'bg-orange-500/5',
+      bg: 'from-orange-500/20 to-yellow-500/20',
       ring: 'ring-orange-500/30',
-      icon: 'bg-orange-500/10 text-orange-400',
-      title: 'text-orange-400'
+      icon: 'text-orange-400',
+      button: 'from-orange-500 via-yellow-500 to-amber-500 hover:from-orange-600 hover:via-yellow-600 hover:to-amber-600',
+      shadow: 'shadow-orange-500/30 hover:shadow-orange-500/50',
+      border: 'border-orange-900/30',
+      text: 'text-orange-400'
     },
     yellow: {
-      bg: 'bg-yellow-500/5',
+      bg: 'from-yellow-500/20 to-amber-500/20',
       ring: 'ring-yellow-500/30',
-      icon: 'bg-yellow-500/10 text-yellow-400',
-      title: 'text-yellow-400'
+      icon: 'text-yellow-400',
+      button: 'from-yellow-500 via-amber-500 to-orange-500 hover:from-yellow-600 hover:via-amber-600 hover:to-orange-600',
+      shadow: 'shadow-yellow-500/30 hover:shadow-yellow-500/50',
+      border: 'border-yellow-900/30',
+      text: 'text-yellow-400'
     }
   }
 
-  const colors = colorClasses[variant]
+  const currentColors = colors[variant]
 
   return (
-    <section className="relative py-8 px-4 sm:px-6 md:px-8 bg-linear-to-b from-transparent via-gray-950/50 to-transparent overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 ${colors.bg} rounded-full blur-3xl`}></div>
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f08_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f08_1px,transparent_1px)] bg-size-[4rem_4rem]"></div>
-      </div>
-
-      <div className="container mx-auto max-w-6xl relative z-10">
-        <div className="flex flex-col items-center justify-center min-h-[400px]">
-          <div className={`w-16 h-16 rounded-xl ${colors.icon} flex items-center justify-center mb-4 ring-2 ${colors.ring}`}>
-            <AlertCircle className="w-8 h-8" />
+    <div className="flex items-center justify-center py-8">
+      <div className="text-center max-w-2xl px-8">
+        {/* Icon */}
+        <div className="flex justify-center mb-6">
+          <div className={`w-16 h-16 rounded-xl bg-linear-to-br ${currentColors.bg} flex items-center justify-center ring-2 ${currentColors.ring}`}>
+            <AlertTriangle className={`w-8 h-8 ${currentColors.icon}`} />
           </div>
-          <h3 className={`text-xl font-bold ${colors.title} mb-2`}>{title}</h3>
-          <p className="text-gray-400 text-center max-w-md">{message}</p>
         </div>
+
+        {/* Title */}
+        <h3 className="text-2xl font-bold text-white mb-3">{title}</h3>
+
+        {/* Message */}
+        {message && (
+          <div className={`p-4 bg-red-950/20 border ${currentColors.border} rounded-lg mb-6`}>
+            <p className={`${currentColors.text} text-sm font-mono break-all`}>
+              {message}
+            </p>
+          </div>
+        )}
+
+        {/* Retry Button */}
+        {onRetry && (
+          <button
+            onClick={onRetry}
+            className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-linear-to-r ${currentColors.button} text-white font-semibold shadow-lg ${currentColors.shadow} transition-all hover:scale-105`}
+          >
+            <RefreshCw className="w-4 h-4" />
+            <span>Try Again</span>
+          </button>
+        )}
       </div>
-    </section>
+    </div>
   )
+}
+
+export const ErrorState = ({ title, message, variant, fullPage = false, onRetry }: ErrorStateProps) => {
+  if (fullPage) {
+    const error = message ? new Error(message) : undefined
+    return <ErrorPage error={error} reset={onRetry} />
+  }
+  
+  return <InlineError title={title} message={message} variant={variant} onRetry={onRetry} />
 }
