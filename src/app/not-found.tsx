@@ -8,7 +8,9 @@ import { Home, ArrowLeft } from 'lucide-react'
 
 const teko = Teko({ 
   subsets: ['latin'],
-  weight: ['700']
+  weight: ['700'],
+  display: 'swap',
+  preload: false,
 })
 
 export default function NotFound() {

@@ -8,7 +8,9 @@ import Link from 'next/link'
 
 const teko = Teko({ 
   subsets: ['latin'],
-  weight: ['700']
+  weight: ['700'],
+  display: 'swap',
+  preload: false,
 })
 
 interface ErrorPageProps {

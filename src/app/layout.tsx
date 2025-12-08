@@ -34,6 +34,12 @@ export const metadata: Metadata = {
   },
   description:
     'Software Developer and Engineer passionate about building impactful applications with modern technologies. Specializing in Go, React, and cloud-native solutions.',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+  },
   keywords: [
     'Shardendu Mishra',
     'Software Developer',
