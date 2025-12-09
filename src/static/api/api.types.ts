@@ -12,4 +12,29 @@ export interface SkillsResponse {
   total_pages: number
   has_next: boolean
   has_previous: boolean
+}
+
+export interface TimelineItem {
+  id: string
+  type: 'work' | 'volunteer'
+  company: string
+  organisation?: string
+  logo?: string
+  company_logo?: string
+  organisation_logo?: string
+  position: string
+  location?: string
+  startDate: string
+  start_date?: string
+  endDate?: string
+  end_date?: string
+  description?: string
+  technologies?: string[]
+  current?: boolean
+}
+
+export interface TimelineResponse {
+  timeline?: TimelineItem[]
+  items?: TimelineItem[]
+  experiences?: TimelineItem[]
 } 

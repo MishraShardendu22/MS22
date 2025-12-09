@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { skillsAPI } from '@/static/api/api.request'
-import { Code2, ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { LoadingState } from '@/component/Loading/LoadingState'
 import { ErrorState } from '../states'
 
@@ -63,14 +63,9 @@ export default function SkillsDisplay() {
         
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="w-12 h-12 rounded-xl bg-linear-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center ring-2 ring-cyan-500/30">
-              <Code2 className="w-6 h-6 text-cyan-400" />
-            </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-linear-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
-              Technical Skills
-            </h2>
-          </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-linear-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent mb-4">
+            Technical Skills
+          </h2>
           <p className="text-gray-400 text-sm md:text-base max-w-2xl mx-auto">
             Technologies and tools I work with to build innovative solutions
           </p>
