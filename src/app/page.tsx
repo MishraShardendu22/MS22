@@ -1,7 +1,8 @@
+import { Time } from "@/component/Timeline/Time"
+import { ProjectsDisplay } from "@/component/Projects"
 import { FooterSection } from "@/component/Footer/Footer"
 import { HeroSection } from "@/component/Hero/HeroSection"
 import SkillsDisplay from "@/component/Skill/SkillsDisplay"
-import { Time } from "@/component/Timeline/Time"
 
 const page = () => {
   return (
@@ -9,6 +10,7 @@ const page = () => {
       <HeroSection />
       <SkillsDisplay />
       <Time />
+      <ProjectsDisplay />
       <FooterSection /> 
     </div>
   )
