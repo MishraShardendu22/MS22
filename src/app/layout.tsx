@@ -218,7 +218,9 @@ export default function RootLayout({
       >
         <Analytics />
         <SpeedInsights />
-        {children}
+        <div className="flex min-h-screen">
+          {children}
+        </div>
       </body>
     </html>
   );

@@ -34,7 +34,7 @@ const InlineLoader = ({ message = 'Loading...' }: LoadingStateProps) => {
 
   return (
     <div className="flex items-center justify-center py-8">
-      <div className="relative w-full max-w-3xl px-8">
+      <div className="relative w-full max-w-5xl px-8">
         <svg
           viewBox="0 0 915.869 72.022"
           className="w-full h-auto"
@@ -94,5 +94,9 @@ export const LoadingState = ({ message, variant, fullPage = false }: LoadingStat
     return <NameLoader />
   }
   
-  return <InlineLoader message={message} />
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-950">
+      <InlineLoader message={message} />
+    </div>
+  )
 }

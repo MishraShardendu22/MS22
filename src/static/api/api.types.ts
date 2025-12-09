@@ -40,7 +40,14 @@ export interface TimelineResponse {
 }
 
 export interface Project {
-  _id: string
+  _id?: string
+  inline?: {
+    id?: string
+    _id?: string
+    created_at?: string
+    updated_at?: string
+  }
+  id?: string
   order: number
   skills: string[]
   description: string

@@ -7,20 +7,38 @@ import SkillsDisplay from "@/component/Skill/SkillsDisplay"
 import { VolunteerDisplay } from "@/component"
 import { ExperiencesDisplay } from "@/component/Experience"
 import { CertificatesDisplay } from "@/component/Certificates"
+import { Sidebar } from "@/component/Sidebar"
 
 const page = () => {
   return (
-    <div>
-      <HeroSection />
-      <SkillsDisplay />
-      <Time />
-      <ProjectsDisplay />
-      <ExperiencesDisplay />
-      <VolunteerDisplay />
-      <CertificatesDisplay />
-      <StatsWrapper />
-      <FooterSection /> 
-    </div>
+    <>
+      <Sidebar />
+      <main className="flex-1">
+        <HeroSection />
+        <div id="skills">
+          <SkillsDisplay />
+        </div>
+        <div id="timeline">
+          <Time />
+        </div>
+        <div id="projects">
+          <ProjectsDisplay />
+        </div>
+        <div id="experience">
+          <ExperiencesDisplay />
+        </div>
+        <div id="volunteer">
+          <VolunteerDisplay />
+        </div>
+        <div id="certifications">
+          <CertificatesDisplay />
+        </div>
+        <StatsWrapper />
+        <div id="contact">
+          <FooterSection />
+        </div>
+      </main>
+    </>
   )
 }
 
