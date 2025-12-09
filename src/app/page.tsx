@@ -8,10 +8,16 @@ import { VolunteerDisplay } from "@/component"
 import { ExperiencesDisplay } from "@/component/Experience"
 import { CertificatesDisplay } from "@/component/Certificates"
 import { Sidebar } from "@/component/Sidebar"
+import { StructuredData } from "@/component/StructuredData"
+import { generatePersonSchema, generateWebSiteSchema } from "@/lib/structuredData"
 
 const page = () => {
+  const personSchema = generatePersonSchema();
+  const websiteSchema = generateWebSiteSchema();
+  
   return (
     <>
+      <StructuredData data={[personSchema, websiteSchema]} />
       <Sidebar />
       <main className="flex-1">
         <HeroSection />

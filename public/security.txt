@@ -1,0 +1,5 @@
+# Security Policy
+
+## Reporting a Vulnerability
+
+For security related issues, please contact: mishrashardendu22@gmail.com

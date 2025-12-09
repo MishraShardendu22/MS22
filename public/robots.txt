@@ -1,0 +1,54 @@
+# robots.txt for mishrashardendu22.is-a.dev
+# Allow all search engines to crawl the site
+
+User-agent: *
+Allow: /
+
+# Disallow crawling of API routes and admin endpoints
+Disallow: /api/
+Disallow: /_next/static/
+
+# Allow crawling of images and assets
+Allow: /icons/
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.gif$
+Allow: /*.webp$
+Allow: /*.avif$
+Allow: /*.svg$
+
+# Sitemap location
+Sitemap: https://mishrashardendu22.is-a.dev/sitemap.xml
+
+# Crawl delay (optional, helps prevent overloading)
+Crawl-delay: 0
+
+# Specific directives for major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# Block bad bots (optional)
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
