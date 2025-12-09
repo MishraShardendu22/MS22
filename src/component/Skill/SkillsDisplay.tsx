@@ -23,7 +23,6 @@ export default function SkillsDisplay() {
       try {
         setLoading(true)
         const response = await skillsAPI.getSkills(currentPage, skillsPerPage)
-        console.log('Fetched skills:', response)
         setSkills(response.data.skills)
         setTotalPages(response.data.total_pages)
         setHasNext(response.data.has_next)

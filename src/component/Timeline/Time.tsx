@@ -7,10 +7,10 @@ import { TimelineDisplay } from './TimelineDisplay'
 import { TimelineAPI } from '@/static/api/api.request'
 
 export const Time = () => {
+  const [loading, setLoading] = useState(true) 
+  const [error, setError] = useState<string | null>(null)
   const [experiences, setExperiences] = useState<any[]>([])
   const [volunteerExperiences, setVolunteerExperiences] = useState<any[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     const fetchTimeline = async () => {
