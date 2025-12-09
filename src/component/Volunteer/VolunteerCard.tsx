@@ -5,7 +5,8 @@ import { volunteerAPI } from '@/static/api/api.request'
 import type { Volunteer } from '@/static/api/api.types'
 import { LoadingState } from '@/component/Loading'
 import { ErrorState } from '@/component/Error'
-import { Heart, MapPin, Calendar, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react'
+import { UnifiedCard } from '@/component/UnifiedCard'
+import { MapPin, ChevronLeft, ChevronRight } from 'lucide-react'
 
 interface VolunteerCardProps {
   volunteer: Volunteer
@@ -26,108 +27,38 @@ const VolunteerCard = ({ volunteer, index }: VolunteerCardProps) => {
   const endDate = latestTimeline?.end_date ? formatDate(latestTimeline.end_date) : (volunteer.end_date ? formatDate(volunteer.end_date) : 'Present')
   const isCurrent = !latestTimeline?.end_date && !volunteer.end_date
 
-  return (
-    <div 
-      className="group relative"
-      style={{
-        animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`
-      }}
-    >
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
+  const badges = []
+  if (isCurrent) {
+    badges.push({ label: 'Active' })
+  }
 
-      <div className="relative bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl overflow-hidden transition-all duration-300 hover:border-pink-500/40 hover:shadow-lg hover:shadow-pink-500/10">
-        <div className="absolute inset-0 bg-linear-to-br from-pink-500/5 via-transparent to-rose-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        
-        <div className="relative p-5">
-          <div className="flex items-start justify-between gap-3 mb-3">
-            <div className="flex-1 min-w-0">
-              <h3 className="text-lg font-bold text-white mb-1 line-clamp-1 group-hover:text-pink-400 transition-colors duration-300">
-                {position}
-              </h3>
-              <div className="flex items-center gap-2">
-                {volunteer.organisation_logo && (
-                  <img 
-                    src={volunteer.organisation_logo} 
-                    alt={`${volunteer.organisation} logo`}
-                    className="w-5 h-5 rounded object-contain bg-white/5 p-0.5"
-                  />
-                )}
-                <p className="text-gray-400 text-sm font-medium">
-                  {volunteer.organisation}
-                </p>
-              </div>
-            </div>
-            <div className="flex flex-col items-end gap-2 shrink-0">
-              {isCurrent && (
-                <span className="px-2.5 py-1 text-xs font-bold bg-pink-500/10 text-pink-400 rounded-md border border-pink-500/30">
-                  Active
-                </span>
-              )}
-              {volunteer.certificate_link && (
-                <a
-                  href={volunteer.certificate_link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-pink-500/10 hover:bg-pink-500/20 text-pink-400 hover:text-pink-300 rounded-lg transition-all duration-200 border border-pink-500/30"
-                  aria-label="View certificate"
-                >
-                  <ExternalLink className="w-3.5 h-3.5" />
-                  <span>Certificate</span>
-                </a>
-              )}
-            </div>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-3 text-xs text-gray-500 mb-4">
-            {volunteer.location && (
-              <div className="flex items-center gap-1">
-                <MapPin className="w-3.5 h-3.5" />
-                <span>{volunteer.location}</span>
-              </div>
-            )}
-            <div className="flex items-center gap-1">
-              <Calendar className="w-3.5 h-3.5" />
-              <span>{startDate} - {endDate}</span>
-            </div>
-          </div>
-
-          {volunteer.description && (
-            <p className="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-3">
-              {volunteer.description}
-            </p>
-          )}
-
-          {volunteer.technologies && volunteer.technologies.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-4">
-              {volunteer.technologies.slice(0, 4).map((tech, idx) => (
-                <span
-                  key={idx}
-                  className="px-2.5 py-1 text-xs font-medium bg-gray-800/50 text-gray-300 rounded-md border border-gray-700/50 hover:border-gray-600 transition-colors duration-200"
-                >
-                  {tech}
-                </span>
-              ))}
-              {volunteer.technologies.length > 4 && (
-                <span className="px-2.5 py-1 text-xs font-medium bg-pink-500/10 text-pink-400 rounded-md border border-pink-500/30">
-                  +{volunteer.technologies.length - 4}
-                </span>
-              )}
-            </div>
-          )}
-        </div>
+  const extraInfo = volunteer.location ? (
+    <>
+      <span>•</span>
+      <div className="flex items-center gap-1">
+        <MapPin className="w-3.5 h-3.5" />
+        <span>{volunteer.location}</span>
       </div>
-    </div>
+    </>
+  ) : null
+
+  return (
+    <UnifiedCard
+      index={index}
+      theme="pink"
+      logo={volunteer.organisation_logo}
+      logoAlt={volunteer.organisation}
+      title={position}
+      subtitle={volunteer.organisation}
+      startDate={startDate}
+      endDate={endDate}
+      description={volunteer.description}
+      technologies={volunteer.technologies}
+      certificateUrl={volunteer.certificate_link}
+      certificateLabel="Certificate"
+      badges={badges}
+      extraInfo={extraInfo}
+    />
   )
 }
 

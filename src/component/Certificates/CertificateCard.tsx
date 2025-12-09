@@ -5,7 +5,8 @@ import { certificatesAPI } from '@/static/api/api.request'
 import type { Certificate } from '@/static/api/api.types'
 import { LoadingState } from '@/component/Loading'
 import { ErrorState } from '@/component/Error'
-import { Award, Building, Calendar, ExternalLink, ChevronLeft, ChevronRight, CheckCircle2 } from 'lucide-react'
+import { UnifiedCard } from '@/component/UnifiedCard'
+import { CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react'
 
 interface CertificateCardProps {
   certificate: Certificate
@@ -20,118 +21,50 @@ const CertificateCard = ({ certificate, index }: CertificateCardProps) => {
   }
 
   const issueDate = formatDate(certificate.issue_date)
-  const expiryDate = certificate.expiry_date ? formatDate(certificate.expiry_date) : 'No Expiration'
+
+  const badges = []
+  if (certificate.verified) {
+    badges.push({ 
+      label: 'Verified',
+      icon: <CheckCircle2 className="w-3 h-3" />
+    })
+  }
+
+  const extraInfo = (
+    <>
+      {certificate.expiry_date ? (
+        <>
+          <span>•</span>
+          <span>Expires {formatDate(certificate.expiry_date)}</span>
+        </>
+      ) : (
+        <>
+          <span>•</span>
+          <span className="text-emerald-400 font-medium">No Expiration</span>
+        </>
+      )}
+    </>
+  )
+
+  // Combine credential ID with description
+  const fullDescription = certificate.credential_id 
+    ? `${certificate.description || ''}\n\nCredential ID: ${certificate.credential_id}`.trim()
+    : certificate.description
 
   return (
-    <div 
-      className="group relative"
-      style={{
-        animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`
-      }}
-    >
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
-
-      <div className="relative bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl overflow-hidden transition-all duration-300 hover:border-emerald-500/40 hover:shadow-lg hover:shadow-emerald-500/10">
-        
-        <div className="absolute inset-0 bg-linear-to-br from-emerald-500/5 via-transparent to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        
-        <div className="relative p-5">
-          
-          <div className="flex items-start justify-between gap-3 mb-3">
-            <div className="flex-1 min-w-0">
-              <h3 className="text-lg font-bold text-white mb-1 line-clamp-1 group-hover:text-emerald-400 transition-colors duration-300">
-                {certificate.title}
-              </h3>
-              <div className="flex items-center gap-2 text-gray-400 text-sm font-medium">
-                <Building className="w-3.5 h-3.5" />
-                <span>{certificate.issuer}</span>
-              </div>
-            </div>
-            <div className="flex flex-col items-end gap-2 shrink-0">
-              {certificate.verified && (
-                <span className="flex items-center gap-1 px-2.5 py-1 text-xs font-bold bg-emerald-500/10 text-emerald-400 rounded-md border border-emerald-500/30">
-                  <CheckCircle2 className="w-3 h-3" />
-                  Verified
-                </span>
-              )}
-              {certificate.certificate_url && (
-                <a
-                  href={certificate.certificate_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 hover:text-emerald-300 rounded-lg transition-all duration-200 border border-emerald-500/30"
-                  aria-label="View certificate"
-                >
-                  <ExternalLink className="w-3.5 h-3.5" />
-                  <span>Certificate</span>
-                </a>
-              )}
-            </div>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-3 text-xs text-gray-500 mb-4">
-            <div className="flex items-center gap-1">
-              <Calendar className="w-3.5 h-3.5" />
-              <span>Issued {issueDate}</span>
-            </div>
-            {certificate.expiry_date && (
-              <div className="flex items-center gap-1">
-                <span>•</span>
-                <span>Expires {expiryDate}</span>
-              </div>
-            )}
-            {!certificate.expiry_date && (
-              <div className="flex items-center gap-1">
-                <span>•</span>
-                <span className="text-emerald-400 font-medium">No Expiration</span>
-              </div>
-            )}
-          </div>
-
-          {certificate.credential_id && (
-            <div className="mb-4 p-2.5 bg-gray-800/30 rounded-lg border border-gray-700/30">
-              <p className="text-xs text-gray-500 mb-0.5">Credential ID</p>
-              <p className="text-xs font-mono text-gray-300">{certificate.credential_id}</p>
-            </div>
-          )}
-
-          {certificate.description && (
-            <p className="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-2">
-              {certificate.description}
-            </p>
-          )}
-
-          {certificate.skills && certificate.skills.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-4">
-              {certificate.skills.slice(0, 4).map((skill, idx) => (
-                <span
-                  key={idx}
-                  className="px-2.5 py-1 text-xs font-medium bg-gray-800/50 text-gray-300 rounded-md border border-gray-700/50 hover:border-gray-600 transition-colors duration-200"
-                >
-                  {skill}
-                </span>
-              ))}
-              {certificate.skills.length > 4 && (
-                <span className="px-2.5 py-1 text-xs font-medium bg-emerald-500/10 text-emerald-400 rounded-md border border-emerald-500/30">
-                  +{certificate.skills.length - 4}
-                </span>
-              )}
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
+    <UnifiedCard
+      index={index}
+      theme="emerald"
+      title={certificate.title}
+      subtitle={certificate.issuer}
+      startDate={`Issued ${issueDate}`}
+      description={fullDescription}
+      technologies={certificate.skills}
+      certificateUrl={certificate.certificate_url}
+      certificateLabel="Certificate"
+      badges={badges}
+      extraInfo={extraInfo}
+    />
   )
 }
 

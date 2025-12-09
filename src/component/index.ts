@@ -2,6 +2,10 @@
 export { LoadingState, NameLoader } from './Loading'
 export { ErrorState, NotFound } from './Error'
 
+// Shared Components
+export { UnifiedCard } from './UnifiedCard'
+export type { CardTheme } from './UnifiedCard'
+
 // Section Components
 export { FooterSection } from './Footer'
 export { SkillsDisplay } from './Skill'
