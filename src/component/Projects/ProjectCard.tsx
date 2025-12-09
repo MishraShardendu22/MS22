@@ -33,9 +33,9 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
         }
       `}</style>
 
-      <div className="relative bg-gradient-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl overflow-hidden transition-all duration-300 hover:border-cyan-500/40 hover:shadow-lg hover:shadow-cyan-500/10">
+      <div className="relative bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl overflow-hidden transition-all duration-300 hover:border-cyan-500/40 hover:shadow-lg hover:shadow-cyan-500/10">
         
-        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-linear-to-br from-cyan-500/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         
         <div className="relative p-5">
           
@@ -254,18 +254,15 @@ export const ProjectsDisplay = () => {
           </p>
         </div>
 
-        <div className="mb-6 min-h-[600px]">
-          {paginationLoading || loading ? (
-            <div className="h-[600px] flex items-center justify-center">
-              <LoadingState message="Loading projects..." variant="cyan" />
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {projects.map((project, index) => (
-                <ProjectCard key={project._id} project={project} index={index} />
-              ))}
-            </div>
-          )}
+        <div className="mb-6 min-h-[600px] relative">
+          <div className={`h-[600px] flex items-center justify-center absolute inset-0 transition-opacity duration-300 ${paginationLoading ? 'opacity-100 z-10' : 'opacity-0 pointer-events-none z-0'}`}>
+            <LoadingState message="Loading projects..." variant="cyan" />
+          </div>
+          <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 transition-opacity duration-300 ${paginationLoading ? 'opacity-0' : 'opacity-100'}`}>
+            {projects.map((project, index) => (
+              <ProjectCard key={`${project._id}-${index}`} project={project} index={index} />
+            ))}
+          </div>
         </div>
 
         {totalPages > 1 && (

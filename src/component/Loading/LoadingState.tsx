@@ -6,7 +6,7 @@ import { animate, svg } from 'animejs'
 
 interface LoadingStateProps {
   message?: string
-  variant?: 'cyan' | 'blue' | 'purple'
+  variant?: 'cyan' | 'blue' | 'purple' | 'pink' | 'emerald'
   fullPage?: boolean
 }
 

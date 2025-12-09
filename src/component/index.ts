@@ -6,6 +6,10 @@ export { ErrorState, NotFound } from './Error'
 export { FooterSection } from './Footer'
 export { SkillsDisplay } from './Skill'
 export { Time, TimelineDisplay } from './Timeline'
+export { ProjectsDisplay, ProjectCard } from './Projects'
+export { VolunteerDisplay, VolunteerCard } from './Volunteer'
+export { CertificatesDisplay, CertificateCard } from './Certificates'
+export { StatsDisplay, StatsWrapper } from './Stats'
 
 // Hero Components
 export {

@@ -1,5 +1,5 @@
 import { api } from "./api.response"
-import type { ApiResponse, SkillsResponse, TimelineItem, ProjectsResponse, Project } from "./api.types"
+import type { ApiResponse, SkillsResponse, TimelineItem, ProjectsResponse, Project, VolunteersResponse, Volunteer, CertificatesResponse, Certificate } from "./api.types"
 
 export const skillsAPI = {
   getSkills: async (page: number = 1, limit: number = 15): Promise<ApiResponse<SkillsResponse>> => {
@@ -27,6 +27,34 @@ export const projectsAPI = {
 
   getProjectById: async (id: string): Promise<ApiResponse<Project>> => {
     const response = await api.get(`/projects/${id}`)
+    return response.data
+  }
+}
+
+export const volunteerAPI = {
+  getAllVolunteers: async (page: number = 1, limit: number = 15): Promise<ApiResponse<VolunteersResponse>> => {
+    const response = await api.get<ApiResponse<VolunteersResponse>>('/volunteers', {
+      params: { page, limit }
+    })
+    return response.data
+  },
+
+  getVolunteerById: async (id: string): Promise<ApiResponse<Volunteer>> => {
+    const response = await api.get(`/volunteers/${id}`)
+    return response.data
+  }
+}
+
+export const certificatesAPI = {
+  getAllCertificates: async (page: number = 1, limit: number = 15): Promise<ApiResponse<CertificatesResponse>> => {
+    const response = await api.get<ApiResponse<CertificatesResponse>>('/certificates', {
+      params: { page, limit }
+    })
+    return response.data
+  },
+
+  getCertificateById: async (id: string): Promise<ApiResponse<Certificate>> => {
+    const response = await api.get(`/certificates/${id}`)
     return response.data
   }
 }
