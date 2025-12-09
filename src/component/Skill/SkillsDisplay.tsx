@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { skillsAPI } from '@/static/api/api.request'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { LoadingState } from '@/component/Loading/LoadingState'
-import { ErrorState } from '../states'
+import { ErrorState } from '../Error'
 
 
 export default function SkillsDisplay() {

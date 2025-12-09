@@ -1,42 +1,42 @@
+// ExperienceCard.tsx
 import Image from 'next/image'
 import { ProcessedExperience, ExperiencePosition } from './types'
 
 interface ExperienceCardProps {
-  exp: ProcessedExperience
-  position: ExperiencePosition
-  companyColor: string
   expId: string
-  isHovered: boolean
   isMobile: boolean
+  isHovered: boolean
+  companyColor: string
   onMouseEnter: () => void
   onMouseLeave: () => void
+  exp: ProcessedExperience
+  position: ExperiencePosition
 }
 
 export const ExperienceCard = ({
   exp,
   position,
-  companyColor,
-  expId,
   isHovered,
-  isMobile,
+  companyColor,
   onMouseEnter,
   onMouseLeave,
 }: ExperienceCardProps) => {
   return (
-    <div className="relative min-h-[100px]">
+    <>
+      {/* Company Logo */}
       <div
         className="absolute transition-all duration-300"
         style={{
           left: `${position.left + position.width / 2 - 28}px`,
           top: '-14px',
-          zIndex: 20,
+          zIndex: isHovered ? 100 : 20,
         }}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
       >
         <div
           className={`
-            w-14 h-14 rounded-xl bg-linear-to-br from-gray-900 to-gray-950 
+            w-14 h-14 rounded-xl bg-gradient-to-br from-gray-900 to-gray-950 
             flex items-center justify-center cursor-pointer border-2
             transition-all duration-300 shadow-lg
             ${isHovered ? 'scale-125 shadow-2xl ring-4' : 'hover:scale-110'}
@@ -60,10 +60,11 @@ export const ExperienceCard = ({
           )}
         </div>
 
+        {/* Tooltip */}
         <div
           className={`
             absolute top-16 left-1/2 -translate-x-1/2 
-            px-4 py-3 bg-linear-to-br from-gray-900/95 to-gray-950/95 backdrop-blur-md
+            px-4 py-3 bg-gradient-to-br from-gray-900/95 to-gray-950/95 backdrop-blur-md
             border rounded-xl shadow-2xl text-xs font-medium whitespace-nowrap
             transition-all duration-300
             ${isHovered ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-2 scale-95 pointer-events-none'}
@@ -71,6 +72,7 @@ export const ExperienceCard = ({
           style={{ 
             borderColor: companyColor,
             boxShadow: `0 10px 40px ${companyColor}30`,
+            zIndex: 1000,
           }}
         >
           <div className="font-bold text-white">{exp.name}</div>
@@ -89,19 +91,23 @@ export const ExperienceCard = ({
         </div>
       </div>
 
+      {/* Experience Bar */}
       <div
-        className="absolute top-8 rounded-full transition-all duration-300 cursor-pointer shadow-lg"
+        className="absolute rounded-full transition-all duration-300 cursor-pointer shadow-lg"
         style={{
           left: `${position.left}px`,
           width: `${position.width}px`,
+          top: '8px',
           background: `linear-gradient(90deg, ${companyColor}E6 0%, ${companyColor}CC 100%)`,
           height: isHovered ? '8px' : '6px',
-          top: isHovered ? '5px' : '6px',
+          transform: isHovered ? 'translateY(-1px)' : 'none',
           boxShadow: isHovered ? `0 0 20px ${companyColor}80, 0 4px 12px ${companyColor}40` : `0 2px 8px ${companyColor}40`,
+          zIndex: isHovered ? 50 : 10,
         }}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
       >
+        {/* Start Dot */}
         <div
           className="absolute -left-1.5 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 border-gray-950 shadow-lg"
           style={{ 
@@ -110,6 +116,7 @@ export const ExperienceCard = ({
           }}
         />
 
+        {/* End Dot */}
         <div
           className={`
             absolute -right-1.5 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 border-gray-950 shadow-lg
@@ -122,11 +129,13 @@ export const ExperienceCard = ({
         />
       </div>
 
+      {/* Date Range */}
       <div
-        className="absolute top-16 text-xs text-gray-500 text-center font-medium"
+        className="absolute text-xs text-gray-500 text-center font-medium pointer-events-none"
         style={{
           left: `${position.left}px`,
           width: `${position.width}px`,
+          top: '20px',
         }}
       >
         {exp.startMonth.toLocaleDateString('en-US', {
@@ -141,6 +150,6 @@ export const ExperienceCard = ({
             })
           : <span className={`${exp.type === 'work' ? 'text-cyan-400' : 'text-purple-400'} font-bold`}>Present</span>}
       </div>
-    </div>
+    </>
   )
 }

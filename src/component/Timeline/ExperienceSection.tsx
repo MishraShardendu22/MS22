@@ -1,3 +1,4 @@
+// ExperienceSection.tsx
 import { ProcessedExperience, ExperiencePosition } from './types'
 import { getCompanyColor } from './utils'
 import { ExperienceCard } from './ExperienceCard'
@@ -37,8 +38,8 @@ export const ExperienceSection = ({
         <h3 className={`font-bold text-xl ${config.titleColor}`}>{config.title}</h3>
       </div>
 
-      <div className="relative min-h-[140px]">
-        <div className={`absolute top-8 left-8 right-8 h-px bg-linear-to-r ${config.lineGradient} rounded-full`} />
+      <div className="relative h-[100px]">
+        <div className={`absolute top-8 left-8 right-8 h-px bg-gradient-to-r ${config.lineGradient} rounded-full`} />
 
         {experiences.map((exp, index) => {
           const position = getExperiencePosition(exp)
