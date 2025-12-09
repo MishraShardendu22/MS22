@@ -28,8 +28,8 @@ export const NameLoader = () => {
   }, [])
 
   return (
-    <div className="flex items-center justify-center w-full min-h-screen bg-black overflow-hidden">
-      <div className="relative w-full max-w-6xl px-8">
+    <div className="flex items-center justify-center w-full">
+      <div className="relative w-full max-w-4xl px-4">
         <svg
           viewBox="0 0 915.869 72.022"
           className="w-full h-auto"
@@ -67,15 +67,15 @@ export const NameLoader = () => {
         {/* Animated glowing dot */}
         <div
           ref={dotRef}
-          className="absolute w-6 h-6 rounded-full"
+          className="absolute w-4 h-4 rounded-full"
           style={{
-            left: '-12px',
-            top: '-12px',
+            left: '-8px',
+            top: '-8px',
             background: 'radial-gradient(circle, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%)',
-            boxShadow: '0 0 20px #06b6d4, 0 0 40px #3b82f6, 0 0 60px #8b5cf6',
+            boxShadow: '0 0 15px #06b6d4, 0 0 30px #3b82f6',
           }}
         >
-          <div className="absolute inset-1 rounded-full bg-white opacity-60 animate-pulse" />
+          <div className="absolute inset-0.5 rounded-full bg-white opacity-60 animate-pulse" />
         </div>
 
       </div>

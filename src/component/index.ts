@@ -9,6 +9,7 @@ export { Time, TimelineDisplay } from './Timeline'
 export { ProjectsDisplay, ProjectCard } from './Projects'
 export { VolunteerDisplay, VolunteerCard } from './Volunteer'
 export { CertificatesDisplay, CertificateCard } from './Certificates'
+export { ExperiencesDisplay, ExperienceCard } from './Experience'
 export { StatsDisplay, StatsWrapper } from './Stats'
 
 // Hero Components

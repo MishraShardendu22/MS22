@@ -1,11 +1,12 @@
 import { Time } from "@/component/Timeline/Time"
-import { ProjectsDisplay } from "@/component/Projects"
-import { VolunteerDisplay } from "@/component/Volunteer"
-import { CertificatesDisplay } from "@/component/Certificates"
 import { StatsWrapper } from "@/component/Stats"
+import { ProjectsDisplay } from "@/component/Projects"
 import { FooterSection } from "@/component/Footer/Footer"
 import { HeroSection } from "@/component/Hero/HeroSection"
 import SkillsDisplay from "@/component/Skill/SkillsDisplay"
+import { VolunteerDisplay } from "@/component"
+import { ExperiencesDisplay } from "@/component/Experience"
+import { CertificatesDisplay } from "@/component/Certificates"
 
 const page = () => {
   return (
@@ -14,6 +15,7 @@ const page = () => {
       <SkillsDisplay />
       <Time />
       <ProjectsDisplay />
+      <ExperiencesDisplay />
       <VolunteerDisplay />
       <CertificatesDisplay />
       <StatsWrapper />

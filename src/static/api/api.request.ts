@@ -1,5 +1,5 @@
 import { api } from "./api.response"
-import type { ApiResponse, SkillsResponse, TimelineItem, ProjectsResponse, Project, VolunteersResponse, Volunteer, CertificatesResponse, Certificate } from "./api.types"
+import type { ApiResponse, SkillsResponse, TimelineItem, ProjectsResponse, Project, VolunteersResponse, Volunteer, CertificatesResponse, Certificate, ExperiencesResponse, Experience } from "./api.types"
 
 export const skillsAPI = {
   getSkills: async (page: number = 1, limit: number = 15): Promise<ApiResponse<SkillsResponse>> => {
@@ -33,28 +33,42 @@ export const projectsAPI = {
 
 export const volunteerAPI = {
   getAllVolunteers: async (page: number = 1, limit: number = 15): Promise<ApiResponse<VolunteersResponse>> => {
-    const response = await api.get<ApiResponse<VolunteersResponse>>('/volunteers', {
+    const response = await api.get<ApiResponse<VolunteersResponse>>('/volunteer/experiences', {
       params: { page, limit }
     })
     return response.data
   },
 
   getVolunteerById: async (id: string): Promise<ApiResponse<Volunteer>> => {
-    const response = await api.get(`/volunteers/${id}`)
+    const response = await api.get(`/volunteer/experiences/${id}`)
     return response.data
   }
 }
 
 export const certificatesAPI = {
   getAllCertificates: async (page: number = 1, limit: number = 15): Promise<ApiResponse<CertificatesResponse>> => {
-    const response = await api.get<ApiResponse<CertificatesResponse>>('/certificates', {
+    const response = await api.get<ApiResponse<CertificatesResponse>>('/certifications', {
       params: { page, limit }
     })
     return response.data
   },
 
   getCertificateById: async (id: string): Promise<ApiResponse<Certificate>> => {
-    const response = await api.get(`/certificates/${id}`)
+    const response = await api.get(`/certifications/${id}`)
+    return response.data
+  }
+}
+
+export const experiencesAPI = {
+  getAllExperiences: async (page: number = 1, limit: number = 15): Promise<ApiResponse<ExperiencesResponse>> => {
+    const response = await api.get<ApiResponse<ExperiencesResponse>>('/experiences', {
+      params: { page, limit }
+    })
+    return response.data
+  },
+
+  getExperienceById: async (id: string): Promise<ApiResponse<Experience>> => {
+    const response = await api.get(`/experiences/${id}`)
     return response.data
   }
 }

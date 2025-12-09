@@ -1,1 +1,1 @@
-export { VolunteerDisplay, VolunteerCard } from './VolunteerCard'
+export { VolunteerDisplay } from './VolunteerCard'

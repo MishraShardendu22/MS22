@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { fetchAllStats } from '@/lib/fetchStats'
 import { StatsDisplay } from './stat'
-import { LoadingState } from '@/component/Loading'
+import { NameLoader } from '@/component/Loading'
 import type { GitHubData, LeetCodeData, Repository } from '@/types/stats'
 
 export const StatsWrapper = () => {
@@ -12,25 +12,26 @@ export const StatsWrapper = () => {
     leetcode: LeetCodeData | null
     stars: number
     topRepos: Repository[]
+    commits: Array<{ date: string; count: number }>
+    calendar: Record<string, number>
   } | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const loadStats = async () => {
       try {
-        console.log('📈 Loading stats...')
         const data = await fetchAllStats()
-        console.log('📈 Stats loaded:', data)
         setStats({
           github: data.github,
           leetcode: data.leetcode,
           stars: data.stars,
           topRepos: data.topRepos,
+          commits: data.commits,
+          calendar: data.calendar,
         })
       } catch (error) {
-        console.error('❌ Error loading stats:', error)
+        // Error loading stats
       } finally {
-        console.log('📈 Stats loading finished')
         setLoading(false)
       }
     }
@@ -39,7 +40,11 @@ export const StatsWrapper = () => {
   }, [])
 
   // Don't render if loading is done and there's no data
-  if (!loading && (!stats?.github || !stats?.leetcode || stats?.topRepos?.length === 0)) {
+  const hasGithubData = stats?.github && Object.keys(stats.github).length > 0
+  const hasLeetcodeData = stats?.leetcode && Object.keys(stats.leetcode).length > 0
+  const hasRepos = stats?.topRepos && stats.topRepos.length > 0
+  
+  if (!loading && (!hasGithubData || !hasLeetcodeData || !hasRepos)) {
     return null
   }
 
@@ -51,6 +56,7 @@ export const StatsWrapper = () => {
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f08_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f08_1px,transparent_1px)] bg-size-[4rem_4rem]"></div>
         </div>
+
         <div className="container mx-auto max-w-7xl relative z-10">
           <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-linear-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent mb-4">
@@ -60,8 +66,9 @@ export const StatsWrapper = () => {
               Overview of my coding activity and achievements across platforms
             </p>
           </div>
-          <div className="min-h-[600px]">
-            <LoadingState message="Loading statistics..." variant="cyan" />
+
+          <div className="flex items-center justify-center min-h-[400px]">
+            <NameLoader />
           </div>
         </div>
       </section>
@@ -74,10 +81,12 @@ export const StatsWrapper = () => {
 
   return (
     <StatsDisplay
+      stars={stats.stars}
       github={stats.github}
       leetcode={stats.leetcode}
-      stars={stats.stars}
       topRepos={stats.topRepos}
+      commits={stats.commits || []}
+      calendar={stats.calendar || {}}
     />
   )
 }

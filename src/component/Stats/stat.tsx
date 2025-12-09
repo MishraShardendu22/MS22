@@ -201,14 +201,98 @@ const TopRepositoriesCard = ({ topRepos }: TopRepositoriesCardProps) => (
   </div>
 )
 
+interface CommitsActivityCardProps {
+  commits: any[]
+  calendar: any
+}
+
+const CommitsActivityCard = ({ commits, calendar }: CommitsActivityCardProps) => {
+  // Process commits data for weekly grouping
+  const weeklyData = commits.reduce((acc: any, commit: any) => {
+    if (!commit.week) return acc
+    const existing = acc.find((w: any) => w.week === commit.week)
+    if (existing) {
+      existing.count += commit.days?.reduce((sum: number, day: any) => sum + (day || 0), 0) || 0
+    } else {
+      acc.push({
+        week: commit.week,
+        count: commit.days?.reduce((sum: number, day: any) => sum + (day || 0), 0) || 0
+      })
+    }
+    return acc
+  }, []).slice(-52) // Last 52 weeks
+
+  const totalCommits = weeklyData.reduce((sum: number, w: any) => sum + w.count, 0)
+  const avgPerWeek = weeklyData.length > 0 ? Math.round(totalCommits / weeklyData.length) : 0
+  const peakWeek = weeklyData.reduce((max: any, w: any) => w.count > (max?.count || 0) ? w : max, { count: 0 })
+  const maxCount = Math.max(...weeklyData.map((w: any) => w.count), 1)
+
+  return (
+    <div className="bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:border-cyan-500/40 transition-all duration-300">
+      <div className="flex items-center gap-3 mb-6">
+        <div className="p-3 bg-cyan-500/10 rounded-lg border border-cyan-500/30">
+          <Activity className="w-5 h-5 text-cyan-400" />
+        </div>
+        <div>
+          <h3 className="text-lg font-bold text-white">Commits Over Time</h3>
+          <p className="text-xs text-gray-400">Development Activity Analysis</p>
+        </div>
+      </div>
+
+      {/* Stats Row */}
+      <div className="grid grid-cols-3 gap-4 mb-6">
+        <div className="p-3 bg-gray-800/30 rounded-lg border border-gray-700/50">
+          <p className="text-xs text-gray-400 mb-1">Total</p>
+          <p className="text-xl font-bold text-white">{totalCommits}</p>
+        </div>
+        <div className="p-3 bg-gray-800/30 rounded-lg border border-gray-700/50">
+          <p className="text-xs text-gray-400 mb-1">Avg/Week</p>
+          <p className="text-xl font-bold text-cyan-400">{avgPerWeek}</p>
+        </div>
+        <div className="p-3 bg-gray-800/30 rounded-lg border border-gray-700/50">
+          <p className="text-xs text-gray-400 mb-1">Peak Week</p>
+          <p className="text-xl font-bold text-green-400">{peakWeek.count}</p>
+        </div>
+      </div>
+
+      {/* Bar Chart */}
+      <div className="relative h-32 flex items-end gap-0.5 overflow-x-auto pb-6">
+        {weeklyData.map((week: any, index: number) => {
+          const height = (week.count / maxCount) * 100
+          return (
+            <div
+              key={index}
+              className="group relative shrink-0"
+              style={{ width: '8px' }}
+            >
+              <div
+                className="bg-cyan-500 hover:bg-cyan-400 transition-all duration-200 rounded-t"
+                style={{ height: `${height}%`, minHeight: week.count > 0 ? '2px' : '0' }}
+              />
+              <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-xs text-white rounded opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap z-10">
+                {week.count} commits
+              </div>
+            </div>
+          )
+        })}
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gray-800" />
+      </div>
+
+      <p className="text-xs text-gray-500 text-center mt-2">Last 52 weeks</p>
+    </div>
+  )
+}
+
 interface StatsDisplayProps {
   github: GitHubData
   stars: number
   leetcode: LeetCodeData
   topRepos: Repository[]
+  commits: any[]
+  calendar: any
 }
 
-export const StatsDisplay = ({ github, stars, leetcode, topRepos }: StatsDisplayProps) => {
+export const StatsDisplay = ({ github, stars, leetcode, topRepos, commits, calendar }: StatsDisplayProps) => {
   return (
     <section className="relative py-12 px-4 sm:px-6 md:px-8 bg-linear-to-b from-transparent via-gray-950/50 to-transparent overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
@@ -230,6 +314,9 @@ export const StatsDisplay = ({ github, stars, leetcode, topRepos }: StatsDisplay
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <GitHubProfileCard github={github} stars={stars} />
           <LeetCodeStatsCard leetcode={leetcode} />
+          <div className="lg:col-span-2">
+            <CommitsActivityCard commits={commits} calendar={calendar} />
+          </div>
           <div className="lg:col-span-2">
             <TopRepositoriesCard topRepos={topRepos} />
           </div>

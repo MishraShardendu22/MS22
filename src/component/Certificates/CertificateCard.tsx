@@ -48,22 +48,36 @@ const CertificateCard = ({ certificate, index }: CertificateCardProps) => {
         
         <div className="relative p-5">
           
-          <div className="flex items-start justify-between mb-3">
-            <div className="flex-1">
+          <div className="flex items-start justify-between gap-3 mb-3">
+            <div className="flex-1 min-w-0">
               <h3 className="text-lg font-bold text-white mb-1 line-clamp-1 group-hover:text-emerald-400 transition-colors duration-300">
-                {certificate.certificate_name}
+                {certificate.title}
               </h3>
               <div className="flex items-center gap-2 text-gray-400 text-sm font-medium">
                 <Building className="w-3.5 h-3.5" />
-                <span>{certificate.issuing_organisation}</span>
+                <span>{certificate.issuer}</span>
               </div>
             </div>
-            {certificate.verified && (
-              <span className="flex items-center gap-1 px-2.5 py-1 text-xs font-bold bg-emerald-500/10 text-emerald-400 rounded-md border border-emerald-500/30 shrink-0">
-                <CheckCircle2 className="w-3 h-3" />
-                Verified
-              </span>
-            )}
+            <div className="flex flex-col items-end gap-2 shrink-0">
+              {certificate.verified && (
+                <span className="flex items-center gap-1 px-2.5 py-1 text-xs font-bold bg-emerald-500/10 text-emerald-400 rounded-md border border-emerald-500/30">
+                  <CheckCircle2 className="w-3 h-3" />
+                  Verified
+                </span>
+              )}
+              {certificate.certificate_url && (
+                <a
+                  href={certificate.certificate_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 hover:text-emerald-300 rounded-lg transition-all duration-200 border border-emerald-500/30"
+                  aria-label="View certificate"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>Certificate</span>
+                </a>
+              )}
+            </div>
           </div>
 
           <div className="flex flex-wrap items-center gap-3 text-xs text-gray-500 mb-4">
@@ -115,21 +129,6 @@ const CertificateCard = ({ certificate, index }: CertificateCardProps) => {
               )}
             </div>
           )}
-
-          {certificate.certificate_url && (
-            <div className="flex items-center gap-2 pt-3 border-t border-gray-800/50">
-              <a
-                href={certificate.certificate_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-gray-800/40 hover:bg-gray-800/60 text-gray-400 hover:text-emerald-400 rounded-lg transition-all duration-200 group/icon"
-                aria-label="View certificate"
-              >
-                <ExternalLink className="w-3.5 h-3.5" />
-                <span>View Certificate</span>
-              </a>
-            </div>
-          )}
         </div>
       </div>
     </div>
@@ -147,7 +146,6 @@ export const CertificatesDisplay = () => {
 
   const fetchCertificates = async (page: number) => {
     try {
-      console.log('🏆 Fetching certificates, page:', page)
       if (page === 1) {
         setLoading(true)
       } else {
@@ -156,20 +154,24 @@ export const CertificatesDisplay = () => {
       setError(null)
       
       const response = await certificatesAPI.getAllCertificates(page, certificatesPerPage)
-      console.log('🏆 Certificates response:', response)
       
       if (response.status === 200 && response.data) {
-        const sortedCertificates = response.data.certificates.sort((a, b) => a.order - b.order)
-        console.log('🏆 Certificates loaded:', sortedCertificates.length)
+        const certs = response.data.certifications || []
+        // Sort by order if available, otherwise maintain API order
+        const sortedCertificates = certs.sort((a, b) => {
+          const orderA = a.order ?? 999
+          const orderB = b.order ?? 999
+          return orderA - orderB
+        })
         setCertificates(sortedCertificates)
         setTotalCertificates(response.data.total || sortedCertificates.length)
       } else {
-        console.log('🏆 No certificates data')
         setCertificates([])
         setTotalCertificates(0)
       }
     } catch (err) {
-      console.error('❌ Error fetching certificates:', err)
+      console.error('Error fetching certificates:', err)
+      setError('Failed to load certificates. Please try again later.')
       setCertificates([])
       setTotalCertificates(0)
     } finally {
@@ -196,9 +198,6 @@ export const CertificatesDisplay = () => {
     }
   }
 
-  // Don't render if loading is done and there's no data
-  if (!loading && certificates.length === 0) return null
-
   if (loading) return (
     <section className="relative py-12 px-4 sm:px-6 md:px-8 bg-linear-to-b from-transparent via-gray-950/50 to-transparent overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
@@ -217,6 +216,52 @@ export const CertificatesDisplay = () => {
         </div>
         <div className="min-h-[600px]">
           <LoadingState message="Loading certificates..." variant="cyan" />
+        </div>
+      </div>
+    </section>
+  )
+
+  if (error) return (
+    <section className="relative py-12 px-4 sm:px-6 md:px-8 bg-linear-to-b from-transparent via-gray-950/50 to-transparent overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f08_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f08_1px,transparent_1px)] bg-size-[4rem_4rem]"></div>
+      </div>
+      <div className="container mx-auto max-w-7xl relative z-10">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-linear-to-r from-emerald-400 via-teal-400 to-green-400 bg-clip-text text-transparent mb-4">
+            Certifications
+          </h2>
+          <p className="text-gray-400 text-sm md:text-base max-w-2xl mx-auto">
+            Professional certifications and achievements demonstrating expertise and continuous learning
+          </p>
+        </div>
+        <div className="min-h-[600px]">
+          <ErrorState title="Error Loading Certificates" message={error} variant="red" onRetry={() => fetchCertificates(currentPage)} />
+        </div>
+      </div>
+    </section>
+  )
+
+  if (certificates.length === 0) return (
+    <section className="relative py-12 px-4 sm:px-6 md:px-8 bg-linear-to-b from-transparent via-gray-950/50 to-transparent overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f08_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f08_1px,transparent_1px)] bg-size-[4rem_4rem]"></div>
+      </div>
+      <div className="container mx-auto max-w-7xl relative z-10">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-linear-to-r from-emerald-400 via-teal-400 to-green-400 bg-clip-text text-transparent mb-4">
+            Certifications
+          </h2>
+          <p className="text-gray-400 text-sm md:text-base max-w-2xl mx-auto">
+            Professional certifications and achievements demonstrating expertise and continuous learning
+          </p>
+        </div>
+        <div className="min-h-[400px] flex items-center justify-center">
+          <p className="text-lg text-gray-400">No certifications available to display</p>
         </div>
       </div>
     </section>
@@ -245,9 +290,12 @@ export const CertificatesDisplay = () => {
             <LoadingState message="Loading certificates..." variant="emerald" />
           </div>
           <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 transition-opacity duration-300 ${paginationLoading ? 'opacity-0' : 'opacity-100'}`}>
-            {certificates.map((certificate, index) => (
-              <CertificateCard key={certificate._id} certificate={certificate} index={index} />
-            ))}
+            {certificates.map((certificate, index) => {
+              const certId = certificate.inline?.id || certificate._id || `cert-${index}`
+              return (
+                <CertificateCard key={certId} certificate={certificate} index={index} />
+              )
+            })}
           </div>
         </div>
 

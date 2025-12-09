@@ -3,21 +3,12 @@ import { API_BASE_URL } from '@/constants/url'
 
 const BASE_URL = API_BASE_URL
 const withTimeout = (url: string, ms = 8000) => {
-  console.log('🔄 Fetching:', url)
   return axios.get(url, { timeout: ms })
-    .then(res => {
-      console.log('✅ Success:', url, res.data)
-      return res
-    })
-    .catch(err => {
-      console.log('❌ Failed:', url, err.message)
-      return null
-    })
+    .then(res => res)
+    .catch(err => null)
 }
 
 export async function fetchAllStats() {
-  console.log('📊 Starting fetchAllStats with BASE_URL:', BASE_URL)
-  
   const [lc, gh] = await Promise.all([
     withTimeout(`${BASE_URL}/api/leetcode`),
     withTimeout(`${BASE_URL}/api/github`),
@@ -41,6 +32,5 @@ export async function fetchAllStats() {
     calendar: cal?.data || {},
   }
   
-  console.log('📊 Final stats result:', result)
   return result
 }

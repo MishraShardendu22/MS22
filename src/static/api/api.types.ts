@@ -62,22 +62,34 @@ export interface ProjectsResponse {
 }
 
 export interface Volunteer {
-  _id: string
-  order: number
-  position: string
+  inline?: {
+    id: string
+    created_at: string
+    updated_at: string
+  }
+  _id?: string
+  order?: number
+  position?: string
   organisation: string
   organisation_logo?: string
   location?: string
-  start_date: string
+  start_date?: string
   end_date?: string
   current?: boolean
   description?: string
   technologies?: string[]
   certificate_link?: string
+  images?: string[]
+  projects?: string[]
+  volunteer_time_line?: Array<{
+    position: string
+    start_date: string
+    end_date?: string
+  }>
 }
 
 export interface VolunteersResponse {
-  volunteers: Volunteer[]
+  volunteer_experiences: Volunteer[]
   page: number
   limit: number
   total: number
@@ -87,10 +99,15 @@ export interface VolunteersResponse {
 }
 
 export interface Certificate {
-  _id: string
-  order: number
-  certificate_name: string
-  issuing_organisation: string
+  inline?: {
+    id: string
+    created_at: string
+    updated_at: string
+  }
+  _id?: string
+  order?: number
+  title: string
+  issuer: string
   issue_date: string
   expiry_date?: string
   credential_id?: string
@@ -98,10 +115,41 @@ export interface Certificate {
   description?: string
   skills?: string[]
   verified?: boolean
+  images?: string[]
+  projects?: string[]
 }
 
 export interface CertificatesResponse {
-  certificates: Certificate[]
+  certifications: Certificate[]
+  page: number
+  limit: number
+  total: number
+  total_pages: number
+  has_next: boolean
+  has_previous: boolean
+}
+
+export interface ExperienceTimeLine {
+  position: string
+  start_date: string
+  end_date?: string
+}
+
+export interface Experience {
+  _id: string
+  images?: string[]
+  technologies?: string[]
+  created_by?: string
+  description: string
+  company_name: string
+  company_logo?: string
+  certificate_url?: string
+  projects?: string[]
+  experience_time_line: ExperienceTimeLine[]
+}
+
+export interface ExperiencesResponse {
+  experiences: Experience[]
   page: number
   limit: number
   total: number
