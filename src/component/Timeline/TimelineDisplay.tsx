@@ -103,7 +103,7 @@ export const TimelineDisplay = ({ experiences, volunteerExperiences: volunteerEx
         <div className="relative">
           <div
             ref={scrollContainerRef}
-            className="overflow-x-auto overflow-y-visible pb-6 pt-4 mx-4 lg:mx-12 [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-track]:bg-gray-900/50 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:bg-linear-to-r [&::-webkit-scrollbar-thumb]:from-cyan-500 [&::-webkit-scrollbar-thumb]:to-blue-500 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb:hover]:from-cyan-400 [&::-webkit-scrollbar-thumb:hover]:to-blue-400"
+            className="overflow-x-auto overflow-y-visible pb-6 pt-8 mx-4 lg:mx-12 [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-track]:bg-gray-900/50 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:bg-linear-to-r [&::-webkit-scrollbar-thumb]:from-cyan-500 [&::-webkit-scrollbar-thumb]:to-blue-500 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb:hover]:from-cyan-400 [&::-webkit-scrollbar-thumb:hover]:to-blue-400"
             style={{
               scrollbarWidth: 'thin',
               scrollbarColor: '#06b6d4 #1a1a1a',
@@ -111,18 +111,17 @@ export const TimelineDisplay = ({ experiences, volunteerExperiences: volunteerEx
             }}
           >
             <div
-              className="relative bg-linear-to-br from-gray-900/60 to-gray-950/60 backdrop-blur-xl border border-gray-800 rounded-3xl p-8 shadow-2xl shadow-cyan-500/10 min-h-[500px]"
+              className="relative bg-linear-to-br from-gray-900/60 to-gray-950/60 backdrop-blur-xl border border-gray-800 rounded-3xl pt-12 pb-8 px-8 shadow-2xl shadow-cyan-500/10 min-h-[500px] overflow-visible"
               style={{
                 width: `${Math.max(processedData.months.length * (isMobile ? 80 : 120), 800)}px`,
                 minWidth: '100%',
               }}
             >
-              <div className="absolute top-24 left-8 right-8 h-1 bg-linear-to-r from-cyan-500/30 via-blue-500/30 to-purple-500/30 rounded-full shadow-lg shadow-cyan-500/20" />
-
-              <div className="relative h-20 mb-12">
+              <div className="relative mb-8" style={{ height: '120px' }}>
                 {processedData.months.map((month, index) => (
                   <MonthMarker key={`${month.year}-${month.month}`} month={month} index={index} isMobile={isMobile} />
                 ))}
+                <div className="absolute top-16 left-0 right-0 h-1 bg-linear-to-r from-cyan-500/30 via-blue-500/30 to-purple-500/30 rounded-full shadow-lg shadow-cyan-500/20" />
               </div>
 
               <div className="space-y-8 min-h-[350px]">

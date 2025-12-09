@@ -38,7 +38,9 @@ export const ExperienceSection = ({
         <h3 className={`font-bold text-xl ${config.titleColor}`}>{config.title}</h3>
       </div>
 
-      <div className="relative h-[100px]">
+      {/* Increased height to accommodate logos above the line */}
+      <div className="relative h-[120px]">
+        {/* Main timeline line - positioned in the middle */}
         <div className={`absolute top-8 left-8 right-8 h-px bg-gradient-to-r ${config.lineGradient} rounded-full`} />
 
         {experiences.map((exp, index) => {
