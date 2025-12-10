@@ -284,40 +284,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" dir="ltr" className="scroll-smooth">
-      <head>
-        {/* DNS Prefetch & Preconnect for Performance */}
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-        <link rel="dns-prefetch" href="https://vitals.vercel-insights.com" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        
-        {/* Canonical URL */}
-        <link rel="canonical" href={BASE_URL} />
-        
-        {/* Additional SEO Meta Tags */}
-        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-        <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-        <meta name="bingbot" content="index, follow" />
-        
-        {/* Geo Tags for Local SEO */}
-        <meta name="geo.region" content="IN-KA" />
-        <meta name="geo.placename" content="Bangalore, India" />
-        
-        {/* Content Language */}
-        <meta httpEquiv="content-language" content="en-US" />
-        
-        {/* Cache Control for SEO */}
-        <meta httpEquiv="Cache-Control" content="public, max-age=31536000, immutable" />
-        
-        {/* Security Headers */}
-        <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
-        <meta name="referrer" content="strict-origin-when-cross-origin" />
-      </head>
       <body className={`${archivo.variable} ${inter.variable} antialiased`}>
         <noscript>
           <div style={{ padding: '2rem', textAlign: 'center', backgroundColor: '#1a1a1a', color: '#fff' }}>
