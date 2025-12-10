@@ -166,11 +166,11 @@ export const CommitsActivityCard = ({
         </div>
       </div>
 
-      <div className="h-64 sm:h-80 w-full overflow-hidden">
+      <div className="h-80 w-full">
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart
             data={enrichedData}
-            margin={{ top: 10, right: 5, left: -20, bottom: 50 }}
+            margin={{ top: 20, right: 20, left: 0, bottom: 40 }}
           >
             <defs>
               <linearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1">
@@ -187,21 +187,27 @@ export const CommitsActivityCard = ({
 
             <XAxis
               dataKey="weekLabel"
-              tick={{ fill: "#9CA3AF", fontSize: 9 }}
+              tick={{ fill: "#9CA3AF", fontSize: 11 }}
               axisLine={{ stroke: "#374151" }}
               tickLine={{ stroke: "#374151" }}
-              interval={Math.floor(enrichedData.length / 6)}
+              interval={Math.floor(enrichedData.length / 8)}
               angle={-45}
               textAnchor="end"
-              height={70}
+              height={60}
             />
 
             <YAxis
               yAxisId="left"
-              tick={{ fill: "#9CA3AF", fontSize: 10 }}
+              tick={{ fill: "#9CA3AF", fontSize: 12 }}
               axisLine={{ stroke: "#374151" }}
               tickLine={{ stroke: "#374151" }}
-              width={30}
+              label={{
+                value: "Commits",
+                angle: -90,
+                position: "insideLeft",
+                fill: "#9CA3AF",
+                fontSize: 12,
+              }}
             />
 
             <Tooltip content={<CustomTooltip />} />

@@ -27,7 +27,7 @@ const page = () => {
         <div id="skills">
           <SkillsDisplay />
         </div>
-        <div id="timeline">
+        <div id="timeline" className="hidden lg:block">
           <Time />
         </div>
         <div id="projects">
@@ -42,7 +42,9 @@ const page = () => {
         <div id="certifications">
           <CertificatesDisplay />
         </div>
-        <StatsWrapper />
+        <div className="hidden lg:block">
+          <StatsWrapper />
+        </div>
         <div id="contact">
           <FooterSection />
         </div>
