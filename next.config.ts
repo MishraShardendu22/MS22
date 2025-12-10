@@ -33,10 +33,6 @@ const nextConfig: NextConfig = {
   // Production Source Maps (disabled for better performance)
   productionBrowserSourceMaps: false,
 
-  // Optimize CSS and JS
-  optimizeFonts: true,
-  swcMinify: true,
-
   // Headers for SEO and Security
   async headers() {
     return [

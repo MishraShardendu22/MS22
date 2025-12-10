@@ -12,7 +12,7 @@ interface ProjectCardProps {
   index: number
 }
 
-const ProjectCard = ({ project, index }: ProjectCardProps) => {
+export const ProjectCard = ({ project, index }: ProjectCardProps) => {
   return (
     <div 
       className="group relative"

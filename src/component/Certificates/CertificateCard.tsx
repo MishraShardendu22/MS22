@@ -13,7 +13,7 @@ interface CertificateCardProps {
   index: number
 }
 
-const CertificateCard = ({ certificate, index }: CertificateCardProps) => {
+export const CertificateCard = ({ certificate, index }: CertificateCardProps) => {
   const formatDate = (dateString?: string) => {
     if (!dateString) return ''
     const date = new Date(dateString)

@@ -13,7 +13,7 @@ interface VolunteerCardProps {
   index: number
 }
 
-const VolunteerCard = ({ volunteer, index }: VolunteerCardProps) => {
+export const VolunteerCard = ({ volunteer, index }: VolunteerCardProps) => {
   const formatDate = (dateString?: string) => {
     if (!dateString) return ''
     const date = new Date(dateString)

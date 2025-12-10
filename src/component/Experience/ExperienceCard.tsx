@@ -13,7 +13,7 @@ interface ExperienceCardProps {
   index: number
 }
 
-const ExperienceCard = ({ experience, index }: ExperienceCardProps) => {
+export const ExperienceCard = ({ experience, index }: ExperienceCardProps) => {
   const formatDate = (dateString?: string) => {
     if (!dateString) return 'Present'
     const date = new Date(dateString)
