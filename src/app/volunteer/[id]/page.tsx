@@ -10,6 +10,7 @@ import {
   MapPin,
   Users,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -210,12 +211,14 @@ export default function VolunteerDetailPage() {
                         {volunteer.images.map((image, idx) => (
                           <div
                             key={idx}
-                            className="relative aspect-video rounded-xl overflow-hidden border border-gray-800/50 hover:border-pink-500/40 transition-all group/img"
+                            className="relative aspect-[16/11] rounded-xl overflow-hidden border border-gray-800/50 hover:border-pink-500/40 transition-all group/img"
                           >
-                            <img
+                            <Image
                               src={image}
-                              alt={`Volunteer image ${idx + 1}`}
-                              className="w-full h-full object-cover group-hover/img:scale-110 transition-transform duration-500"
+                              alt={`Volunteer work image ${idx + 1}`}
+                              fill
+                              className="object-cover bg-gray-950 group-hover/img:scale-105 transition-transform duration-500"
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 50vw"
                             />
                           </div>
                         ))}
@@ -260,7 +263,7 @@ export default function VolunteerDetailPage() {
                         <ExternalLink className="w-5 h-5 text-cyan-400" />
                         Certificate
                       </h3>
-                      <a
+                      <Link
                         href={volunteer.certificate_link}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -268,7 +271,7 @@ export default function VolunteerDetailPage() {
                       >
                         <ExternalLink className="w-4 h-4" />
                         View Certificate
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 )}

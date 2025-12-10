@@ -10,13 +10,14 @@ import {
   ExternalLink,
 } from "lucide-react";
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
+import Image from "next/image";
 import { useEffect, useState } from "react";
+import { Sidebar } from "@/component/Sidebar";
 import { ErrorState } from "@/component/Error";
 import { LoadingState } from "@/component/Loading";
-import { Sidebar } from "@/component/Sidebar";
-import { experiencesAPI } from "@/static/api/api.request";
+import { useParams, useRouter } from "next/navigation";
 import type { Experience } from "@/static/api/api.types";
+import { experiencesAPI } from "@/static/api/api.request";
 
 export default function ExperienceDetailPage() {
   const params = useParams();
@@ -168,10 +169,12 @@ export default function ExperienceDetailPage() {
                             key={idx}
                             className="relative aspect-video rounded-xl overflow-hidden border border-gray-800/50 hover:border-blue-500/40 transition-all group/img"
                           >
-                            <img
+                            <Image
                               src={image}
                               alt={`Experience image ${idx + 1}`}
-                              className="w-full h-full object-cover group-hover/img:scale-110 transition-transform duration-500"
+                              fill
+                              className="object-cover bg-gray-950 group-hover/img:scale-105 transition-transform duration-500"
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 50vw"
                             />
                           </div>
                         ))}
@@ -216,7 +219,7 @@ export default function ExperienceDetailPage() {
                         <Award className="w-5 h-5 text-cyan-400" />
                         Certificate
                       </h3>
-                      <a
+                      <Link
                         href={experience.certificate_url}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -224,7 +227,7 @@ export default function ExperienceDetailPage() {
                       >
                         <ExternalLink className="w-4 h-4" />
                         View Certificate
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 )}

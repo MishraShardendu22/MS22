@@ -237,7 +237,7 @@ export const FooterSection = () => {
                 const IconComponent = data.icon;
                 return (
                   <li key={idx}>
-                    <a
+                    <Link
                       href={data.url}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -245,7 +245,7 @@ export const FooterSection = () => {
                     >
                       <IconComponent className="w-4 h-4" />
                       <span>{data.name}</span>
-                    </a>
+                    </Link>
                   </li>
                 );
               })}
@@ -269,7 +269,7 @@ export const FooterSection = () => {
                 const IconComponent = data.icon;
                 return (
                   <li key={idx}>
-                    <a
+                    <Link
                       href={data.url}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -277,7 +277,7 @@ export const FooterSection = () => {
                     >
                       <IconComponent className="w-4 h-4" />
                       <span>{key}</span>
-                    </a>
+                    </Link>
                   </li>
                 );
               })}
@@ -295,7 +295,7 @@ export const FooterSection = () => {
                 const IconComponent = data.icon;
                 return (
                   <li key={idx}>
-                    <a
+                    <Link
                       href={data.url}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -303,7 +303,7 @@ export const FooterSection = () => {
                     >
                       <IconComponent className="w-4 h-4" />
                       <span>{key}</span>
-                    </a>
+                    </Link>
                   </li>
                 );
               })}

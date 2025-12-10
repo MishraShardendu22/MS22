@@ -74,7 +74,7 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
 
           <div className="flex items-center gap-2 pt-3 border-t border-gray-800/50">
             {project.project_repository && (
-              <a
+              <Link
                 href={project.project_repository}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -83,10 +83,10 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
               >
                 <Github className="w-3.5 h-3.5" />
                 <span>Code</span>
-              </a>
+              </Link>
             )}
             {project.project_live_link && (
-              <a
+              <Link
                 href={project.project_live_link}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -95,10 +95,10 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
               >
                 <ExternalLink className="w-3.5 h-3.5" />
                 <span>Live</span>
-              </a>
+              </Link>
             )}
             {project.project_video && (
-              <a
+              <Link
                 href={project.project_video}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -107,7 +107,7 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
               >
                 <Play className="w-3.5 h-3.5" />
                 <span>Demo</span>
-              </a>
+              </Link>
             )}
           </div>
         </div>
@@ -272,7 +272,7 @@ export const ProjectsDisplay = () => {
           <div className="flex flex-col gap-4">
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
               <div className="text-center lg:text-left">
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-linear-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-linear-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
                   Projects
                 </h2>
               </div>

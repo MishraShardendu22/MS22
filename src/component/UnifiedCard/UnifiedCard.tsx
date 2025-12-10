@@ -1,6 +1,8 @@
 "use client";
 
 import { Building, Calendar, CheckCircle2, ExternalLink } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 import type { ReactNode } from "react";
 
 export type CardTheme = "blue" | "pink" | "emerald" | "purple";
@@ -129,10 +131,12 @@ export const UnifiedCard = ({
           <div className="flex items-start gap-3 mb-3">
             {logo && (
               <div className="w-12 h-12 rounded-lg bg-gray-800/50 border border-gray-700/50 flex items-center justify-center overflow-hidden shrink-0">
-                <img
+                <Image
                   src={logo}
                   alt={logoAlt || subtitle}
-                  className="w-full h-full object-contain p-1"
+                  width={48}
+                  height={48}
+                  className="object-contain p-1"
                 />
               </div>
             )}
@@ -158,7 +162,7 @@ export const UnifiedCard = ({
                 </span>
               ))}
               {certificateUrl && (
-                <a
+                <Link
                   href={certificateUrl}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -167,7 +171,7 @@ export const UnifiedCard = ({
                 >
                   <ExternalLink className="w-3.5 h-3.5" />
                   <span>{certificateLabel}</span>
-                </a>
+                </Link>
               )}
             </div>
           </div>

@@ -3,7 +3,6 @@
 import {
   ArrowLeft,
   CheckCircle2,
-  Code2,
   ExternalLink,
   GitBranch,
   Github,
@@ -89,7 +88,7 @@ export default function ProjectDetailPage() {
 
     formatted = formatted.replace(
       urlRegex,
-      '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:text-cyan-300 underline">$1</a>',
+      '<Link href="$1" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:text-cyan-300 underline">$1</Link>',
     );
 
     return formatted;
@@ -158,7 +157,7 @@ export default function ProjectDetailPage() {
 
                 <div className="flex flex-wrap gap-2">
                   {project.project_live_link && (
-                    <a
+                    <Link
                       href={project.project_live_link}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -166,10 +165,10 @@ export default function ProjectDetailPage() {
                     >
                       <ExternalLink className="w-3.5 h-3.5 group-hover:rotate-12 transition-transform" />
                       Live Project
-                    </a>
+                    </Link>
                   )}
                   {project.project_repository && (
-                    <a
+                    <Link
                       href={project.project_repository}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -177,10 +176,10 @@ export default function ProjectDetailPage() {
                     >
                       <Github className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
                       Source Code
-                    </a>
+                    </Link>
                   )}
                   {project.project_video && (
-                    <a
+                    <Link
                       href={project.project_video}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -188,7 +187,7 @@ export default function ProjectDetailPage() {
                     >
                       <Play className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
                       Watch Demo
-                    </a>
+                    </Link>
                   )}
                 </div>
               </div>
@@ -298,7 +297,7 @@ export default function ProjectDetailPage() {
 
                 <div className="space-y-2">
                   {project.project_live_link && (
-                    <a
+                    <Link
                       href={project.project_live_link}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -308,10 +307,10 @@ export default function ProjectDetailPage() {
                       <span className="text-xs font-bold text-gray-300 group-hover/link:text-blue-400 transition-colors">
                         Live Demo
                       </span>
-                    </a>
+                    </Link>
                   )}
                   {project.project_repository && (
-                    <a
+                    <Link
                       href={project.project_repository}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -321,10 +320,10 @@ export default function ProjectDetailPage() {
                       <span className="text-xs font-bold text-gray-300 group-hover/link:text-white transition-colors">
                         Source Code
                       </span>
-                    </a>
+                    </Link>
                   )}
                   {project.project_video && (
-                    <a
+                    <Link
                       href={project.project_video}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -334,7 +333,7 @@ export default function ProjectDetailPage() {
                       <span className="text-xs font-bold text-gray-300 group-hover/link:text-purple-400 transition-colors">
                         Video Demo
                       </span>
-                    </a>
+                    </Link>
                   )}
                 </div>
               </div>

@@ -204,7 +204,7 @@ export const ExperiencesDisplay = () => {
           <div className="flex flex-col gap-4">
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
               <div className="text-center lg:text-left">
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-linear-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-linear-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">
                   Professional Experience
                 </h2>
               </div>

@@ -37,7 +37,7 @@ export const EducationSection = () => {
                 Indian Institute of Information Technology, Dharwad
               </h3>
             </div>
-            <a
+            <Link
               href="https://iiitdwd.ac.in/website-team/"
               target="_blank"
               rel="noopener noreferrer"
@@ -45,7 +45,7 @@ export const EducationSection = () => {
               aria-label="Visit IIIT Dharwad Website Team"
             >
               <ExternalLink className="w-4 h-4 text-cyan-400 group-hover/link:scale-110 transition-transform" />
-            </a>
+            </Link>
           </div>
 
           {/* Details */}

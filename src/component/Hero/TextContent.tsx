@@ -36,7 +36,7 @@ export const TextContent = () => {
         {Object.entries(SocialLinks).map(([key, link]) => {
           const IconComponent = link.icon;
           return (
-            <a
+            <Link
               key={key}
               href={link.url}
               target="_blank"
@@ -48,7 +48,7 @@ export const TextContent = () => {
               <span className="font-medium text-gray-300 group-hover:text-cyan-400 transition-colors duration-500 whitespace-nowrap">
                 {buttonLabels[key] || key}
               </span>
-            </a>
+            </Link>
           );
         })}
       </div>

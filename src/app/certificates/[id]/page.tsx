@@ -11,6 +11,7 @@ import {
   FileText,
   Shield,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -211,10 +212,12 @@ export default function CertificateDetailPage() {
                             key={idx}
                             className="relative aspect-[16/11] rounded-xl overflow-hidden border border-gray-800/50 hover:border-cyan-500/40 transition-all group/img"
                           >
-                            <img
+                            <Image
                               src={image}
                               alt={`Certificate image ${idx + 1}`}
-                              className="w-full h-full object-contain bg-gray-950 group-hover/img:scale-105 transition-transform duration-500"
+                              fill
+                              className="object-contain bg-gray-950 group-hover/img:scale-105 transition-transform duration-500"
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 50vw"
                             />
                           </div>
                         ))}
@@ -258,7 +261,7 @@ export default function CertificateDetailPage() {
                     </h3>
 
                     {certificate.certificate_url && (
-                      <a
+                      <Link
                         href={certificate.certificate_url}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -266,7 +269,7 @@ export default function CertificateDetailPage() {
                       >
                         <ExternalLink className="w-4 h-4" />
                         View Certificate
-                      </a>
+                      </Link>
                     )}
 
                     {certificate.verified && (
