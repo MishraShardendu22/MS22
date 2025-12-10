@@ -1,13 +1,49 @@
 {
-  "name": "MishraShardendu22",
+  "name": "mishrashardendu22",
   "version": "4.0.0",
   "private": true,
+  "description": "Professional portfolio website showcasing projects, experiences, skills, and certifications. Built with Next.js 16, React 19, TypeScript, and Tailwind CSS 4.",
+  "author": {
+    "name": "Shardendu Mishra",
+    "email": "mishrashardendu221@gmail.com",
+    "url": "https://mishrashardendu22.is-a.dev"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MishraShardendu22/MS22"
+  },
+  "bugs": {
+    "url": "https://github.com/MishraShardendu22/MS22/issues"
+  },
+  "homepage": "https://mishrashardendu22.is-a.dev",
+  "keywords": [
+    "portfolio",
+    "nextjs",
+    "react",
+    "typescript",
+    "tailwindcss",
+    "go",
+    "fiber",
+    "mongodb",
+    "vercel",
+    "developer-portfolio"
+  ],
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=10.0.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "biome check",
-    "format": "biome format --write"
+    "lint:fix": "biome check --fix",
+    "format": "biome format --write",
+    "format:check": "biome format",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf .next out",
+    "preview": "pnpm build && pnpm start"
   },
   "dependencies": {
     "@vercel/analytics": "^1.6.1",

@@ -34,7 +34,7 @@ const navItems: NavItem[] = [
   { name: "Volunteer", href: "#volunteer", icon: Heart },
   { name: "Certifications", href: "#certifications", icon: Award },
   { name: "Contact", href: "#contact", icon: Mail },
-  { name: "Blog", href: "#blog", icon: FileText },
+  { name: "Blog", href: "https://blogs.mishrashardendu22.is-a.dev/read", icon: FileText },
 ];
 
 export function Sidebar() {

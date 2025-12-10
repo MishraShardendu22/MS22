@@ -1,6 +1,7 @@
 "use client";
 
-import { ChevronLeft, ChevronRight, MapPin } from "lucide-react";
+import { ChevronLeft, ChevronRight, Eye, MapPin } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ErrorState } from "@/component/Error";
 import { LoadingState } from "@/component/Loading";
@@ -233,14 +234,55 @@ export const VolunteerDisplay = () => {
       </div>
 
       <div className="container mx-auto max-w-7xl relative z-10">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-linear-to-r from-pink-400 via-rose-400 to-red-400 bg-clip-text text-transparent mb-4">
-            Volunteer Experience
-          </h2>
-          <p className="text-gray-400 text-sm md:text-base max-w-2xl mx-auto">
-            Making a difference through community service and meaningful
-            contributions
-          </p>
+        <div className="mb-8">
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+              <div className="text-center lg:text-left">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-linear-to-r from-pink-400 via-rose-400 to-red-400 bg-clip-text text-transparent">
+                  Volunteer Experience
+                </h2>
+              </div>
+              {totalPages > 1 && (
+                <div className="flex items-center justify-center gap-2 md:gap-3 flex-wrap shrink-0">
+                <button
+                  onClick={goToPrevPage}
+                  disabled={currentPage === 1 || paginationLoading}
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gray-900/50 border border-gray-800 hover:border-pink-500/30 text-gray-400 hover:text-pink-400 transition-colors duration-500 disabled:opacity-30 disabled:cursor-not-allowed"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                  <span className="text-xs font-medium">Previous</span>
+                </button>
+
+                <span className="text-gray-400 text-xs font-medium px-2">
+                  Page{" "}
+                  <span className="text-pink-400 font-bold">{currentPage}</span> of{" "}
+                  <span className="text-pink-400 font-bold">{totalPages}</span>
+                </span>
+
+                <Link
+                  href="/volunteer"
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gray-900/50 border border-gray-800 hover:border-pink-500/30 text-gray-400 hover:text-pink-400 transition-colors duration-500"
+                >
+                  <Eye className="w-4 h-4" />
+                  <span className="text-xs font-medium">View All</span>
+                </Link>
+
+                <button
+                  onClick={goToNextPage}
+                  disabled={currentPage === totalPages || paginationLoading}
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gray-900/50 border border-gray-800 hover:border-pink-500/30 text-gray-400 hover:text-pink-400 transition-colors duration-500 disabled:opacity-30 disabled:cursor-not-allowed"
+                >
+                  <span className="text-xs font-medium">Next</span>
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
+            )}
+            </div>
+            <p className="text-gray-400 text-base md:text-lg text-center lg:text-left max-w-3xl">
+              Making a difference through community service and meaningful
+              contributions
+            </p>
+          </div>
         </div>
 
         <div className="mb-6 min-h-[300px] relative">
@@ -268,34 +310,6 @@ export const VolunteerDisplay = () => {
             })}
           </div>
         </div>
-
-        {totalPages > 1 && (
-          <div className="flex items-center justify-center gap-4">
-            <button
-              onClick={goToPrevPage}
-              disabled={currentPage === 1 || paginationLoading}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-900/50 border border-gray-800 hover:border-pink-500/30 text-gray-400 hover:text-pink-400 transition-colors duration-500 disabled:opacity-30 disabled:cursor-not-allowed"
-            >
-              <ChevronLeft className="w-4 h-4" />
-              <span className="text-sm font-medium">Previous</span>
-            </button>
-
-            <span className="text-gray-400 text-sm font-medium px-2">
-              Page{" "}
-              <span className="text-pink-400 font-bold">{currentPage}</span> of{" "}
-              <span className="text-pink-400 font-bold">{totalPages}</span>
-            </span>
-
-            <button
-              onClick={goToNextPage}
-              disabled={currentPage === totalPages || paginationLoading}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-900/50 border border-gray-800 hover:border-pink-500/30 text-gray-400 hover:text-pink-400 transition-colors duration-500 disabled:opacity-30 disabled:cursor-not-allowed"
-            >
-              <span className="text-sm font-medium">Next</span>
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
-        )}
       </div>
     </section>
   );

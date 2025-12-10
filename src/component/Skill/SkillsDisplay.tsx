@@ -59,13 +59,46 @@ export default function SkillsDisplay() {
 
       <div className="container mx-auto max-w-6xl relative z-10">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-linear-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent mb-4">
-            Technical Skills
-          </h2>
-          <p className="text-gray-400 text-sm md:text-base max-w-2xl mx-auto">
-            Technologies and tools I work with to build innovative solutions
-          </p>
+        <div className="mb-8">
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+              <div className="text-center lg:text-left">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-linear-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  Technical Skills
+                </h2>
+              </div>
+              {totalPages > 1 && (
+                <div className="flex items-center justify-center gap-2 md:gap-3 flex-wrap shrink-0">
+                <button
+                  onClick={prevPage}
+                  disabled={!hasPrevious}
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gray-900/50 border border-gray-800 hover:border-cyan-500/30 text-gray-400 hover:text-cyan-400 transition-colors duration-500 disabled:opacity-30 disabled:cursor-not-allowed"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                  <span className="text-xs font-medium">Previous</span>
+                </button>
+
+                <span className="text-gray-400 text-xs font-medium px-2">
+                  Page{" "}
+                  <span className="text-cyan-400 font-bold">{currentPage}</span> of{" "}
+                  <span className="text-cyan-400 font-bold">{totalPages}</span>
+                </span>
+
+                <button
+                  onClick={nextPage}
+                  disabled={!hasNext}
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gray-900/50 border border-gray-800 hover:border-cyan-500/30 text-gray-400 hover:text-cyan-400 transition-colors duration-500 disabled:opacity-30 disabled:cursor-not-allowed"
+                >
+                  <span className="text-xs font-medium">Next</span>
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
+            )}
+            </div>
+            <p className="text-gray-400 text-base md:text-lg text-center lg:text-left max-w-3xl">
+              Technologies and tools I work with to build innovative solutions
+            </p>
+          </div>
         </div>
 
         {/* Skills Grid or Loading/Error State */}
@@ -95,34 +128,6 @@ export default function SkillsDisplay() {
             </div>
           )}
         </div>
-
-        {totalPages > 1 && (
-          <div className="flex items-center justify-center gap-4">
-            <button
-              onClick={prevPage}
-              disabled={!hasPrevious}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-900/50 border border-gray-800 hover:border-cyan-500/30 text-gray-400 hover:text-cyan-400 transition-colors duration-500 disabled:opacity-30 disabled:cursor-not-allowed"
-            >
-              <ChevronLeft className="w-4 h-4" />
-              <span className="text-sm font-medium">Previous</span>
-            </button>
-
-            <span className="text-gray-400 text-sm font-medium px-2">
-              Page{" "}
-              <span className="text-cyan-400 font-bold">{currentPage}</span> of{" "}
-              <span className="text-cyan-400 font-bold">{totalPages}</span>
-            </span>
-
-            <button
-              onClick={nextPage}
-              disabled={!hasNext}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-900/50 border border-gray-800 hover:border-cyan-500/30 text-gray-400 hover:text-cyan-400 transition-colors duration-500 disabled:opacity-30 disabled:cursor-not-allowed"
-            >
-              <span className="text-sm font-medium">Next</span>
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
-        )}
       </div>
     </section>
   );

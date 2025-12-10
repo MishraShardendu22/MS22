@@ -93,6 +93,46 @@ export const metadata: Metadata = {
     "CI/CD",
     "Version Control",
     "Agile Development",
+    // Additional SEO Keywords
+    "Fiber Framework",
+    "Svelte",
+    "Preact",
+    "Tailwind CSS",
+    "PWA",
+    "Progressive Web App",
+    "Server-Side Rendering",
+    "SSR",
+    "Static Site Generation",
+    "SSG",
+    "Cloud Computing",
+    "AWS",
+    "Vercel",
+    "Netlify",
+    "Redis",
+    "NoSQL",
+    "SQL",
+    "Axios",
+    "REST API",
+    "JSON",
+    "Web Performance",
+    "SEO Optimization",
+    "Responsive Design",
+    "Mobile Development",
+    "Animations",
+    "Anime.js",
+    "Recharts",
+    "Data Visualization",
+    "Real-time Data",
+    "GitHub API",
+    "LeetCode Stats",
+    "Code Quality",
+    "Best Practices",
+    "Clean Code",
+    "SOLID Principles",
+    "Design Patterns",
+    "Technical Blog",
+    "Coding Interview",
+    "Problem Solving",
   ],
   authors: [{ name: "Shardendu Mishra", url: BASE_URL }],
   creator: "Shardendu Mishra",
@@ -129,7 +169,7 @@ export const metadata: Metadata = {
     url: BASE_URL,
     title: "Shardendu Mishra - Software Developer and Engineer",
     description:
-      "Software Developer and Engineer passionate about building impactful applications with modern technologies. Specializing in Go, React, and cloud-native solutions.",
+      "Software Developer and Engineer passionate about building impactful applications with modern technologies. Specializing in Go, Fiber, React, Next.js, TypeScript, Tailwind CSS, MongoDB, PostgreSQL, Docker, Kubernetes, and cloud-native solutions. Portfolio showcasing projects, experience, skills, and certifications.",
     siteName: "Shardendu Mishra Portfolio",
     images: [
       {
@@ -150,7 +190,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Shardendu Mishra - Software Developer and Engineer",
     description:
-      "Software Developer and Engineer passionate about building impactful applications with modern technologies. Specializing in Go, React, and cloud-native solutions.",
+      "Software Developer and Engineer passionate about building impactful applications. Specializing in Go, Fiber, React, Next.js, TypeScript, Tailwind CSS, MongoDB, Docker, Kubernetes. Portfolio with projects, experience, and skills.",
     site: "@Shardendu_M",
     creator: "@Shardendu_M",
     images: [
@@ -202,6 +242,12 @@ export const metadata: Metadata = {
     "msapplication-TileColor": "#000000",
     "msapplication-config": "/browserconfig.xml",
     "google-site-verification": "pending",
+    "author": "Shardendu Mishra",
+    "copyright": "Copyright 2025 Shardendu Mishra",
+    "linkedin:owner": "shardendu-mishra",
+    "rating": "General",
+    "distribution": "Global",
+    "revisit-after": "7 days",
   },
 };
 
@@ -220,6 +266,7 @@ export default function RootLayout({
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
+        <link rel="canonical" href={BASE_URL} />
         <meta name="theme-color" content="#000000" />
         <meta name="color-scheme" content="dark light" />
       </head>
