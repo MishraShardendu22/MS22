@@ -16,7 +16,6 @@ import {
   Play,
 } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 
 interface SocialLink {
@@ -219,7 +218,7 @@ export default function LinksPage() {
                 {links
                   .filter((link) => link.category === category)
                   .map((link, index) => (
-                    <Link
+                    <a
                       key={index}
                       href={link.url}
                       target="_blank"
@@ -253,7 +252,7 @@ export default function LinksPage() {
                           </div>
                         </div>
                       </div>
-                    </Link>
+                    </a>
                   ))}
               </div>
             </div>

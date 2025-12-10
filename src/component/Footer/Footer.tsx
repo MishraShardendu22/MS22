@@ -2,7 +2,6 @@
 
 import { ArrowUp, Code2, Coffee, Heart, Send, Zap } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
 import {
   CodingProfiles,
@@ -114,10 +113,10 @@ export const FooterSectionMobile = () => {
                 const IconComponent = data.icon;
                 return (
                   <li key={idx}>
-                    <Link href={data.url} className="flex items-center gap-2 text-xs text-gray-400">
+                    <a href={data.url} className="flex items-center gap-2 text-xs text-gray-400">
                       <IconComponent className="w-3 h-3" />
                       <span>{key}</span>
-                    </Link>
+                    </a>
                   </li>
                 );
               })}
@@ -132,10 +131,10 @@ export const FooterSectionMobile = () => {
                 const IconComponent = data.icon;
                 return (
                   <li key={idx}>
-                    <Link href={data.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs text-gray-400">
+                    <a href={data.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs text-gray-400">
                       <IconComponent className="w-3 h-3" />
                       <span>{key}</span>
-                    </Link>
+                    </a>
                   </li>
                 );
               })}
@@ -357,13 +356,13 @@ export const FooterSection = () => {
                 const IconComponent = data.icon;
                 return (
                   <li key={idx}>
-                    <Link
+                    <a
                       href={data.url}
                       className="flex items-center gap-2 text-sm md:text-base text-gray-400 hover:text-cyan-400 transition-colors duration-500 group"
                     >
                       <IconComponent className="w-4 h-4" />
                       <span>{key}</span>
-                    </Link>
+                    </a>
                   </li>
                 );
               })}
@@ -381,7 +380,7 @@ export const FooterSection = () => {
                 const IconComponent = data.icon;
                 return (
                   <li key={idx}>
-                    <Link
+                    <a
                       href={data.url}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -389,7 +388,7 @@ export const FooterSection = () => {
                     >
                       <IconComponent className="w-4 h-4" />
                       <span>{data.name}</span>
-                    </Link>
+                    </a>
                   </li>
                 );
               })}
@@ -413,7 +412,7 @@ export const FooterSection = () => {
                 const IconComponent = data.icon;
                 return (
                   <li key={idx}>
-                    <Link
+                    <a
                       href={data.url}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -421,7 +420,7 @@ export const FooterSection = () => {
                     >
                       <IconComponent className="w-4 h-4" />
                       <span>{key}</span>
-                    </Link>
+                    </a>
                   </li>
                 );
               })}
@@ -439,7 +438,7 @@ export const FooterSection = () => {
                 const IconComponent = data.icon;
                 return (
                   <li key={idx}>
-                    <Link
+                    <a
                       href={data.url}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -447,7 +446,7 @@ export const FooterSection = () => {
                     >
                       <IconComponent className="w-4 h-4" />
                       <span>{key}</span>
-                    </Link>
+                    </a>
                   </li>
                 );
               })}

@@ -1,5 +1,4 @@
 import { myIntro, SocialLinks } from "@/static/info/header";
-import Link from "next/link";
 
 const buttonLabels: Record<string, string> = {
   GitHub: "View My Projects",
@@ -35,7 +34,7 @@ export const TextContent = () => {
         {Object.entries(SocialLinks).map(([key, link]) => {
           const IconComponent = link.icon;
           return (
-            <Link
+            <a
               key={key}
               href={link.url}
               target="_blank"
@@ -47,7 +46,7 @@ export const TextContent = () => {
               <span className="font-medium text-gray-300 group-hover:text-cyan-400 transition-colors duration-300 whitespace-nowrap">
                 {buttonLabels[key] || key}
               </span>
-            </Link>
+            </a>
           );
         })}
       </div>
