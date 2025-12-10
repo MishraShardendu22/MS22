@@ -14,6 +14,7 @@ import {
   GraduationCap,
   Menu,
   X,
+  Link as LinkIcon,
 } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -34,6 +35,7 @@ const navItems: NavItem[] = [
   { name: "Experience", href: "#experience", icon: Briefcase },
   { name: "Volunteer", href: "#volunteer", icon: Heart },
   { name: "Certifications", href: "#certifications", icon: Award },
+  { name: "My Socials", href: "/links", icon: LinkIcon },
   { name: "Contact", href: "#contact", icon: Mail },
   { name: "Blog", href: "https://blogs.mishrashardendu22.is-a.dev/read", icon: FileText },
 ];
