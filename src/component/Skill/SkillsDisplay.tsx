@@ -71,11 +71,15 @@ export default function SkillsDisplay() {
         </div>
 
         {/* Skills Grid or Loading/Error State */}
-        <div className="mb-6 min-h-[250px]">
+        <div className="mb-6">
           {loading ? (
-            <LoadingState message="Loading skills..." variant="cyan" />
+            <div className="py-8">
+              <LoadingState message="Loading skills..." variant="cyan" />
+            </div>
           ) : error ? (
-            <ErrorState title="Error Loading Skills" message={error} variant="red" />
+            <div className="py-8">
+              <ErrorState title="Error Loading Skills" message={error} variant="red" />
+            </div>
           ) : (
             <div className="flex flex-wrap justify-center gap-2 md:gap-2 content-start">
               {skills.map((skill, index) => (

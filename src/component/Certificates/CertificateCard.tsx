@@ -147,7 +147,7 @@ export const CertificatesDisplay = () => {
             Professional certifications and achievements demonstrating expertise and continuous learning
           </p>
         </div>
-        <div className="min-h-[600px]">
+        <div className="py-8">
           <LoadingState message="Loading certificates..." variant="cyan" />
         </div>
       </div>
@@ -170,7 +170,7 @@ export const CertificatesDisplay = () => {
             Professional certifications and achievements demonstrating expertise and continuous learning
           </p>
         </div>
-        <div className="min-h-[600px]">
+        <div className="py-8">
           <ErrorState title="Error Loading Certificates" message={error} variant="red" onRetry={() => fetchCertificates(currentPage)} />
         </div>
       </div>
@@ -193,7 +193,7 @@ export const CertificatesDisplay = () => {
             Professional certifications and achievements demonstrating expertise and continuous learning
           </p>
         </div>
-        <div className="min-h-[400px] flex items-center justify-center">
+        <div className="py-12 flex items-center justify-center">
           <p className="text-lg text-gray-400">No certifications available to display</p>
         </div>
       </div>
@@ -218,8 +218,8 @@ export const CertificatesDisplay = () => {
           </p>
         </div>
 
-        <div className="mb-6 min-h-[600px] relative">
-          <div className={`h-[600px] flex items-center justify-center absolute inset-0 transition-opacity duration-300 ${paginationLoading ? 'opacity-100 z-10' : 'opacity-0 pointer-events-none z-0'}`}>
+        <div className="mb-6 min-h-[300px] relative">
+          <div className={`min-h-[300px] flex items-center justify-center absolute inset-0 transition-opacity duration-300 ${paginationLoading ? 'opacity-100 z-10' : 'opacity-0 pointer-events-none z-0'}`}>
             <LoadingState message="Loading certificates..." variant="emerald" />
           </div>
           <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 transition-opacity duration-300 ${paginationLoading ? 'opacity-0' : 'opacity-100'}`}>

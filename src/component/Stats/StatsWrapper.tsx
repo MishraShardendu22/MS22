@@ -21,6 +21,8 @@ export const StatsWrapper = () => {
     const loadStats = async () => {
       try {
         const data = await fetchAllStats()
+        console.log('StatsWrapper - Fetched data:', data)
+        console.log('StatsWrapper - topRepos:', data.topRepos)
         setStats({
           github: data.github,
           leetcode: data.leetcode,
@@ -30,6 +32,7 @@ export const StatsWrapper = () => {
           calendar: data.calendar,
         })
       } catch (error) {
+        console.error('StatsWrapper - Error loading stats:', error)
         // Error loading stats
       } finally {
         setLoading(false)
@@ -68,7 +71,7 @@ export const StatsWrapper = () => {
             </p>
           </div>
 
-          <div className="flex items-center justify-center min-h-[400px]">
+          <div className="flex items-center justify-center py-12">
             <NameLoader />
           </div>
         </div>
