@@ -1,21 +1,23 @@
 "use client";
 
 import {
-  Github,
-  Linkedin,
-  Twitter,
-  Instagram,
-  MessageCircle,
+  Send,
+  Play,
+  Globe,
   Code2,
+  Github,
+  Trophy,
+  Twitter,
   Palette,
   BookOpen,
-  Trophy,
-  Send,
+  Linkedin,
+  Instagram,
   ExternalLink,
-  Globe,
-  Play,
+  MessageCircle,
+  ArrowLeft,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 interface SocialLink {
@@ -175,6 +177,15 @@ export default function LinksPage() {
       </div>
 
       <main className="relative z-10 container mx-auto px-4 py-12 max-w-2xl">
+        {/* Back Button */}
+        <Link
+          href="/"
+          className="group inline-flex items-center gap-2 mb-8 px-4 py-2 bg-gray-900/50 hover:bg-gray-800/50 border border-gray-800 hover:border-cyan-500/50 rounded-lg transition-all duration-300 text-gray-400 hover:text-cyan-400"
+        >
+          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
+          <span className="text-sm font-medium">Back to Home</span>
+        </Link>
+
         {/* Profile Section */}
         <div className="text-center mb-12 animate-fadeIn">
           <div className="relative inline-block mb-6">
@@ -188,7 +199,7 @@ export default function LinksPage() {
             </div>
           </div>
           
-          <h1 className="text-4xl md:text-5xl font-black text-white mb-3 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400">
+          <h1 className="text-4xl md:text-5xl font-black text-white mb-3 bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400">
             Shardendu Mishra
           </h1>
           <p className="text-lg text-gray-400 mb-4 max-w-md mx-auto">
