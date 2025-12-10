@@ -49,16 +49,7 @@ interface TopRepositoriesCardProps {
 }
 
 export const TopRepositoriesCard = ({ topRepos }: TopRepositoriesCardProps) => {
-  console.log("TopRepositoriesCard - topRepos:", topRepos);
-  console.log("TopRepositoriesCard - topRepos length:", topRepos?.length);
-  console.log("TopRepositoriesCard - topRepos type:", typeof topRepos);
-  console.log(
-    "TopRepositoriesCard - topRepos is array:",
-    Array.isArray(topRepos),
-  );
-
   if (!topRepos) {
-    console.log("TopRepositoriesCard - returning null: topRepos is falsy");
     return (
       <div className="bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6">
         <p className="text-red-400">Debug: topRepos is null or undefined</p>
@@ -67,9 +58,6 @@ export const TopRepositoriesCard = ({ topRepos }: TopRepositoriesCardProps) => {
   }
 
   if (!Array.isArray(topRepos)) {
-    console.log(
-      "TopRepositoriesCard - returning null: topRepos is not an array",
-    );
     return (
       <div className="bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6">
         <p className="text-red-400">
@@ -83,7 +71,6 @@ export const TopRepositoriesCard = ({ topRepos }: TopRepositoriesCardProps) => {
   }
 
   if (topRepos.length === 0) {
-    console.log("TopRepositoriesCard - returning null: no repos");
     return (
       <div className="bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6">
         <p className="text-yellow-400">Debug: topRepos array is empty</p>
@@ -94,11 +81,8 @@ export const TopRepositoriesCard = ({ topRepos }: TopRepositoriesCardProps) => {
   const validRepos = topRepos.filter(
     (repo) => (repo as any).url || repo.html_url,
   );
-  console.log("TopRepositoriesCard - validRepos:", validRepos);
-  console.log("TopRepositoriesCard - validRepos length:", validRepos.length);
 
   if (validRepos.length === 0) {
-    console.log("TopRepositoriesCard - returning null: no valid repos");
     return (
       <div className="bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6">
         <p className="text-orange-400">

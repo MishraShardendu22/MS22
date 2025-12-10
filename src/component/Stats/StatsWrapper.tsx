@@ -21,8 +21,6 @@ export const StatsWrapper = () => {
     const loadStats = async () => {
       try {
         const data = await fetchAllStats();
-        console.log("StatsWrapper - Fetched data:", data);
-        console.log("StatsWrapper - topRepos:", data.topRepos);
         setStats({
           github: data.github,
           leetcode: data.leetcode,

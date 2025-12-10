@@ -26,8 +26,6 @@ export const StatsDisplay = ({
   const hasCommits = commits && commits.length > 0;
   const hasTopRepos = topRepos && topRepos.length > 0;
 
-  console.log("StatsDisplay - topRepos:", topRepos);
-  console.log("StatsDisplay - hasTopRepos:", hasTopRepos);
 
   return (
     <section className="relative py-12 px-4 sm:px-6 md:px-8 bg-linear-to-br from-transparent via-gray-950/50 to-transparent overflow-hidden">
