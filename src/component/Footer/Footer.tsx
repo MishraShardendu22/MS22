@@ -12,6 +12,150 @@ import {
   SocialMedia,
 } from "@/static/info/footer";
 
+/**
+ * Mobile-optimized Footer
+ * - No background blur effects
+ * - Simplified DOM structure
+ * - Minimal styling without animations
+ */
+export const FooterSectionMobile = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const subject = encodeURIComponent(`Message from ${formData.name}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`,
+    );
+    window.location.href = `mailto:shardendumishra01@gmail.com?subject=${subject}&body=${body}`;
+  };
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  };
+
+  return (
+    <footer className="bg-gray-950 pt-12 pb-6 px-4">
+      <div className="container mx-auto max-w-[1600px]">
+        {/* Brand Info */}
+        <div className="mb-8">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-10 h-10 rounded-lg bg-gray-900 flex items-center justify-center border border-gray-800">
+              <Code2 className="w-5 h-5 text-cyan-400" />
+            </div>
+            <h2 className="text-xl font-bold">
+              <span className="text-white">Shardendu</span>{" "}
+              <span className="text-cyan-400">Mishra</span>
+            </h2>
+          </div>
+          <p className="text-gray-400 text-sm leading-relaxed">
+            Software Engineer building innovative solutions.
+          </p>
+        </div>
+
+        {/* Contact Form */}
+        <div className="mb-8">
+          <h3 className="text-xl font-bold text-cyan-400 mb-4">Let's Talk</h3>
+          <form onSubmit={handleSubmit} className="bg-gray-900 p-4 rounded-xl border border-gray-800">
+            <input
+              type="text"
+              name="name"
+              placeholder="Full name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              className="w-full bg-gray-950 border border-gray-700 rounded-lg px-4 py-3 text-gray-200 placeholder-gray-500 outline-none mb-3 text-sm"
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email address"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className="w-full bg-gray-950 border border-gray-700 rounded-lg px-4 py-3 text-gray-200 placeholder-gray-500 outline-none mb-3 text-sm"
+            />
+            <textarea
+              name="message"
+              placeholder="Your message..."
+              value={formData.message}
+              onChange={handleChange}
+              required
+              rows={4}
+              className="w-full bg-gray-950 border border-gray-700 rounded-lg px-4 py-3 text-gray-200 placeholder-gray-500 outline-none resize-none mb-3 text-sm"
+            />
+            <button
+              type="submit"
+              className="bg-cyan-500 text-white font-semibold text-sm w-full rounded-lg py-3 flex items-center justify-center gap-2"
+            >
+              <Send className="w-4 h-4" />
+              Send message
+            </button>
+          </form>
+        </div>
+
+        {/* Quick Links Grid */}
+        <div className="grid grid-cols-2 gap-6 mb-8">
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-base font-bold text-gray-100 mb-3">Quick Links</h3>
+            <ul className="space-y-2">
+              {Object.entries(QuickLinks).map(([key, data], idx) => {
+                const IconComponent = data.icon;
+                return (
+                  <li key={idx}>
+                    <Link href={data.url} className="flex items-center gap-2 text-xs text-gray-400">
+                      <IconComponent className="w-3 h-3" />
+                      <span>{key}</span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+
+          {/* Social Media */}
+          <div>
+            <h3 className="text-base font-bold text-gray-100 mb-3">Social</h3>
+            <ul className="space-y-2">
+              {Object.entries(SocialMedia).map(([key, data], idx) => {
+                const IconComponent = data.icon;
+                return (
+                  <li key={idx}>
+                    <Link href={data.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs text-gray-400">
+                      <IconComponent className="w-3 h-3" />
+                      <span>{key}</span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </div>
+
+        {/* Copyright and Back to Top */}
+        <div className="border-t border-gray-800 pt-4 flex items-center justify-between">
+          <p className="text-xs text-gray-600">© 2025 Shardendu Mishra</p>
+          <button onClick={scrollToTop} className="flex items-center gap-1 px-3 py-2 rounded-lg bg-gray-900 border border-gray-800 text-xs text-cyan-400">
+            <ArrowUp className="w-3 h-3" />
+            <span>Top</span>
+          </button>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
 export const FooterSection = () => {
   const [formData, setFormData] = useState({
     name: "",

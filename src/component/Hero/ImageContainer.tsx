@@ -141,7 +141,7 @@ export const ImageContainer = () => {
           fill
           className="object-cover"
           priority
-          sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, (max-width: 1280px) 450px, 500px"
+          sizes="(max-width: 768px) 100vw, 50vw"
         />
         <Image
           ref={professionalRef}
@@ -150,7 +150,7 @@ export const ImageContainer = () => {
           fill
           className="object-cover opacity-0"
           priority
-          sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, (max-width: 1280px) 450px, 500px"
+          sizes="(max-width: 768px) 100vw, 50vw"
         />
         <div
           ref={pixelGridRef}

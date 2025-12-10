@@ -138,6 +138,7 @@ export const UnifiedCard = ({
                   height={48}
                   className="object-contain p-1"
                   loading="lazy"
+                  sizes="(max-width: 768px) 40px, 48px"
                 />
               </div>
             )}

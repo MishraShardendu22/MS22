@@ -193,6 +193,90 @@ h1, h2, h3, h4, h5, h6, p, span, div {
     min-height: 44px;
     min-width: 44px;
   }
+
+  /* Kill all animations on mobile for performance */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Remove blur effects on mobile */
+  .blur-3xl,
+  .blur-2xl,
+  .blur-xl,
+  .blur-lg,
+  .blur-md,
+  .blur {
+    filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  /* Remove backdrop blur on mobile */
+  .backdrop-blur-sm,
+  .backdrop-blur,
+  .backdrop-blur-md,
+  .backdrop-blur-lg,
+  .backdrop-blur-xl {
+    backdrop-filter: none !important;
+  }
+
+  /* Remove animated backgrounds on mobile */
+  .animate-blob,
+  .animate-pulse,
+  .animate-bounce,
+  .animate-spin,
+  .animate-ping {
+    animation: none !important;
+  }
+
+  /* Remove gradients complexity on mobile */
+  .bg-linear-to-r,
+  .bg-linear-to-l,
+  .bg-linear-to-t,
+  .bg-linear-to-b,
+  .bg-linear-to-br,
+  .bg-linear-to-bl,
+  .bg-linear-to-tr,
+  .bg-linear-to-tl {
+    background-size: 100% 100% !important;
+    animation: none !important;
+  }
+
+  /* Remove shadow complexity on mobile */
+  .shadow-lg,
+  .shadow-xl,
+  .shadow-2xl,
+  [class*="shadow-cyan"],
+  [class*="shadow-blue"],
+  [class*="shadow-purple"] {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3) !important;
+  }
+
+  /* Kill filter effects */
+  [class*="filter"],
+  [class*="drop-shadow"] {
+    filter: none !important;
+  }
+
+  /* Simplify borders */
+  [class*="border-"] {
+    border-width: 1px !important;
+  }
+
+  /* Remove SVG animations */
+  svg * {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* Force simple backgrounds */
+  .absolute.inset-0.pointer-events-none {
+    display: none !important;
+  }
 }
 
 /* ------------------------------

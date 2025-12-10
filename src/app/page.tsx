@@ -2,51 +2,59 @@ import {
   generatePersonSchema,
   generateWebSiteSchema,
 } from "@/lib/structuredData";
-import { Sidebar } from "@/component/Sidebar";
-import { VolunteerDisplay } from "@/component";
+import { getIsMobile } from "@/lib/isMobile";
+import { SidebarWrapper } from "@/component/Sidebar/SidebarWrapper";
+import { VolunteerDisplay, VolunteerDisplayMobile } from "@/component/Volunteer";
 import { StatsWrapper } from "@/component/Stats";
 import { Time } from "@/component/Timeline/Time";
-import { ProjectsDisplay } from "@/component/Projects";
-import { FooterSection } from "@/component/Footer/Footer";
-import { HeroSection } from "@/component/Hero/HeroSection";
-import SkillsDisplay from "@/component/Skill/SkillsDisplay";
-import { ExperiencesDisplay } from "@/component/Experience";
+import { ProjectsDisplay, ProjectsDisplayMobile } from "@/component/Projects";
+import { FooterSection, FooterSectionMobile } from "@/component/Footer/Footer";
+import { HeroSection } from "@/component/Hero/HeroSectionWrapper";
+import SkillsDisplay, { SkillsDisplayMobile } from "@/component/Skill/SkillsDisplay";
+import { ExperiencesDisplay, ExperiencesDisplayMobile } from "@/component/Experience";
 import { StructuredData } from "@/component/StructuredData";
-import { CertificatesDisplay } from "@/component/Certificates";
+import { CertificatesDisplay, CertificatesDisplayMobile } from "@/component/Certificates";
 
-const page = () => {
+const page = async () => {
   const personSchema = generatePersonSchema();
   const websiteSchema = generateWebSiteSchema();
+  const isMobile = await getIsMobile();
 
   return (
     <>
       <StructuredData data={[personSchema, websiteSchema]} />
-      <Sidebar />
+      <SidebarWrapper />
       <main className="flex-1 lg:ml-0">
         <HeroSection />
         <div id="skills">
-          <SkillsDisplay />
+          {isMobile ? <SkillsDisplayMobile /> : <SkillsDisplay />}
         </div>
-        <div id="timeline" className="hidden lg:block">
-          <Time />
-        </div>
+        {/* Timeline hidden on mobile for performance */}
+        {!isMobile && (
+          <div id="timeline" className="hidden lg:block">
+            <Time />
+          </div>
+        )}
         <div id="projects">
-          <ProjectsDisplay />
+          {isMobile ? <ProjectsDisplayMobile /> : <ProjectsDisplay />}
         </div>
         <div id="experience">
-          <ExperiencesDisplay />
+          {isMobile ? <ExperiencesDisplayMobile /> : <ExperiencesDisplay />}
         </div>
         <div id="volunteer">
-          <VolunteerDisplay />
+          {isMobile ? <VolunteerDisplayMobile /> : <VolunteerDisplay />}
         </div>
         <div id="certifications">
-          <CertificatesDisplay />
+          {isMobile ? <CertificatesDisplayMobile /> : <CertificatesDisplay />}
         </div>
-        <div className="hidden lg:block">
-          <StatsWrapper />
-        </div>
+        {/* Stats hidden on mobile for performance */}
+        {!isMobile && (
+          <div className="hidden lg:block">
+            <StatsWrapper />
+          </div>
+        )}
         <div id="contact">
-          <FooterSection />
+          {isMobile ? <FooterSectionMobile /> : <FooterSection />}
         </div>
       </main>
     </>

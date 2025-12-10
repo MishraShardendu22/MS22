@@ -11,7 +11,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ||
 const archivo = Archivo({
   variable: "--font-heading",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["600"],
   display: "swap",
   fallback: ["system-ui", "Arial", "sans-serif"],
   preload: true,
@@ -21,7 +21,7 @@ const archivo = Archivo({
 const inter = Inter({
   variable: "--font-body",
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400"],
   display: "swap",
   fallback: ["system-ui", "Arial", "sans-serif"],
   preload: true,

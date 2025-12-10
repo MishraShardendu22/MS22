@@ -6,6 +6,112 @@ import { LoadingState } from "@/component/Loading/LoadingState";
 import { skillsAPI } from "@/static/api/api.request";
 import { ErrorState } from "../Error";
 
+/**
+ * Mobile-optimized Skills Display
+ * - No background blur effects
+ * - No hover animations
+ * - Simplified DOM structure
+ */
+export function SkillsDisplayMobile() {
+  const [skills, setSkills] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [hasNext, setHasNext] = useState(false);
+  const [hasPrevious, setHasPrevious] = useState(false);
+
+  const skillsPerPage = 15;
+
+  useEffect(() => {
+    const fetchSkills = async () => {
+      try {
+        setLoading(true);
+        const response = await skillsAPI.getSkills(currentPage, skillsPerPage);
+        setSkills(response.data.skills);
+        setTotalPages(response.data.total_pages);
+        setHasNext(response.data.has_next);
+        setHasPrevious(response.data.has_previous);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "An error occurred");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSkills();
+  }, [currentPage]);
+
+  const nextPage = () => {
+    if (hasNext) setCurrentPage(currentPage + 1);
+  };
+
+  const prevPage = () => {
+    if (hasPrevious) setCurrentPage(currentPage - 1);
+  };
+
+  return (
+    <section className="relative py-6 px-4 bg-gray-950 overflow-hidden">
+      <div className="container mx-auto max-w-6xl">
+        {/* Header */}
+        <div className="mb-6">
+          <div className="text-center">
+            <h2 className="text-2xl font-bold text-cyan-400 mb-2">
+              Technical Skills
+            </h2>
+            <p className="text-gray-400 text-xs px-4">
+              Technologies and tools I work with
+            </p>
+          </div>
+          {totalPages > 1 && (
+            <div className="flex items-center justify-center gap-2 mt-4">
+              <button
+                onClick={prevPage}
+                disabled={!hasPrevious}
+                className="flex items-center gap-1 px-2 py-1.5 rounded-lg bg-gray-900 border border-gray-800 text-gray-400 disabled:opacity-30 text-xs"
+              >
+                <ChevronLeft className="w-3.5 h-3.5" />
+                <span>Prev</span>
+              </button>
+              <span className="text-gray-400 text-xs">
+                <span className="text-cyan-400">{currentPage}</span>/{totalPages}
+              </span>
+              <button
+                onClick={nextPage}
+                disabled={!hasNext}
+                className="flex items-center gap-1 px-2 py-1.5 rounded-lg bg-gray-900 border border-gray-800 text-gray-400 disabled:opacity-30 text-xs"
+              >
+                <span>Next</span>
+                <ChevronRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* Skills Grid */}
+        <div className="mb-4">
+          {loading ? (
+            <div className="py-6 text-center text-gray-400 text-sm">Loading skills...</div>
+          ) : error ? (
+            <div className="py-6 text-center text-red-400 text-sm">{error}</div>
+          ) : (
+            <div className="flex flex-wrap justify-center gap-2 px-2">
+              {skills.map((skill, index) => (
+                <span
+                  key={`${skill}-${index}`}
+                  className="px-3 py-1.5 rounded-lg bg-gray-900 border border-gray-800 text-gray-300 text-xs"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function SkillsDisplay() {
   const [skills, setSkills] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);

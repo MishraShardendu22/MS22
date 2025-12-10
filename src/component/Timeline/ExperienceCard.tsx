@@ -96,6 +96,7 @@ export const ExperienceCard = ({
               width={36}
               height={36}
               className="object-contain rounded-lg"
+              sizes="(max-width: 768px) 36px, 36px"
             />
           ) : (
             <div
