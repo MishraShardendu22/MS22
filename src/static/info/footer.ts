@@ -1,47 +1,47 @@
 import {
   Book,
+  MailIcon,
+  User2Icon,
   Briefcase,
   Code2Icon,
-  CompassIcon,
   FolderGit2,
   GithubIcon,
-  LinkedinIcon,
-  LockKeyhole,
-  MailIcon,
-  PenTool,
   ShieldCheck,
   TwitterIcon,
-  XIcon,
   YoutubeIcon,
+  LockKeyhole,
+  CompassIcon,
+  LinkedinIcon,
+  Instagram,
 } from "lucide-react";
 
 export const QuickLinks = {
   Projects: {
-    url: "/projects",
+    url: "https://mishrashardendu22.is-a.dev/projects",
     icon: FolderGit2,
   },
   Experience: {
-    url: "/experience",
+    url: "https://mishrashardendu22.is-a.dev/experience",
     icon: Briefcase,
   },
-  TechBlogs: {
-    url: "/blogs",
-    icon: PenTool,
+  Volunteer: {
+    url: "https://mishrashardendu22.is-a.dev/volunteer",
+    icon: User2Icon,
   },
-  AdminPortal: {
-    url: "/admin",
-    icon: ShieldCheck,
-  },
+  Certification: {
+    url: "https://mishrashardendu22.is-a.dev/certificates",
+    icon: User2Icon,
+  }
 };
 
 export const MyWebsites = {
-  portfolio: {
-    url: "https://mishrashardendu22.is-a.dev",
-    icon: Code2Icon,
-    name: "Personal Website",
+  adminPortal: {
+    url: "https://admin.mishrashardendu22.is-a.dev",
+    icon: ShieldCheck,
+    name: "Admin Portal",
   },
   techBlog: {
-    url: "https://blog.mishrashardendu22.is-a.dev",
+    url: "https://blogs.mishrashardendu22.is-a.dev",
     icon: Book,
     name: "Blog Website",
   },
@@ -70,9 +70,9 @@ export const SocialMedia = {
     url: "https://www.youtube.com/@Shardendu_Mishra",
     icon: YoutubeIcon,
   },
-  Email: {
-    url: "mailto:shardendumishra01@gmail.com",
-    icon: MailIcon,
+  Instagram: {
+    url: "https://www.instagram.com/mishrashardendu22",
+    icon: Instagram,
   },
 };
 
