@@ -9,6 +9,7 @@ import {
   School,
 } from "lucide-react";
 import { Language } from "@/static/info/header";
+import Link from "next/link";
 
 export const EducationSection = () => {
   return (

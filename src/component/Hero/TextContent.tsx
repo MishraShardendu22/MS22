@@ -1,6 +1,7 @@
 "use client";
 
 import { myIntro, SocialLinks } from "@/static/info/header";
+import Link from "next/link";
 
 const buttonLabels: Record<string, string> = {
   GitHub: "View My Projects",

@@ -50,7 +50,7 @@ export function Sidebar() {
   return (
     <>
       {/* Sidebar */}
-      <Linkside
+      <aside
         className={`fixed left-0 top-0 h-screen bg-gray-950/95 backdrop-blur-xl border-r border-gray-800/50 z-50 transition-all duration-300 ease-in-out ${
           isExpanded ? "w-64" : "w-20"
         }`}

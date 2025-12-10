@@ -9,8 +9,8 @@ import { TimelineDisplay } from "./TimelineDisplay";
 export const Time = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [experiences, setExperiences] = useState<Linkny[]>([]);
-  const [volunteerExperiences, setVolunteerExperiences] = useState<Linkny[]>([]);
+  const [experiences, setExperiences] = useState<any[]>([]);
+  const [volunteerExperiences, setVolunteerExperiences] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchTimeline = async () => {
