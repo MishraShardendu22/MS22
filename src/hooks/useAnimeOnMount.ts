@@ -1,9 +1,9 @@
-import { useEffect, useRef } from 'react';
-import { animate, type AnimationOptions } from 'animejs';
+import { type AnimationOptions, animate } from "animejs";
+import { useEffect, useRef } from "react";
 
 export const useAnimeOnMount = (
   animationConfig: AnimationOptions,
-  dependencies: any[] = []
+  dependencies: any[] = [],
 ) => {
   const elementRef = useRef<HTMLElement>(null);
 
@@ -18,7 +18,7 @@ export const useAnimeOnMount = (
 
 export const useAnimeOnIntersection = (
   animationConfig: AnimationOptions,
-  threshold: number = 0.3
+  threshold: number = 0.3,
 ) => {
   const elementRef = useRef<HTMLElement>(null);
 
@@ -35,7 +35,7 @@ export const useAnimeOnIntersection = (
           }
         });
       },
-      { threshold }
+      { threshold },
     );
 
     observer.observe(element);
@@ -47,7 +47,7 @@ export const useAnimeOnIntersection = (
 
 export const useAnimeHover = (
   enterConfig: AnimationOptions,
-  leaveConfig: AnimationOptions
+  leaveConfig: AnimationOptions,
 ) => {
   const elementRef = useRef<HTMLElement>(null);
 
@@ -58,12 +58,12 @@ export const useAnimeHover = (
     const handleEnter = () => animate(element, enterConfig);
     const handleLeave = () => animate(element, leaveConfig);
 
-    element.addEventListener('mouseenter', handleEnter);
-    element.addEventListener('mouseleave', handleLeave);
+    element.addEventListener("mouseenter", handleEnter);
+    element.addEventListener("mouseleave", handleLeave);
 
     return () => {
-      element.removeEventListener('mouseenter', handleEnter);
-      element.removeEventListener('mouseleave', handleLeave);
+      element.removeEventListener("mouseenter", handleEnter);
+      element.removeEventListener("mouseleave", handleLeave);
     };
   }, []);
 

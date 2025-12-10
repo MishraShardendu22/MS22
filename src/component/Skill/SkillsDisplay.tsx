@@ -1,53 +1,52 @@
-'use client'
+"use client";
 
-import { useEffect, useState } from 'react'
-import { skillsAPI } from '@/static/api/api.request'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { LoadingState } from '@/component/Loading/LoadingState'
-import { ErrorState } from '../Error'
-
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useEffect, useState } from "react";
+import { LoadingState } from "@/component/Loading/LoadingState";
+import { skillsAPI } from "@/static/api/api.request";
+import { ErrorState } from "../Error";
 
 export default function SkillsDisplay() {
-  const [skills, setSkills] = useState<string[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-  const [currentPage, setCurrentPage] = useState(1)
-  const [totalPages, setTotalPages] = useState(1)
-  const [hasNext, setHasNext] = useState(false)
-  const [hasPrevious, setHasPrevious] = useState(false)
-  
-  const skillsPerPage = 15
+  const [skills, setSkills] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [hasNext, setHasNext] = useState(false);
+  const [hasPrevious, setHasPrevious] = useState(false);
+
+  const skillsPerPage = 15;
 
   useEffect(() => {
     const fetchSkills = async () => {
       try {
-        setLoading(true)
-        const response = await skillsAPI.getSkills(currentPage, skillsPerPage)
-        setSkills(response.data.skills)
-        setTotalPages(response.data.total_pages)
-        setHasNext(response.data.has_next)
-        setHasPrevious(response.data.has_previous)
+        setLoading(true);
+        const response = await skillsAPI.getSkills(currentPage, skillsPerPage);
+        setSkills(response.data.skills);
+        setTotalPages(response.data.total_pages);
+        setHasNext(response.data.has_next);
+        setHasPrevious(response.data.has_previous);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'An error occurred')
+        setError(err instanceof Error ? err.message : "An error occurred");
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
+    };
 
-    fetchSkills()
-  }, [currentPage])
+    fetchSkills();
+  }, [currentPage]);
 
   const nextPage = () => {
     if (hasNext) {
-      setCurrentPage(currentPage + 1)
+      setCurrentPage(currentPage + 1);
     }
-  }
+  };
 
   const prevPage = () => {
     if (hasPrevious) {
-      setCurrentPage(currentPage - 1)
+      setCurrentPage(currentPage - 1);
     }
-  }
+  };
 
   return (
     <section className="relative py-12 px-4 sm:px-6 md:px-8 bg-linear-to-b from-transparent via-gray-950/50 to-transparent overflow-hidden">
@@ -59,7 +58,6 @@ export default function SkillsDisplay() {
       </div>
 
       <div className="container mx-auto max-w-6xl relative z-10">
-        
         {/* Header */}
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-linear-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent mb-4">
@@ -78,7 +76,11 @@ export default function SkillsDisplay() {
             </div>
           ) : error ? (
             <div className="py-8">
-              <ErrorState title="Error Loading Skills" message={error} variant="red" />
+              <ErrorState
+                title="Error Loading Skills"
+                message={error}
+                variant="red"
+              />
             </div>
           ) : (
             <div className="flex flex-wrap justify-center gap-2 md:gap-2 content-start">
@@ -106,7 +108,9 @@ export default function SkillsDisplay() {
             </button>
 
             <span className="text-gray-400 text-sm font-medium px-2">
-              Page <span className="text-cyan-400 font-bold">{currentPage}</span> of <span className="text-cyan-400 font-bold">{totalPages}</span>
+              Page{" "}
+              <span className="text-cyan-400 font-bold">{currentPage}</span> of{" "}
+              <span className="text-cyan-400 font-bold">{totalPages}</span>
             </span>
 
             <button
@@ -121,5 +125,5 @@ export default function SkillsDisplay() {
         )}
       </div>
     </section>
-  )
+  );
 }

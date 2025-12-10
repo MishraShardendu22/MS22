@@ -1,82 +1,82 @@
-'use client'
+"use client";
 
-import { Calendar, ExternalLink, Building, CheckCircle2 } from 'lucide-react'
-import { ReactNode } from 'react'
+import { Building, Calendar, CheckCircle2, ExternalLink } from "lucide-react";
+import type { ReactNode } from "react";
 
-export type CardTheme = 'blue' | 'pink' | 'emerald' | 'purple'
+export type CardTheme = "blue" | "pink" | "emerald" | "purple";
 
 interface UnifiedCardProps {
-  index: number
-  theme: CardTheme
-  logo?: string
-  logoAlt?: string
-  title: string
-  subtitle: string
-  subtitleIcon?: ReactNode
-  startDate?: string
-  endDate?: string
-  description?: string
-  technologies?: string[]
-  certificateUrl?: string
-  certificateLabel?: string
+  index: number;
+  theme: CardTheme;
+  logo?: string;
+  logoAlt?: string;
+  title: string;
+  subtitle: string;
+  subtitleIcon?: ReactNode;
+  startDate?: string;
+  endDate?: string;
+  description?: string;
+  technologies?: string[];
+  certificateUrl?: string;
+  certificateLabel?: string;
   badges?: {
-    label: string
-    icon?: ReactNode
-  }[]
-  extraInfo?: ReactNode
-  maxTechDisplay?: number
+    label: string;
+    icon?: ReactNode;
+  }[];
+  extraInfo?: ReactNode;
+  maxTechDisplay?: number;
 }
 
 const themeConfig = {
   blue: {
-    border: 'hover:border-blue-500/40',
-    shadow: 'hover:shadow-blue-500/10',
-    gradient: 'from-blue-500/5 via-transparent to-indigo-500/5',
-    titleHover: 'group-hover:text-blue-400',
-    certificateBg: 'bg-blue-500/10 hover:bg-blue-500/20',
-    certificateText: 'text-blue-400 hover:text-blue-300',
-    certificateBorder: 'border-blue-500/30',
-    techExtraBg: 'bg-blue-500/10',
-    techExtraText: 'text-blue-400',
-    techExtraBorder: 'border-blue-500/30',
+    border: "hover:border-blue-500/40",
+    shadow: "hover:shadow-blue-500/10",
+    gradient: "from-blue-500/5 via-transparent to-indigo-500/5",
+    titleHover: "group-hover:text-blue-400",
+    certificateBg: "bg-blue-500/10 hover:bg-blue-500/20",
+    certificateText: "text-blue-400 hover:text-blue-300",
+    certificateBorder: "border-blue-500/30",
+    techExtraBg: "bg-blue-500/10",
+    techExtraText: "text-blue-400",
+    techExtraBorder: "border-blue-500/30",
   },
   pink: {
-    border: 'hover:border-pink-500/40',
-    shadow: 'hover:shadow-pink-500/10',
-    gradient: 'from-pink-500/5 via-transparent to-rose-500/5',
-    titleHover: 'group-hover:text-pink-400',
-    certificateBg: 'bg-pink-500/10 hover:bg-pink-500/20',
-    certificateText: 'text-pink-400 hover:text-pink-300',
-    certificateBorder: 'border-pink-500/30',
-    techExtraBg: 'bg-pink-500/10',
-    techExtraText: 'text-pink-400',
-    techExtraBorder: 'border-pink-500/30',
+    border: "hover:border-pink-500/40",
+    shadow: "hover:shadow-pink-500/10",
+    gradient: "from-pink-500/5 via-transparent to-rose-500/5",
+    titleHover: "group-hover:text-pink-400",
+    certificateBg: "bg-pink-500/10 hover:bg-pink-500/20",
+    certificateText: "text-pink-400 hover:text-pink-300",
+    certificateBorder: "border-pink-500/30",
+    techExtraBg: "bg-pink-500/10",
+    techExtraText: "text-pink-400",
+    techExtraBorder: "border-pink-500/30",
   },
   emerald: {
-    border: 'hover:border-emerald-500/40',
-    shadow: 'hover:shadow-emerald-500/10',
-    gradient: 'from-emerald-500/5 via-transparent to-teal-500/5',
-    titleHover: 'group-hover:text-emerald-400',
-    certificateBg: 'bg-emerald-500/10 hover:bg-emerald-500/20',
-    certificateText: 'text-emerald-400 hover:text-emerald-300',
-    certificateBorder: 'border-emerald-500/30',
-    techExtraBg: 'bg-emerald-500/10',
-    techExtraText: 'text-emerald-400',
-    techExtraBorder: 'border-emerald-500/30',
+    border: "hover:border-emerald-500/40",
+    shadow: "hover:shadow-emerald-500/10",
+    gradient: "from-emerald-500/5 via-transparent to-teal-500/5",
+    titleHover: "group-hover:text-emerald-400",
+    certificateBg: "bg-emerald-500/10 hover:bg-emerald-500/20",
+    certificateText: "text-emerald-400 hover:text-emerald-300",
+    certificateBorder: "border-emerald-500/30",
+    techExtraBg: "bg-emerald-500/10",
+    techExtraText: "text-emerald-400",
+    techExtraBorder: "border-emerald-500/30",
   },
   purple: {
-    border: 'hover:border-purple-500/40',
-    shadow: 'hover:shadow-purple-500/10',
-    gradient: 'from-purple-500/5 via-transparent to-violet-500/5',
-    titleHover: 'group-hover:text-purple-400',
-    certificateBg: 'bg-purple-500/10 hover:bg-purple-500/20',
-    certificateText: 'text-purple-400 hover:text-purple-300',
-    certificateBorder: 'border-purple-500/30',
-    techExtraBg: 'bg-purple-500/10',
-    techExtraText: 'text-purple-400',
-    techExtraBorder: 'border-purple-500/30',
+    border: "hover:border-purple-500/40",
+    shadow: "hover:shadow-purple-500/10",
+    gradient: "from-purple-500/5 via-transparent to-violet-500/5",
+    titleHover: "group-hover:text-purple-400",
+    certificateBg: "bg-purple-500/10 hover:bg-purple-500/20",
+    certificateText: "text-purple-400 hover:text-purple-300",
+    certificateBorder: "border-purple-500/30",
+    techExtraBg: "bg-purple-500/10",
+    techExtraText: "text-purple-400",
+    techExtraBorder: "border-purple-500/30",
   },
-}
+};
 
 export const UnifiedCard = ({
   index,
@@ -91,12 +91,12 @@ export const UnifiedCard = ({
   description,
   technologies,
   certificateUrl,
-  certificateLabel = 'Certificate',
+  certificateLabel = "Certificate",
   badges,
   extraInfo,
   maxTechDisplay = 4,
 }: UnifiedCardProps) => {
-  const colors = themeConfig[theme]
+  const colors = themeConfig[theme];
 
   return (
     <div
@@ -118,8 +118,12 @@ export const UnifiedCard = ({
         }
       `}</style>
 
-      <div className={`relative bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl overflow-hidden transition-all duration-300 ${colors.border} hover:shadow-lg ${colors.shadow}`}>
-        <div className={`absolute inset-0 bg-linear-to-br ${colors.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+      <div
+        className={`relative bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl overflow-hidden transition-all duration-300 ${colors.border} hover:shadow-lg ${colors.shadow}`}
+      >
+        <div
+          className={`absolute inset-0 bg-linear-to-br ${colors.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+        />
 
         <div className="relative p-4">
           <div className="flex items-start gap-3 mb-3">
@@ -133,7 +137,9 @@ export const UnifiedCard = ({
               </div>
             )}
             <div className="flex-1 min-w-0">
-              <h3 className={`text-lg font-bold text-white mb-1 line-clamp-1 transition-colors duration-300 ${colors.titleHover}`}>
+              <h3
+                className={`text-lg font-bold text-white mb-1 line-clamp-1 transition-colors duration-300 ${colors.titleHover}`}
+              >
                 {title}
               </h3>
               <div className="flex items-center gap-2 text-gray-400 text-sm font-medium">
@@ -172,7 +178,9 @@ export const UnifiedCard = ({
                 <div className="flex items-center gap-1">
                   <Calendar className="w-3.5 h-3.5" />
                   <span>
-                    {startDate && endDate ? `${startDate} - ${endDate}` : startDate || endDate}
+                    {startDate && endDate
+                      ? `${startDate} - ${endDate}`
+                      : startDate || endDate}
                   </span>
                 </div>
               )}
@@ -197,7 +205,9 @@ export const UnifiedCard = ({
                 </span>
               ))}
               {technologies.length > maxTechDisplay && (
-                <span className={`px-2.5 py-1 text-xs font-medium ${colors.techExtraBg} ${colors.techExtraText} rounded-md ${colors.techExtraBorder}`}>
+                <span
+                  className={`px-2.5 py-1 text-xs font-medium ${colors.techExtraBg} ${colors.techExtraText} rounded-md ${colors.techExtraBorder}`}
+                >
                   +{technologies.length - maxTechDisplay}
                 </span>
               )}
@@ -206,5 +216,5 @@ export const UnifiedCard = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

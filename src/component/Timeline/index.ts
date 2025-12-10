@@ -1,2 +1,2 @@
-export { Time } from './Time'
-export { TimelineDisplay } from './TimelineDisplay'
+export { Time } from "./Time";
+export { TimelineDisplay } from "./TimelineDisplay";

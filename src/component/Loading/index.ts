@@ -1,2 +1,2 @@
-export { LoadingState } from './LoadingState'
-export { NameLoader } from './Loader'
+export { NameLoader } from "./Loader";
+export { LoadingState } from "./LoadingState";

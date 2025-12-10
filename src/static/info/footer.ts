@@ -1,94 +1,107 @@
-import { Book, Code2Icon, CompassIcon, GithubIcon, LinkedinIcon, LockKeyhole, MailIcon, TwitterIcon, XIcon, YoutubeIcon, FolderGit2, Briefcase, PenTool, ShieldCheck } from "lucide-react"
+import {
+  Book,
+  Briefcase,
+  Code2Icon,
+  CompassIcon,
+  FolderGit2,
+  GithubIcon,
+  LinkedinIcon,
+  LockKeyhole,
+  MailIcon,
+  PenTool,
+  ShieldCheck,
+  TwitterIcon,
+  XIcon,
+  YoutubeIcon,
+} from "lucide-react";
 
 export const QuickLinks = {
-    Projects: {
-        url: '/projects',
-        icon: FolderGit2,
-    },
-    Experience: {
-        url: '/experience',
-        icon: Briefcase,
-    },
-    TechBlogs: {
-        url: '/blogs',
-        icon: PenTool,
-    },
-    AdminPortal: {
-        url: '/admin',
-        icon: ShieldCheck,
-    },
-}
+  Projects: {
+    url: "/projects",
+    icon: FolderGit2,
+  },
+  Experience: {
+    url: "/experience",
+    icon: Briefcase,
+  },
+  TechBlogs: {
+    url: "/blogs",
+    icon: PenTool,
+  },
+  AdminPortal: {
+    url: "/admin",
+    icon: ShieldCheck,
+  },
+};
 
 export const MyWebsites = {
-    portfolio :{
-        url: 'https://mishrashardendu22.is-a.dev',
-        icon: Code2Icon,
-        name: 'Personal Website',
-    },
-    techBlog: {
-        url: 'https://blog.mishrashardendu22.is-a.dev',
-        icon: Book,
-        name: 'Blog Website',
-    },
-    treasureHunt: {
-        url: 'https://treasure-hunt.mishrashardendu22.is-a.dev/',
-        icon: LockKeyhole,
-        name: 'Treasure Hunt',
-    },
-    uiLibrary: {
-        url  : 'https://pixel-art-8-bit.mishrashardendu22.is-a.dev',
-        icon : CompassIcon,
-        name: 'My UI Library',
-    }
-}
+  portfolio: {
+    url: "https://mishrashardendu22.is-a.dev",
+    icon: Code2Icon,
+    name: "Personal Website",
+  },
+  techBlog: {
+    url: "https://blog.mishrashardendu22.is-a.dev",
+    icon: Book,
+    name: "Blog Website",
+  },
+  treasureHunt: {
+    url: "https://treasure-hunt.mishrashardendu22.is-a.dev/",
+    icon: LockKeyhole,
+    name: "Treasure Hunt",
+  },
+  uiLibrary: {
+    url: "https://pixel-art-8-bit.mishrashardendu22.is-a.dev",
+    icon: CompassIcon,
+    name: "My UI Library",
+  },
+};
 
 export const SocialMedia = {
-
-    Twitter: {
-        url: 'https://x.com/Shardendu_M',
-        icon: TwitterIcon,
-    },
-    LinkedIn: {
-        url: 'https://www.linkedin.com/in/shardendumishra22',
-        icon: LinkedinIcon,
-    },
-    YouTube: {
-        url: 'https://www.youtube.com/@Shardendu_Mishra',
-        icon: YoutubeIcon,
-    },
-    Email: {
-        url: 'mailto:shardendumishra01@gmail.com',
-        icon: MailIcon,
-    }
-}
+  Twitter: {
+    url: "https://x.com/Shardendu_M",
+    icon: TwitterIcon,
+  },
+  LinkedIn: {
+    url: "https://www.linkedin.com/in/shardendumishra22",
+    icon: LinkedinIcon,
+  },
+  YouTube: {
+    url: "https://www.youtube.com/@Shardendu_Mishra",
+    icon: YoutubeIcon,
+  },
+  Email: {
+    url: "mailto:shardendumishra01@gmail.com",
+    icon: MailIcon,
+  },
+};
 
 export const CodingProfiles = {
-    GitHubMain: {
-        url: 'https://github.com/MishraShardendu22',
-        icon: GithubIcon,
-    },
-    LeetCode: {
-        url: 'https://leetcode.com/mishrashardendu22',
-        icon: Code2Icon
-    },
-    GitHubProject: {
-        url: 'https://github.com/ShardenduMishra22',
-        icon: GithubIcon,
-    },
-    Codeforces: {
-        url: 'https://codeforces.com/profile/MishraShardendu22',
-        icon: Code2Icon
-    },
-}
-
+  GitHubMain: {
+    url: "https://github.com/MishraShardendu22",
+    icon: GithubIcon,
+  },
+  LeetCode: {
+    url: "https://leetcode.com/mishrashardendu22",
+    icon: Code2Icon,
+  },
+  GitHubProject: {
+    url: "https://github.com/ShardenduMishra22",
+    icon: GithubIcon,
+  },
+  Codeforces: {
+    url: "https://codeforces.com/profile/MishraShardendu22",
+    icon: Code2Icon,
+  },
+};
 
 export const images = {
-    go : {
-        loc: "/go.avif",
-        alt: "Golang Logo"
-    },
-    fedora: {
-        loc: "/fedora.avif",
-        alt: "Fedora Logo"
-    }
-}
+  go: {
+    loc: "/go.avif",
+    alt: "Golang Logo",
+  },
+  fedora: {
+    loc: "/fedora.avif",
+    alt: "Fedora Logo",
+  },
+};

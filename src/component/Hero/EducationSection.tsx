@@ -1,10 +1,16 @@
-'use client';
+"use client";
 
-import { Language } from '@/static/info/header';
-import { Calendar, MapPin, Globe, School, ExternalLink, BookOpen } from 'lucide-react';
+import {
+  BookOpen,
+  Calendar,
+  ExternalLink,
+  Globe,
+  MapPin,
+  School,
+} from "lucide-react";
+import { Language } from "@/static/info/header";
 
 export const EducationSection = () => {
-
   return (
     <div className="max-w-[1400px] mx-auto">
       {/* Academic Journey Header */}
@@ -12,9 +18,11 @@ export const EducationSection = () => {
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-linear-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent mb-3">
           Academic Journey
         </h2>
-        <p className="text-gray-400 text-sm md:text-base">Academic journey through diverse learning experiences and achievements</p>
+        <p className="text-gray-400 text-sm md:text-base">
+          Academic journey through diverse learning experiences and achievements
+        </p>
       </div>
-      
+
       {/* Education Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
         {/* Higher Education with Languages */}
@@ -57,8 +65,12 @@ export const EducationSection = () => {
             <div className="flex items-start gap-2">
               <BookOpen className="w-4 h-4 text-cyan-400 mt-1 shrink-0" />
               <div>
-                <p className="text-sm font-semibold text-gray-300 mb-1">Computer Science and Engineering</p>
-                <p className="text-xs text-gray-500">Focusing on software development and emerging technologies</p>
+                <p className="text-sm font-semibold text-gray-300 mb-1">
+                  Computer Science and Engineering
+                </p>
+                <p className="text-xs text-gray-500">
+                  Focusing on software development and emerging technologies
+                </p>
               </div>
             </div>
           </div>
@@ -67,7 +79,9 @@ export const EducationSection = () => {
           <div className="pt-5 border-t border-gray-800">
             <div className="flex items-center gap-2 mb-3">
               <Globe className="w-4 h-4 text-cyan-400" />
-              <h3 className="text-sm font-semibold text-gray-300">Communication</h3>
+              <h3 className="text-sm font-semibold text-gray-300">
+                Communication
+              </h3>
             </div>
             <div className="flex gap-2 flex-wrap">
               {Language.map((lang) => (
@@ -111,19 +125,25 @@ export const EducationSection = () => {
             {/* Class 12th */}
             <div className="bg-gray-800/40 rounded-lg p-4 hover:bg-gray-800/60 transition-all">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-semibold text-gray-300">Class 12th</span>
+                <span className="text-sm font-semibold text-gray-300">
+                  Class 12th
+                </span>
                 <span className="text-2xl font-bold text-cyan-400">96.4%</span>
               </div>
               <div className="flex items-center gap-2">
                 <BookOpen className="w-3 h-3 text-cyan-400/70" />
-                <p className="text-xs text-gray-500">PCM and Computer Science</p>
+                <p className="text-xs text-gray-500">
+                  PCM and Computer Science
+                </p>
               </div>
             </div>
 
             {/* Class 10th */}
             <div className="bg-gray-800/40 rounded-lg p-4 hover:bg-gray-800/60 transition-all">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-semibold text-gray-300">Class 10th</span>
+                <span className="text-sm font-semibold text-gray-300">
+                  Class 10th
+                </span>
                 <span className="text-2xl font-bold text-cyan-400">84%</span>
               </div>
               <div className="flex items-center gap-2">

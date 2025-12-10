@@ -1,20 +1,23 @@
-import { Time } from "@/component/Timeline/Time"
-import { StatsWrapper } from "@/component/Stats"
-import { ProjectsDisplay } from "@/component/Projects"
-import { FooterSection } from "@/component/Footer/Footer"
-import { HeroSection } from "@/component/Hero/HeroSection"
-import SkillsDisplay from "@/component/Skill/SkillsDisplay"
-import { VolunteerDisplay } from "@/component"
-import { ExperiencesDisplay } from "@/component/Experience"
-import { CertificatesDisplay } from "@/component/Certificates"
-import { Sidebar } from "@/component/Sidebar"
-import { StructuredData } from "@/component/StructuredData"
-import { generatePersonSchema, generateWebSiteSchema } from "@/lib/structuredData"
+import { VolunteerDisplay } from "@/component";
+import { CertificatesDisplay } from "@/component/Certificates";
+import { ExperiencesDisplay } from "@/component/Experience";
+import { FooterSection } from "@/component/Footer/Footer";
+import { HeroSection } from "@/component/Hero/HeroSection";
+import { ProjectsDisplay } from "@/component/Projects";
+import { Sidebar } from "@/component/Sidebar";
+import SkillsDisplay from "@/component/Skill/SkillsDisplay";
+import { StatsWrapper } from "@/component/Stats";
+import { StructuredData } from "@/component/StructuredData";
+import { Time } from "@/component/Timeline/Time";
+import {
+  generatePersonSchema,
+  generateWebSiteSchema,
+} from "@/lib/structuredData";
 
 const page = () => {
   const personSchema = generatePersonSchema();
   const websiteSchema = generateWebSiteSchema();
-  
+
   return (
     <>
       <StructuredData data={[personSchema, websiteSchema]} />
@@ -45,7 +48,7 @@ const page = () => {
         </div>
       </main>
     </>
-  )
-}
+  );
+};
 
-export default page
+export default page;

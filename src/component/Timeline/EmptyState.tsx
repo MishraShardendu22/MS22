@@ -11,9 +11,11 @@ export const EmptyState = () => {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 bg-linear-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
             Experience Timeline
           </h2>
-          <p className="text-lg text-gray-400">No experiences available to display</p>
+          <p className="text-lg text-gray-400">
+            No experiences available to display
+          </p>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};

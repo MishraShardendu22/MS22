@@ -1,32 +1,44 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Send, Heart, Coffee, ArrowUp, Code2, Zap } from 'lucide-react';
-import { QuickLinks, MyWebsites, SocialMedia, CodingProfiles, images } from '@/static/info/footer';
-import Link from 'next/link';
-import Image from 'next/image';
+import { ArrowUp, Code2, Coffee, Heart, Send, Zap } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+import {
+  CodingProfiles,
+  images,
+  MyWebsites,
+  QuickLinks,
+  SocialMedia,
+} from "@/static/info/footer";
 
 export const FooterSection = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Create mailto link with pre-filled data
     const subject = encodeURIComponent(`Message from ${formData.name}`);
     const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`,
     );
-    
+
     window.location.href = `mailto:shardendumishra01@gmail.com?subject=${subject}&body=${body}`;
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -39,10 +51,8 @@ export const FooterSection = () => {
       </div>
 
       <div className="container mx-auto max-w-[1600px] relative z-10">
-        
         {/* Top Section: Brand + Contact Form */}
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 mb-20">
-          
           {/* Left: Brand Info */}
           <div className="space-y-8">
             <div>
@@ -51,12 +61,13 @@ export const FooterSection = () => {
                   <Code2 className="w-7 h-7 text-cyan-400" />
                 </div>
                 <h2 className="text-3xl md:text-4xl font-bold">
-                  <span className="text-white">Shardendu</span>{' '}
+                  <span className="text-white">Shardendu</span>{" "}
                   <span className="text-cyan-400">Mishra</span>
                 </h2>
               </div>
               <p className="text-gray-400 text-base md:text-lg leading-relaxed max-w-xl">
-                Software Engineer engineering innovative and absolutely awesome solutions and giving amazing user experiences.
+                Software Engineer engineering innovative and absolutely awesome
+                solutions and giving amazing user experiences.
               </p>
             </div>
 
@@ -125,7 +136,9 @@ export const FooterSection = () => {
                 onClick={scrollToTop}
                 className="group flex items-center gap-2 px-5 py-2.5 rounded-lg bg-linear-to-br from-cyan-500/20 to-blue-500/20 hover:from-cyan-500/30 hover:to-blue-500/30 border border-cyan-500/30 hover:border-cyan-500/50 transition-colors duration-500"
               >
-                <span className="text-sm font-medium text-cyan-400">Back to Top</span>
+                <span className="text-sm font-medium text-cyan-400">
+                  Back to Top
+                </span>
                 <ArrowUp className="w-4 h-4 text-cyan-400" />
               </button>
             </div>
@@ -189,7 +202,6 @@ export const FooterSection = () => {
 
         {/* Footer Links Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-12 mb-16">
-          
           {/* Quick Links */}
           <div>
             <h3 className="text-lg md:text-xl font-bold text-gray-100 mb-5 flex items-center gap-2">
@@ -243,7 +255,11 @@ export const FooterSection = () => {
           {/* Social Media */}
           <div>
             <h3 className="text-lg md:text-xl font-bold text-gray-100 mb-5 flex items-center gap-2">
-              <svg className="w-5 h-5 text-cyan-400" fill="currentColor" viewBox="0 0 24 24">
+              <svg
+                className="w-5 h-5 text-cyan-400"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z" />
               </svg>
               Social Media
@@ -294,7 +310,6 @@ export const FooterSection = () => {
             </ul>
           </div>
         </div>
-
       </div>
     </footer>
   );

@@ -1,15 +1,16 @@
 // ExperienceSection.tsx
-import { ProcessedExperience, ExperiencePosition } from './types'
-import { getCompanyColor } from './utils'
-import { ExperienceCard } from './ExperienceCard'
+
+import { ExperienceCard } from "./ExperienceCard";
+import type { ExperiencePosition, ProcessedExperience } from "./types";
+import { getCompanyColor } from "./utils";
 
 interface ExperienceSectionProps {
-  experiences: ProcessedExperience[]
-  type: 'work' | 'volunteer'
-  isMobile: boolean
-  hoveredCard: string | null
-  setHoveredCard: (id: string | null) => void
-  getExperiencePosition: (exp: ProcessedExperience) => ExperiencePosition
+  experiences: ProcessedExperience[];
+  type: "work" | "volunteer";
+  isMobile: boolean;
+  hoveredCard: string | null;
+  setHoveredCard: (id: string | null) => void;
+  getExperiencePosition: (exp: ProcessedExperience) => ExperiencePosition;
 }
 
 export const ExperienceSection = ({
@@ -20,34 +21,38 @@ export const ExperienceSection = ({
   setHoveredCard,
   getExperiencePosition,
 }: ExperienceSectionProps) => {
-  if (experiences.length === 0) return null
+  if (experiences.length === 0) return null;
 
-  const isWork = type === 'work'
+  const isWork = type === "work";
   const config = {
-    title: isWork ? 'Work Experience' : 'Volunteer Experience',
-    titleColor: isWork ? 'text-cyan-400' : 'text-purple-400',
+    title: isWork ? "Work Experience" : "Volunteer Experience",
+    titleColor: isWork ? "text-cyan-400" : "text-purple-400",
     lineGradient: isWork
-      ? 'from-cyan-500/20 via-blue-500/20 to-transparent'
-      : 'from-purple-500/20 via-pink-500/20 to-transparent',
-    spacing: isWork ? 'mb-16' : 'mb-8',
-  }
+      ? "from-cyan-500/20 via-blue-500/20 to-transparent"
+      : "from-purple-500/20 via-pink-500/20 to-transparent",
+    spacing: isWork ? "mb-16" : "mb-8",
+  };
 
   return (
     <div className={config.spacing}>
       <div className="flex items-center gap-3 mb-8 h-8">
-        <h3 className={`font-bold text-xl ${config.titleColor}`}>{config.title}</h3>
+        <h3 className={`font-bold text-xl ${config.titleColor}`}>
+          {config.title}
+        </h3>
       </div>
 
       {/* Increased height to accommodate logos above the line */}
       <div className="relative h-[120px]">
         {/* Main timeline line - positioned in the middle */}
-        <div className={`absolute top-8 left-8 right-8 h-px bg-gradient-to-r ${config.lineGradient} rounded-full`} />
+        <div
+          className={`absolute top-8 left-8 right-8 h-px bg-gradient-to-r ${config.lineGradient} rounded-full`}
+        />
 
         {experiences.map((exp, index) => {
-          const position = getExperiencePosition(exp)
-          const companyColor = getCompanyColor(exp.name, type)
-          const expId = `${type}-${index}`
-          const isHovered = hoveredCard === expId
+          const position = getExperiencePosition(exp);
+          const companyColor = getCompanyColor(exp.name, type);
+          const expId = `${type}-${index}`;
+          const isHovered = hoveredCard === expId;
 
           return (
             <ExperienceCard
@@ -61,9 +66,9 @@ export const ExperienceSection = ({
               onMouseEnter={() => !isMobile && setHoveredCard(expId)}
               onMouseLeave={() => !isMobile && setHoveredCard(null)}
             />
-          )
+          );
         })}
       </div>
     </div>
-  )
-}
+  );
+};

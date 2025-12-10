@@ -4,6 +4,6 @@ import { BackendURL } from "../data";
 export const api = axios.create({
   baseURL: BackendURL + "/api",
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
-})
+});

@@ -1,1 +1,1 @@
-export { ProjectsDisplay, ProjectCard } from './ProjectCard'
+export { ProjectCard, ProjectsDisplay } from "./ProjectCard";

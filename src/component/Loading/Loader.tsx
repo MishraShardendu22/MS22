@@ -1,31 +1,31 @@
-'use client'
+"use client";
 
-import { useEffect, useRef } from 'react'
-import { animate, svg } from 'animejs'
+import { animate, svg } from "animejs";
+import { useEffect, useRef } from "react";
 
 export const NameLoader = () => {
-  const dotRef = useRef<HTMLDivElement>(null)
-  const pathRef = useRef<SVGPathElement>(null)
+  const dotRef = useRef<HTMLDivElement>(null);
+  const pathRef = useRef<SVGPathElement>(null);
 
   useEffect(() => {
-    if (!dotRef.current || !pathRef.current) return
+    if (!dotRef.current || !pathRef.current) return;
 
     // Animate the dot along the motion path
     animate(dotRef.current, {
-      ease: 'linear',
+      ease: "linear",
       duration: 8000,
       loop: true,
-      ...svg.createMotionPath(pathRef.current)
-    })
+      ...svg.createMotionPath(pathRef.current),
+    });
 
     // Animate the path drawing
     animate(svg.createDrawable(pathRef.current), {
-      draw: '0 1',
-      ease: 'linear',
+      draw: "0 1",
+      ease: "linear",
       duration: 8000,
-      loop: true
-    })
-  }, [])
+      loop: true,
+    });
+  }, []);
 
   return (
     <div className="flex items-center justify-center w-full">
@@ -42,14 +42,14 @@ export const NameLoader = () => {
               <stop offset="100%" stopColor="#8b5cf6" />
             </linearGradient>
             <filter id="nameGlow">
-              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+              <feGaussianBlur stdDeviation="3" result="coloredBlur" />
               <feMerge>
-                <feMergeNode in="coloredBlur"/>
-                <feMergeNode in="SourceGraphic"/>
+                <feMergeNode in="coloredBlur" />
+                <feMergeNode in="SourceGraphic" />
               </feMerge>
             </filter>
           </defs>
-          
+
           {/* Your actual name path */}
           <path
             ref={pathRef}
@@ -69,16 +69,16 @@ export const NameLoader = () => {
           ref={dotRef}
           className="absolute w-4 h-4 rounded-full"
           style={{
-            left: '-8px',
-            top: '-8px',
-            background: 'radial-gradient(circle, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%)',
-            boxShadow: '0 0 15px #06b6d4, 0 0 30px #3b82f6',
+            left: "-8px",
+            top: "-8px",
+            background:
+              "radial-gradient(circle, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%)",
+            boxShadow: "0 0 15px #06b6d4, 0 0 30px #3b82f6",
           }}
         >
           <div className="absolute inset-0.5 rounded-full bg-white opacity-60 animate-pulse" />
         </div>
-
       </div>
     </div>
-  )
-}
+  );
+};

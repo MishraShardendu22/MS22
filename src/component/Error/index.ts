@@ -1,2 +1,2 @@
-export { ErrorState } from './ErrorState'
-export { default as NotFound } from './Error'
+export { default as NotFound } from "./Error";
+export { ErrorState } from "./ErrorState";

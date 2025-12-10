@@ -1,5 +1,5 @@
-import { NameLoader } from '@/component/Loading/Loader'
+import { LoadingState } from "@/component/Loading";
 
 export default function Loading() {
-  return <NameLoader />
+  return <LoadingState fullPage={true} />;
 }

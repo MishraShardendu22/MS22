@@ -10,8 +10,12 @@ export const TimelineLegend = () => {
           <div className="flex items-center gap-4 p-4 bg-linear-to-br from-cyan-500/5 to-blue-500/5 rounded-xl border border-cyan-500/20 w-full max-w-xs backdrop-blur-sm">
             <div className="w-3 h-3 rounded-full bg-linear-to-br from-cyan-400 to-blue-400 shadow-lg shadow-cyan-500/30"></div>
             <div className="flex-1 text-center sm:text-left">
-              <div className="font-bold text-white text-sm">Work Experience</div>
-              <div className="text-xs text-gray-400 mt-0.5">Professional roles</div>
+              <div className="font-bold text-white text-sm">
+                Work Experience
+              </div>
+              <div className="text-xs text-gray-400 mt-0.5">
+                Professional roles
+              </div>
             </div>
           </div>
 
@@ -19,7 +23,9 @@ export const TimelineLegend = () => {
             <div className="w-3 h-3 rounded-full bg-linear-to-br from-purple-400 to-pink-400 shadow-lg shadow-purple-500/30"></div>
             <div className="flex-1 text-center sm:text-left">
               <div className="font-bold text-white text-sm">Volunteer Work</div>
-              <div className="text-xs text-gray-400 mt-0.5">Community service</div>
+              <div className="text-xs text-gray-400 mt-0.5">
+                Community service
+              </div>
             </div>
           </div>
         </div>
@@ -37,5 +43,5 @@ export const TimelineLegend = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

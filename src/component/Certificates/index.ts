@@ -1,1 +1,1 @@
-export { CertificatesDisplay, CertificateCard } from './CertificateCard'
+export { CertificateCard, CertificatesDisplay } from "./CertificateCard";

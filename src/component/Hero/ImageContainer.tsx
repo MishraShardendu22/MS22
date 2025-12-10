@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { useEffect, useRef } from 'react';
-import { animate, stagger } from 'animejs';
+import { animate, stagger } from "animejs";
+import Image from "next/image";
+import { useEffect, useRef } from "react";
 
 export const ImageContainer = () => {
   const iconRef = useRef<HTMLImageElement>(null);
@@ -10,8 +10,6 @@ export const ImageContainer = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
   const pixelGridRef = useRef<HTMLDivElement>(null);
-
-
 
   // Image hover animation with glow and pixelation effect
   useEffect(() => {
@@ -23,13 +21,13 @@ export const ImageContainer = () => {
     if (!container || !icon || !professional || !glow || !pixelGrid) return;
 
     const handleEnter = () => {
-      pixelGrid.innerHTML = '';
+      pixelGrid.innerHTML = "";
       const cols = 12;
       const rows = 16;
 
       for (let i = 0; i < cols * rows; i++) {
-        const block = document.createElement('div');
-        block.className = 'pixel-block-hover';
+        const block = document.createElement("div");
+        block.className = "pixel-block-hover";
         block.style.cssText = `
           position: absolute;
           width: ${100 / cols}%;
@@ -43,34 +41,34 @@ export const ImageContainer = () => {
         pixelGrid.appendChild(block);
       }
 
-      animate('.pixel-block-hover', {
+      animate(".pixel-block-hover", {
         opacity: [0, 0.8, 0],
         scale: [0, 1.2, 0],
         duration: 600,
-        delay: stagger(8, { grid: [cols, rows], from: 'center' }),
-        ease: 'out(3)',
+        delay: stagger(8, { grid: [cols, rows], from: "center" }),
+        ease: "out(3)",
       });
 
       animate(icon, {
         opacity: 0,
         scale: 0.95,
         duration: 400,
-        ease: 'out(3)',
+        ease: "out(3)",
       });
-      
+
       animate(professional, {
         opacity: 1,
         scale: 1,
         duration: 400,
         delay: 200,
-        ease: 'out(3)',
+        ease: "out(3)",
       });
 
       animate(glow, {
         opacity: [0, 0.4],
         scale: [0.8, 1.1],
         duration: 600,
-        ease: 'out(4)',
+        ease: "out(4)",
       });
     };
 
@@ -80,34 +78,34 @@ export const ImageContainer = () => {
         scale: 1,
         duration: 400,
         delay: 200,
-        ease: 'out(3)',
+        ease: "out(3)",
       });
-      
+
       animate(professional, {
         opacity: 0,
         scale: 0.95,
         duration: 400,
-        ease: 'out(3)',
+        ease: "out(3)",
       });
 
       animate(glow, {
         opacity: 0,
         scale: 0.8,
         duration: 600,
-        ease: 'out(4)',
+        ease: "out(4)",
       });
 
       setTimeout(() => {
-        if (pixelGrid) pixelGrid.innerHTML = '';
+        if (pixelGrid) pixelGrid.innerHTML = "";
       }, 600);
     };
 
-    container.addEventListener('mouseenter', handleEnter);
-    container.addEventListener('mouseleave', handleLeave);
+    container.addEventListener("mouseenter", handleEnter);
+    container.addEventListener("mouseleave", handleLeave);
 
     return () => {
-      container.removeEventListener('mouseenter', handleEnter);
-      container.removeEventListener('mouseleave', handleLeave);
+      container.removeEventListener("mouseenter", handleEnter);
+      container.removeEventListener("mouseleave", handleLeave);
     };
   }, []);
 
@@ -117,7 +115,7 @@ export const ImageContainer = () => {
         ref={glowRef}
         className="absolute -inset-4 md:-inset-8 bg-linear-to-r from-cyan-500 to-blue-500 rounded-full blur-3xl opacity-0"
       />
-      
+
       <div
         ref={containerRef}
         className="image-container-wrapper relative w-full aspect-3/4 max-w-[400px] sm:max-w-[450px] md:max-w-[500px] lg:max-w-[550px] xl:max-w-[600px] rounded-2xl overflow-hidden cursor-pointer mx-auto shadow-2xl"
@@ -140,7 +138,10 @@ export const ImageContainer = () => {
           priority
           sizes="(max-width: 640px) 400px, (max-width: 768px) 450px, (max-width: 1024px) 500px, (max-width: 1280px) 550px, 600px"
         />
-        <div ref={pixelGridRef} className="absolute inset-0 rounded-2xl z-10 pointer-events-none" />
+        <div
+          ref={pixelGridRef}
+          className="absolute inset-0 rounded-2xl z-10 pointer-events-none"
+        />
       </div>
     </div>
   );
