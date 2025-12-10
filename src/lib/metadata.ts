@@ -20,7 +20,7 @@ export function generatePageMetadata({
       ? images
       : [
           {
-            url: `${BaseURL}/og-image.png`,
+            url: `${BaseURL}/opengraph-image`,
             width: 1200,
             height: 630,
             alt: `${title} - Shardendu Mishra`,

@@ -1,7 +1,7 @@
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Archivo, Inter } from "next/font/google";
 
 // Use environment variable or fallback to localhost for development
@@ -28,6 +28,20 @@ const inter = Inter({
   adjustFontFallback: true,
 });
 
+// Separate viewport export (Next.js 14+ best practice)
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  viewportFit: "cover",
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0a0d11" },
+    { media: "(prefers-color-scheme: light)", color: "#0a0d11" },
+  ],
+  colorScheme: "dark",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
@@ -36,17 +50,6 @@ export const metadata: Metadata = {
   },
   description:
     "Software Developer and Engineer passionate about building impactful applications with modern technologies. Specializing in Go, React, and cloud-native solutions.",
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 5,
-    userScalable: true,
-    viewportFit: "cover",
-  },
-  themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#0a0d11" },
-    { media: "(prefers-color-scheme: light)", color: "#0a0d11" },
-  ],
   keywords: [
     "Shardendu Mishra",
     "Software Developer",
@@ -181,13 +184,14 @@ export const metadata: Metadata = {
     siteName: "Shardendu Mishra Portfolio",
     images: [
       {
-        url: "/og-image.png",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
         alt: "Shardendu Mishra - Software Developer Portfolio",
+        type: "image/png",
       },
       {
-        url: "/Professional.avif",
+        url: "/professional.avif",
         width: 512,
         height: 512,
         alt: "Shardendu Mishra Professional Photo",
@@ -203,7 +207,7 @@ export const metadata: Metadata = {
     creator: "@Shardendu_M",
     images: [
       {
-        url: "/og-image.png",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
         alt: "Shardendu Mishra - Software Developer Portfolio",
@@ -256,6 +260,19 @@ export const metadata: Metadata = {
     "rating": "General",
     "distribution": "Global",
     "revisit-after": "7 days",
+    // Additional SEO meta tags
+    "geo.region": "IN-KA",
+    "geo.placename": "Bangalore",
+    "geo.position": "12.9716;77.5946",
+    "ICBM": "12.9716, 77.5946",
+    "dc.title": "Shardendu Mishra - Software Developer Portfolio",
+    "dc.creator": "Shardendu Mishra",
+    "dc.subject": "Software Development, Web Development, Portfolio",
+    "dc.description": "Software Developer and Engineer passionate about building impactful applications with modern technologies",
+    "dc.publisher": "Shardendu Mishra",
+    "dc.language": "en",
+    "dc.coverage": "Worldwide",
+    "dc.rights": "Copyright 2025 Shardendu Mishra",
   },
 };
 
@@ -265,18 +282,40 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" dir="ltr">
+    <html lang="en" dir="ltr" className="scroll-smooth">
       <head>
+        {/* DNS Prefetch & Preconnect for Performance */}
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+        <link rel="dns-prefetch" href="https://vitals.vercel-insights.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
+        
+        {/* Canonical URL */}
         <link rel="canonical" href={BASE_URL} />
-        <meta name="theme-color" content="#000000" />
-        <meta name="color-scheme" content="dark light" />
+        
+        {/* Additional SEO Meta Tags */}
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="bingbot" content="index, follow" />
+        
+        {/* Geo Tags for Local SEO */}
+        <meta name="geo.region" content="IN-KA" />
+        <meta name="geo.placename" content="Bangalore, India" />
+        
+        {/* Content Language */}
+        <meta httpEquiv="content-language" content="en-US" />
+        
+        {/* Cache Control for SEO */}
+        <meta httpEquiv="Cache-Control" content="public, max-age=31536000, immutable" />
+        
+        {/* Security Headers */}
+        <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
       </head>
       <body className={`${archivo.variable} ${inter.variable} antialiased`}>
         <Analytics />

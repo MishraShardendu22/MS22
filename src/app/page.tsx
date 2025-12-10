@@ -1,6 +1,8 @@
 import {
   generatePersonSchema,
   generateWebSiteSchema,
+  generateProfessionalServiceSchema,
+  generateProfilePageSchema,
 } from "@/lib/structuredData";
 import { getIsMobile } from "@/lib/isMobile";
 import { SidebarWrapper } from "@/component/Sidebar/SidebarWrapper";
@@ -18,44 +20,46 @@ import { CertificatesDisplay, CertificatesDisplayMobile } from "@/component/Cert
 const page = async () => {
   const personSchema = generatePersonSchema();
   const websiteSchema = generateWebSiteSchema();
+  const professionalServiceSchema = generateProfessionalServiceSchema();
+  const profilePageSchema = generateProfilePageSchema();
   const isMobile = await getIsMobile();
 
   return (
     <>
-      <StructuredData data={[personSchema, websiteSchema]} />
+      <StructuredData data={[personSchema, websiteSchema, professionalServiceSchema, profilePageSchema]} />
       <SidebarWrapper />
-      <main className="flex-1 lg:ml-0">
+      <main className="flex-1 lg:ml-0" role="main" aria-label="Main content">
         <HeroSection />
-        <div id="skills">
+        <section id="skills" aria-label="Technical skills and expertise">
           {isMobile ? <SkillsDisplayMobile /> : <SkillsDisplay />}
-        </div>
+        </section>
         {/* Timeline hidden on mobile for performance */}
         {!isMobile && (
-          <div id="timeline" className="hidden lg:block">
+          <section id="timeline" className="hidden lg:block" aria-label="Professional timeline">
             <Time />
-          </div>
+          </section>
         )}
-        <div id="projects">
+        <section id="projects" aria-label="Featured projects and work">
           {isMobile ? <ProjectsDisplayMobile /> : <ProjectsDisplay />}
-        </div>
-        <div id="experience">
+        </section>
+        <section id="experience" aria-label="Professional experience">
           {isMobile ? <ExperiencesDisplayMobile /> : <ExperiencesDisplay />}
-        </div>
-        <div id="volunteer">
+        </section>
+        <section id="volunteer" aria-label="Volunteer experience">
           {isMobile ? <VolunteerDisplayMobile /> : <VolunteerDisplay />}
-        </div>
-        <div id="certifications">
+        </section>
+        <section id="certifications" aria-label="Professional certifications">
           {isMobile ? <CertificatesDisplayMobile /> : <CertificatesDisplay />}
-        </div>
+        </section>
         {/* Stats hidden on mobile for performance */}
         {!isMobile && (
-          <div className="hidden lg:block">
+          <section className="hidden lg:block" aria-label="Coding statistics">
             <StatsWrapper />
-          </div>
+          </section>
         )}
-        <div id="contact">
+        <footer id="contact" aria-label="Contact information">
           {isMobile ? <FooterSectionMobile /> : <FooterSection />}
-        </div>
+        </footer>
       </main>
     </>
   );

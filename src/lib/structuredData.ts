@@ -63,6 +63,7 @@ export function generatePersonSchema(): PersonSchema {
       "https://www.linkedin.com/in/mishrashardendu22/",
       "https://twitter.com/Shardendu_M",
       "https://leetcode.com/u/MishraShardendu22/",
+      "https://blogs.mishrashardendu22.is-a.dev",
     ],
     jobTitle: "Software Developer and Engineer",
     alumniOf: {
@@ -71,7 +72,105 @@ export function generatePersonSchema(): PersonSchema {
     },
     image: `${BaseURL}/professional.avif`,
     description:
-      "Software Developer and Engineer passionate about building impactful applications with modern technologies. Specializing in Go, React, and cloud-native solutions.",
+      "Software Developer and Engineer passionate about building impactful applications with modern technologies. Specializing in Go, React, Next.js, TypeScript, and cloud-native solutions.",
+  };
+}
+
+// Enhanced Professional Service Schema
+export function generateProfessionalServiceSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: "Shardendu Mishra - Software Development Services",
+    description: "Professional software development services specializing in Go, React, Next.js, TypeScript, and cloud-native solutions",
+    url: BaseURL,
+    image: `${BaseURL}/professional.avif`,
+    priceRange: "$$",
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "IN",
+      addressRegion: "Karnataka",
+      addressLocality: "Bangalore",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: "12.9716",
+      longitude: "77.5946",
+    },
+    areaServed: {
+      "@type": "Place",
+      name: "Worldwide",
+    },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Software Development Services",
+      itemListElement: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Full Stack Web Development",
+            description: "Modern web applications using React, Next.js, TypeScript",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Backend Development",
+            description: "Scalable backend systems using Go, Node.js, PostgreSQL",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Cloud Native Development",
+            description: "Docker, Kubernetes, and cloud infrastructure solutions",
+          },
+        },
+      ],
+    },
+  };
+}
+
+// Profile Page Schema for better SEO
+export function generateProfilePageSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    mainEntity: {
+      "@type": "Person",
+      name: "Shardendu Mishra",
+      alternateName: ["MishraShardendu22", "ShardenduMishra22"],
+      identifier: "mishrashardendu22",
+      description: "Software Developer and Engineer specializing in Go, React, and cloud-native solutions",
+      image: `${BaseURL}/professional.avif`,
+      sameAs: [
+        "https://github.com/MishraShardendu22",
+        "https://www.linkedin.com/in/mishrashardendu22/",
+        "https://twitter.com/Shardendu_M",
+        "https://leetcode.com/u/MishraShardendu22/",
+      ],
+      knowsAbout: [
+        "Go Programming",
+        "React.js",
+        "Next.js",
+        "TypeScript",
+        "JavaScript",
+        "Node.js",
+        "PostgreSQL",
+        "MongoDB",
+        "Docker",
+        "Kubernetes",
+        "Cloud Computing",
+        "Web Development",
+        "API Development",
+        "System Design",
+      ],
+    },
+    dateCreated: "2024-01-01",
+    dateModified: new Date().toISOString().split('T')[0],
   };
 }
 
