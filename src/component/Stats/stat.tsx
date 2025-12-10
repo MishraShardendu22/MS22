@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { Github, Trophy, Activity, TrendingUp, Users, Code, Star, User, MapPin, BookOpen, Award, GitCommit } from 'lucide-react'
 import type { GitHubData, LeetCodeData, Repository } from '@/types/stats'
 
@@ -35,7 +36,7 @@ const DifficultyCard = ({ difficulty, count, color }: { difficulty: string; coun
 )
 
 const RepoCard = ({ repo, index }: { repo: Repository; index: number }) => (
-  <a
+  <Link
     href={repo.html_url}
     target="_blank"
     rel="noopener noreferrer"
@@ -62,7 +63,7 @@ const RepoCard = ({ repo, index }: { repo: Repository; index: number }) => (
         </div>
       )}
     </div>
-  </a>
+  </Link>
 )
 
 interface GitHubProfileCardProps {
@@ -181,42 +182,60 @@ interface TopRepositoriesCardProps {
   topRepos: Repository[]
 }
 
-const TopRepositoriesCard = ({ topRepos }: TopRepositoriesCardProps) => (
-  <div className="bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:border-cyan-500/40 transition-all duration-300">
-    <div className="flex items-center gap-3 mb-6">
-      <div className="p-3 bg-green-500/10 rounded-lg border border-green-500/30">
-        <TrendingUp className="w-5 h-5 text-green-400" />
-      </div>
-      <div>
-        <h3 className="text-lg font-bold text-white">Top Repositories</h3>
-        <p className="text-xs text-gray-400">Most Popular Projects</p>
-      </div>
-    </div>
+const TopRepositoriesCard = ({ topRepos }: TopRepositoriesCardProps) => {
+  // Return null if no repos data
+  if (!topRepos || topRepos.length === 0) {
+    return null
+  }
 
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-      {topRepos.slice(0, 6).map((repo, index) => (
-        <RepoCard key={repo.name} repo={repo} index={index} />
-      ))}
+  return (
+    <div className="bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:border-cyan-500/40 transition-all duration-300">
+      <div className="flex items-center gap-3 mb-6">
+        <div className="p-3 bg-green-500/10 rounded-lg border border-green-500/30">
+          <TrendingUp className="w-5 h-5 text-green-400" />
+        </div>
+        <div>
+          <h3 className="text-lg font-bold text-white">Top Repositories</h3>
+          <p className="text-xs text-gray-400">Most Popular Projects</p>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        {topRepos.slice(0, 6).map((repo, index) => (
+          <RepoCard key={repo.name} repo={repo} index={index} />
+        ))}
+      </div>
     </div>
-  </div>
-)
+  )
+}
 
 interface CommitsActivityCardProps {
-  commits: any[]
+  commits: Array<{ date: string; count: number }>
   calendar: any
 }
 
 const CommitsActivityCard = ({ commits, calendar }: CommitsActivityCardProps) => {
+  // Return null if no commits data
+  if (!commits || commits.length === 0) {
+    return null
+  }
+
   // Process commits data for weekly grouping
-  const weeklyData = commits.reduce((acc: any, commit: any) => {
-    if (!commit.week) return acc
-    const existing = acc.find((w: any) => w.week === commit.week)
+  const weeklyData = commits.reduce((acc: any[], commit: { date: string; count: number }) => {
+    if (!commit.date || !commit.count) return acc
+    
+    const date = new Date(commit.date)
+    const weekStart = new Date(date)
+    weekStart.setDate(date.getDate() - date.getDay())
+    const weekKey = weekStart.toISOString().split('T')[0]
+    
+    const existing = acc.find((w: any) => w.week === weekKey)
     if (existing) {
-      existing.count += commit.days?.reduce((sum: number, day: any) => sum + (day || 0), 0) || 0
+      existing.count += commit.count
     } else {
       acc.push({
-        week: commit.week,
-        count: commit.days?.reduce((sum: number, day: any) => sum + (day || 0), 0) || 0
+        week: weekKey,
+        count: commit.count
       })
     }
     return acc
@@ -293,6 +312,9 @@ interface StatsDisplayProps {
 }
 
 export const StatsDisplay = ({ github, stars, leetcode, topRepos, commits, calendar }: StatsDisplayProps) => {
+  const hasCommits = commits && commits.length > 0
+  const hasTopRepos = topRepos && topRepos.length > 0
+
   return (
     <section className="relative py-12 px-4 sm:px-6 md:px-8 bg-linear-to-b from-transparent via-gray-950/50 to-transparent overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
@@ -314,12 +336,16 @@ export const StatsDisplay = ({ github, stars, leetcode, topRepos, commits, calen
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <GitHubProfileCard github={github} stars={stars} />
           <LeetCodeStatsCard leetcode={leetcode} />
-          <div className="lg:col-span-2">
-            <CommitsActivityCard commits={commits} calendar={calendar} />
-          </div>
-          <div className="lg:col-span-2">
-            <TopRepositoriesCard topRepos={topRepos} />
-          </div>
+          {hasCommits && (
+            <div className="lg:col-span-2">
+              <CommitsActivityCard commits={commits} calendar={calendar} />
+            </div>
+          )}
+          {hasTopRepos && (
+            <div className="lg:col-span-2">
+              <TopRepositoriesCard topRepos={topRepos} />
+            </div>
+          )}
         </div>
       </div>
     </section>

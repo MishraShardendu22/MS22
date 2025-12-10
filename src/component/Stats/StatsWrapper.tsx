@@ -43,8 +43,9 @@ export const StatsWrapper = () => {
   const hasGithubData = stats?.github && Object.keys(stats.github).length > 0
   const hasLeetcodeData = stats?.leetcode && Object.keys(stats.leetcode).length > 0
   const hasRepos = stats?.topRepos && stats.topRepos.length > 0
+  const hasCommits = stats?.commits && stats.commits.length > 0
   
-  if (!loading && (!hasGithubData || !hasLeetcodeData || !hasRepos)) {
+  if (!loading && (!hasGithubData || !hasLeetcodeData)) {
     return null
   }
 
