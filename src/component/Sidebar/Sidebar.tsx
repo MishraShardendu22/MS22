@@ -12,9 +12,11 @@ import {
   FolderGit2,
   ChevronRight,
   GraduationCap,
+  Menu,
+  X,
 } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 
 interface NavItem {
@@ -38,7 +40,27 @@ const navItems: NavItem[] = [
 
 export function Sidebar() {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Close mobile menu when clicking on a link
+  const handleLinkClick = () => {
+    if (isMobile) {
+      setIsMobileMenuOpen(false);
+    }
+  };
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
@@ -46,6 +68,100 @@ export function Sidebar() {
     return pathname.startsWith(href);
   };
 
+  // Mobile Menu Button
+  if (isMobile) {
+    return (
+      <>
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="fixed top-4 left-4 z-60 p-3 bg-gray-900/95 backdrop-blur-xl border border-gray-800/50 rounded-xl shadow-lg hover:border-cyan-500/50 transition-all duration-300"
+          aria-label="Toggle menu"
+        >
+          {isMobileMenuOpen ? (
+            <X className="w-6 h-6 text-cyan-400" />
+          ) : (
+            <Menu className="w-6 h-6 text-gray-300" />
+          )}
+        </button>
+
+        {/* Mobile Menu Overlay */}
+        {isMobileMenuOpen && (
+          <div 
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-55"
+            onClick={() => setIsMobileMenuOpen(false)}
+          />
+        )}
+
+        {/* Mobile Menu */}
+        <aside
+          className={`fixed left-0 top-0 h-screen w-72 bg-gray-950/98 backdrop-blur-xl border-r border-gray-800/50 z-56 transition-transform duration-300 ease-in-out ${
+            isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
+        >
+          {/* Header */}
+          <div className="h-20 flex items-center justify-center px-5 border-b border-gray-800/50 mt-16">
+            <div className="text-xs text-gray-500 space-y-1 text-center">
+              <p className="font-semibold text-pink-400">
+                Shardendu Sankrit Mishra
+              </p>
+            </div>
+          </div>
+
+          {/* Navigation */}
+          <nav className="flex-1 py-6 px-3 space-y-1 overflow-y-auto overflow-x-hidden custom-scrollbar max-h-[calc(100vh-200px)]">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              const active = isActive(item.href);
+
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={handleLinkClick}
+                  className={`flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200 group relative ${
+                    active
+                      ? "bg-linear-to-r from-cyan-500/20 to-blue-500/20 text-cyan-400 border border-cyan-500/40"
+                      : "text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 border border-transparent"
+                  }`}
+                >
+                  {active && (
+                    <div className="absolute inset-0 bg-linear-to-r from-cyan-500/10 to-blue-500/10 rounded-xl animate-pulse" />
+                  )}
+
+                  <Icon
+                    className={`w-5 h-5 shrink-0 relative z-10 ${active ? "text-cyan-400" : ""}`}
+                  />
+
+                  <span className="font-semibold whitespace-nowrap relative z-10">
+                    {item.name}
+                  </span>
+
+                  {active && (
+                    <div className="absolute right-2 w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse" />
+                  )}
+                </Link>
+              );
+            })}
+          </nav>
+
+          {/* Footer */}
+          <div className="px-4 py-4 border-t border-gray-800/50">
+            <div className="text-xs text-gray-500 space-y-1">
+              <p className="font-semibold text-pink-400">
+                Made with Linux in Kernel
+              </p>
+              <p className="text-gray-600">and Golang in Mind</p>
+            </div>
+          </div>
+        </aside>
+
+        {/* No spacer needed for mobile */}
+      </>
+    );
+  }
+
+  // Desktop Sidebar
   return (
     <>
       <aside

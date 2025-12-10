@@ -3,7 +3,10 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Archivo, Inter } from "next/font/google";
-import { BaseURL as BASE_URL } from "@/static/data";
+
+// Use environment variable or fallback to localhost for development
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
 
 const archivo = Archivo({
   variable: "--font-heading",
@@ -38,7 +41,12 @@ export const metadata: Metadata = {
     initialScale: 1,
     maximumScale: 5,
     userScalable: true,
+    viewportFit: "cover",
   },
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0a0d11" },
+    { media: "(prefers-color-scheme: light)", color: "#0a0d11" },
+  ],
   keywords: [
     "Shardendu Mishra",
     "Software Developer",

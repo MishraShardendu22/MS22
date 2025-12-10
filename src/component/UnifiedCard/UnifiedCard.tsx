@@ -104,14 +104,14 @@ export const UnifiedCard = ({
     <div
       className="group relative"
       style={{
-        animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`,
+        animation: `fadeInUp 0.4s ease-out ${index * 0.06}s both`,
       }}
     >
       <style jsx>{`
         @keyframes fadeInUp {
           from {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(15px);
           }
           to {
             opacity: 1;
@@ -121,32 +121,33 @@ export const UnifiedCard = ({
       `}</style>
 
       <div
-        className={`relative bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl overflow-hidden transition-all duration-300 ${colors.border} hover:shadow-lg ${colors.shadow}`}
+        className={`relative bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-xl md:rounded-2xl overflow-hidden transition-all duration-300 ${colors.border} hover:shadow-lg ${colors.shadow}`}
       >
         <div
           className={`absolute inset-0 bg-linear-to-br ${colors.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
         />
 
-        <div className="relative p-4">
-          <div className="flex items-start gap-3 mb-3">
+        <div className="relative p-3 sm:p-4 md:p-5">
+          <div className="flex items-start gap-2 sm:gap-3 mb-2 sm:mb-3">
             {logo && (
-              <div className="w-12 h-12 rounded-lg bg-gray-800/50 border border-gray-700/50 flex items-center justify-center overflow-hidden shrink-0">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gray-800/50 border border-gray-700/50 flex items-center justify-center overflow-hidden shrink-0">
                 <Image
                   src={logo}
                   alt={logoAlt || subtitle}
                   width={48}
                   height={48}
                   className="object-contain p-1"
+                  loading="lazy"
                 />
               </div>
             )}
             <div className="flex-1 min-w-0">
               <h3
-                className={`text-lg font-bold text-white mb-1 line-clamp-1 transition-colors duration-300 ${colors.titleHover}`}
+                className={`text-base sm:text-lg font-bold text-white mb-1 line-clamp-1 transition-colors duration-300 ${colors.titleHover}`}
               >
                 {title}
               </h3>
-              <div className="flex items-center gap-2 text-gray-400 text-sm font-medium">
+              <div className="flex items-center gap-1.5 sm:gap-2 text-gray-400 text-xs sm:text-sm font-medium">
                 {subtitleIcon || <Building className="w-3.5 h-3.5" />}
                 <span className="line-clamp-1">{subtitle}</span>
               </div>

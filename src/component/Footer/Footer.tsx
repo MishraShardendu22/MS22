@@ -288,7 +288,7 @@ export const FooterSection = () => {
           <div>
             <h3 className="text-lg md:text-xl font-bold text-gray-100 mb-5 flex items-center gap-2">
               <Code2 className="w-5 h-5 text-cyan-400" />
-              Coding Profiles
+              Coding 
             </h3>
             <ul className="space-y-4">
               {Object.entries(CodingProfiles).map(([key, data], idx) => {

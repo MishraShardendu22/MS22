@@ -1,8 +1,16 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
   /* config options here */
+
+  // Enable React Compiler for better performance
   reactCompiler: true,
+
+  // Turbopack configuration
+  turbopack: {
+    root: path.resolve(__dirname),
+  },
 
   // Image optimization
   images: {

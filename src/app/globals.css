@@ -85,6 +85,26 @@ body {
     var(--font-body), system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+  
+  body {
+    -webkit-tap-highlight-color: rgba(174, 234, 0, 0.2);
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
 }
 
 /* ------------------------------
@@ -99,6 +119,44 @@ body {
 :focus-visible {
   outline: 2px solid var(--lime-primary);
   outline-offset: 2px;
+}
+
+/* ------------------------------
+   Performance Optimizations
+------------------------------ */
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Optimize rendering for mobile */
+@media (max-width: 768px) {
+  * {
+    will-change: auto !important;
+  }
+  
+  img,
+  video {
+    content-visibility: auto;
+  }
+}
+
+/* Hardware acceleration for transforms */
+.transform,
+[class*="translate"],
+[class*="scale"],
+[class*="rotate"] {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 /* ------------------------------

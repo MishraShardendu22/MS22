@@ -22,7 +22,7 @@ const page = () => {
     <>
       <StructuredData data={[personSchema, websiteSchema]} />
       <Sidebar />
-      <main className="flex-1">
+      <main className="flex-1 lg:ml-0">
         <HeroSection />
         <div id="skills">
           <SkillsDisplay />

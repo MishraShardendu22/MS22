@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { animate, stagger } from "animejs";
 
 export const ImageContainer = () => {
@@ -10,8 +10,23 @@ export const ImageContainer = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
   const pixelGridRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    // Disable animations on mobile for better performance
+    if (isMobile) return;
+
     const container = containerRef.current;
     const icon = iconRef.current;
     const professional = professionalRef.current;
@@ -21,8 +36,8 @@ export const ImageContainer = () => {
 
     const handleEnter = () => {
       pixelGrid.innerHTML = "";
-      const cols = 12;
-      const rows = 16;
+      const cols = 8; // Reduced from 12 for better performance
+      const rows = 12; // Reduced from 16 for better performance
 
       for (let i = 0; i < cols * rows; i++) {
         const block = document.createElement("div");
@@ -106,10 +121,10 @@ export const ImageContainer = () => {
       container.removeEventListener("mouseenter", handleEnter);
       container.removeEventListener("mouseleave", handleLeave);
     };
-  }, []);
+  }, [isMobile]);
 
   return (
-    <div className="lg:col-span-5 relative order-1 lg:order-2">
+    <div className="lg:col-span-5 relative order-1 lg:order-2 mb-8 lg:mb-0">
       <div
         ref={glowRef}
         className="absolute -inset-4 md:-inset-8 bg-linear-to-r from-cyan-500 to-blue-500 rounded-full blur-3xl opacity-0"
@@ -117,7 +132,7 @@ export const ImageContainer = () => {
 
       <div
         ref={containerRef}
-        className="image-container-wrapper relative w-full aspect-3/4 max-w-[400px] sm:max-w-[450px] md:max-w-[500px] lg:max-w-[550px] xl:max-w-[600px] rounded-2xl overflow-hidden cursor-pointer mx-auto shadow-2xl"
+        className="image-container-wrapper relative w-full aspect-3/4 max-w-[280px] sm:max-w-[320px] md:max-w-[400px] lg:max-w-[450px] xl:max-w-[500px] rounded-2xl overflow-hidden cursor-pointer mx-auto shadow-2xl"
       >
         <Image
           ref={iconRef}
@@ -126,7 +141,7 @@ export const ImageContainer = () => {
           fill
           className="object-cover"
           priority
-          sizes="(max-width: 640px) 400px, (max-width: 768px) 450px, (max-width: 1024px) 500px, (max-width: 1280px) 550px, 600px"
+          sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, (max-width: 1280px) 450px, 500px"
         />
         <Image
           ref={professionalRef}
@@ -135,7 +150,7 @@ export const ImageContainer = () => {
           fill
           className="object-cover opacity-0"
           priority
-          sizes="(max-width: 640px) 400px, (max-width: 768px) 450px, (max-width: 1024px) 500px, (max-width: 1280px) 550px, 600px"
+          sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, (max-width: 1024px) 400px, (max-width: 1280px) 450px, 500px"
         />
         <div
           ref={pixelGridRef}
