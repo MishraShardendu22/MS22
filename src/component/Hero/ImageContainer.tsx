@@ -137,7 +137,7 @@ export const ImageContainer = () => {
         <Image
           ref={iconRef}
           src="/icon.avif"
-          alt="Shardendu Mishra"
+          alt="Shardendu Mishra - Software Developer and Engineer portrait"
           fill
           className="object-cover"
           priority
@@ -146,7 +146,7 @@ export const ImageContainer = () => {
         <Image
           ref={professionalRef}
           src="/professional.avif"
-          alt="Shardendu Mishra Professional"
+          alt="Shardendu Mishra - Professional Software Developer photo"
           fill
           className="object-cover opacity-0"
           priority

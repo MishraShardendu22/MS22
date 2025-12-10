@@ -174,6 +174,40 @@ export function generateProfilePageSchema() {
   };
 }
 
+// FAQ Schema for SEO
+export function generateFAQSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What technologies does Shardendu Mishra specialize in?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Shardendu Mishra specializes in Go, React, Next.js, TypeScript, JavaScript, Node.js, PostgreSQL, MongoDB, Docker, Kubernetes, and cloud-native technologies.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Where is Shardendu Mishra currently studying?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Shardendu Mishra is currently studying at Indian Institute of Information Technology Dharwad (IIIT Dharwad).",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What kind of projects does Shardendu Mishra work on?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Shardendu Mishra works on full-stack web applications, backend systems, cloud-native solutions, and open-source contributions using modern technologies.",
+        },
+      },
+    ],
+  };
+}
+
 export function generateWebSiteSchema(): WebSiteSchema {
   return {
     "@context": "https://schema.org",

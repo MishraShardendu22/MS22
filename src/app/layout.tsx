@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     default: "Shardendu Mishra | Software Developer and Engineer",
   },
   description:
-    "Software Developer and Engineer passionate about building impactful applications with modern technologies. Specializing in Go, React, and cloud-native solutions.",
+    "Software Developer & Engineer passionate about building scalable applications. Specializing in Go, React, Next.js, TypeScript, Docker & Kubernetes.",
   keywords: [
     "Shardendu Mishra",
     "Software Developer",
@@ -180,7 +180,7 @@ export const metadata: Metadata = {
     url: BASE_URL,
     title: "Shardendu Mishra - Software Developer and Engineer",
     description:
-      "Software Developer and Engineer passionate about building impactful applications with modern technologies. Specializing in Go, Fiber, React, Next.js, TypeScript, Tailwind CSS, MongoDB, PostgreSQL, Docker, Kubernetes, and cloud-native solutions. Portfolio showcasing projects, experience, skills, and certifications.",
+      "Software Developer & Engineer passionate about building scalable applications. Specializing in Go, React, Next.js, TypeScript, Docker & Kubernetes.",
     siteName: "Shardendu Mishra Portfolio",
     images: [
       {
@@ -202,7 +202,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Shardendu Mishra - Software Developer and Engineer",
     description:
-      "Software Developer and Engineer passionate about building impactful applications. Specializing in Go, Fiber, React, Next.js, TypeScript, Tailwind CSS, MongoDB, Docker, Kubernetes. Portfolio with projects, experience, and skills.",
+      "Software Developer & Engineer passionate about building scalable applications. Specializing in Go, React, Next.js, TypeScript, Docker & Kubernetes.",
     site: "@Shardendu_M",
     creator: "@Shardendu_M",
     images: [
@@ -318,6 +318,13 @@ export default function RootLayout({
         <meta name="referrer" content="strict-origin-when-cross-origin" />
       </head>
       <body className={`${archivo.variable} ${inter.variable} antialiased`}>
+        <noscript>
+          <div style={{ padding: '2rem', textAlign: 'center', backgroundColor: '#1a1a1a', color: '#fff' }}>
+            <h1>Shardendu Mishra - Software Developer</h1>
+            <p>Please enable JavaScript to view the full portfolio experience.</p>
+            <p>Email: <a href="mailto:contact@mishrashardendu22.is-a.dev" style={{ color: '#06b6d4' }}>contact@mishrashardendu22.is-a.dev</a></p>
+          </div>
+        </noscript>
         <Analytics />
         <SpeedInsights />
         <div className="flex min-h-screen">{children}</div>

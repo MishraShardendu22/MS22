@@ -31,9 +31,9 @@
   ],
   "screenshots": [
     {
-      "src": "/og-image.png",
-      "sizes": "1200x630",
-      "type": "image/png",
+      "src": "/professional.avif",
+      "sizes": "512x512",
+      "type": "image/avif",
       "label": "Shardendu Mishra Portfolio Homepage"
     }
   ],

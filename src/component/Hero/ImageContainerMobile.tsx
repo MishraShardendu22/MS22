@@ -10,7 +10,7 @@ export const ImageContainerMobile = () => {
       <div className="relative w-full aspect-3/4 max-w-[280px] sm:max-w-[320px] rounded-2xl overflow-hidden mx-auto shadow-2xl">
         <Image
           src="/icon.avif"
-          alt="Shardendu Mishra"
+          alt="Shardendu Mishra - Software Developer and Engineer"
           fill
           className="object-cover"
           priority

@@ -3,6 +3,7 @@ import {
   generateWebSiteSchema,
   generateProfessionalServiceSchema,
   generateProfilePageSchema,
+  generateFAQSchema,
 } from "@/lib/structuredData";
 import { getIsMobile } from "@/lib/isMobile";
 import { SidebarWrapper } from "@/component/Sidebar/SidebarWrapper";
@@ -22,11 +23,12 @@ const page = async () => {
   const websiteSchema = generateWebSiteSchema();
   const professionalServiceSchema = generateProfessionalServiceSchema();
   const profilePageSchema = generateProfilePageSchema();
+  const faqSchema = generateFAQSchema();
   const isMobile = await getIsMobile();
 
   return (
     <>
-      <StructuredData data={[personSchema, websiteSchema, professionalServiceSchema, profilePageSchema]} />
+      <StructuredData data={[personSchema, websiteSchema, professionalServiceSchema, profilePageSchema, faqSchema]} />
       <SidebarWrapper />
       <main className="flex-1 lg:ml-0" role="main" aria-label="Main content">
         <HeroSection />
