@@ -42,59 +42,59 @@ export const FooterSection = () => {
   };
 
   return (
-    <footer className="relative bg-linear-to-b from-transparent via-gray-950/50 to-transparent pt-24 pb-10 px-4 sm:px-6 md:px-8 overflow-hidden">
+    <footer className="relative bg-linear-to-b from-transparent via-gray-950/50 to-transparent pt-12 sm:pt-16 md:pt-24 pb-6 sm:pb-8 md:pb-10 px-4 sm:px-6 md:px-8 overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-cyan-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f08_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f08_1px,transparent_1px)] bg-size-[4rem_4rem]"></div>
       </div>
 
       <div className="container mx-auto max-w-[1600px] relative z-10">
         {/* Top Section: Brand + Contact Form */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16 mb-12 sm:mb-16 md:mb-20">
           {/* Left: Brand Info */}
-          <div className="space-y-8">
+          <div className="space-y-5 sm:space-y-6 md:space-y-8">
             <div>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-14 h-14 rounded-xl bg-linear-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center ring-2 ring-cyan-500/30">
-                  <Code2 className="w-7 h-7 text-cyan-400" />
+              <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg sm:rounded-xl bg-linear-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center ring-2 ring-cyan-500/30">
+                  <Code2 className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-cyan-400" />
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">
                   <span className="text-white">Shardendu</span>{" "}
                   <span className="text-cyan-400">Mishra</span>
                 </h2>
               </div>
-              <p className="text-gray-400 text-base md:text-lg leading-relaxed max-w-xl">
+              <p className="text-gray-400 text-sm sm:text-base md:text-lg leading-relaxed max-w-xl">
                 Software Engineer engineering innovative and absolutely awesome
                 solutions and giving amazing user experiences.
               </p>
             </div>
 
             {/* Made with */}
-            <div className="flex flex-wrap items-center gap-3 text-sm text-gray-400">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm text-gray-400">
               <span>Made with</span>
-              <Heart className="w-4 h-4 text-red-500" />
+              <Heart className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-500" />
               <span>and</span>
-              <Coffee className="w-4 h-4 text-cyan-400" />
+              <Coffee className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-400" />
               <span>by Shardendu</span>
             </div>
 
             {/* Tech Stack Badges */}
-            <div className="flex flex-wrap gap-3">
-              <span className="px-4 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-lg text-sm text-cyan-400 font-semibold">
+            <div className="flex flex-wrap gap-2 sm:gap-2.5 md:gap-3">
+              <span className="px-2.5 sm:px-3 md:px-4 py-1.5 sm:py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-lg text-xs sm:text-sm text-cyan-400 font-semibold">
                 Go
               </span>
-              <span className="px-4 py-2 bg-blue-500/10 border border-blue-500/30 rounded-lg text-sm text-blue-400 font-semibold">
+              <span className="px-2.5 sm:px-3 md:px-4 py-1.5 sm:py-2 bg-blue-500/10 border border-blue-500/30 rounded-lg text-xs sm:text-sm text-blue-400 font-semibold">
                 Next.js
               </span>
-              <span className="px-4 py-2 bg-purple-500/10 border border-purple-500/30 rounded-lg text-sm text-purple-400 font-semibold">
+              <span className="px-2.5 sm:px-3 md:px-4 py-1.5 sm:py-2 bg-purple-500/10 border border-purple-500/30 rounded-lg text-xs sm:text-sm text-purple-400 font-semibold">
                 React
               </span>
-              <span className="px-4 py-2 bg-green-500/10 border border-green-500/30 rounded-lg text-sm text-green-400 font-semibold">
+              <span className="px-2.5 sm:px-3 md:px-4 py-1.5 sm:py-2 bg-green-500/10 border border-green-500/30 rounded-lg text-xs sm:text-sm text-green-400 font-semibold">
                 TypeScript
               </span>
-              <span className="px-4 py-2 bg-pink-500/10 border border-pink-500/30 rounded-lg text-sm text-pink-400 font-semibold">
+              <span className="px-2.5 sm:px-3 md:px-4 py-1.5 sm:py-2 bg-pink-500/10 border border-pink-500/30 rounded-lg text-xs sm:text-sm text-pink-400 font-semibold">
                 Tailwind
               </span>
             </div>
