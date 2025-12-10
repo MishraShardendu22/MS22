@@ -348,7 +348,7 @@ This portfolio is part of a complete ecosystem:
 
 ### Keywords Targeting
 
-Software Developer, Go Developer, React Developer, Next.js, TypeScript, Full Stack Developer, IIIT Dharwad, Portfolio, Web Development, Cloud Native, LeetCode, Competitive Programming, MongoDB, PostgreSQL, Docker, Kubernetes, System Design, API Development
+Software Developer, Go Developer, React Developer, Next.js, TypeScript, Software Engineer, IIIT Dharwad, Portfolio, Web Development, Cloud Native, LeetCode, Competitive Programming, MongoDB, PostgreSQL, Docker, Kubernetes, System Design, API Development
 
 ---
 

@@ -34,5 +34,5 @@ export default function LinksLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return <div className="flex-1 w-full">{children}</div>;
 }

@@ -51,30 +51,6 @@ export const TextContent = () => {
           );
         })}
       </div>
-
-      {/* My Socials Box */}
-      <div className="pt-4 md:pt-6">
-        <Link
-          href="/links"
-          className="group relative inline-flex items-center gap-2 md:gap-3 px-4 md:px-6 py-3 md:py-4 bg-linear-to-r from-cyan-500/10 to-blue-500/10 hover:from-cyan-500/20 hover:to-blue-500/20 border-2 border-cyan-500/30 hover:border-cyan-500/50 rounded-xl transition-all duration-300 shadow-lg shadow-cyan-500/10 hover:shadow-cyan-500/20"
-        >
-          <div className="absolute inset-0 bg-linear-to-r from-cyan-500/5 to-blue-500/5 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          <svg className="w-5 h-5 md:w-6 md:h-6 text-cyan-400 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-          </svg>
-          <div className="relative z-10">
-            <div className="text-sm md:text-base font-bold text-cyan-400 group-hover:text-cyan-300 transition-colors">
-              My Socials
-            </div>
-            <div className="text-xs text-gray-400 group-hover:text-gray-300 transition-colors">
-              All my links in one place
-            </div>
-          </div>
-          <svg className="w-4 h-4 md:w-5 md:h-5 text-cyan-400 group-hover:translate-x-1 transition-transform duration-300 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </Link>
-      </div>
     </div>
   );
 };

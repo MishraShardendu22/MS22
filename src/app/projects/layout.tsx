@@ -14,7 +14,7 @@ export const metadata: Metadata = generatePageMetadata({
     "Next.js Projects",
     "Open Source",
     "GitHub Projects",
-    "Full Stack Projects",
+    "Software Engineering Projects",
     "Portfolio Projects",
     "TypeScript Projects",
     "Backend Projects",

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { LoadingStateMobile } from "@/component/Loading";
 import { experiencesAPI } from "@/static/api/api.request";
 import type { Experience } from "@/static/api/api.types";
+import Image from "next/image";
 
 const ExperienceCardMobile = ({ experience }: { experience: Experience }) => {
   const formatDate = (dateString?: string) => {
@@ -22,7 +23,7 @@ const ExperienceCardMobile = ({ experience }: { experience: Experience }) => {
     <div className="bg-gray-900/80 border border-gray-800 rounded-xl p-4">
       <div className="flex items-start gap-3 mb-2">
         {experience.company_logo && (
-          <img
+          <Image
             src={experience.company_logo}
             alt={experience.company_name}
             className="w-10 h-10 rounded-lg object-cover bg-gray-800"

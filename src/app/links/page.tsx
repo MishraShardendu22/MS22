@@ -15,6 +15,7 @@ import {
   Globe,
   Play,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -179,8 +180,12 @@ export default function LinksPage() {
         <div className="text-center mb-12 animate-fadeIn">
           <div className="relative inline-block mb-6">
             <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-full blur opacity-75 animate-pulse" />
-            <div className="relative w-32 h-32 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-full flex items-center justify-center border-4 border-gray-900">
-              <span className="text-5xl font-black text-white">SM</span>
+            <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-gray-900 shadow-2xl">
+              <Image
+                src="/professional.avif" 
+                alt="Shardendu Mishra" 
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
           
@@ -195,7 +200,7 @@ export default function LinksPage() {
               IIIT Dharwad
             </span>
             <span className="px-3 py-1 bg-gray-800/50 rounded-full border border-gray-700/50">
-              Full Stack Dev
+              Software Engineer
             </span>
           </div>
         </div>

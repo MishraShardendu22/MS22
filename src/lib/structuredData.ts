@@ -117,7 +117,7 @@ export function generateProfessionalServiceSchema() {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Full Stack Web Development",
+            name: "Software Engineering",
             description: "Modern web applications using React, Next.js, TypeScript",
           },
         },
@@ -214,7 +214,7 @@ export function generateFAQSchema() {
         name: "What kind of projects does Shardendu Mishra work on?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Shardendu Mishra works on full-stack web applications, backend systems, cloud-native solutions, and open-source contributions using modern technologies.",
+          text: "Shardendu Mishra works on web applications, backend systems, cloud-native solutions, and open-source contributions using modern technologies.",
         },
       },
     ],

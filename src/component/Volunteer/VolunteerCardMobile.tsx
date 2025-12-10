@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { LoadingStateMobile } from "@/component/Loading";
 import { volunteerAPI } from "@/static/api/api.request";
 import type { Volunteer } from "@/static/api/api.types";
+import Image from "next/image";
 
 const VolunteerCardMobile = ({ volunteer }: { volunteer: Volunteer }) => {
   const formatDate = (dateString?: string) => {
@@ -29,7 +30,7 @@ const VolunteerCardMobile = ({ volunteer }: { volunteer: Volunteer }) => {
     <div className="bg-gray-900/80 border border-gray-800 rounded-xl p-4">
       <div className="flex items-start gap-3 mb-2">
         {volunteer.organisation_logo && (
-          <img
+          <Image
             src={volunteer.organisation_logo}
             alt={volunteer.organisation}
             className="w-10 h-10 rounded-lg object-cover bg-gray-800"

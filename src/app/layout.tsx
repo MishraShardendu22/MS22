@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     "Next.js Developer",
     "TypeScript Developer",
     "JavaScript Developer",
-    "Full Stack Developer",
+    "Software Engineer",
     "IIIT Dharwad",
     "Indian Institute of Information Technology",
     "Portfolio",
