@@ -1,15 +1,12 @@
-"use client";
-
 import {
+  Globe,
+  MapPin,
   BookOpen,
   Calendar,
   ExternalLink,
-  Globe,
-  MapPin,
-  School,
 } from "lucide-react";
-import { Language } from "@/static/info/header";
 import Link from "next/link";
+import { Language } from "@/static/info/header";
 
 export const EducationSection = () => {
   return (

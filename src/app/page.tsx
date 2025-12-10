@@ -1,18 +1,18 @@
-import { VolunteerDisplay } from "@/component";
-import { CertificatesDisplay } from "@/component/Certificates";
-import { ExperiencesDisplay } from "@/component/Experience";
-import { FooterSection } from "@/component/Footer/Footer";
-import { HeroSection } from "@/component/Hero/HeroSection";
-import { ProjectsDisplay } from "@/component/Projects";
-import { Sidebar } from "@/component/Sidebar";
-import SkillsDisplay from "@/component/Skill/SkillsDisplay";
-import { StatsWrapper } from "@/component/Stats";
-import { StructuredData } from "@/component/StructuredData";
-import { Time } from "@/component/Timeline/Time";
 import {
   generatePersonSchema,
   generateWebSiteSchema,
 } from "@/lib/structuredData";
+import { Sidebar } from "@/component/Sidebar";
+import { VolunteerDisplay } from "@/component";
+import { StatsWrapper } from "@/component/Stats";
+import { Time } from "@/component/Timeline/Time";
+import { ProjectsDisplay } from "@/component/Projects";
+import { FooterSection } from "@/component/Footer/Footer";
+import { HeroSection } from "@/component/Hero/HeroSection";
+import SkillsDisplay from "@/component/Skill/SkillsDisplay";
+import { ExperiencesDisplay } from "@/component/Experience";
+import { StructuredData } from "@/component/StructuredData";
+import { CertificatesDisplay } from "@/component/Certificates";
 
 const page = () => {
   const personSchema = generatePersonSchema();

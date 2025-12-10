@@ -1,22 +1,21 @@
 "use client";
 
 import {
-  Award,
-  Briefcase,
-  ChevronLeft,
-  ChevronRight,
-  Clock,
-  Code2,
-  FileText,
-  FolderGit2,
-  GraduationCap,
-  Heart,
   Home,
   Mail,
+  Clock,
+  Code2,
+  Award,
+  Heart,
+  FileText,
+  Briefcase,
+  FolderGit2,
+  ChevronRight,
+  GraduationCap,
 } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 interface NavItem {
   name: string;
@@ -49,7 +48,6 @@ export function Sidebar() {
 
   return (
     <>
-      {/* Sidebar */}
       <aside
         className={`fixed left-0 top-0 h-screen bg-gray-950/95 backdrop-blur-xl border-r border-gray-800/50 z-50 transition-all duration-300 ease-in-out ${
           isExpanded ? "w-64" : "w-20"

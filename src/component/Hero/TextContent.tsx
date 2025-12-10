@@ -1,5 +1,3 @@
-"use client";
-
 import { myIntro, SocialLinks } from "@/static/info/header";
 import Link from "next/link";
 

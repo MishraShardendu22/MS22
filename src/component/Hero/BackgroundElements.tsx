@@ -1,5 +1,3 @@
-"use client";
-
 export const BackgroundElements = () => {
   return (
     <div className="absolute inset-0 pointer-events-none">

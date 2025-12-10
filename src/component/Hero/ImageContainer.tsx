@@ -1,8 +1,8 @@
 "use client";
 
-import { animate, stagger } from "animejs";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
+import { animate, stagger } from "animejs";
 
 export const ImageContainer = () => {
   const iconRef = useRef<HTMLImageElement>(null);
@@ -11,7 +11,6 @@ export const ImageContainer = () => {
   const glowRef = useRef<HTMLDivElement>(null);
   const pixelGridRef = useRef<HTMLDivElement>(null);
 
-  // Image hover animation with glow and pixelation effect
   useEffect(() => {
     const container = containerRef.current;
     const icon = iconRef.current;
