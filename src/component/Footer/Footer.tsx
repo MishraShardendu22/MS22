@@ -23,14 +23,39 @@ export const FooterSectionMobile = () => {
     email: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<{ type: 'success' | 'error' | null; message: string }>({ type: null, message: '' });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Message from ${formData.name}`);
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`,
-    );
-    window.location.href = `mailto:shardendumishra01@gmail.com?subject=${subject}&body=${body}`;
+    setIsSubmitting(true);
+    setStatus({ type: null, message: '' });
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: `Portfolio Contact from ${formData.name}`,
+          message: formData.message,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus({ type: 'success', message: 'Message sent successfully!' });
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setStatus({ type: 'error', message: data.error || 'Failed to send message' });
+      }
+    } catch (error) {
+      setStatus({ type: 'error', message: 'An error occurred. Please try again.' });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -95,11 +120,26 @@ export const FooterSectionMobile = () => {
             />
             <button
               type="submit"
-              className="bg-cyan-500 text-white font-semibold text-sm w-full rounded-lg py-3 flex items-center justify-center gap-2"
+              disabled={isSubmitting}
+              className="bg-cyan-500 hover:bg-cyan-600 disabled:bg-gray-600 text-white font-semibold text-sm w-full rounded-lg py-3 flex items-center justify-center gap-2 transition-colors"
             >
-              <Send className="w-4 h-4" />
-              Send message
+              {isSubmitting ? (
+                <>
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                  Sending...
+                </>
+              ) : (
+                <>
+                  <Send className="w-4 h-4" />
+                  Send message
+                </>
+              )}
             </button>
+            {status.type && (
+              <div className={`mt-3 p-3 rounded-lg text-xs ${status.type === 'success' ? 'bg-green-500/20 text-green-400 border border-green-500/30' : 'bg-red-500/20 text-red-400 border border-red-500/30'}`}>
+                {status.message}
+              </div>
+            )}
           </form>
         </div>
 
@@ -161,17 +201,39 @@ export const FooterSection = () => {
     email: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<{ type: 'success' | 'error' | null; message: string }>({ type: null, message: '' });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setStatus({ type: null, message: '' });
 
-    // Create mailto link with pre-filled data
-    const subject = encodeURIComponent(`Message from ${formData.name}`);
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`,
-    );
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: `Portfolio Contact from ${formData.name}`,
+          message: formData.message,
+        }),
+      });
 
-    window.location.href = `mailto:shardendumishra01@gmail.com?subject=${subject}&body=${body}`;
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus({ type: 'success', message: 'Message sent successfully!' });
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setStatus({ type: 'error', message: data.error || 'Failed to send message' });
+      }
+    } catch (error) {
+      setStatus({ type: 'error', message: 'An error occurred. Please try again.' });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -331,11 +393,26 @@ export const FooterSection = () => {
               />
               <button
                 type="submit"
-                className="bg-linear-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 hover:shadow-lg hover:shadow-cyan-500/50 text-white font-semibold text-base w-full rounded-lg py-3 flex items-center justify-center gap-2 transition-all duration-500"
+                disabled={isSubmitting}
+                className="bg-linear-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 disabled:from-gray-600 disabled:to-gray-700 hover:shadow-lg hover:shadow-cyan-500/50 text-white font-semibold text-base w-full rounded-lg py-3 flex items-center justify-center gap-2 transition-all duration-500"
               >
-                <Send className="w-5 h-5" />
-                Send message
+                {isSubmitting ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-5 h-5" />
+                    Send message
+                  </>
+                )}
               </button>
+              {status.type && (
+                <div className={`mt-4 p-4 rounded-lg text-sm ${status.type === 'success' ? 'bg-green-500/20 text-green-400 border border-green-500/30' : 'bg-red-500/20 text-red-400 border border-red-500/30'}`}>
+                  {status.message}
+                </div>
+              )}
             </form>
           </div>
         </div>
