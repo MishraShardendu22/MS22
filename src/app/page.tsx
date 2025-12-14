@@ -1,30 +1,30 @@
 import {
+  generateFAQSchema,
   generatePersonSchema,
   generateWebSiteSchema,
-  generateProfessionalServiceSchema,
   generateProfilePageSchema,
-  generateFAQSchema,
+  generateProfessionalServiceSchema
 } from "@/lib/structuredData";
 import { getIsMobile } from "@/lib/isMobile";
-import { SidebarWrapper } from "@/component/Sidebar/SidebarWrapper";
-import { VolunteerDisplay, VolunteerDisplayMobile } from "@/component/Volunteer";
 import { StatsWrapper } from "@/component/Stats";
 import { Time } from "@/component/Timeline/Time";
+import { StructuredData } from "@/component/StructuredData";
+import { HeroSection } from "@/component/Hero/HeroSectionWrapper";
+import { SidebarWrapper } from "@/component/Sidebar/SidebarWrapper";
 import { ProjectsDisplay, ProjectsDisplayMobile } from "@/component/Projects";
 import { FooterSection, FooterSectionMobile } from "@/component/Footer/Footer";
-import { HeroSection } from "@/component/Hero/HeroSectionWrapper";
+import { VolunteerDisplay, VolunteerDisplayMobile } from "@/component/Volunteer";
 import SkillsDisplay, { SkillsDisplayMobile } from "@/component/Skill/SkillsDisplay";
 import { ExperiencesDisplay, ExperiencesDisplayMobile } from "@/component/Experience";
-import { StructuredData } from "@/component/StructuredData";
 import { CertificatesDisplay, CertificatesDisplayMobile } from "@/component/Certificates";
 
 const page = async () => {
+  const isMobile = await getIsMobile();
+  const faqSchema = generateFAQSchema();
   const personSchema = generatePersonSchema();
   const websiteSchema = generateWebSiteSchema();
-  const professionalServiceSchema = generateProfessionalServiceSchema();
   const profilePageSchema = generateProfilePageSchema();
-  const faqSchema = generateFAQSchema();
-  const isMobile = await getIsMobile();
+  const professionalServiceSchema = generateProfessionalServiceSchema();
 
   return (
     <>
@@ -35,7 +35,6 @@ const page = async () => {
         <section id="skills" aria-label="Technical skills and expertise">
           {isMobile ? <SkillsDisplayMobile /> : <SkillsDisplay />}
         </section>
-        {/* Timeline hidden on mobile for performance */}
         {!isMobile && (
           <section id="timeline" className="hidden lg:block" aria-label="Professional timeline">
             <Time />
@@ -53,7 +52,6 @@ const page = async () => {
         <section id="certifications" aria-label="Professional certifications">
           {isMobile ? <CertificatesDisplayMobile /> : <CertificatesDisplay />}
         </section>
-        {/* Stats hidden on mobile for performance */}
         {!isMobile && (
           <section className="hidden lg:block" aria-label="Coding statistics">
             <StatsWrapper />
