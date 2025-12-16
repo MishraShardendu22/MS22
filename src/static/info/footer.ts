@@ -17,19 +17,19 @@ import {
 
 export const QuickLinks = {
   Projects: {
-    url: "https://mishrashardendu22.is-a.dev/projects",
+    url: "/projects",
     icon: FolderGit2,
   },
   Experience: {
-    url: "https://mishrashardendu22.is-a.dev/experience",
+    url: "/experiences",
     icon: Briefcase,
   },
   Volunteer: {
-    url: "https://mishrashardendu22.is-a.dev/volunteer",
+    url: "/volunteer",
     icon: User2Icon,
   },
   Certification: {
-    url: "https://mishrashardendu22.is-a.dev/certificates",
+    url: "/certificates",
     icon: User2Icon,
   }
 };

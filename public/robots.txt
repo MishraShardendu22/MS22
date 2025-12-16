@@ -4,9 +4,8 @@
 User-agent: *
 Allow: /
 
-# Disallow crawling of API routes and admin endpoints
+# Disallow crawling of API routes
 Disallow: /api/
-Disallow: /_next/static/
 
 # Allow crawling of images and assets
 Allow: /icons/

@@ -109,7 +109,7 @@ export function Sidebar() {
           </div>
 
           {/* Navigation */}
-          <nav className="flex-1 py-6 px-3 space-y-1 overflow-y-auto overflow-x-hidden custom-scrollbar max-h-[calc(100vh-200px)]">
+          <nav className="flex-1 py-6 px-3 space-y-1 overflow-y-auto overflow-x-hidden custom-scrollbar max-h-[calc(100vh-200px)]" aria-label="Main navigation">
             {navItems.map((item) => {
               const Icon = item.icon;
               const active = isActive(item.href);
@@ -119,6 +119,7 @@ export function Sidebar() {
                   key={item.name}
                   href={item.href}
                   onClick={handleLinkClick}
+                  aria-label={`Navigate to ${item.name}`}
                   className={`flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200 group relative ${
                     active
                       ? "bg-linear-to-r from-cyan-500/20 to-blue-500/20 text-cyan-400 border border-cyan-500/40"
@@ -189,7 +190,7 @@ export function Sidebar() {
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 py-6 px-3 space-y-1 overflow-y-auto overflow-x-hidden custom-scrollbar">
+        <nav className="flex-1 py-6 px-3 space-y-1 overflow-y-auto overflow-x-hidden custom-scrollbar" aria-label="Main navigation">
           {navItems.map((item) => {
             const Icon = item.icon;
             const active = isActive(item.href);
@@ -198,6 +199,7 @@ export function Sidebar() {
               <Link
                 key={item.name}
                 href={item.href}
+                aria-label={`Navigate to ${item.name}`}
                 className={`flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200 group relative ${
                   active
                     ? "bg-linear-to-r from-cyan-500/20 to-blue-500/20 text-cyan-400 border border-cyan-500/40"

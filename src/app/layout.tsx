@@ -239,6 +239,7 @@ export const metadata: Metadata = {
     canonical: BASE_URL,
     languages: {
       "en-US": BASE_URL,
+      "x-default": BASE_URL,
     },
   },
   other: {

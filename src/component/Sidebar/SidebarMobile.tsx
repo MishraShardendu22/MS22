@@ -60,7 +60,7 @@ export function SidebarMobile() {
       {/* Simple menu - no blur, no animations */}
       {isOpen && (
         <aside className="fixed left-0 top-0 h-screen w-64 bg-gray-950 border-r border-gray-800 z-45 pt-20 overflow-y-auto">
-          <nav className="py-4 px-3 space-y-1">
+          <nav className="py-4 px-3 space-y-1" aria-label="Main navigation">
             {navItems.map((item) => {
               const Icon = item.icon;
               return (
@@ -68,6 +68,7 @@ export function SidebarMobile() {
                   key={item.name}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
+                  aria-label={`Navigate to ${item.name}`}
                   className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-400 hover:bg-gray-800/50 hover:text-gray-200"
                 >
                   <Icon className="w-5 h-5 shrink-0" />

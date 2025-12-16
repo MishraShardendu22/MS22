@@ -71,6 +71,7 @@ export const FooterSectionMobile = () => {
               type="text"
               name="name"
               placeholder="Full name"
+              aria-label="Your full name"
               value={formData.name}
               onChange={handleChange}
               required
@@ -80,6 +81,7 @@ export const FooterSectionMobile = () => {
               type="email"
               name="email"
               placeholder="Email address"
+              aria-label="Your email address"
               value={formData.email}
               onChange={handleChange}
               required
@@ -88,6 +90,7 @@ export const FooterSectionMobile = () => {
             <textarea
               name="message"
               placeholder="Your message..."
+              aria-label="Your message"
               value={formData.message}
               onChange={handleChange}
               required
@@ -114,7 +117,7 @@ export const FooterSectionMobile = () => {
                 const IconComponent = data.icon;
                 return (
                   <li key={idx}>
-                    <Link href={data.url} className="flex items-center gap-2 text-xs text-gray-400">
+                    <Link href={data.url} aria-label={`Navigate to ${key} page`} className="flex items-center gap-2 text-xs text-gray-400">
                       <IconComponent className="w-3 h-3" />
                       <span>{key}</span>
                     </Link>
@@ -132,7 +135,7 @@ export const FooterSectionMobile = () => {
                 const IconComponent = data.icon;
                 return (
                   <li key={idx}>
-                    <Link href={data.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs text-gray-400">
+                    <Link href={data.url} target="_blank" rel="noopener noreferrer" aria-label={`Visit ${key} profile`} className="flex items-center gap-2 text-xs text-gray-400">
                       <IconComponent className="w-3 h-3" />
                       <span>{key}</span>
                     </Link>
@@ -146,7 +149,7 @@ export const FooterSectionMobile = () => {
         {/* Copyright and Back to Top */}
         <div className="border-t border-gray-800 pt-4 flex items-center justify-between">
           <p className="text-xs text-gray-600">© 2025 Shardendu Mishra</p>
-          <button onClick={scrollToTop} className="flex items-center gap-1 px-3 py-2 rounded-lg bg-gray-900 border border-gray-800 text-xs text-cyan-400">
+          <button onClick={scrollToTop} aria-label="Scroll to top" className="flex items-center gap-1 px-3 py-2 rounded-lg bg-gray-900 border border-gray-800 text-xs text-cyan-400">
             <ArrowUp className="w-3 h-3" />
             <span>Top</span>
           </button>
@@ -278,6 +281,7 @@ export const FooterSection = () => {
               {/* Back to Top */}
               <button
                 onClick={scrollToTop}
+                aria-label="Scroll to top"
                 className="group flex items-center gap-2 px-5 py-2.5 rounded-lg bg-linear-to-br from-cyan-500/20 to-blue-500/20 hover:from-cyan-500/30 hover:to-blue-500/30 border border-cyan-500/30 hover:border-cyan-500/50 transition-colors duration-500"
               >
                 <span className="text-sm font-medium text-cyan-400">
@@ -306,6 +310,7 @@ export const FooterSection = () => {
                   type="text"
                   name="name"
                   placeholder="Full name"
+                  aria-label="Your full name"
                   value={formData.name}
                   onChange={handleChange}
                   required
@@ -315,6 +320,7 @@ export const FooterSection = () => {
                   type="email"
                   name="email"
                   placeholder="Email address"
+                  aria-label="Your email address"
                   value={formData.email}
                   onChange={handleChange}
                   required
@@ -324,6 +330,7 @@ export const FooterSection = () => {
               <textarea
                 name="message"
                 placeholder="Share details or say hello..."
+                aria-label="Your message"
                 value={formData.message}
                 onChange={handleChange}
                 required
@@ -359,6 +366,7 @@ export const FooterSection = () => {
                   <li key={idx}>
                     <Link
                       href={data.url}
+                      aria-label={`Navigate to ${key} page`}
                       className="flex items-center gap-2 text-sm md:text-base text-gray-400 hover:text-cyan-400 transition-colors duration-500 group"
                     >
                       <IconComponent className="w-4 h-4" />
@@ -385,6 +393,7 @@ export const FooterSection = () => {
                       href={data.url}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`Visit ${data.name}`}
                       className="flex items-center gap-2 text-sm md:text-base text-gray-400 hover:text-cyan-400 transition-colors duration-500 group"
                     >
                       <IconComponent className="w-4 h-4" />
@@ -403,6 +412,7 @@ export const FooterSection = () => {
                 className="w-5 h-5 text-cyan-400"
                 fill="currentColor"
                 viewBox="0 0 24 24"
+                aria-hidden="true"
               >
                 <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z" />
               </svg>
@@ -417,6 +427,7 @@ export const FooterSection = () => {
                       href={data.url}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`Visit ${key} profile`}
                       className="flex items-center gap-2 text-sm md:text-base text-gray-400 hover:text-cyan-400 transition-colors duration-500 group"
                     >
                       <IconComponent className="w-4 h-4" />
@@ -443,6 +454,7 @@ export const FooterSection = () => {
                       href={data.url}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`Visit ${key} profile`}
                       className="flex items-center gap-2 text-sm md:text-base text-gray-400 hover:text-cyan-400 transition-colors duration-500 group"
                     >
                       <IconComponent className="w-4 h-4" />
