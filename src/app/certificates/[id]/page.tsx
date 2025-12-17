@@ -20,6 +20,7 @@ import { LoadingState } from "@/component/Loading";
 import { Sidebar } from "@/component/Sidebar";
 import { certificatesAPI } from "@/static/api/api.request";
 import type { Certificate } from "@/static/api/api.types";
+import { formatDate } from "@/utils/formatDate";
 
 export default function CertificateDetailPage() {
   const params = useParams();
@@ -65,13 +66,6 @@ export default function CertificateDetailPage() {
     return <ErrorState message={error || "Certificate not found"} />;
   }
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("en-US", {
-      month: "long",
-      year: "numeric",
-    });
-  };
-
   return (
     <>
       <Sidebar />
@@ -97,10 +91,10 @@ export default function CertificateDetailPage() {
               <div className="lg:col-span-2 space-y-8">
                 {/* Hero Card */}
                 <div className="relative group">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500" />
+                  <div className="absolute -inset-0.5 bg-linear-to-r from-cyan-500 via-blue-500 to-purple-600 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500" />
                   <div className="relative p-10 bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-3xl">
                     <div className="flex items-start gap-4 mb-6">
-                      <div className="p-4 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-2xl border border-cyan-500/30">
+                      <div className="p-4 bg-linear-to-br from-cyan-500/20 to-blue-500/20 rounded-2xl border border-cyan-500/30">
                         <Award className="w-8 h-8 text-cyan-400" />
                       </div>
                       <div className="flex-1">
@@ -141,7 +135,7 @@ export default function CertificateDetailPage() {
                               Issued
                             </p>
                             <p className="text-white font-semibold">
-                              {formatDate(certificate.issue_date)}
+                              {formatDate(certificate.issue_date, { style: "long", fallback: "" })}
                             </p>
                           </div>
                         </div>
@@ -157,7 +151,7 @@ export default function CertificateDetailPage() {
                               Expires
                             </p>
                             <p className="text-white font-semibold">
-                              {formatDate(certificate.expiry_date)}
+                              {formatDate(certificate.expiry_date, { style: "long", fallback: "" })}
                             </p>
                           </div>
                         </div>
@@ -183,7 +177,7 @@ export default function CertificateDetailPage() {
                 {/* Description */}
                 {certificate.description && (
                   <div className="relative group">
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
+                    <div className="absolute -inset-0.5 bg-linear-to-r from-cyan-500/20 to-blue-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
                     <div className="relative p-8 bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-2xl">
                       <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
                         <FileText className="w-6 h-6 text-cyan-400" />
@@ -201,7 +195,7 @@ export default function CertificateDetailPage() {
                 {/* Images */}
                 {certificate.images && certificate.images.length > 0 && (
                   <div className="relative group">
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
+                    <div className="absolute -inset-0.5 bg-linear-to-r from-purple-500/20 to-cyan-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
                     <div className="relative p-8 bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-2xl">
                       <h2 className="text-2xl font-bold text-white mb-6">
                         Certificate Images
@@ -210,7 +204,7 @@ export default function CertificateDetailPage() {
                         {certificate.images.map((image, idx) => (
                           <div
                             key={idx}
-                            className="relative aspect-[16/11] rounded-xl overflow-hidden border border-gray-800/50 hover:border-cyan-500/40 transition-all group/img"
+                            className="relative aspect-16/11 rounded-xl overflow-hidden border border-gray-800/50 hover:border-cyan-500/40 transition-all group/img"
                           >
                             <Image
                               src={image}
@@ -232,7 +226,7 @@ export default function CertificateDetailPage() {
                 {/* Skills */}
                 {certificate.skills && certificate.skills.length > 0 && (
                   <div className="relative group">
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-2xl blur opacity-50" />
+                    <div className="absolute -inset-0.5 bg-linear-to-r from-cyan-500/20 to-blue-500/20 rounded-2xl blur opacity-50" />
                     <div className="relative p-6 bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-2xl">
                       <h3 className="text-lg font-bold text-white mb-5 flex items-center gap-2">
                         <Code2 className="w-5 h-5 text-cyan-400" />
@@ -242,7 +236,7 @@ export default function CertificateDetailPage() {
                         {certificate.skills.map((skill, idx) => (
                           <span
                             key={idx}
-                            className="px-3 py-2 text-sm font-semibold bg-gradient-to-r from-cyan-500/10 to-blue-500/10 text-cyan-400 rounded-lg border border-cyan-500/30 hover:from-cyan-500/20 hover:to-blue-500/20 transition-all"
+                            className="px-3 py-2 text-sm font-semibold bg-linear-to-r from-cyan-500/10 to-blue-500/10 text-cyan-400 rounded-lg border border-cyan-500/30 hover:from-cyan-500/20 hover:to-blue-500/20 transition-all"
                           >
                             {skill}
                           </span>
@@ -254,7 +248,7 @@ export default function CertificateDetailPage() {
 
                 {/* Actions */}
                 <div className="relative group">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur opacity-50" />
+                  <div className="absolute -inset-0.5 bg-linear-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur opacity-50" />
                   <div className="relative p-6 bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-2xl space-y-3">
                     <h3 className="text-lg font-bold text-white mb-4">
                       Actions
@@ -265,7 +259,7 @@ export default function CertificateDetailPage() {
                         href={certificate.certificate_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-400 border border-cyan-500/40 rounded-xl hover:from-cyan-500/30 hover:to-blue-500/30 transition-all font-semibold shadow-lg shadow-cyan-500/20"
+                        className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-linear-to-r from-cyan-500/20 to-blue-500/20 text-cyan-400 border border-cyan-500/40 rounded-xl hover:from-cyan-500/30 hover:to-blue-500/30 transition-all font-semibold shadow-lg shadow-cyan-500/20"
                       >
                         <ExternalLink className="w-4 h-4" />
                         View Certificate
@@ -292,7 +286,7 @@ export default function CertificateDetailPage() {
                 {/* Projects */}
                 {certificate.projects && certificate.projects.length > 0 && (
                   <div className="relative group">
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-2xl blur opacity-50" />
+                    <div className="absolute -inset-0.5 bg-linear-to-r from-purple-500/20 to-cyan-500/20 rounded-2xl blur opacity-50" />
                     <div className="relative p-6 bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-2xl">
                       <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
                         <Briefcase className="w-5 h-5 text-purple-400" />
@@ -314,7 +308,7 @@ export default function CertificateDetailPage() {
 
                 {/* Quick Info */}
                 <div className="relative group">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-2xl blur opacity-50" />
+                  <div className="absolute -inset-0.5 bg-linear-to-r from-purple-500/20 to-cyan-500/20 rounded-2xl blur opacity-50" />
                   <div className="relative p-6 bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-2xl space-y-4">
                     <h3 className="text-lg font-bold text-white mb-4">
                       Quick Info

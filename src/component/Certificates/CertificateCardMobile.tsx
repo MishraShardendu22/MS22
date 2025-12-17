@@ -7,14 +7,9 @@ import { useEffect, useState } from "react";
 import { LoadingStateMobile } from "@/component/Loading";
 import { certificatesAPI } from "@/static/api/api.request";
 import type { Certificate } from "@/static/api/api.types";
+import { formatDate } from "@/utils/formatDate";
 
 const CertificateCardMobile = ({ certificate }: { certificate: Certificate }) => {
-  const formatDate = (dateString?: string) => {
-    if (!dateString) return "";
-    const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", { month: "short", year: "numeric" });
-  };
-
   return (
     <div className="bg-gray-900/80 border border-gray-800 rounded-xl p-4">
       <div className="flex items-start justify-between gap-2 mb-2">
@@ -27,8 +22,8 @@ const CertificateCardMobile = ({ certificate }: { certificate: Certificate }) =>
       </div>
       <p className="text-sm text-emerald-400 mb-1">{certificate.issuer}</p>
       <p className="text-xs text-gray-500 mb-2">
-        Issued {formatDate(certificate.issue_date)}
-        {certificate.expiry_date ? ` • Expires ${formatDate(certificate.expiry_date)}` : " • No Expiration"}
+        Issued {formatDate(certificate.issue_date, { fallback: "" })}
+        {certificate.expiry_date ? ` • Expires ${formatDate(certificate.expiry_date, { fallback: "" })}` : " • No Expiration"}
       </p>
       {certificate.description && (
         <p className="text-gray-400 text-sm leading-relaxed mb-3 line-clamp-2">

@@ -7,21 +7,16 @@ import { useEffect, useState } from "react";
 import { LoadingStateMobile } from "@/component/Loading";
 import { volunteerAPI } from "@/static/api/api.request";
 import type { Volunteer } from "@/static/api/api.types";
+import { formatDate } from "@/utils/formatDate";
 
 const VolunteerCardMobile = ({ volunteer }: { volunteer: Volunteer }) => {
-  const formatDate = (dateString?: string) => {
-    if (!dateString) return "";
-    const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", { month: "short", year: "numeric" });
-  };
-
   const latestTimeline = volunteer.volunteer_time_line?.[volunteer.volunteer_time_line.length - 1];
   const position = latestTimeline?.position || volunteer.position || "Volunteer";
-  const startDate = formatDate(latestTimeline?.start_date || volunteer.start_date);
+  const startDate = formatDate(latestTimeline?.start_date || volunteer.start_date, { fallback: "" });
   const endDate = latestTimeline?.end_date 
-    ? formatDate(latestTimeline.end_date) 
+    ? formatDate(latestTimeline.end_date, { fallback: "" }) 
     : volunteer.end_date 
-      ? formatDate(volunteer.end_date) 
+      ? formatDate(volunteer.end_date, { fallback: "" }) 
       : "Present";
   const isCurrent = !latestTimeline?.end_date && !volunteer.end_date;
 

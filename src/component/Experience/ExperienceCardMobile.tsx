@@ -6,14 +6,9 @@ import { useEffect, useState } from "react";
 import { LoadingStateMobile } from "@/component/Loading";
 import { experiencesAPI } from "@/static/api/api.request";
 import type { Experience } from "@/static/api/api.types";
+import { formatDate } from "@/utils/formatDate";
 
 const ExperienceCardMobile = ({ experience }: { experience: Experience }) => {
-  const formatDate = (dateString?: string) => {
-    if (!dateString) return "Present";
-    const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", { month: "short", year: "numeric" });
-  };
-
   const latestPosition = experience.experience_time_line[0];
   const startDate = formatDate(latestPosition?.start_date);
   const endDate = latestPosition?.end_date ? formatDate(latestPosition.end_date) : "Present";

@@ -115,12 +115,12 @@ export default function ProjectsPage() {
 
         {/* Header */}
         <div className="relative border-b border-gray-800/50 z-10">
-          <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/5 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-b from-cyan-500/5 via-transparent to-transparent" />
           <div className="container mx-auto px-4 py-10 relative">
             <div className="max-w-7xl mx-auto">
               <h1 className="text-4xl md:text-5xl font-black text-white mb-3 tracking-tight">
                 My{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 animate-gradient">
+                <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 via-blue-500 to-purple-600 animate-gradient">
                   Projects
                 </span>
               </h1>
@@ -138,7 +138,7 @@ export default function ProjectsPage() {
             {/* Search Bar */}
             <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
               <div className="flex-1 relative group">
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
+                <div className="absolute -inset-0.5 bg-linear-to-r from-cyan-500/20 to-purple-500/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
                 <div className="relative">
                   <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 group-focus-within:text-cyan-400 transition-colors" />
                   <input
@@ -154,14 +154,14 @@ export default function ProjectsPage() {
                 onClick={() => setShowFilters(!showFilters)}
                 className={`flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm transition-all shadow-lg relative group ${
                   showFilters || selectedSkills.length > 0
-                    ? "bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-400 border border-cyan-500/40 shadow-cyan-500/20"
+                    ? "bg-linear-to-r from-cyan-500/20 to-blue-500/20 text-cyan-400 border border-cyan-500/40 shadow-cyan-500/20"
                     : "bg-gray-900/80 backdrop-blur-xl text-gray-400 border border-gray-800/50 hover:border-gray-700 hover:text-gray-300 shadow-black/20"
                 }`}
               >
                 <Filter className="w-4 h-4" />
                 <span>Filters</span>
                 {selectedSkills.length > 0 && (
-                  <span className="absolute -top-1.5 -right-1.5 flex items-center justify-center w-5 h-5 text-xs font-bold bg-gradient-to-br from-cyan-500 to-blue-600 text-white rounded-full shadow-lg shadow-cyan-500/50">
+                  <span className="absolute -top-1.5 -right-1.5 flex items-center justify-center w-5 h-5 text-xs font-bold bg-linear-to-br from-cyan-500 to-blue-600 text-white rounded-full shadow-lg shadow-cyan-500/50">
                     {selectedSkills.length}
                   </span>
                 )}
@@ -169,7 +169,7 @@ export default function ProjectsPage() {
               {(searchQuery || selectedSkills.length > 0) && (
                 <button
                   onClick={clearFilters}
-                  className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm bg-gradient-to-r from-red-500/20 to-pink-500/20 text-red-400 border border-red-500/40 hover:from-red-500/30 hover:to-pink-500/30 transition-all shadow-lg shadow-red-500/20"
+                  className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm bg-linear-to-r from-red-500/20 to-pink-500/20 text-red-400 border border-red-500/40 hover:from-red-500/30 hover:to-pink-500/30 transition-all shadow-lg shadow-red-500/20"
                 >
                   <X className="w-4 h-4" />
                   <span>Clear</span>
@@ -180,10 +180,10 @@ export default function ProjectsPage() {
             {/* Skills Filter */}
             {showFilters && (
               <div className="relative group animate-fadeIn">
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 rounded-xl blur opacity-50" />
+                <div className="absolute -inset-0.5 bg-linear-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 rounded-xl blur opacity-50" />
                 <div className="relative p-5 bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-xl space-y-3 shadow-2xl">
                   <div className="flex items-center gap-2">
-                    <div className="p-1.5 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-lg">
+                    <div className="p-1.5 bg-linear-to-br from-cyan-500/20 to-blue-500/20 rounded-lg">
                       <Filter className="w-4 h-4 text-cyan-400" />
                     </div>
                     <h3 className="text-sm font-bold text-white">
@@ -200,12 +200,12 @@ export default function ProjectsPage() {
                         onClick={() => toggleSkillFilter(skill)}
                         className={`group/skill relative px-3 py-1.5 text-xs font-semibold rounded-lg transition-all duration-300 ${
                           selectedSkills.includes(skill)
-                            ? "bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-400 border border-cyan-500/40 shadow-lg shadow-cyan-500/20 scale-105"
+                            ? "bg-linear-to-r from-cyan-500/20 to-blue-500/20 text-cyan-400 border border-cyan-500/40 shadow-lg shadow-cyan-500/20 scale-105"
                             : "bg-gray-800/50 text-gray-400 border border-gray-700/50 hover:border-gray-600 hover:text-gray-300 hover:scale-105 hover:bg-gray-800/70"
                         }`}
                       >
                         {selectedSkills.includes(skill) && (
-                          <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-lg animate-pulse" />
+                          <div className="absolute inset-0 bg-linear-to-r from-cyan-500/10 to-blue-500/10 rounded-lg animate-pulse" />
                         )}
                         <span className="relative">{skill}</span>
                       </button>
@@ -232,7 +232,7 @@ export default function ProjectsPage() {
                 </div>
               </div>
               {selectedSkills.length > 0 && (
-                <div className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/30 rounded-lg">
+                <div className="flex items-center gap-1.5 px-4 py-2 bg-linear-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/30 rounded-lg">
                   <Filter className="w-3.5 h-3.5 text-cyan-400" />
                   <span className="text-cyan-400 font-semibold">
                     Filtered by {selectedSkills.length}{" "}
@@ -249,8 +249,8 @@ export default function ProjectsPage() {
           {filteredProjects.length === 0 ? (
             <div className="max-w-7xl mx-auto text-center py-20">
               <div className="relative inline-flex mb-6">
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full blur-xl animate-pulse" />
-                <div className="relative flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-gray-900 to-gray-950 border-2 border-gray-800/50">
+                <div className="absolute inset-0 bg-linear-to-r from-cyan-500/20 to-purple-500/20 rounded-full blur-xl animate-pulse" />
+                <div className="relative flex items-center justify-center w-24 h-24 rounded-full bg-linear-to-br from-gray-900 to-gray-950 border-2 border-gray-800/50">
                   <Code2 className="w-12 h-12 text-gray-600" />
                 </div>
               </div>
@@ -264,7 +264,7 @@ export default function ProjectsPage() {
               {(searchQuery || selectedSkills.length > 0) && (
                 <button
                   onClick={clearFilters}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 text-cyan-400 border border-cyan-500/30 rounded-lg hover:from-cyan-500/20 hover:to-blue-500/20 transition-all font-semibold text-sm shadow-lg shadow-cyan-500/10"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-linear-to-r from-cyan-500/10 to-blue-500/10 text-cyan-400 border border-cyan-500/30 rounded-lg hover:from-cyan-500/20 hover:to-blue-500/20 transition-all font-semibold text-sm shadow-lg shadow-cyan-500/10"
                 >
                   <X className="w-4 h-4" />
                   Clear all filters
@@ -303,12 +303,12 @@ export default function ProjectsPage() {
                       onClick={() => setCurrentPage(page)}
                       className={`relative min-w-[2.5rem] px-4 py-2 rounded-lg text-sm font-bold transition-all shadow-lg ${
                         currentPage === page
-                          ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white scale-110 shadow-cyan-500/50"
+                          ? "bg-linear-to-r from-cyan-500 to-blue-600 text-white scale-110 shadow-cyan-500/50"
                           : "bg-gray-900/80 backdrop-blur-xl text-gray-400 border border-gray-800/50 hover:border-gray-700 hover:text-gray-300 hover:scale-105"
                       }`}
                     >
                       {currentPage === page && (
-                        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg blur opacity-50 animate-pulse" />
+                        <div className="absolute inset-0 bg-linear-to-r from-cyan-500 to-blue-600 rounded-lg blur opacity-50 animate-pulse" />
                       )}
                       <span className="relative">{page}</span>
                     </button>
@@ -436,18 +436,18 @@ function ProjectCard({ project, index }: ProjectCardProps) {
           }
         `}</style>
 
-        <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 rounded-xl blur opacity-0 group-hover:opacity-30 transition duration-500" />
+        <div className="absolute -inset-0.5 bg-linear-to-r from-cyan-500 via-blue-500 to-purple-600 rounded-xl blur opacity-0 group-hover:opacity-30 transition duration-500" />
 
         <div className="relative h-full bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-xl overflow-hidden transition-all duration-500 hover:border-cyan-500/50 hover:shadow-2xl hover:shadow-cyan-500/20 hover:-translate-y-1 cursor-pointer">
-          <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 via-blue-500/0 to-purple-500/0 group-hover:from-cyan-500/10 group-hover:via-blue-500/5 group-hover:to-purple-500/10 transition-all duration-500" />
+          <div className="absolute inset-0 bg-linear-to-br from-cyan-500/0 via-blue-500/0 to-purple-500/0 group-hover:from-cyan-500/10 group-hover:via-blue-500/5 group-hover:to-purple-500/10 transition-all duration-500" />
 
           <div className="relative p-5 flex flex-col h-full">
             <div className="mb-4">
               <div className="flex items-start justify-between gap-2 mb-3">
-                <h3 className="text-lg font-bold text-white line-clamp-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:to-blue-500 transition-all duration-300">
+                <h3 className="text-lg font-bold text-white line-clamp-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-cyan-400 group-hover:to-blue-500 transition-all duration-300">
                   {project.project_name}
                 </h3>
-                <div className="flex-shrink-0 p-1.5 bg-gray-800/50 rounded-lg group-hover:bg-gradient-to-br group-hover:from-cyan-500/20 group-hover:to-blue-500/20 border border-gray-700/50 group-hover:border-cyan-500/40 transition-all duration-300">
+                <div className="shrink-0 p-1.5 bg-gray-800/50 rounded-lg group-hover:bg-linear-to-br group-hover:from-cyan-500/20 group-hover:to-blue-500/20 border border-gray-700/50 group-hover:border-cyan-500/40 transition-all duration-300">
                   <ArrowUpRight className="w-4 h-4 text-gray-500 group-hover:text-cyan-400 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
               </div>
@@ -468,7 +468,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
                   </span>
                 ))}
                 {project.skills.length > 5 && (
-                  <span className="px-2 py-1 text-xs font-semibold bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-400 rounded-md border border-cyan-500/30 group-hover:from-cyan-500/30 group-hover:to-blue-500/30 transition-all">
+                  <span className="px-2 py-1 text-xs font-semibold bg-linear-to-r from-cyan-500/20 to-blue-500/20 text-cyan-400 rounded-md border border-cyan-500/30 group-hover:from-cyan-500/30 group-hover:to-blue-500/30 transition-all">
                     +{project.skills.length - 5}
                   </span>
                 )}

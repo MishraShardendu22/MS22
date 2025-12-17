@@ -15,13 +15,13 @@ import { useEffect, useState } from "react";
 import { Sidebar } from "@/component/Sidebar";
 import { ErrorState } from "@/component/Error";
 import { LoadingState } from "@/component/Loading";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import type { Experience } from "@/static/api/api.types";
 import { experiencesAPI } from "@/static/api/api.request";
+import { formatDate } from "@/utils/formatDate";
 
 export default function ExperienceDetailPage() {
   const params = useParams();
-  const router = useRouter();
   const [experience, setExperience] = useState<Experience | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -89,10 +89,10 @@ export default function ExperienceDetailPage() {
               <div className="lg:col-span-2 space-y-8">
                 {/* Hero Card */}
                 <div className="relative group">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-600 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500" />
+                  <div className="absolute -inset-0.5 bg-linear-to-r from-blue-500 via-purple-500 to-cyan-600 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500" />
                   <div className="relative p-10 bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-3xl">
                     <div className="flex items-start gap-4 mb-6">
-                      <div className="p-4 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl border border-blue-500/30">
+                      <div className="p-4 bg-linear-to-br from-blue-500/20 to-purple-500/20 rounded-2xl border border-blue-500/30">
                         <Building2 className="w-8 h-8 text-blue-400" />
                       </div>
                       <div className="flex-1">
@@ -125,8 +125,8 @@ export default function ExperienceDetailPage() {
                                     {timeline.position}
                                   </p>
                                   <p className="text-gray-400">
-                                    {timeline.start_date} -{" "}
-                                    {timeline.end_date || "Present"}
+                                    {formatDate(timeline.start_date, { style: "long" })} -{" "}
+                                    {formatDate(timeline.end_date, { style: "long", fallback: "Present" })}
                                   </p>
                                 </div>
                               </div>
@@ -140,7 +140,7 @@ export default function ExperienceDetailPage() {
                 {/* Description */}
                 {experience.description && (
                   <div className="relative group">
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
+                    <div className="absolute -inset-0.5 bg-linear-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
                     <div className="relative p-8 bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-2xl">
                       <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
                         <Briefcase className="w-6 h-6 text-blue-400" />
@@ -158,7 +158,7 @@ export default function ExperienceDetailPage() {
                 {/* Images */}
                 {experience.images && experience.images.length > 0 && (
                   <div className="relative group">
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
+                    <div className="absolute -inset-0.5 bg-linear-to-r from-purple-500/20 to-cyan-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
                     <div className="relative p-8 bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-2xl">
                       <h2 className="text-2xl font-bold text-white mb-6">
                         Gallery
@@ -190,7 +190,7 @@ export default function ExperienceDetailPage() {
                 {experience.technologies &&
                   experience.technologies.length > 0 && (
                     <div className="relative group">
-                      <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur opacity-50" />
+                      <div className="absolute -inset-0.5 bg-linear-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur opacity-50" />
                       <div className="relative p-6 bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-2xl">
                         <h3 className="text-lg font-bold text-white mb-5 flex items-center gap-2">
                           <Code2 className="w-5 h-5 text-blue-400" />
@@ -200,7 +200,7 @@ export default function ExperienceDetailPage() {
                           {experience.technologies.map((tech, idx) => (
                             <span
                               key={idx}
-                              className="px-3 py-2 text-sm font-semibold bg-gradient-to-r from-blue-500/10 to-purple-500/10 text-blue-400 rounded-lg border border-blue-500/30 hover:from-blue-500/20 hover:to-purple-500/20 transition-all"
+                              className="px-3 py-2 text-sm font-semibold bg-linear-to-r from-blue-500/10 to-purple-500/10 text-blue-400 rounded-lg border border-blue-500/30 hover:from-blue-500/20 hover:to-purple-500/20 transition-all"
                             >
                               {tech}
                             </span>
@@ -213,7 +213,7 @@ export default function ExperienceDetailPage() {
                 {/* Certificate Link */}
                 {experience.certificate_url && (
                   <div className="relative group">
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-2xl blur opacity-50" />
+                    <div className="absolute -inset-0.5 bg-linear-to-r from-cyan-500/20 to-blue-500/20 rounded-2xl blur opacity-50" />
                     <div className="relative p-6 bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-2xl">
                       <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
                         <Award className="w-5 h-5 text-cyan-400" />
@@ -223,7 +223,7 @@ export default function ExperienceDetailPage() {
                         href={experience.certificate_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-400 border border-cyan-500/40 rounded-xl hover:from-cyan-500/30 hover:to-blue-500/30 transition-all font-semibold shadow-lg shadow-cyan-500/20"
+                        className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-linear-to-r from-cyan-500/20 to-blue-500/20 text-cyan-400 border border-cyan-500/40 rounded-xl hover:from-cyan-500/30 hover:to-blue-500/30 transition-all font-semibold shadow-lg shadow-cyan-500/20"
                       >
                         <ExternalLink className="w-4 h-4" />
                         View Certificate
@@ -234,7 +234,7 @@ export default function ExperienceDetailPage() {
 
                 {/* Quick Info */}
                 <div className="relative group">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-2xl blur opacity-50" />
+                  <div className="absolute -inset-0.5 bg-linear-to-r from-purple-500/20 to-cyan-500/20 rounded-2xl blur opacity-50" />
                   <div className="relative p-6 bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-2xl space-y-4">
                     <h3 className="text-lg font-bold text-white mb-4">
                       Quick Info

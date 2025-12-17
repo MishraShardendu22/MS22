@@ -70,7 +70,7 @@ export const FooterSectionMobile = () => {
 
   return (
     <footer className="bg-gray-950 pt-12 pb-6 px-4">
-      <div className="container mx-auto max-w-[1600px]">
+      <div className="container mx-auto max-w-400">
         {/* Brand Info */}
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-3">
@@ -255,7 +255,7 @@ export const FooterSection = () => {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f08_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f08_1px,transparent_1px)] bg-size-[4rem_4rem]"></div>
       </div>
 
-      <div className="container mx-auto max-w-[1600px] relative z-10">
+      <div className="container mx-auto max-w-400 relative z-10">
         {/* Top Section: Brand + Contact Form */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16 mb-12 sm:mb-16 md:mb-20">
           {/* Left: Brand Info */}

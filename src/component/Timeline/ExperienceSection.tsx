@@ -45,7 +45,7 @@ export const ExperienceSection = ({
       <div className="relative h-[120px]">
         {/* Main timeline line - positioned in the middle */}
         <div
-          className={`absolute top-8 left-8 right-8 h-px bg-gradient-to-r ${config.lineGradient} rounded-full`}
+          className={`absolute top-8 left-8 right-8 h-px bg-linear-to-r ${config.lineGradient} rounded-full`}
         />
 
         {experiences.map((exp, index) => {

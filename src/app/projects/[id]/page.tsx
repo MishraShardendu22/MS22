@@ -13,7 +13,7 @@ import {
   Zap,
 } from "lucide-react";
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ErrorState } from "@/component/Error";
 import { LoadingState } from "@/component/Loading";
@@ -100,7 +100,7 @@ export default function ProjectDetailPage() {
 
   if (error || !project) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-linear-to-b from-gray-950 via-gray-900 to-gray-950 flex items-center justify-center p-4">
         <div className="text-center space-y-3">
           <ErrorState message={error || "Project not found"} />
           <Link
@@ -143,7 +143,7 @@ export default function ProjectDetailPage() {
         <div className="px-6 py-8">
           {/* Hero Section */}
           <div className="relative mb-8 animate-fadeInUp">
-            <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-purple-500/10 rounded-xl blur-lg opacity-50" />
+            <div className="absolute -inset-1 bg-linear-to-r from-cyan-500/10 via-blue-500/10 to-purple-500/10 rounded-xl blur-lg opacity-50" />
 
             <div className="relative bg-gray-900/70 backdrop-blur-xl border border-gray-800/30 rounded-xl overflow-hidden">
               <div className="p-8">
@@ -161,7 +161,7 @@ export default function ProjectDetailPage() {
                       href={project.project_live_link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-sm rounded-lg font-bold hover:shadow-lg hover:shadow-cyan-500/30 transition-all"
+                      className="group inline-flex items-center gap-2 px-4 py-2 bg-linear-to-r from-cyan-500 to-blue-600 text-white text-sm rounded-lg font-bold hover:shadow-lg hover:shadow-cyan-500/30 transition-all"
                     >
                       <ExternalLink className="w-3.5 h-3.5 group-hover:rotate-12 transition-transform" />
                       Live Project
@@ -202,10 +202,10 @@ export default function ProjectDetailPage() {
                 className="group relative animate-fadeInUp"
                 style={{ animationDelay: "0.1s" }}
               >
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-300" />
+                <div className="absolute -inset-0.5 bg-linear-to-r from-cyan-500/10 to-blue-500/10 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-300" />
                 <div className="relative bg-gray-900/70 backdrop-blur-xl border border-gray-800/30 rounded-xl p-5 hover:border-gray-700/30 transition-all h-full">
                   <div className="flex items-center gap-2 mb-4">
-                    <div className="p-1 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-lg border border-cyan-500/30">
+                    <div className="p-1 bg-linear-to-br from-cyan-500/20 to-blue-500/20 rounded-lg border border-cyan-500/30">
                       <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
                     </div>
                     <h2 className="text-base font-black text-white">
@@ -224,7 +224,7 @@ export default function ProjectDetailPage() {
                             key={itemIdx}
                             className="flex items-start gap-2 group/item"
                           >
-                            <CheckCircle2 className="w-3 h-3 text-cyan-400 flex-shrink-0 mt-0.5" />
+                            <CheckCircle2 className="w-3 h-3 text-cyan-400 shrink-0 mt-0.5" />
                             <div
                               className="text-gray-300 text-xs leading-relaxed flex-1"
                               dangerouslySetInnerHTML={{
@@ -255,10 +255,10 @@ export default function ProjectDetailPage() {
               className="group relative animate-fadeInUp"
               style={{ animationDelay: "0.15s" }}
             >
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-300" />
+              <div className="absolute -inset-0.5 bg-linear-to-r from-cyan-500/10 to-purple-500/10 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-300" />
               <div className="relative bg-gray-900/70 backdrop-blur-xl border border-gray-800/30 rounded-xl p-5 hover:border-gray-700/30 transition-all h-full">
                 <div className="flex items-center gap-2 mb-4">
-                  <div className="p-1 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-lg border border-cyan-500/30">
+                  <div className="p-1 bg-linear-to-br from-cyan-500/20 to-blue-500/20 rounded-lg border border-cyan-500/30">
                     <Tag className="w-3.5 h-3.5 text-cyan-400" />
                   </div>
                   <h3 className="text-base font-black text-white">
@@ -284,10 +284,10 @@ export default function ProjectDetailPage() {
               className="group relative animate-fadeInUp"
               style={{ animationDelay: "0.2s" }}
             >
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-300" />
+              <div className="absolute -inset-0.5 bg-linear-to-r from-blue-500/10 to-purple-500/10 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-300" />
               <div className="relative bg-gray-900/70 backdrop-blur-xl border border-gray-800/30 rounded-xl p-5 hover:border-gray-700/30 transition-all h-full">
                 <div className="flex items-center gap-2 mb-4">
-                  <div className="p-1 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-lg border border-blue-500/30">
+                  <div className="p-1 bg-linear-to-br from-blue-500/20 to-purple-500/20 rounded-lg border border-blue-500/30">
                     <ExternalLink className="w-3.5 h-3.5 text-blue-400" />
                   </div>
                   <h3 className="text-base font-black text-white">
@@ -303,7 +303,7 @@ export default function ProjectDetailPage() {
                       rel="noopener noreferrer"
                       className="group/link flex items-center gap-2 p-2 bg-gray-800/40 hover:bg-blue-500/20 border border-gray-700/40 hover:border-blue-500/30 rounded-lg transition-all"
                     >
-                      <ExternalLink className="w-3 h-3 text-blue-400 flex-shrink-0" />
+                      <ExternalLink className="w-3 h-3 text-blue-400 shrink-0" />
                       <span className="text-xs font-bold text-gray-300 group-hover/link:text-blue-400 transition-colors">
                         Live Demo
                       </span>
@@ -316,7 +316,7 @@ export default function ProjectDetailPage() {
                       rel="noopener noreferrer"
                       className="group/link flex items-center gap-2 p-2 bg-gray-800/40 hover:bg-gray-700/40 border border-gray-700/40 hover:border-gray-600 rounded-lg transition-all"
                     >
-                      <Github className="w-3 h-3 text-gray-400 flex-shrink-0 group-hover/link:text-white transition-colors" />
+                      <Github className="w-3 h-3 text-gray-400 shrink-0 group-hover/link:text-white transition-colors" />
                       <span className="text-xs font-bold text-gray-300 group-hover/link:text-white transition-colors">
                         Source Code
                       </span>
@@ -329,7 +329,7 @@ export default function ProjectDetailPage() {
                       rel="noopener noreferrer"
                       className="group/link flex items-center gap-2 p-2 bg-gray-800/40 hover:bg-purple-500/20 border border-gray-700/40 hover:border-purple-500/30 rounded-lg transition-all"
                     >
-                      <Play className="w-3 h-3 text-purple-400 flex-shrink-0" />
+                      <Play className="w-3 h-3 text-purple-400 shrink-0" />
                       <span className="text-xs font-bold text-gray-300 group-hover/link:text-purple-400 transition-colors">
                         Video Demo
                       </span>
@@ -347,10 +347,10 @@ export default function ProjectDetailPage() {
               className="group relative animate-fadeInUp mb-6"
               style={{ animationDelay: `${0.25 + idx * 0.05}s` }}
             >
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-300" />
+              <div className="absolute -inset-0.5 bg-linear-to-r from-cyan-500/10 to-blue-500/10 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-300" />
               <div className="relative bg-gray-900/70 backdrop-blur-xl border border-gray-800/30 rounded-xl p-5 hover:border-gray-700/30 transition-all">
                 <div className="flex items-center gap-2 mb-4">
-                  <div className="p-1 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-lg border border-cyan-500/30">
+                  <div className="p-1 bg-linear-to-br from-cyan-500/20 to-blue-500/20 rounded-lg border border-cyan-500/30">
                     {idx === 0 ? (
                       <GitBranch className="w-3.5 h-3.5 text-cyan-400" />
                     ) : idx === 1 ? (
@@ -375,7 +375,7 @@ export default function ProjectDetailPage() {
                           key={itemIdx}
                           className="flex items-start gap-2 group/item"
                         >
-                          <CheckCircle2 className="w-3 h-3 text-cyan-400 flex-shrink-0 mt-0.5" />
+                          <CheckCircle2 className="w-3 h-3 text-cyan-400 shrink-0 mt-0.5" />
                           <div
                             className="text-gray-300 text-xs leading-relaxed flex-1"
                             dangerouslySetInnerHTML={{
@@ -407,10 +407,10 @@ export default function ProjectDetailPage() {
               className="group relative animate-fadeInUp mb-6"
               style={{ animationDelay: `${0.25 + sections.length * 0.05}s` }}
             >
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-300" />
+              <div className="absolute -inset-0.5 bg-linear-to-r from-purple-500/10 to-pink-500/10 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-300" />
               <div className="relative bg-gray-900/70 backdrop-blur-xl border border-gray-800/30 rounded-xl p-5 hover:border-gray-700/30 transition-all">
                 <div className="flex items-center gap-2 mb-4">
-                  <div className="p-1 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-lg border border-purple-500/30">
+                  <div className="p-1 bg-linear-to-br from-purple-500/20 to-pink-500/20 rounded-lg border border-purple-500/30">
                     <Play className="w-3.5 h-3.5 text-purple-400" />
                   </div>
                   <h2 className="text-base font-black text-white">
