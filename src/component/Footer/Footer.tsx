@@ -183,7 +183,7 @@ export const FooterSectionMobile = () => {
         </div>
 
         {/* Copyright and Back to Top */}
-        <div className="border-t border-gray-800 pt-4 flex items-center justify-between">
+        <div className="border-t pt-4 flex items-center justify-between">
           <p className="text-xs text-gray-600">© 2025 Shardendu Mishra</p>
           <button onClick={scrollToTop} className="flex items-center gap-1 px-3 py-2 rounded-lg bg-gray-900 border border-gray-800 text-xs text-cyan-400">
             <ArrowUp className="w-3 h-3" />
