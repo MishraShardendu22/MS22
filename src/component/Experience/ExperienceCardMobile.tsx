@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { LoadingStateMobile } from "@/component/Loading";
 import { experiencesAPI } from "@/static/api/api.request";
 import type { Experience } from "@/static/api/api.types";
-import Image from "next/image";
 
 const ExperienceCardMobile = ({ experience }: { experience: Experience }) => {
   const formatDate = (dateString?: string) => {
@@ -21,21 +20,11 @@ const ExperienceCardMobile = ({ experience }: { experience: Experience }) => {
 
   return (
     <div className="bg-gray-900/80 border border-gray-800 rounded-xl p-4">
-      <div className="flex items-start gap-3 mb-2">
-        {experience.company_logo && (
-          <Image
-            src={experience.company_logo}
-            alt={experience.company_name}
-            className="w-10 h-10 rounded-lg object-cover bg-gray-800"
-            loading="lazy"
-          />
-        )}
-        <div className="flex-1 min-w-0">
-          <h3 className="text-base font-bold text-white line-clamp-1">
-            {latestPosition?.position || "Position"}
-          </h3>
-          <p className="text-sm text-blue-400">{experience.company_name}</p>
-        </div>
+      <div className="mb-2">
+        <h3 className="text-base font-bold text-white line-clamp-1">
+          {latestPosition?.position || "Position"}
+        </h3>
+        <p className="text-sm text-blue-400">{experience.company_name}</p>
       </div>
       <p className="text-xs text-gray-500 mb-2">{startDate} - {endDate}</p>
       <p className="text-gray-400 text-sm leading-relaxed mb-3 line-clamp-2">
@@ -108,8 +97,11 @@ export const ExperiencesDisplayMobile = () => {
         My professional journey and roles
       </p>
       <div className="space-y-4">
-        {experiences.map((experience) => (
-          <ExperienceCardMobile key={experience._id} experience={experience} />
+        {experiences.map((experience, index) => (
+          <ExperienceCardMobile 
+            key={experience._id || `exp-${index}`} 
+            experience={experience} 
+          />
         ))}
       </div>
     </section>

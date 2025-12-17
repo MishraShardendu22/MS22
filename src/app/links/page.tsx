@@ -11,23 +11,23 @@ import {
   Palette,
   BookOpen,
   Linkedin,
+  ArrowLeft,
   Instagram,
   ExternalLink,
   MessageCircle,
-  ArrowLeft,
 } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 interface SocialLink {
-  name: string;
-  username: string;
   url: string;
+  name: string;
+  color: string;
+  username: string;
+  description: string;
   icon: React.ReactNode;
   category: "social" | "projects" | "coding";
-  color: string;
-  description: string;
 }
 
 export default function LinksPage() {
@@ -188,7 +188,8 @@ export default function LinksPage() {
 
         {/* Profile Section */}
         <div className="text-center mb-12 animate-fadeIn">
-          <div className="relative inline-block mb-6">
+          {/* Hide profile image on mobile for better performance */}
+          <div className="relative inline-block mb-6 hidden md:block">
             <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-full blur opacity-75 animate-pulse" />
             <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-gray-900 shadow-2xl">
               <Image

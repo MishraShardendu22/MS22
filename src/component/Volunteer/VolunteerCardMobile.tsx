@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import { LoadingStateMobile } from "@/component/Loading";
 import { volunteerAPI } from "@/static/api/api.request";
 import type { Volunteer } from "@/static/api/api.types";
-import Image from "next/image";
 
 const VolunteerCardMobile = ({ volunteer }: { volunteer: Volunteer }) => {
   const formatDate = (dateString?: string) => {
@@ -28,28 +27,18 @@ const VolunteerCardMobile = ({ volunteer }: { volunteer: Volunteer }) => {
 
   return (
     <div className="bg-gray-900/80 border border-gray-800 rounded-xl p-4">
-      <div className="flex items-start gap-3 mb-2">
-        {volunteer.organisation_logo && (
-          <Image
-            src={volunteer.organisation_logo}
-            alt={volunteer.organisation}
-            className="w-10 h-10 rounded-lg object-cover bg-gray-800"
-            loading="lazy"
-          />
-        )}
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2">
-            <h3 className="text-base font-bold text-white line-clamp-1 flex-1">
-              {position}
-            </h3>
-            {isCurrent && (
-              <span className="px-2 py-0.5 text-xs bg-pink-900/50 text-pink-400 rounded">
-                Active
-              </span>
-            )}
-          </div>
-          <p className="text-sm text-pink-400">{volunteer.organisation}</p>
+      <div className="mb-2">
+        <div className="flex items-center gap-2">
+          <h3 className="text-base font-bold text-white line-clamp-1 flex-1">
+            {position}
+          </h3>
+          {isCurrent && (
+            <span className="px-2 py-0.5 text-xs bg-pink-900/50 text-pink-400 rounded">
+              Active
+            </span>
+          )}
         </div>
+        <p className="text-sm text-pink-400">{volunteer.organisation}</p>
       </div>
       <p className="text-xs text-gray-500 mb-2">
         {startDate} - {endDate}

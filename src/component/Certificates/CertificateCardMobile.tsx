@@ -103,8 +103,11 @@ export const CertificatesDisplayMobile = () => {
         Professional certifications and achievements
       </p>
       <div className="space-y-4">
-        {certificates.map((certificate) => (
-          <CertificateCardMobile key={certificate._id} certificate={certificate} />
+        {certificates.map((certificate, index) => (
+          <CertificateCardMobile 
+            key={certificate._id || certificate.credential_id || `cert-${index}`} 
+            certificate={certificate} 
+          />
         ))}
       </div>
     </section>
