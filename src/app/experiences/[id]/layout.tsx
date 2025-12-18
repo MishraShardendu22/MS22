@@ -7,6 +7,24 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
+export async function generateStaticParams() {
+  try {
+    const response = await experiencesAPI.getAllExperiences(1, 500);
+    
+    if (response.status === 200 && response.data?.experiences) {
+      return response.data.experiences.map((experience) => ({
+        id: experience._id || '',
+      })).filter(e => e.id);
+    }
+  } catch (error) {
+    console.error("Error generating static params for experiences:", error);
+    // Return empty array to allow build to continue
+  }
+  
+  // Return empty array if API fails - pages will be generated on-demand
+  return [];
+}
+
 export async function generateMetadata({ params }: LayoutProps): Promise<Metadata> {
   const { id } = await params;
 

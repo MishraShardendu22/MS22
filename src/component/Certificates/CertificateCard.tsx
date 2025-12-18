@@ -85,7 +85,7 @@ export const CertificatesDisplay = () => {
     goToPrevPage,
     retry,
   } = usePaginatedFetch<Certificate>({
-    fetchFn: certificatesAPI.getAllCertificates,
+    fetchFn: certificatesAPI.getAllCertificates as any,
     itemsPerPage: CERTIFICATES_PER_PAGE,
     dataKey: "certifications",
     transform: sortByOrder,

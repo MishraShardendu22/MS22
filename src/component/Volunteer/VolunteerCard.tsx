@@ -85,7 +85,7 @@ export const VolunteerDisplay = () => {
     goToPrevPage,
     retry,
   } = usePaginatedFetch<Volunteer>({
-    fetchFn: volunteerAPI.getAllVolunteers,
+    fetchFn: volunteerAPI.getAllVolunteers as any,
     itemsPerPage: VOLUNTEERS_PER_PAGE,
     dataKey: "volunteer_experiences",
     transform: sortByOrder,

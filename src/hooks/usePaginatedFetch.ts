@@ -4,7 +4,12 @@ export interface PaginatedResponse<T> {
   status: number;
   data?: {
     total?: number;
-    [key: string]: T[] | number | undefined;
+    page?: number;
+    limit?: number;
+    total_pages?: number;
+    has_next?: boolean;
+    has_previous?: boolean;
+    [key: string]: T[] | number | boolean | undefined;
   };
   message?: string;
 }

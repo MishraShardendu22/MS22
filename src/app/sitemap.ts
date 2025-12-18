@@ -1,11 +1,12 @@
 import type { MetadataRoute } from "next";
 import { BaseURL } from "@/static/data";
+import { projectsAPI, experiencesAPI, certificatesAPI, volunteerAPI } from "@/static/api/api.request";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = BaseURL || "https://mishrashardendu22.is-a.dev";
 
   // Static routes
-  const routes = [
+  const routes: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified: new Date(),
@@ -42,7 +43,73 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.9,
     },
+    {
+      url: `${baseUrl}/contact`,
+      lastModified: new Date(),
+      changeFrequency: "yearly" as const,
+      priority: 0.6,
+    },
   ];
+
+  try {
+    // Fetch dynamic routes - up to 500 items each
+    const [projectsRes, experiencesRes, certificatesRes, volunteersRes] = await Promise.all([
+      projectsAPI.getAllProjects(1, 500).catch(() => ({ data: { projects: [] } })),
+      experiencesAPI.getAllExperiences(1, 500).catch(() => ({ data: { experiences: [] } })),
+      certificatesAPI.getAllCertificates(1, 500).catch(() => ({ data: { certifications: [] } })),
+      volunteerAPI.getAllVolunteers(1, 500).catch(() => ({ data: { volunteer_experiences: [] } })),
+    ]);
+
+    // Add project routes
+    if (projectsRes.data?.projects) {
+      projectsRes.data.projects.forEach((project) => {
+        routes.push({
+          url: `${baseUrl}/projects/${project._id}`,
+          lastModified: project.inline?.updated_at ? new Date(project.inline.updated_at) : new Date(),
+          changeFrequency: "monthly" as const,
+          priority: 0.8,
+        });
+      });
+    }
+
+    // Add experience routes
+    if (experiencesRes.data?.experiences) {
+      experiencesRes.data.experiences.forEach((experience) => {
+        routes.push({
+          url: `${baseUrl}/experiences/${experience._id}`,
+          lastModified: new Date(),
+          changeFrequency: "monthly" as const,
+          priority: 0.7,
+        });
+      });
+    }
+
+    // Add certificate routes
+    if (certificatesRes.data?.certifications) {
+      certificatesRes.data.certifications.forEach((certificate) => {
+        routes.push({
+          url: `${baseUrl}/certificates/${certificate._id}`,
+          lastModified: certificate.inline?.updated_at ? new Date(certificate.inline.updated_at) : new Date(),
+          changeFrequency: "yearly" as const,
+          priority: 0.6,
+        });
+      });
+    }
+
+    // Add volunteer routes
+    if (volunteersRes.data?.volunteer_experiences) {
+      volunteersRes.data.volunteer_experiences.forEach((volunteer) => {
+        routes.push({
+          url: `${baseUrl}/volunteer/${volunteer._id}`,
+          lastModified: volunteer.inline?.updated_at ? new Date(volunteer.inline.updated_at) : new Date(),
+          changeFrequency: "yearly" as const,
+          priority: 0.6,
+        });
+      });
+    }
+  } catch (error) {
+    console.error("Error generating dynamic sitemap entries:", error);
+  }
 
   return routes;
 }

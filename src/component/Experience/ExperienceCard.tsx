@@ -55,7 +55,7 @@ export const ExperiencesDisplay = () => {
     goToPrevPage,
     retry,
   } = usePaginatedFetch<Experience>({
-    fetchFn: experiencesAPI.getAllExperiences,
+    fetchFn: experiencesAPI.getAllExperiences as any,
     itemsPerPage: EXPERIENCES_PER_PAGE,
     dataKey: "experiences",
   });

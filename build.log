@@ -1,0 +1,26 @@
+
+> mishrashardendu22@4.0.0 build /home/mishrashardendu22/Coding_Stuff_Fedora/Dev/Portfolio/MS22
+> next build
+
+   ▲ Next.js 16.0.10 (Turbopack)
+   - Environments: .env.local
+   - Experiments (use with caution):
+     · optimizePackageImports
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 11.2s
+   Running TypeScript ...
+Failed to compile.
+
+./src/app/certificates/[id]/layout.tsx:14:51
+Type error: Property 'certificates' does not exist on type 'CertificatesResponse'. Did you mean 'certifications'?
+
+[0m [90m 12 |[39m     [36mconst[39m response [33m=[39m [36mawait[39m certificatesAPI[33m.[39mgetAllCertificates([35m1[39m[33m,[39m [35m100[39m)[33m;[39m
+ [90m 13 |[39m     
+[31m[1m>[22m[39m[90m 14 |[39m     [36mif[39m (response[33m.[39mstatus [33m===[39m [35m200[39m [33m&&[39m response[33m.[39mdata[33m?[39m[33m.[39mcertificates) {
+ [90m    |[39m                                                   [31m[1m^[22m[39m
+ [90m 15 |[39m       [36mreturn[39m response[33m.[39mdata[33m.[39mcertificates[33m.[39mmap((certificate) [33m=>[39m ({
+ [90m 16 |[39m         id[33m:[39m certificate[33m.[39m_id[33m,[39m
+ [90m 17 |[39m       }))[33m;[39m[0m
+Next.js build worker exited with code: 1 and signal: null
+ ELIFECYCLE  Command failed with exit code 1.

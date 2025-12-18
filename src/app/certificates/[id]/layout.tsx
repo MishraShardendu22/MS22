@@ -7,6 +7,22 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
+export async function generateStaticParams() {
+  try {
+    const response = await certificatesAPI.getAllCertificates(1, 500);
+    
+    if (response.status === 200 && response.data?.certifications) {
+      return response.data.certifications.map((certificate) => ({
+        id: certificate._id || '',
+      })).filter(c => c.id);
+    }
+  } catch (error) {
+    console.error("Error generating static params for certificates:", error);
+  }
+  
+  return [];
+}
+
 export async function generateMetadata({ params }: LayoutProps): Promise<Metadata> {
   const { id } = await params;
 

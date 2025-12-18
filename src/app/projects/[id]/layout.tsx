@@ -7,6 +7,24 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
+export async function generateStaticParams() {
+  try {
+    const response = await projectsAPI.getAllProjects(1, 500);
+    
+    if (response.status === 200 && response.data?.projects) {
+      return response.data.projects.map((project) => ({
+        id: project._id || project.id || '',
+      })).filter(p => p.id);
+    }
+  } catch (error) {
+    console.error("Error generating static params for projects:", error);
+    // Return empty array to allow build to continue
+  }
+  
+  // Return empty array if API fails - pages will be generated on-demand
+  return [];
+}
+
 export async function generateMetadata({ params }: LayoutProps): Promise<Metadata> {
   const { id } = await params;
 

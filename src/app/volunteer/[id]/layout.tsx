@@ -7,6 +7,22 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
+export async function generateStaticParams() {
+  try {
+    const response = await volunteerAPI.getAllVolunteers(1, 500);
+    
+    if (response.status === 200 && response.data?.volunteer_experiences) {
+      return response.data.volunteer_experiences.map((volunteer) => ({
+        id: volunteer._id || '',
+      })).filter(v => v.id);
+    }
+  } catch (error) {
+    console.error("Error generating static params for volunteers:", error);
+  }
+  
+  return [];
+}
+
 export async function generateMetadata({ params }: LayoutProps): Promise<Metadata> {
   const { id } = await params;
 

@@ -126,7 +126,7 @@ export const ProjectsDisplay = () => {
     goToPrevPage,
     retry,
   } = usePaginatedFetch<Project>({
-    fetchFn: projectsAPI.getAllProjects,
+    fetchFn: projectsAPI.getAllProjects as any,
     itemsPerPage: PROJECTS_PER_PAGE,
     dataKey: "projects",
     transform: sortByOrder,

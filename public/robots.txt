@@ -1,90 +1,14 @@
 # robots.txt for mishrashardendu22.is-a.dev
-# Allow all search engines to crawl the site
+# Optimized for maximum SEO reach and discoverability
 
+# Allow ALL crawlers - no restrictions
 User-agent: *
 Allow: /
 
-# Disallow crawling of API routes and admin endpoints
+# Only block API endpoints from crawling
 Disallow: /api/
-Disallow: /_next/static/
 
-# Allow crawling of images and assets
-Allow: /icons/
-Allow: /*.png$
-Allow: /*.jpg$
-Allow: /*.jpeg$
-Allow: /*.gif$
-Allow: /*.webp$
-Allow: /*.avif$
-Allow: /*.svg$
-
-# Allow JavaScript and CSS files for proper indexing
-Allow: /*.js$
-Allow: /*.css$
-
-# Sitemap location
+# Sitemap for search engines
 Sitemap: https://mishrashardendu22.is-a.dev/sitemap.xml
 
-# Crawl delay (optional, helps prevent overloading)
-Crawl-delay: 0
-
-# Specific directives for major search engines
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 0
-
-User-agent: Bingbot
-Allow: /
-Crawl-delay: 1
-
-User-agent: Slurp
-Allow: /
-Crawl-delay: 2
-
-User-agent: DuckDuckBot
-Allow: /
-Crawl-delay: 1
-
-User-agent: Baiduspider
-Allow: /
-Crawl-delay: 2
-
-User-agent: YandexBot
-Allow: /
-Crawl-delay: 2
-
-# Allow social media bots for better preview cards
-User-agent: facebookexternalhit
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: LinkedInBot
-Allow: /
-
-User-agent: WhatsApp
-Allow: /
-
-User-agent: TelegramBot
-Allow: /
-
-# Block aggressive crawlers and bad bots
-User-agent: AhrefsBot
-Disallow: /
-
-User-agent: SemrushBot
-Disallow: /
-
-User-agent: MJ12bot
-Disallow: /
-
-User-agent: dotbot
-Disallow: /
-
-User-agent: rogerbot
-Disallow: /
-Disallow: /
-
-User-agent: MJ12bot
-Disallow: /
+# No crawl delays - let them crawl freely for faster indexing
