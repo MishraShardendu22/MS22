@@ -56,6 +56,7 @@ A modern, high-performance portfolio website built with Next.js 16 and React 19.
 ## ✨ Features
 
 ### Portfolio Features
+
 - **Dynamic Project Showcase** - Filterable project gallery with detailed views, live demos, and source code links
 - **Experience Timeline** - Professional work experience with company logos, technologies, and achievements
 - **Skills Matrix** - Comprehensive tech stack visualization organized by categories
@@ -64,6 +65,7 @@ A modern, high-performance portfolio website built with Next.js 16 and React 19.
 - **Contact Form** - EmailJS integration for direct communication
 
 ### Technical Features
+
 - **Server-Side Rendering** - Optimized page loads with Next.js SSR
 - **Static Generation** - Pre-rendered pages for maximum performance
 - **Incremental Static Regeneration** - Auto-updating content without redeployment
@@ -76,6 +78,7 @@ A modern, high-performance portfolio website built with Next.js 16 and React 19.
 - **Analytics** - Vercel Analytics and Speed Insights integration
 
 ### Developer Experience
+
 - **TypeScript** - Full type safety across the codebase
 - **Biome** - Fast linter and formatter
 - **React 19** - Latest features including React Compiler
@@ -87,6 +90,7 @@ A modern, high-performance portfolio website built with Next.js 16 and React 19.
 ## 🛠️ Tech Stack
 
 ### Frontend
+
 | Technology | Version | Purpose |
 |-----------|---------|---------|
 | Next.js | 16.0.7 | React framework with App Router |
@@ -98,6 +102,7 @@ A modern, high-performance portfolio website built with Next.js 16 and React 19.
 | Recharts | 3.5.1 | Data visualization for stats |
 
 ### Backend & APIs
+
 | Technology | Purpose |
 |-----------|---------|
 | Go/Fiber | High-performance REST API |
@@ -106,6 +111,7 @@ A modern, high-performance portfolio website built with Next.js 16 and React 19.
 | Axios | HTTP client with timeout handling |
 
 ### DevOps & Tools
+
 | Technology | Purpose |
 |-----------|---------|
 | Vercel | Deployment and hosting |
@@ -114,6 +120,7 @@ A modern, high-performance portfolio website built with Next.js 16 and React 19.
 | Git | Version control |
 
 ### External Integrations
+
 - **GitHub API** - Repository stats, commits, profile data
 - **LeetCode API** - Coding problem statistics
 - **Vercel Analytics** - Web analytics
@@ -132,17 +139,20 @@ A modern, high-performance portfolio website built with Next.js 16 and React 19.
 ### Installation
 
 1. **Clone the repository**
+
 ```bash
 git clone https://github.com/MishraShardendu22/MS22.git
 cd MS22/MishraShardendu22
 ```
 
-2. **Install dependencies**
+1. **Install dependencies**
+
 ```bash
 pnpm install
 ```
 
-3. **Set up environment variables**
+1. **Set up environment variables**
+
 ```bash
 # Copy the example env file
 cp .env.example .env
@@ -151,12 +161,14 @@ cp .env.example .env
 nano .env  # or use your preferred editor
 ```
 
-4. **Run development server**
+1. **Run development server**
+
 ```bash
 pnpm dev
 ```
 
-5. **Open your browser**
+1. **Open your browser**
+
 ```
 Navigate to http://localhost:3000
 ```
@@ -200,7 +212,7 @@ pnpm clean
 
 ## 📁 Project Structure
 
-```
+```md
 MishraShardendu22/
 ├── src/
 │   ├── app/                    # Next.js App Router
@@ -376,7 +388,7 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 **Shardendu Mishra**
 
-- **Email**: mishrashardendu221@gmail.com
+- **Email**: <mishrashardendu221@gmail.com>
 - **Website**: [mishrashardendu22.is-a.dev](https://mishrashardendu22.is-a.dev)
 - **LinkedIn**: [linkedin.com/in/shardendu-mishra](https://linkedin.com/in/shardendu-mishra)
 - **GitHub**: [@MishraShardendu22](https://github.com/MishraShardendu22)
