@@ -1,5 +1,3 @@
-"use client";
-
 import {
   ArrowLeft,
   Award,
@@ -13,58 +11,29 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import { ErrorState } from "@/component/Error";
-import { LoadingState } from "@/component/Loading";
+import { notFound } from "next/navigation";
 import { Sidebar } from "@/component/Sidebar";
 import { certificatesAPI } from "@/static/api/api.request";
 import type { Certificate } from "@/static/api/api.types";
 import { formatDate } from "@/utils/formatDate";
 
-export default function CertificateDetailPage() {
-  const params = useParams();
-  const [certificate, setCertificate] = useState<Certificate | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+// Use dynamic rendering to avoid rate limiting during build
+export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
 
-  useEffect(() => {
-    const fetchCertificate = async () => {
-      try {
-        setLoading(true);
-        setError(null);
+export default async function CertificateDetailPage({
+  params,
+}: {
+  params: { id: string };
+}) {
+  try {
+    const response = await certificatesAPI.getCertificateById(params.id);
+    
+    if (response.status !== 200 || !response.data) {
+      notFound();
+    }
 
-        const id = params.id as string;
-        if (!id) {
-          throw new Error("Certificate ID is required");
-        }
-
-        const response = await certificatesAPI.getCertificateById(id);
-
-        if (response.status === 200 && response.data) {
-          setCertificate(response.data);
-        } else {
-          throw new Error(
-            response.message || "Failed to fetch certificate details",
-          );
-        }
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "An error occurred");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCertificate();
-  }, [params.id]);
-
-  if (loading) {
-    return <LoadingState />;
-  }
-
-  if (error || !certificate) {
-    return <ErrorState message={error || "Certificate not found"} />;
-  }
+    const certificate: Certificate = response.data;
 
   return (
     <>
@@ -77,20 +46,22 @@ export default function CertificateDetailPage() {
           <div className="absolute -bottom-8 left-20 w-96 h-96 bg-purple-500/10 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000" />
         </div>
 
-        <div className="container mx-auto px-4 py-8 relative z-10">
-          <Link href="/certificates">
-            <button className="group flex items-center gap-2 mb-8 px-6 py-3 bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 text-gray-400 rounded-xl hover:border-cyan-500/40 hover:text-cyan-400 transition-all shadow-lg">
-              <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-              <span className="font-semibold">Back to Certificates</span>
-            </button>
-          </Link>
+        <article className="container mx-auto px-4 py-8 relative z-10">
+          <nav>
+            <Link href="/certificates">
+              <button className="group flex items-center gap-2 mb-8 px-6 py-3 bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 text-gray-400 rounded-xl hover:border-cyan-500/40 hover:text-cyan-400 transition-all shadow-lg">
+                <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+                <span className="font-semibold">Back to Certificates</span>
+              </button>
+            </Link>
+          </nav>
 
           <div className="max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-3 gap-8">
               {/* Main Content */}
               <div className="lg:col-span-2 space-y-8">
                 {/* Hero Card */}
-                <div className="relative group">
+                <section className="relative group">
                   <div className="absolute -inset-0.5 bg-linear-to-r from-cyan-500 via-blue-500 to-purple-600 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500" />
                   <div className="relative p-10 bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-3xl">
                     <div className="flex items-start gap-4 mb-6">
@@ -172,11 +143,11 @@ export default function CertificateDetailPage() {
                       )}
                     </div>
                   </div>
-                </div>
+                </section>
 
                 {/* Description */}
                 {certificate.description && (
-                  <div className="relative group">
+                  <section className="relative group">
                     <div className="absolute -inset-0.5 bg-linear-to-r from-cyan-500/20 to-blue-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
                     <div className="relative p-8 bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-2xl">
                       <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
@@ -189,12 +160,12 @@ export default function CertificateDetailPage() {
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </section>
                 )}
 
                 {/* Images */}
                 {certificate.images && certificate.images.length > 0 && (
-                  <div className="relative group">
+                  <section className="relative group">
                     <div className="absolute -inset-0.5 bg-linear-to-r from-purple-500/20 to-cyan-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
                     <div className="relative p-8 bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-2xl">
                       <h2 className="text-2xl font-bold text-white mb-6">
@@ -217,12 +188,12 @@ export default function CertificateDetailPage() {
                         ))}
                       </div>
                     </div>
-                  </div>
+                  </section>
                 )}
               </div>
 
               {/* Sidebar */}
-              <div className="space-y-6">
+              <aside className="space-y-6">
                 {/* Skills */}
                 {certificate.skills && certificate.skills.length > 0 && (
                   <div className="relative group">
@@ -374,23 +345,14 @@ export default function CertificateDetailPage() {
                     )}
                   </div>
                 </div>
-              </div>
+              </aside>
             </div>
           </div>
-        </div>
-
-        <style jsx>{`
-        @keyframes blob {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          25% { transform: translate(20px, -50px) scale(1.1); }
-          50% { transform: translate(-20px, 20px) scale(0.9); }
-          75% { transform: translate(50px, 50px) scale(1.05); }
-        }
-        .animate-blob { animation: blob 7s infinite; }
-        .animation-delay-2000 { animation-delay: 2s; }
-        .animation-delay-4000 { animation-delay: 4s; }
-      `}</style>
+        </article>
       </main>
     </>
   );
+  } catch {
+    notFound();
+  }
 }

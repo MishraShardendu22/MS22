@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Send,
   Play,
@@ -18,7 +16,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+
+export const dynamic = 'force-static';
 
 interface SocialLink {
   url: string;
@@ -31,11 +30,6 @@ interface SocialLink {
 }
 
 export default function LinksPage() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const links: SocialLink[] = [
     // Main Portfolio
@@ -240,9 +234,6 @@ export default function LinksPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group block"
-                      style={{
-                        animation: mounted ? `slideUp 0.5s ease-out ${index * 0.1}s both` : "none",
-                      }}
                     >
                       <div className="relative">
                         <div className={`absolute -inset-0.5 bg-linear-to-r ${link.color} rounded-xl blur opacity-0 group-hover:opacity-75 transition duration-300`} />
@@ -276,39 +267,13 @@ export default function LinksPage() {
         </section>
 
         {/* Footer */}
-        <footer className="mt-12 text-center text-sm text-gray-500 animate-fadeIn">
+        <footer className="mt-12 text-center text-sm text-gray-500">
           <p className="mb-2">© 2025 Shardendu Mishra. All rights reserved.</p>
           <p className="text-xs text-gray-600">
             Built with Next.js & Tailwind CSS
           </p>
         </footer>
       </main>
-
-      <style jsx>{`
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        @keyframes slideUp {
-          from { 
-            opacity: 0; 
-            transform: translateY(20px);
-          }
-          to { 
-            opacity: 1; 
-            transform: translateY(0);
-          }
-        }
-        .animate-fadeIn {
-          animation: fadeIn 0.6s ease-out;
-        }
-        .delay-500 {
-          animation-delay: 500ms;
-        }
-        .delay-1000 {
-          animation-delay: 1000ms;
-        }
-      `}</style>
     </div>
   );
 }

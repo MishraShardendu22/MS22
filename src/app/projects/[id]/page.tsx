@@ -1,5 +1,3 @@
-"use client";
-
 import {
   ArrowLeft,
   CheckCircle2,
@@ -13,106 +11,82 @@ import {
   Zap,
 } from "lucide-react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { notFound } from "next/navigation";
 import { ErrorState } from "@/component/Error";
-import { LoadingState } from "@/component/Loading";
 import { Sidebar } from "@/component/Sidebar";
 import { projectsAPI } from "@/static/api/api.request";
 import type { Project } from "@/static/api/api.types";
 
-export default function ProjectDetailPage() {
-  const params = useParams();
-  const [project, setProject] = useState<Project | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+// Use dynamic rendering to avoid rate limiting during build
+export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
 
-  useEffect(() => {
-    if (params.id) {
-      fetchProject(params.id as string);
-    }
-  }, [params.id]);
+interface PageProps {
+  params: { id: string };
+}
 
-  const fetchProject = async (id: string) => {
-    try {
-      setLoading(true);
-      setError(null);
-      const response = await projectsAPI.getProjectById(id);
+function parseDescription(description: string) {
+  const lines = description.split("\n");
+  const sections: { title: string; content: string[] }[] = [];
+  let currentSection: { title: string; content: string[] } | null = null;
 
-      if (response.status === 200 && response.data) {
-        setProject(response.data);
+  lines.forEach((line) => {
+    const trimmed = line.trim();
+    if (trimmed.startsWith("###")) {
+      if (currentSection) sections.push(currentSection);
+      currentSection = { title: trimmed.replace(/^###\s*/, ""), content: [] };
+    } else if (trimmed.startsWith("**") && trimmed.endsWith("**")) {
+      if (currentSection) sections.push(currentSection);
+      currentSection = { title: trimmed.replace(/\*\*/g, ""), content: [] };
+    } else if (currentSection && trimmed) {
+      currentSection.content.push(trimmed);
+    } else if (!currentSection && trimmed) {
+      if (!sections.find((s) => s.title === "Overview")) {
+        sections.push({ title: "Overview", content: [trimmed] });
       } else {
-        throw new Error(response.message || "Failed to fetch project");
+        sections[0].content.push(trimmed);
       }
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred");
-    } finally {
-      setLoading(false);
     }
-  };
+  });
 
-  const parseDescription = (description: string) => {
-    const lines = description.split("\n");
-    const sections: { title: string; content: string[] }[] = [];
-    let currentSection: { title: string; content: string[] } | null = null;
+  if (currentSection) sections.push(currentSection);
+  return sections;
+}
 
-    lines.forEach((line) => {
-      const trimmed = line.trim();
-      if (trimmed.startsWith("###")) {
-        if (currentSection) sections.push(currentSection);
-        currentSection = { title: trimmed.replace(/^###\s*/, ""), content: [] };
-      } else if (trimmed.startsWith("**") && trimmed.endsWith("**")) {
-        if (currentSection) sections.push(currentSection);
-        currentSection = { title: trimmed.replace(/\*\*/g, ""), content: [] };
-      } else if (currentSection && trimmed) {
-        currentSection.content.push(trimmed);
-      } else if (!currentSection && trimmed) {
-        if (!sections.find((s) => s.title === "Overview")) {
-          sections.push({ title: "Overview", content: [trimmed] });
-        } else {
-          sections[0].content.push(trimmed);
-        }
-      }
-    });
+function formatListItem(text: string) {
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  let formatted = text
+    .replace(/^\*\*([^*]+)\*\*:?\s*/, "<strong>$1:</strong> ")
+    .replace(/^\s*-\s*/, "")
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
 
-    if (currentSection) sections.push(currentSection);
-    return sections;
-  };
+  formatted = formatted.replace(
+    urlRegex,
+    '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:text-cyan-300 underline">$1</a>',
+  );
 
-  const formatListItem = (text: string) => {
-    const urlRegex = /(https?:\/\/[^\s]+)/g;
-    let formatted = text
-      .replace(/^\*\*([^*]+)\*\*:?\s*/, "<strong>$1:</strong> ")
-      .replace(/^\s*-\s*/, "")
-      .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+  return formatted;
+}
 
-    formatted = formatted.replace(
-      urlRegex,
-      '<Link href="$1" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:text-cyan-300 underline">$1</Link>',
-    );
+export default async function ProjectDetailPage({ params }: PageProps) {
+  const { id } = await params;
+  let project: Project | null = null;
+  let error: string | null = null;
 
-    return formatted;
-  };
+  try {
+    const response = await projectsAPI.getProjectById(id);
 
-  if (loading) {
-    return <LoadingState />;
+    if (response.status === 200 && response.data) {
+      project = response.data;
+    } else {
+      error = response.message || "Failed to fetch project";
+    }
+  } catch (err) {
+    error = err instanceof Error ? err.message : "An error occurred";
   }
 
   if (error || !project) {
-    return (
-      <div className="min-h-screen bg-linear-to-b from-gray-950 via-gray-900 to-gray-950 flex items-center justify-center p-4">
-        <div className="text-center space-y-3">
-          <ErrorState message={error || "Project not found"} />
-          <Link
-            href="/projects"
-            className="inline-flex items-center gap-1.5 px-4 py-2 bg-cyan-500/10 text-cyan-400 text-sm border border-cyan-500/30 rounded-lg hover:bg-cyan-500/20 transition-all"
-          >
-            <ArrowLeft className="w-3.5 h-3.5" />
-            Back
-          </Link>
-        </div>
-      </div>
-    );
+    notFound();
   }
 
   const sections = parseDescription(project.description);
@@ -142,7 +116,7 @@ export default function ProjectDetailPage() {
 
         <div className="px-6 py-8">
           {/* Hero Section */}
-          <div className="relative mb-8 animate-fadeInUp">
+          <article className="relative mb-8 animate-fadeInUp">
             <div className="absolute -inset-1 bg-linear-to-r from-cyan-500/10 via-blue-500/10 to-purple-500/10 rounded-xl blur-lg opacity-50" />
 
             <div className="relative bg-gray-900/70 backdrop-blur-xl border border-gray-800/30 rounded-xl overflow-hidden">
@@ -192,13 +166,13 @@ export default function ProjectDetailPage() {
                 </div>
               </div>
             </div>
-          </div>
+          </article>
 
           {/* 3 Column Row */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             {/* Overview */}
             {sections[0] && (
-              <div
+              <section
                 className="group relative animate-fadeInUp"
                 style={{ animationDelay: "0.1s" }}
               >
@@ -247,11 +221,11 @@ export default function ProjectDetailPage() {
                     })}
                   </div>
                 </div>
-              </div>
+              </section>
             )}
 
             {/* Tech Stack */}
-            <div
+            <section
               className="group relative animate-fadeInUp"
               style={{ animationDelay: "0.15s" }}
             >
@@ -277,10 +251,10 @@ export default function ProjectDetailPage() {
                   ))}
                 </div>
               </div>
-            </div>
+            </section>
 
             {/* Links */}
-            <div
+            <section
               className="group relative animate-fadeInUp"
               style={{ animationDelay: "0.2s" }}
             >
@@ -295,7 +269,7 @@ export default function ProjectDetailPage() {
                   </h3>
                 </div>
 
-                <div className="space-y-2">
+                <nav className="space-y-2">
                   {project.project_live_link && (
                     <Link
                       href={project.project_live_link}
@@ -335,14 +309,14 @@ export default function ProjectDetailPage() {
                       </span>
                     </Link>
                   )}
-                </div>
+                </nav>
               </div>
-            </div>
+            </section>
           </div>
 
           {/* Remaining Sections */}
           {sections.slice(1).map((section, idx) => (
-            <div
+            <section
               key={idx}
               className="group relative animate-fadeInUp mb-6"
               style={{ animationDelay: `${0.25 + idx * 0.05}s` }}
@@ -398,12 +372,12 @@ export default function ProjectDetailPage() {
                   })}
                 </div>
               </div>
-            </div>
+            </section>
           ))}
 
           {/* Video - Professional Size */}
           {project.project_video && (
-            <div
+            <section
               className="group relative animate-fadeInUp mb-6"
               style={{ animationDelay: `${0.25 + sections.length * 0.05}s` }}
             >
@@ -430,6 +404,7 @@ export default function ProjectDetailPage() {
                         className="w-full h-full"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
+                        title={`${project.project_name} Demo`}
                       />
                     ) : (
                       <video
@@ -441,11 +416,11 @@ export default function ProjectDetailPage() {
                   </div>
                 </div>
               </div>
-            </div>
+            </section>
           )}
 
           {/* Bottom Nav */}
-          <div className="pt-6 border-t border-gray-800/30">
+          <nav className="pt-6 border-t border-gray-800/30">
             <Link
               href="/projects"
               className="inline-flex items-center gap-2 px-4 py-2 bg-gray-900/60 text-gray-300 text-sm border border-gray-800/30 rounded-lg hover:border-cyan-500/30 hover:text-cyan-400 transition-all group font-bold"
@@ -453,23 +428,8 @@ export default function ProjectDetailPage() {
               <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform" />
               View All Projects
             </Link>
-          </div>
+          </nav>
         </div>
-
-        <style jsx>{`
-        @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes blob {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          50% { transform: translate(20px, -20px) scale(1.1); }
-        }
-        .animate-fadeInUp { animation: fadeInUp 0.4s ease-out both; }
-        .animation-delay-2000 { animation-delay: 2s; }
-        .animate-blob { animation: blob 8s infinite; }
-        strong { @apply text-cyan-400 font-bold; }
-      `}</style>
       </main>
     </>
   );

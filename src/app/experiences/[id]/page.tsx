@@ -1,5 +1,3 @@
-"use client";
-
 import {
   ArrowLeft,
   Award,
@@ -11,58 +9,29 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { notFound } from "next/navigation";
 import { Sidebar } from "@/component/Sidebar";
-import { ErrorState } from "@/component/Error";
-import { LoadingState } from "@/component/Loading";
-import { useParams } from "next/navigation";
 import type { Experience } from "@/static/api/api.types";
 import { experiencesAPI } from "@/static/api/api.request";
 import { formatDate } from "@/utils/formatDate";
 
-export default function ExperienceDetailPage() {
-  const params = useParams();
-  const [experience, setExperience] = useState<Experience | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+// Use dynamic rendering to avoid rate limiting during build
+export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
 
-  useEffect(() => {
-    const fetchExperience = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-
-        const id = params.id as string;
-        if (!id) {
-          throw new Error("Experience ID is required");
-        }
-
-        const response = await experiencesAPI.getExperienceById(id);
-
-        if (response.status === 200 && response.data) {
-          setExperience(response.data);
-        } else {
-          throw new Error(
-            response.message || "Failed to fetch experience details",
-          );
-        }
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "An error occurred");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchExperience();
-  }, [params.id]);
-
-  if (loading) {
-    return <LoadingState />;
+export default async function ExperienceDetailPage({
+  params,
+}: {
+  params: { id: string };
+}) {
+  try {
+    const response = await experiencesAPI.getExperienceById(params.id);
+  
+  if (response.status !== 200 || !response.data) {
+    notFound();
   }
 
-  if (error || !experience) {
-    return <ErrorState message={error || "Experience not found"} />;
-  }
+  const experience: Experience = response.data;
 
   return (
     <>
@@ -75,20 +44,22 @@ export default function ExperienceDetailPage() {
           <div className="absolute -bottom-8 left-20 w-96 h-96 bg-cyan-500/10 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000" />
         </div>
 
-        <div className="container mx-auto px-4 py-8 relative z-10">
-          <Link href="/experiences">
-            <button className="group flex items-center gap-2 mb-8 px-6 py-3 bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 text-gray-400 rounded-xl hover:border-blue-500/40 hover:text-blue-400 transition-all shadow-lg">
-              <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-              <span className="font-semibold">Back to Experiences</span>
-            </button>
-          </Link>
+        <article className="container mx-auto px-4 py-8 relative z-10">
+          <nav>
+            <Link href="/experiences">
+              <button className="group flex items-center gap-2 mb-8 px-6 py-3 bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 text-gray-400 rounded-xl hover:border-blue-500/40 hover:text-blue-400 transition-all shadow-lg">
+                <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+                <span className="font-semibold">Back to Experiences</span>
+              </button>
+            </Link>
+          </nav>
 
           <div className="max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-3 gap-8">
               {/* Main Content */}
               <div className="lg:col-span-2 space-y-8">
                 {/* Hero Card */}
-                <div className="relative group">
+                <section className="relative group">
                   <div className="absolute -inset-0.5 bg-linear-to-r from-blue-500 via-purple-500 to-cyan-600 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500" />
                   <div className="relative p-10 bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-3xl">
                     <div className="flex items-start gap-4 mb-6">
@@ -135,11 +106,11 @@ export default function ExperienceDetailPage() {
                         </div>
                       )}
                   </div>
-                </div>
+                </section>
 
                 {/* Description */}
                 {experience.description && (
-                  <div className="relative group">
+                  <section className="relative group">
                     <div className="absolute -inset-0.5 bg-linear-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
                     <div className="relative p-8 bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-2xl">
                       <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
@@ -152,12 +123,12 @@ export default function ExperienceDetailPage() {
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </section>
                 )}
 
                 {/* Images */}
                 {experience.images && experience.images.length > 0 && (
-                  <div className="relative group">
+                  <section className="relative group">
                     <div className="absolute -inset-0.5 bg-linear-to-r from-purple-500/20 to-cyan-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
                     <div className="relative p-8 bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-2xl">
                       <h2 className="text-2xl font-bold text-white mb-6">
@@ -180,12 +151,12 @@ export default function ExperienceDetailPage() {
                         ))}
                       </div>
                     </div>
-                  </div>
+                  </section>
                 )}
               </div>
 
               {/* Sidebar */}
-              <div className="space-y-6">
+              <aside className="space-y-6">
                 {/* Technologies */}
                 {experience.technologies &&
                   experience.technologies.length > 0 && (
@@ -289,23 +260,14 @@ export default function ExperienceDetailPage() {
                       )}
                   </div>
                 </div>
-              </div>
+              </aside>
             </div>
           </div>
-        </div>
-
-        <style jsx>{`
-        @keyframes blob {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          25% { transform: translate(20px, -50px) scale(1.1); }
-          50% { transform: translate(-20px, 20px) scale(0.9); }
-          75% { transform: translate(50px, 50px) scale(1.05); }
-        }
-        .animate-blob { animation: blob 7s infinite; }
-        .animation-delay-2000 { animation-delay: 2s; }
-        .animation-delay-4000 { animation-delay: 4s; }
-      `}</style>
+        </article>
       </main>
     </>
   );
+  } catch {
+    notFound();
+  }
 }

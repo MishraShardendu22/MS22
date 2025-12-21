@@ -1,5 +1,3 @@
-"use client";
-
 import {
   ArrowLeft,
   Briefcase,
@@ -12,57 +10,28 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import { ErrorState } from "@/component/Error";
-import { LoadingState } from "@/component/Loading";
+import { notFound } from "next/navigation";
 import { Sidebar } from "@/component/Sidebar";
 import { volunteerAPI } from "@/static/api/api.request";
 import type { Volunteer } from "@/static/api/api.types";
 
-export default function VolunteerDetailPage() {
-  const params = useParams();
-  const [volunteer, setVolunteer] = useState<Volunteer | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+// Use dynamic rendering to avoid rate limiting during build
+export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
 
-  useEffect(() => {
-    const fetchVolunteer = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-
-        const id = params.id as string;
-        if (!id) {
-          throw new Error("Volunteer ID is required");
-        }
-
-        const response = await volunteerAPI.getVolunteerById(id);
-
-        if (response.status === 200 && response.data) {
-          setVolunteer(response.data);
-        } else {
-          throw new Error(
-            response.message || "Failed to fetch volunteer details",
-          );
-        }
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "An error occurred");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchVolunteer();
-  }, [params.id]);
-
-  if (loading) {
-    return <LoadingState />;
+export default async function VolunteerDetailPage({
+  params,
+}: {
+  params: { id: string };
+}) {
+  try {
+    const response = await volunteerAPI.getVolunteerById(params.id);
+  
+  if (response.status !== 200 || !response.data) {
+    notFound();
   }
 
-  if (error || !volunteer) {
-    return <ErrorState message={error || "Volunteer experience not found"} />;
-  }
+  const volunteer: Volunteer = response.data;
 
   return (
     <>
@@ -75,26 +44,28 @@ export default function VolunteerDetailPage() {
           <div className="absolute -bottom-8 left-20 w-96 h-96 bg-cyan-500/10 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000" />
         </div>
 
-        <div className="container mx-auto px-4 py-8 relative z-10">
-          <Link href="/volunteer">
-            <button className="group flex items-center gap-2 mb-8 px-6 py-3 bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 text-gray-400 rounded-xl hover:border-pink-500/40 hover:text-pink-400 transition-all shadow-lg">
-              <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-              <span className="font-semibold">
-                Back to Volunteer Experiences
-              </span>
-            </button>
-          </Link>
+        <article className="container mx-auto px-4 py-8 relative z-10">
+          <nav>
+            <Link href="/volunteer">
+              <button className="group flex items-center gap-2 mb-8 px-6 py-3 bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 text-gray-400 rounded-xl hover:border-pink-500/40 hover:text-pink-400 transition-all shadow-lg">
+                <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+                <span className="font-semibold">
+                  Back to Volunteer Experiences
+                </span>
+              </button>
+            </Link>
+          </nav>
 
           <div className="max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-3 gap-8">
               {/* Main Content */}
               <div className="lg:col-span-2 space-y-8">
                 {/* Hero Card */}
-                <div className="relative group">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-600 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500" />
+                <section className="relative group">
+                  <div className="absolute -inset-0.5 bg-linear-to-r from-pink-500 via-purple-500 to-cyan-600 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500" />
                   <div className="relative p-10 bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-3xl">
                     <div className="flex items-start gap-4 mb-6">
-                      <div className="p-4 bg-gradient-to-br from-pink-500/20 to-purple-500/20 rounded-2xl border border-pink-500/30">
+                      <div className="p-4 bg-linear-to-br from-pink-500/20 to-purple-500/20 rounded-2xl border border-pink-500/30">
                         <Heart className="w-8 h-8 text-pink-400" />
                       </div>
                       <div className="flex-1">
@@ -179,12 +150,12 @@ export default function VolunteerDetailPage() {
                         </div>
                       )}
                   </div>
-                </div>
+                </section>
 
                 {/* Description */}
                 {volunteer.description && (
-                  <div className="relative group">
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-500/20 to-purple-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
+                  <section className="relative group">
+                    <div className="absolute -inset-0.5 bg-linear-to-r from-pink-500/20 to-purple-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
                     <div className="relative p-8 bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-2xl">
                       <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
                         <Users className="w-6 h-6 text-pink-400" />
@@ -196,13 +167,13 @@ export default function VolunteerDetailPage() {
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </section>
                 )}
 
                 {/* Images */}
                 {volunteer.images && volunteer.images.length > 0 && (
-                  <div className="relative group">
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
+                  <section className="relative group">
+                    <div className="absolute -inset-0.5 bg-linear-to-r from-purple-500/20 to-cyan-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
                     <div className="relative p-8 bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-2xl">
                       <h2 className="text-2xl font-bold text-white mb-6">
                         Gallery
@@ -211,7 +182,7 @@ export default function VolunteerDetailPage() {
                         {volunteer.images.map((image, idx) => (
                           <div
                             key={idx}
-                            className="relative aspect-[16/11] rounded-xl overflow-hidden border border-gray-800/50 hover:border-pink-500/40 transition-all group/img"
+                            className="relative aspect-16/11 rounded-xl overflow-hidden border border-gray-800/50 hover:border-pink-500/40 transition-all group/img"
                           >
                             <Image
                               src={image}
@@ -224,17 +195,17 @@ export default function VolunteerDetailPage() {
                         ))}
                       </div>
                     </div>
-                  </div>
+                  </section>
                 )}
               </div>
 
               {/* Sidebar */}
-              <div className="space-y-6">
+              <aside className="space-y-6">
                 {/* Technologies */}
                 {volunteer.technologies &&
                   volunteer.technologies.length > 0 && (
                     <div className="relative group">
-                      <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-500/20 to-purple-500/20 rounded-2xl blur opacity-50" />
+                      <div className="absolute -inset-0.5 bg-linear-to-r from-pink-500/20 to-purple-500/20 rounded-2xl blur opacity-50" />
                       <div className="relative p-6 bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-2xl">
                         <h3 className="text-lg font-bold text-white mb-5 flex items-center gap-2">
                           <Code2 className="w-5 h-5 text-pink-400" />
@@ -244,7 +215,7 @@ export default function VolunteerDetailPage() {
                           {volunteer.technologies.map((tech, idx) => (
                             <span
                               key={idx}
-                              className="px-3 py-2 text-sm font-semibold bg-gradient-to-r from-pink-500/10 to-purple-500/10 text-pink-400 rounded-lg border border-pink-500/30 hover:from-pink-500/20 hover:to-purple-500/20 transition-all"
+                              className="px-3 py-2 text-sm font-semibold bg-linear-to-r from-pink-500/10 to-purple-500/10 text-pink-400 rounded-lg border border-pink-500/30 hover:from-pink-500/20 hover:to-purple-500/20 transition-all"
                             >
                               {tech}
                             </span>
@@ -257,7 +228,7 @@ export default function VolunteerDetailPage() {
                 {/* Certificate Link */}
                 {volunteer.certificate_link && (
                   <div className="relative group">
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500/20 to-pink-500/20 rounded-2xl blur opacity-50" />
+                    <div className="absolute -inset-0.5 bg-linear-to-r from-cyan-500/20 to-pink-500/20 rounded-2xl blur opacity-50" />
                     <div className="relative p-6 bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-2xl">
                       <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
                         <ExternalLink className="w-5 h-5 text-cyan-400" />
@@ -267,7 +238,7 @@ export default function VolunteerDetailPage() {
                         href={volunteer.certificate_link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-gradient-to-r from-cyan-500/20 to-pink-500/20 text-cyan-400 border border-cyan-500/40 rounded-xl hover:from-cyan-500/30 hover:to-pink-500/30 transition-all font-semibold shadow-lg shadow-cyan-500/20"
+                        className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-linear-to-r from-cyan-500/20 to-pink-500/20 text-cyan-400 border border-cyan-500/40 rounded-xl hover:from-cyan-500/30 hover:to-pink-500/30 transition-all font-semibold shadow-lg shadow-cyan-500/20"
                       >
                         <ExternalLink className="w-4 h-4" />
                         View Certificate
@@ -279,7 +250,7 @@ export default function VolunteerDetailPage() {
                 {/* Projects */}
                 {volunteer.projects && volunteer.projects.length > 0 && (
                   <div className="relative group">
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-2xl blur opacity-50" />
+                    <div className="absolute -inset-0.5 bg-linear-to-r from-purple-500/20 to-cyan-500/20 rounded-2xl blur opacity-50" />
                     <div className="relative p-6 bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-2xl">
                       <h3 className="text-lg font-bold text-white mb-4">
                         Related Projects
@@ -300,7 +271,7 @@ export default function VolunteerDetailPage() {
 
                 {/* Quick Info */}
                 <div className="relative group">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-2xl blur opacity-50" />
+                  <div className="absolute -inset-0.5 bg-linear-to-r from-purple-500/20 to-cyan-500/20 rounded-2xl blur opacity-50" />
                   <div className="relative p-6 bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-2xl space-y-4">
                     <h3 className="text-lg font-bold text-white mb-4">
                       Quick Info
@@ -352,23 +323,14 @@ export default function VolunteerDetailPage() {
                     )}
                   </div>
                 </div>
-              </div>
+              </aside>
             </div>
           </div>
-        </div>
-
-        <style jsx>{`
-        @keyframes blob {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          25% { transform: translate(20px, -50px) scale(1.1); }
-          50% { transform: translate(-20px, 20px) scale(0.9); }
-          75% { transform: translate(50px, 50px) scale(1.05); }
-        }
-        .animate-blob { animation: blob 7s infinite; }
-        .animation-delay-2000 { animation-delay: 2s; }
-        .animation-delay-4000 { animation-delay: 4s; }
-      `}</style>
+        </article>
       </main>
     </>
   );
+  } catch {
+    notFound();
+  }
 }
