@@ -1,17 +1,11 @@
 "use client";
 
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useEffect, useState } from "react";
-import { LoadingState } from "@/component/Loading/LoadingState";
-import { skillsAPI } from "@/static/api/api.request";
 import { ErrorState } from "../Error";
+import { useEffect, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { skillsAPI } from "@/static/api/api.request";
+import { LoadingState } from "@/component/Loading/LoadingState";
 
-/**
- * Mobile-optimized Skills Display
- * - No background blur effects
- * - No hover animations
- * - Simplified DOM structure
- */
 export function SkillsDisplayMobile() {
   const [skills, setSkills] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);

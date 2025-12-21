@@ -1,9 +1,9 @@
 import { myIntro, SocialLinks } from "@/static/info/header";
 
 const buttonLabels: Record<string, string> = {
+  resume: "View Resume",
   GitHub: "View My Projects",
   LinkedIn: "Connect With Me",
-  resume: "View Resume",
 };
 
 export const TextContent = () => {

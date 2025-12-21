@@ -363,3 +363,53 @@ div {
     opacity: 1 !important;
   }
 }
+
+@layer components {
+  .glow-effect {
+    @apply absolute -inset-4 md:-inset-8 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full blur-3xl opacity-0 transition-all duration-400;
+  }
+
+  .image-container:hover .glow-effect {
+    @apply opacity-30 scale-105;
+  }
+
+  .pixel-grid {
+    @apply absolute inset-0 rounded-2xl z-10 pointer-events-none;
+    background: 
+      repeating-linear-gradient(0deg, transparent, transparent 12.5%, rgba(6, 182, 212, 0.7) 12.5%, rgba(6, 182, 212, 0.7) 25%),
+      repeating-linear-gradient(90deg, transparent, transparent 16.66%, rgba(59, 130, 246, 0.7) 16.66%, rgba(59, 130, 246, 0.7) 33.33%);
+    background-size: 100% 100%;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  @media (min-width: 768px) {
+    .image-container:hover .pixel-grid {
+      animation: pixelPulse 0.5s ease-out;
+    }
+  }
+
+  @keyframes pixelPulse {
+    0%, 100% { opacity: 0; transform: scale(0); }
+    50% { opacity: 0.7; transform: scale(1.1); }
+  }
+}
+
+/* Scrollbar styling */
+.sidebar-scroll::-webkit-scrollbar {
+  width: 2px;
+}
+
+.sidebar-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-scroll::-webkit-scrollbar-thumb {
+  background: rgba(75, 85, 99, 0.5);
+  border-radius: 2px;
+}
+
+.sidebar-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(107, 114, 128, 0.7);
+}

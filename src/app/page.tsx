@@ -1,35 +1,33 @@
 import {
-  CertificatesDisplay,
-  CertificatesDisplayMobile,
-} from "@/component/Certificates";
-import {
-  ExperiencesDisplay,
-  ExperiencesDisplayMobile,
-} from "@/component/Experience";
-import { FooterSection, FooterSectionMobile } from "@/component/Footer/Footer";
-import { HeroSection } from "@/component/Hero/HeroSectionWrapper";
-import { ProjectsDisplay, ProjectsDisplayMobile } from "@/component/Projects";
-import { SidebarWrapper } from "@/component/Sidebar/SidebarWrapper";
-import SkillsDisplay, {
-  SkillsDisplayMobile,
-} from "@/component/Skill/SkillsDisplay";
-import { StructuredData } from "@/component/StructuredData";
-import dynamic from "next/dynamic";
-
-import { Time } from "@/component/Timeline/Time";
-import { StatsWrapper } from "@/component/Stats";
+  generateFAQSchema,
+  generatePersonSchema,
+  generateWebSiteSchema,
+  generateProfilePageSchema,
+  generateProfessionalServiceSchema,
+} from "@/lib/structuredData";
 import {
   VolunteerDisplay,
   VolunteerDisplayMobile,
 } from "@/component/Volunteer";
-import { getIsMobile } from "@/lib/isMobile";
 import {
-  generateFAQSchema,
-  generatePersonSchema,
-  generateProfessionalServiceSchema,
-  generateProfilePageSchema,
-  generateWebSiteSchema,
-} from "@/lib/structuredData";
+  ExperiencesDisplay,
+  ExperiencesDisplayMobile,
+} from "@/component/Experience";
+import {
+  CertificatesDisplay,
+  CertificatesDisplayMobile,
+} from "@/component/Certificates";
+import SkillsDisplay, {
+  SkillsDisplayMobile,
+} from "@/component/Skill/SkillsDisplay";
+import { getIsMobile } from "@/lib/isMobile";
+import { Time } from "@/component/Timeline/Time";
+import { StatsWrapper } from "@/component/Stats";
+import { StructuredData } from "@/component/StructuredData";
+import { HeroSection } from "@/component/Hero/HeroSectionWrapper";
+import { SidebarWrapper } from "@/component/Sidebar/SidebarWrapper";
+import { ProjectsDisplay, ProjectsDisplayMobile } from "@/component/Projects";
+import { FooterSection, FooterSectionMobile } from "@/component/Footer/Footer";
 
 const page = async () => {
   const isMobile = await getIsMobile();

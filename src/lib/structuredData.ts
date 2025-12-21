@@ -146,7 +146,6 @@ export function generateProfessionalServiceSchema() {
   };
 }
 
-// Profile Page Schema for better SEO
 export function generateProfilePageSchema() {
   return {
     "@context": "https://schema.org",

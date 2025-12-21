@@ -124,8 +124,16 @@ export const CommitsActivityCard = ({
         1,
       );
 
+      // Format date label
+      const date = new Date(week.week);
+      const weekLabel = date.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+      });
+
       return {
         ...week,
+        weekLabel,
         movingAvg: Math.round(movingAvg),
         trend: Number.parseFloat(trend),
       };

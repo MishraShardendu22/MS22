@@ -1,8 +1,8 @@
 "use client";
 
+import { NameLoader } from "./Loader";
 import { animate, svg } from "animejs";
 import { useEffect, useRef } from "react";
-import { NameLoader } from "./Loader";
 
 interface LoadingStateProps {
   message?: string;

@@ -1,10 +1,10 @@
 "use client";
 
-import { animate, svg } from "animejs";
-import { ArrowLeft, Home } from "lucide-react";
-import { Teko } from "next/font/google";
 import Link from "next/link";
+import { animate, svg } from "animejs";
+import { Teko } from "next/font/google";
 import { useEffect, useRef } from "react";
+import { ArrowLeft, Home } from "lucide-react";
 
 const teko = Teko({
   subsets: ["latin"],
@@ -20,7 +20,6 @@ export default function NotFound() {
   useEffect(() => {
     if (!dotRef.current || !pathRef.current) return;
 
-    // Animate the dot along the motion path
     animate(dotRef.current, {
       ease: "linear",
       duration: 10000,
