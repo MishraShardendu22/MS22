@@ -57,7 +57,7 @@ export const LeetCodeStatsCard = ({ leetcode }: LeetCodeStatsCardProps) => (
           <div>
             <p className="text-xs text-gray-400">Global Ranking</p>
             <p className="text-lg font-bold text-white">
-              #{leetcode.profile?.ranking?.toLocaleString() || 'N/A'}
+              #{leetcode.profile?.ranking?.toLocaleString() || "N/A"}
             </p>
           </div>
         </div>

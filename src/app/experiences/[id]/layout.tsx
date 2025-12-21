@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import { StructuredData } from "@/component/StructuredData";
+import {
+  generateBreadcrumbSchema,
+  generateOrganizationSchema,
+} from "@/lib/structuredData";
 import { experiencesAPI } from "@/static/api/api.request";
 import { BaseURL } from "@/static/data";
-import { generateOrganizationSchema, generateBreadcrumbSchema } from "@/lib/structuredData";
-import { StructuredData } from "@/component/StructuredData";
 
 interface LayoutProps {
   params: Promise<{ id: string }>;
@@ -12,22 +15,26 @@ interface LayoutProps {
 export async function generateStaticParams() {
   try {
     const response = await experiencesAPI.getAllExperiences(1, 500);
-    
+
     if (response.status === 200 && response.data?.experiences) {
-      return response.data.experiences.map((experience) => ({
-        id: experience._id || '',
-      })).filter(e => e.id);
+      return response.data.experiences
+        .map((experience) => ({
+          id: experience._id || "",
+        }))
+        .filter((e) => e.id);
     }
   } catch (error) {
     console.error("Error generating static params for experiences:", error);
     // Return empty array to allow build to continue
   }
-  
+
   // Return empty array if API fails - pages will be generated on-demand
   return [];
 }
 
-export async function generateMetadata({ params }: LayoutProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: LayoutProps): Promise<Metadata> {
   const { id } = await params;
 
   try {
@@ -35,8 +42,13 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
 
     if (response.status === 200 && response.data) {
       const experience = response.data;
-      const position = experience.experience_time_line?.[0]?.position || "Software Developer";
-      const description = `${position} at ${experience.company_name}. ${experience.description?.slice(0, 100) || "Professional work experience by Shardendu Mishra."}`.slice(0, 160);
+      const position =
+        experience.experience_time_line?.[0]?.position || "Software Developer";
+      const description =
+        `${position} at ${experience.company_name}. ${experience.description?.slice(0, 100) || "Professional work experience by Shardendu Mishra."}`.slice(
+          0,
+          160,
+        );
 
       return {
         title: `${experience.company_name} - ${position} | Experience`,
@@ -55,12 +67,14 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
           siteName: "Shardendu Mishra Portfolio",
           type: "article",
           locale: "en_US",
-          images: [{
-            url: `${BaseURL}/opengraph-image`,
-            width: 1200,
-            height: 630,
-            alt: `${experience.company_name} - Experience by Shardendu Mishra`,
-          }],
+          images: [
+            {
+              url: `${BaseURL}/opengraph-image`,
+              width: 1200,
+              height: 630,
+              alt: `${experience.company_name} - Experience by Shardendu Mishra`,
+            },
+          ],
         },
         twitter: {
           card: "summary_large_image",
@@ -91,23 +105,27 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
 
   return {
     title: "Experience Details | Shardendu Mishra",
-    description: "View professional work experience details by Shardendu Mishra.",
+    description:
+      "View professional work experience details by Shardendu Mishra.",
   };
 }
 
-export default async function ExperienceDetailLayout({ params, children }: LayoutProps) {
+export default async function ExperienceDetailLayout({
+  params,
+  children,
+}: LayoutProps) {
   const { id } = await params;
-  
+
   let organizationSchema = null;
   let breadcrumbSchema = null;
-  
+
   try {
     const response = await experiencesAPI.getExperienceById(id);
-    
+
     if (response.status === 200 && response.data) {
       const experience = response.data;
       const timeline = experience.experience_time_line?.[0];
-      
+
       if (timeline) {
         organizationSchema = generateOrganizationSchema({
           name: experience.company_name,
@@ -117,7 +135,7 @@ export default async function ExperienceDetailLayout({ params, children }: Layou
           description: experience.description,
         });
       }
-      
+
       breadcrumbSchema = generateBreadcrumbSchema([
         { name: "Home", url: BaseURL },
         { name: "Experiences", url: `${BaseURL}/experiences` },
@@ -127,7 +145,7 @@ export default async function ExperienceDetailLayout({ params, children }: Layou
   } catch (error) {
     console.error("Error generating structured data:", error);
   }
-  
+
   return (
     <>
       {organizationSchema && breadcrumbSchema && (

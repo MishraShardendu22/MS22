@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import { StructuredData } from "@/component/StructuredData";
+import {
+  generateBreadcrumbSchema,
+  generateProjectSchema,
+} from "@/lib/structuredData";
 import { projectsAPI } from "@/static/api/api.request";
 import { BaseURL } from "@/static/data";
-import { generateProjectSchema, generateBreadcrumbSchema } from "@/lib/structuredData";
-import { StructuredData } from "@/component/StructuredData";
 
 interface LayoutProps {
   params: Promise<{ id: string }>;
@@ -12,22 +15,26 @@ interface LayoutProps {
 export async function generateStaticParams() {
   try {
     const response = await projectsAPI.getAllProjects(1, 500);
-    
+
     if (response.status === 200 && response.data?.projects) {
-      return response.data.projects.map((project) => ({
-        id: project._id || project.id || '',
-      })).filter(p => p.id);
+      return response.data.projects
+        .map((project) => ({
+          id: project._id || project.id || "",
+        }))
+        .filter((p) => p.id);
     }
   } catch (error) {
     console.error("Error generating static params for projects:", error);
     // Return empty array to allow build to continue
   }
-  
+
   // Return empty array if API fails - pages will be generated on-demand
   return [];
 }
 
-export async function generateMetadata({ params }: LayoutProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: LayoutProps): Promise<Metadata> {
   const { id } = await params;
 
   try {
@@ -35,7 +42,11 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
 
     if (response.status === 200 && response.data) {
       const project = response.data;
-      const description = `${project.project_name} - ${project.small_description?.slice(0, 120) || "A software project by Shardendu Mishra."}`.slice(0, 160);
+      const description =
+        `${project.project_name} - ${project.small_description?.slice(0, 120) || "A software project by Shardendu Mishra."}`.slice(
+          0,
+          160,
+        );
 
       return {
         title: `${project.project_name} | Projects`,
@@ -54,12 +65,14 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
           siteName: "Shardendu Mishra Portfolio",
           type: "article",
           locale: "en_US",
-          images: [{
-            url: `${BaseURL}/opengraph-image`,
-            width: 1200,
-            height: 630,
-            alt: `${project.project_name} - Project by Shardendu Mishra`,
-          }],
+          images: [
+            {
+              url: `${BaseURL}/opengraph-image`,
+              width: 1200,
+              height: 630,
+              alt: `${project.project_name} - Project by Shardendu Mishra`,
+            },
+          ],
         },
         twitter: {
           card: "summary_large_image",
@@ -94,18 +107,21 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
   };
 }
 
-export default async function ProjectDetailLayout({ params, children }: LayoutProps) {
+export default async function ProjectDetailLayout({
+  params,
+  children,
+}: LayoutProps) {
   const { id } = await params;
-  
+
   let projectSchema = null;
   let breadcrumbSchema = null;
-  
+
   try {
     const response = await projectsAPI.getProjectById(id);
-    
+
     if (response.status === 200 && response.data) {
       const project = response.data;
-      
+
       projectSchema = generateProjectSchema({
         name: project.project_name,
         description: project.small_description || project.description,
@@ -113,7 +129,7 @@ export default async function ProjectDetailLayout({ params, children }: LayoutPr
         dateCreated: project.inline?.created_at,
         technologies: project.skills,
       });
-      
+
       breadcrumbSchema = generateBreadcrumbSchema([
         { name: "Home", url: BaseURL },
         { name: "Projects", url: `${BaseURL}/projects` },
@@ -123,7 +139,7 @@ export default async function ProjectDetailLayout({ params, children }: LayoutPr
   } catch (error) {
     console.error("Error generating structured data:", error);
   }
-  
+
   return (
     <>
       {projectSchema && breadcrumbSchema && (

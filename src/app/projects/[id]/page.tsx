@@ -18,7 +18,7 @@ import { projectsAPI } from "@/static/api/api.request";
 import type { Project } from "@/static/api/api.types";
 
 // Use dynamic rendering to avoid rate limiting during build
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 export const revalidate = 3600;
 
 interface PageProps {

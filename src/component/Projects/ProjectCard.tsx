@@ -6,7 +6,11 @@ import { useMemo } from "react";
 import { ErrorState } from "@/component/Error";
 import { LoadingState } from "@/component/Loading";
 import { PaginationControls } from "@/component/Pagination";
-import { ContentGrid, SectionHeader, SectionWrapper } from "@/component/Section";
+import {
+  ContentGrid,
+  SectionHeader,
+  SectionWrapper,
+} from "@/component/Section";
 import { usePaginatedFetch } from "@/hooks/usePaginatedFetch";
 import { projectsAPI } from "@/static/api/api.request";
 import type { Project } from "@/static/api/api.types";
@@ -21,14 +25,16 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
     <div
       className="group relative"
       style={{
-        animation: `fadeInUp 0.5s ease-out ${index * 0.08}s both`,
+        opacity: 0,
+        animation: `fadeInUp 0.3s ease-out ${Math.min(index * 0.05, 0.3)}s forwards`,
+        contain: "layout style paint",
       }}
     >
       <style jsx>{`
         @keyframes fadeInUp {
           from {
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(15px);
           }
           to {
             opacity: 1;
@@ -37,8 +43,8 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
         }
       `}</style>
 
-      <div className="relative bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-xl md:rounded-2xl overflow-hidden transition-all duration-300 hover:border-cyan-500/40 hover:shadow-lg hover:shadow-cyan-500/10">
-        <div className="absolute inset-0 bg-linear-to-br from-cyan-500/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <div className="relative bg-linear-to-br from-gray-900/50 to-gray-950/50 border border-gray-800/50 rounded-xl md:rounded-2xl overflow-hidden transition-colors duration-200 hover:border-cyan-500/40">
+        <div className="absolute inset-0 bg-linear-to-br from-cyan-500/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
 
         <div className="relative p-4 md:p-5">
           <h3 className="text-base md:text-lg font-bold text-white mb-2 md:mb-3 line-clamp-1 group-hover:text-cyan-400 transition-colors duration-300">

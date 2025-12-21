@@ -1,10 +1,10 @@
 export { BackgroundElements } from "./BackgroundElements";
 export { BackgroundElementsMobile } from "./BackgroundElementsMobile";
 export { EducationSection } from "./EducationSection";
-export { HeroSection } from "./HeroSectionWrapper";
 export { HeroSectionDesktop } from "./HeroSection";
 export { HeroSectionMobile } from "./HeroSectionMobile";
+export { HeroSection } from "./HeroSectionWrapper";
 export { ImageContainer } from "./ImageContainer";
 export { ImageContainerMobile } from "./ImageContainerMobile";
-export { TextContent } from "./TextContent";
 export { ScrollIndicator } from "./ScrollIndicator";
+export { TextContent } from "./TextContent";

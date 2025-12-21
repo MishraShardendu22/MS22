@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NameLoader } from "@/component/Loading";
 import { fetchAllStats } from "@/lib/fetchStats";
 import type { GitHubData, LeetCodeData, Repository } from "@/types/stats";
@@ -30,7 +30,7 @@ export const StatsWrapper = () => {
       },
       {
         rootMargin: "200px", // Start loading 200px before entering viewport
-      }
+      },
     );
 
     if (sectionRef.current) {
@@ -79,7 +79,7 @@ export const StatsWrapper = () => {
 
   if (loading || !stats) {
     return (
-      <section 
+      <section
         ref={sectionRef}
         className="relative py-6 md:py-8 px-4 sm:px-6 md:px-8 bg-linear-to-b from-transparent via-gray-950/50 to-transparent overflow-hidden"
       >

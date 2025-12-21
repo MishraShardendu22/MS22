@@ -1,10 +1,4 @@
-import {
-  Globe,
-  MapPin,
-  BookOpen,
-  Calendar,
-  ExternalLink,
-} from "lucide-react";
+import { BookOpen, Calendar, ExternalLink, Globe, MapPin } from "lucide-react";
 import Link from "next/link";
 import { Language } from "@/static/info/header";
 
@@ -24,7 +18,7 @@ export const EducationSection = () => {
       {/* Education Cards */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
         {/* Higher Education with Languages */}
-        <div className="group bg-linear-to-br from-gray-900/90 to-gray-950/90 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 border border-gray-800 hover:border-cyan-500/50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-cyan-500/20">
+        <div className="group bg-linear-to-br from-gray-900/95 to-gray-950/95 rounded-xl md:rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 border border-gray-800 hover:border-cyan-500/50 transition-colors duration-200 shadow-xl">
           {/* Header */}
           <div className="flex items-start justify-between mb-4 md:mb-5 gap-2">
             <div className="flex-1 min-w-0">
@@ -95,7 +89,7 @@ export const EducationSection = () => {
         </div>
 
         {/* School Education */}
-        <div className="group bg-linear-to-br from-gray-900/90 to-gray-950/90 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 border border-gray-800 hover:border-cyan-500/50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-cyan-500/20">
+        <div className="group bg-linear-to-br from-gray-900/95 to-gray-950/95 rounded-xl md:rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 border border-gray-800 hover:border-cyan-500/50 transition-colors duration-200 shadow-xl">
           {/* Header */}
           <div className="mb-4 sm:mb-5">
             <div className="inline-block px-2 sm:px-3 py-0.5 sm:py-1 bg-cyan-500/10 text-cyan-400 text-xs font-semibold rounded-full mb-2">
@@ -121,7 +115,7 @@ export const EducationSection = () => {
           {/* Grades */}
           <div className="pt-5 border-t border-gray-800 space-y-4">
             {/* Class 12th */}
-            <div className="bg-gray-800/40 rounded-lg p-4 hover:bg-gray-800/60 transition-all">
+            <div className="bg-gray-800/40 rounded-lg p-4 hover:bg-gray-800/60 transition-colors duration-200">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-semibold text-gray-300">
                   Class 12th
@@ -137,7 +131,7 @@ export const EducationSection = () => {
             </div>
 
             {/* Class 10th */}
-            <div className="bg-gray-800/40 rounded-lg p-4 hover:bg-gray-800/60 transition-all">
+            <div className="bg-gray-800/40 rounded-lg p-4 hover:bg-gray-800/60 transition-colors duration-200">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-semibold text-gray-300">
                   Class 10th

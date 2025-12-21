@@ -25,7 +25,7 @@ export const ExperienceCard = ({
     <>
       {/* Experience Bar - Render FIRST so it's behind */}
       <div
-        className="absolute rounded-full transition-all duration-300 cursor-pointer shadow-lg"
+        className="absolute rounded-full transition-[height,transform,box-shadow] duration-200 cursor-pointer shadow-lg"
         style={{
           left: `${position.left}px`,
           width: `${position.width}px`,
@@ -34,8 +34,8 @@ export const ExperienceCard = ({
           height: isHovered ? "10px" : "8px",
           transform: isHovered ? "translateY(-1px)" : "none",
           boxShadow: isHovered
-            ? `0 0 20px ${companyColor}80, 0 4px 12px ${companyColor}40`
-            : `0 2px 8px ${companyColor}40`,
+            ? `0 0 16px ${companyColor}60, 0 4px 10px ${companyColor}30`
+            : `0 2px 6px ${companyColor}30`,
           zIndex: isHovered ? 15 : 5,
         }}
         onMouseEnter={onMouseEnter}
@@ -67,7 +67,7 @@ export const ExperienceCard = ({
 
       {/* Company Logo - Render SECOND so it's on top */}
       <div
-        className="absolute transition-all duration-300"
+        className="absolute transition-[transform] duration-200"
         style={{
           left: `${position.left + position.width / 2 - 28}px`,
           top: "4px", // Above the bar
@@ -80,13 +80,12 @@ export const ExperienceCard = ({
           className={`
             w-14 h-14 rounded-xl bg-linear-to-br from-gray-900 to-gray-950 
             flex items-center justify-center cursor-pointer border-2
-            transition-all duration-300 shadow-lg
-            ${isHovered ? "scale-125 shadow-2xl ring-4" : "hover:scale-110"}
+            transition-transform duration-200 shadow-lg
+            ${isHovered ? "scale-125" : "hover:scale-105"}
           `}
           style={{
             borderColor: companyColor,
-            boxShadow: isHovered ? `0 0 30px ${companyColor}40` : undefined,
-            ["--tw-ring-color" as string]: `${companyColor}40`,
+            boxShadow: isHovered ? `0 0 20px ${companyColor}30` : undefined,
           }}
         >
           {exp.logo ? (
@@ -110,14 +109,14 @@ export const ExperienceCard = ({
         <div
           className={`
             absolute top-16 left-1/2 -translate-x-1/2 
-            px-4 py-3 bg-linear-to-br from-gray-900/95 to-gray-950/95 backdrop-blur-md
-            border rounded-xl shadow-2xl text-xs font-medium whitespace-nowrap
-            transition-all duration-300
-            ${isHovered ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-2 scale-95 pointer-events-none"}
+            px-4 py-3 bg-gray-900/98
+            border rounded-xl shadow-xl text-xs font-medium whitespace-nowrap
+            transition-opacity duration-150
+            ${isHovered ? "opacity-100" : "opacity-0 pointer-events-none"}
           `}
           style={{
             borderColor: companyColor,
-            boxShadow: `0 10px 40px ${companyColor}30`,
+            boxShadow: `0 8px 24px ${companyColor}20`,
             zIndex: 1000,
           }}
         >

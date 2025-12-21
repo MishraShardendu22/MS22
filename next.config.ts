@@ -12,6 +12,14 @@ const nextConfig: NextConfig = {
     root: path.resolve(__dirname),
   },
 
+  // Optimize package imports for smaller bundles
+  transpilePackages: ["lucide-react", "recharts"],
+
+  // Experimental features for better performance
+  experimental: {
+    optimizePackageImports: ["lucide-react", "recharts", "animejs"],
+  },
+
   // Image optimization
   images: {
     remotePatterns: [
@@ -115,11 +123,6 @@ const nextConfig: NextConfig = {
   // Redirects for SEO (if needed)
   async redirects() {
     return [];
-  },
-
-  // Experimental features
-  experimental: {
-    optimizePackageImports: ["lucide-react", "animejs"],
   },
 };
 

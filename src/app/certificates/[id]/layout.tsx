@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import { StructuredData } from "@/component/StructuredData";
+import {
+  generateBreadcrumbSchema,
+  generateCertificationSchema,
+} from "@/lib/structuredData";
 import { certificatesAPI } from "@/static/api/api.request";
 import { BaseURL } from "@/static/data";
-import { generateCertificationSchema, generateBreadcrumbSchema } from "@/lib/structuredData";
-import { StructuredData } from "@/component/StructuredData";
 
 interface LayoutProps {
   params: Promise<{ id: string }>;
@@ -12,20 +15,24 @@ interface LayoutProps {
 export async function generateStaticParams() {
   try {
     const response = await certificatesAPI.getAllCertificates(1, 500);
-    
+
     if (response.status === 200 && response.data?.certifications) {
-      return response.data.certifications.map((certificate) => ({
-        id: certificate._id || '',
-      })).filter(c => c.id);
+      return response.data.certifications
+        .map((certificate) => ({
+          id: certificate._id || "",
+        }))
+        .filter((c) => c.id);
     }
   } catch (error) {
     console.error("Error generating static params for certificates:", error);
   }
-  
+
   return [];
 }
 
-export async function generateMetadata({ params }: LayoutProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: LayoutProps): Promise<Metadata> {
   const { id } = await params;
 
   try {
@@ -33,7 +40,11 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
 
     if (response.status === 200 && response.data) {
       const certificate = response.data;
-      const description = `${certificate.title} certification from ${certificate.issuer}. ${certificate.description?.slice(0, 80) || "Professional certification by Shardendu Mishra."}`.slice(0, 160);
+      const description =
+        `${certificate.title} certification from ${certificate.issuer}. ${certificate.description?.slice(0, 80) || "Professional certification by Shardendu Mishra."}`.slice(
+          0,
+          160,
+        );
 
       return {
         title: `${certificate.title} | Certifications`,
@@ -52,12 +63,14 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
           siteName: "Shardendu Mishra Portfolio",
           type: "article",
           locale: "en_US",
-          images: [{
-            url: `${BaseURL}/opengraph-image`,
-            width: 1200,
-            height: 630,
-            alt: `${certificate.title} - Certificate by Shardendu Mishra`,
-          }],
+          images: [
+            {
+              url: `${BaseURL}/opengraph-image`,
+              width: 1200,
+              height: 630,
+              alt: `${certificate.title} - Certificate by Shardendu Mishra`,
+            },
+          ],
         },
         twitter: {
           card: "summary_large_image",
@@ -92,18 +105,21 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
   };
 }
 
-export default async function CertificateDetailLayout({ params, children }: LayoutProps) {
+export default async function CertificateDetailLayout({
+  params,
+  children,
+}: LayoutProps) {
   const { id } = await params;
-  
+
   let certificationSchema = null;
   let breadcrumbSchema = null;
-  
+
   try {
     const response = await certificatesAPI.getCertificateById(id);
-    
+
     if (response.status === 200 && response.data) {
       const certificate = response.data;
-      
+
       certificationSchema = generateCertificationSchema({
         name: certificate.title,
         issuer: certificate.issuer,
@@ -111,7 +127,7 @@ export default async function CertificateDetailLayout({ params, children }: Layo
         credentialUrl: certificate.certificate_url,
         description: certificate.description,
       });
-      
+
       breadcrumbSchema = generateBreadcrumbSchema([
         { name: "Home", url: BaseURL },
         { name: "Certificates", url: `${BaseURL}/certificates` },
@@ -121,7 +137,7 @@ export default async function CertificateDetailLayout({ params, children }: Layo
   } catch (error) {
     console.error("Error generating structured data:", error);
   }
-  
+
   return (
     <>
       {certificationSchema && breadcrumbSchema && (

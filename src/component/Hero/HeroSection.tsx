@@ -1,12 +1,11 @@
 "use client";
 
-import { TextContent } from "./TextContent";
-import { ImageContainer } from "./ImageContainer";
-import { EducationSection } from "./EducationSection";
 import { BackgroundElements } from "./BackgroundElements";
+import { EducationSection } from "./EducationSection";
+import { ImageContainer } from "./ImageContainer";
+import { TextContent } from "./TextContent";
 
 export const HeroSectionDesktop = () => {
-
   return (
     <section className="relative w-full min-h-screen px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-16 md:py-20 lg:py-24 bg-linear-to-b from-transparent via-gray-950/50 to-transparent overflow-hidden">
       <BackgroundElements />

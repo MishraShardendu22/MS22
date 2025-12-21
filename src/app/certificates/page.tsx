@@ -1,10 +1,10 @@
 import { Award } from "lucide-react";
+import { CertificatesClient } from "@/component/Certificates";
 import { Sidebar } from "@/component/Sidebar";
 import { certificatesAPI } from "@/static/api/api.request";
-import { CertificatesClient } from "@/component/Certificates";
 import type { Certificate } from "@/static/api/api.types";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 export const revalidate = 3600;
 
 export default async function CertificatesPage() {
@@ -12,7 +12,10 @@ export default async function CertificatesPage() {
   let certificates: Certificate[] = [];
   try {
     const response = await certificatesAPI.getAllCertificates(1, 500);
-    certificates = response.status === 200 && response.data ? response.data.certifications || [] : [];
+    certificates =
+      response.status === 200 && response.data
+        ? response.data.certifications || []
+        : [];
   } catch (error) {
     console.error("Error fetching certificates:", error);
     // Return empty array on error - client will handle

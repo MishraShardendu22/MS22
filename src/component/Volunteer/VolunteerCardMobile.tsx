@@ -10,13 +10,18 @@ import type { Volunteer } from "@/static/api/api.types";
 import { formatDate } from "@/utils/formatDate";
 
 const VolunteerCardMobile = ({ volunteer }: { volunteer: Volunteer }) => {
-  const latestTimeline = volunteer.volunteer_time_line?.[volunteer.volunteer_time_line.length - 1];
-  const position = latestTimeline?.position || volunteer.position || "Volunteer";
-  const startDate = formatDate(latestTimeline?.start_date || volunteer.start_date, { fallback: "" });
-  const endDate = latestTimeline?.end_date 
-    ? formatDate(latestTimeline.end_date, { fallback: "" }) 
-    : volunteer.end_date 
-      ? formatDate(volunteer.end_date, { fallback: "" }) 
+  const latestTimeline =
+    volunteer.volunteer_time_line?.[volunteer.volunteer_time_line.length - 1];
+  const position =
+    latestTimeline?.position || volunteer.position || "Volunteer";
+  const startDate = formatDate(
+    latestTimeline?.start_date || volunteer.start_date,
+    { fallback: "" },
+  );
+  const endDate = latestTimeline?.end_date
+    ? formatDate(latestTimeline.end_date, { fallback: "" })
+    : volunteer.end_date
+      ? formatDate(volunteer.end_date, { fallback: "" })
       : "Present";
   const isCurrent = !latestTimeline?.end_date && !volunteer.end_date;
 
@@ -49,7 +54,10 @@ const VolunteerCardMobile = ({ volunteer }: { volunteer: Volunteer }) => {
       </p>
       <div className="flex flex-wrap gap-1">
         {volunteer.technologies?.slice(0, 3).map((tech, idx) => (
-          <span key={idx} className="px-2 py-0.5 text-xs bg-gray-800 text-gray-300 rounded">
+          <span
+            key={idx}
+            className="px-2 py-0.5 text-xs bg-gray-800 text-gray-300 rounded"
+          >
             {tech}
           </span>
         ))}
@@ -74,7 +82,9 @@ export const VolunteerDisplayMobile = () => {
         const response = await volunteerAPI.getAllVolunteers(1, 4);
         if (response.status === 200 && response.data) {
           const vols = response.data.volunteer_experiences || [];
-          setVolunteers(vols.sort((a, b) => (a.order ?? 999) - (b.order ?? 999)));
+          setVolunteers(
+            vols.sort((a, b) => (a.order ?? 999) - (b.order ?? 999)),
+          );
         }
       } catch (err) {
         setError("Failed to load volunteers");
@@ -98,7 +108,9 @@ export const VolunteerDisplayMobile = () => {
     return (
       <section className="py-8 px-4">
         <h2 className="text-2xl font-bold text-pink-400 mb-4">Volunteer</h2>
-        <p className="text-gray-400 text-sm">{error || "No volunteer experiences available"}</p>
+        <p className="text-gray-400 text-sm">
+          {error || "No volunteer experiences available"}
+        </p>
       </section>
     );
   }
@@ -107,7 +119,10 @@ export const VolunteerDisplayMobile = () => {
     <section className="py-8 px-4">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-2xl font-bold text-pink-400">Volunteer</h2>
-        <Link href="/volunteer" className="text-sm text-gray-400 hover:text-pink-400">
+        <Link
+          href="/volunteer"
+          className="text-sm text-gray-400 hover:text-pink-400"
+        >
           View All →
         </Link>
       </div>

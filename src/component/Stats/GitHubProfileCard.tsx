@@ -29,7 +29,9 @@ const StatsCard = ({
       <Icon className={`w-5 h-5 ${iconColor}`} />
       <div>
         <p className="text-xs text-gray-400">{label}</p>
-        <p className="text-lg font-bold text-white">{value?.toLocaleString() || '0'}</p>
+        <p className="text-lg font-bold text-white">
+          {value?.toLocaleString() || "0"}
+        </p>
       </div>
     </div>
   </div>

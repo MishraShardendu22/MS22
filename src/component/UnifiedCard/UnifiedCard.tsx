@@ -104,14 +104,16 @@ export const UnifiedCard = ({
     <div
       className="group relative"
       style={{
-        animation: `fadeInUp 0.4s ease-out ${index * 0.06}s both`,
+        opacity: 0,
+        animation: `fadeInUp 0.25s ease-out ${Math.min(index * 0.04, 0.2)}s forwards`,
+        contain: "layout style paint",
       }}
     >
       <style jsx>{`
         @keyframes fadeInUp {
           from {
             opacity: 0;
-            transform: translateY(15px);
+            transform: translateY(12px);
           }
           to {
             opacity: 1;
@@ -121,10 +123,10 @@ export const UnifiedCard = ({
       `}</style>
 
       <div
-        className={`relative bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-xl md:rounded-2xl overflow-hidden transition-all duration-300 ${colors.border} hover:shadow-lg ${colors.shadow}`}
+        className={`relative bg-linear-to-br from-gray-900/50 to-gray-950/50 border border-gray-800/50 rounded-xl md:rounded-2xl overflow-hidden transition-colors duration-200 ${colors.border}`}
       >
         <div
-          className={`absolute inset-0 bg-linear-to-br ${colors.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+          className={`absolute inset-0 bg-linear-to-br ${colors.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-200`}
         />
 
         <div className="relative p-3 sm:p-4 md:p-5">

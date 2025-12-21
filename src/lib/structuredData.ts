@@ -90,7 +90,8 @@ export function generateProfessionalServiceSchema() {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     name: "Shardendu Mishra - Software Development Services",
-    description: "Professional software development services specializing in Go, React, Next.js, TypeScript, and cloud-native solutions",
+    description:
+      "Professional software development services specializing in Go, React, Next.js, TypeScript, and cloud-native solutions",
     url: BaseURL,
     image: `${BaseURL}/professional.avif`,
     priceRange: "$$",
@@ -118,7 +119,8 @@ export function generateProfessionalServiceSchema() {
           itemOffered: {
             "@type": "Service",
             name: "Software Engineering",
-            description: "Modern web applications using React, Next.js, TypeScript",
+            description:
+              "Modern web applications using React, Next.js, TypeScript",
           },
         },
         {
@@ -126,7 +128,8 @@ export function generateProfessionalServiceSchema() {
           itemOffered: {
             "@type": "Service",
             name: "Backend Development",
-            description: "Scalable backend systems using Go, Node.js, PostgreSQL",
+            description:
+              "Scalable backend systems using Go, Node.js, PostgreSQL",
           },
         },
         {
@@ -134,7 +137,8 @@ export function generateProfessionalServiceSchema() {
           itemOffered: {
             "@type": "Service",
             name: "Cloud Native Development",
-            description: "Docker, Kubernetes, and cloud infrastructure solutions",
+            description:
+              "Docker, Kubernetes, and cloud infrastructure solutions",
           },
         },
       ],
@@ -152,7 +156,8 @@ export function generateProfilePageSchema() {
       name: "Shardendu Mishra",
       alternateName: ["MishraShardendu22", "ShardenduMishra22"],
       identifier: "mishrashardendu22",
-      description: "Software Developer and Engineer specializing in Go, React, and cloud-native solutions",
+      description:
+        "Software Developer and Engineer specializing in Go, React, and cloud-native solutions",
       image: `${BaseURL}/professional.avif`,
       sameAs: [
         "https://github.com/MishraShardendu22",
@@ -183,7 +188,7 @@ export function generateProfilePageSchema() {
       ],
     },
     dateCreated: "2024-01-01",
-    dateModified: new Date().toISOString().split('T')[0],
+    dateModified: new Date().toISOString().split("T")[0],
   };
 }
 

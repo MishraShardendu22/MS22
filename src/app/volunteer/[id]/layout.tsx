@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import { StructuredData } from "@/component/StructuredData";
+import {
+  generateBreadcrumbSchema,
+  generateOrganizationSchema,
+} from "@/lib/structuredData";
 import { volunteerAPI } from "@/static/api/api.request";
 import { BaseURL } from "@/static/data";
-import { generateOrganizationSchema, generateBreadcrumbSchema } from "@/lib/structuredData";
-import { StructuredData } from "@/component/StructuredData";
 
 interface LayoutProps {
   params: Promise<{ id: string }>;
@@ -12,20 +15,24 @@ interface LayoutProps {
 export async function generateStaticParams() {
   try {
     const response = await volunteerAPI.getAllVolunteers(1, 500);
-    
+
     if (response.status === 200 && response.data?.volunteer_experiences) {
-      return response.data.volunteer_experiences.map((volunteer) => ({
-        id: volunteer._id || '',
-      })).filter(v => v.id);
+      return response.data.volunteer_experiences
+        .map((volunteer) => ({
+          id: volunteer._id || "",
+        }))
+        .filter((v) => v.id);
     }
   } catch (error) {
     console.error("Error generating static params for volunteers:", error);
   }
-  
+
   return [];
 }
 
-export async function generateMetadata({ params }: LayoutProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: LayoutProps): Promise<Metadata> {
   const { id } = await params;
 
   try {
@@ -34,7 +41,11 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
     if (response.status === 200 && response.data) {
       const volunteer = response.data;
       const position = volunteer.position || "Volunteer";
-      const description = `${position} at ${volunteer.organisation}. ${volunteer.description?.slice(0, 80) || "Volunteer experience by Shardendu Mishra."}`.slice(0, 160);
+      const description =
+        `${position} at ${volunteer.organisation}. ${volunteer.description?.slice(0, 80) || "Volunteer experience by Shardendu Mishra."}`.slice(
+          0,
+          160,
+        );
 
       return {
         title: `${volunteer.organisation} - ${position} | Volunteer`,
@@ -53,12 +64,14 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
           siteName: "Shardendu Mishra Portfolio",
           type: "article",
           locale: "en_US",
-          images: [{
-            url: `${BaseURL}/opengraph-image`,
-            width: 1200,
-            height: 630,
-            alt: `${volunteer.organisation} - Volunteer Experience by Shardendu Mishra`,
-          }],
+          images: [
+            {
+              url: `${BaseURL}/opengraph-image`,
+              width: 1200,
+              height: 630,
+              alt: `${volunteer.organisation} - Volunteer Experience by Shardendu Mishra`,
+            },
+          ],
         },
         twitter: {
           card: "summary_large_image",
@@ -93,18 +106,21 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
   };
 }
 
-export default async function VolunteerDetailLayout({ params, children }: LayoutProps) {
+export default async function VolunteerDetailLayout({
+  params,
+  children,
+}: LayoutProps) {
   const { id } = await params;
-  
+
   let organizationSchema = null;
   let breadcrumbSchema = null;
-  
+
   try {
     const response = await volunteerAPI.getVolunteerById(id);
-    
+
     if (response.status === 200 && response.data) {
       const volunteer = response.data;
-      
+
       organizationSchema = generateOrganizationSchema({
         name: volunteer.organisation,
         position: volunteer.position || "Volunteer",
@@ -112,7 +128,7 @@ export default async function VolunteerDetailLayout({ params, children }: Layout
         endDate: volunteer.end_date,
         description: volunteer.description || "",
       });
-      
+
       breadcrumbSchema = generateBreadcrumbSchema([
         { name: "Home", url: BaseURL },
         { name: "Volunteer", url: `${BaseURL}/volunteer` },
@@ -122,7 +138,7 @@ export default async function VolunteerDetailLayout({ params, children }: Layout
   } catch (error) {
     console.error("Error generating structured data:", error);
   }
-  
+
   return (
     <>
       {organizationSchema && breadcrumbSchema && (

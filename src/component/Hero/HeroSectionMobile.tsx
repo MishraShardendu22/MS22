@@ -1,6 +1,6 @@
-import { TextContent } from "./TextContent";
-import { EducationSection } from "./EducationSection";
 import { BackgroundElementsMobile } from "./BackgroundElementsMobile";
+import { EducationSection } from "./EducationSection";
+import { TextContent } from "./TextContent";
 
 /**
  * Mobile-optimized Hero section

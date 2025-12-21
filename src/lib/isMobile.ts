@@ -7,9 +7,10 @@ import { headers } from "next/headers";
 export async function getIsMobile(): Promise<boolean> {
   const headersList = await headers();
   const userAgent = headersList.get("user-agent") || "";
-  
+
   // Check for mobile user agents
-  const mobileRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i;
+  const mobileRegex =
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i;
   return mobileRegex.test(userAgent);
 }
 
@@ -19,7 +20,7 @@ export async function getIsMobile(): Promise<boolean> {
 export async function getIsTablet(): Promise<boolean> {
   const headersList = await headers();
   const userAgent = headersList.get("user-agent") || "";
-  
+
   const tabletRegex = /iPad|Android(?!.*Mobile)|Tablet/i;
   return tabletRegex.test(userAgent);
 }

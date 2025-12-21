@@ -26,13 +26,12 @@ export const StatsDisplay = ({
   const hasCommits = commits && commits.length > 0;
   const hasTopRepos = topRepos && topRepos.length > 0;
 
-
   return (
     <section className="relative py-6 sm:py-8 md:py-12 px-4 sm:px-6 md:px-8 bg-linear-to-br from-transparent via-gray-950/50 to-transparent overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-cyan-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f08_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f08_1px,transparent_1px)] bg-size-[4rem_4rem]"></div>
+      <div className="absolute inset-0 pointer-events-none will-change-auto">
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 md:w-80 md:h-80 bg-cyan-500/5 rounded-full blur-2xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-80 md:h-80 bg-blue-500/5 rounded-full blur-2xl"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f06_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f06_1px,transparent_1px)] bg-size-[4rem_4rem]"></div>
       </div>
 
       <div className="container mx-auto max-w-7xl relative z-10">

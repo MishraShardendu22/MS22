@@ -24,17 +24,20 @@ export const FooterSectionMobile = () => {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [status, setStatus] = useState<{ type: 'success' | 'error' | null; message: string }>({ type: null, message: '' });
+  const [status, setStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setStatus({ type: null, message: '' });
+    setStatus({ type: null, message: "" });
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
@@ -46,13 +49,19 @@ export const FooterSectionMobile = () => {
       const data = await response.json();
 
       if (response.ok) {
-        setStatus({ type: 'success', message: 'Message sent successfully!' });
-        setFormData({ name: '', email: '', message: '' });
+        setStatus({ type: "success", message: "Message sent successfully!" });
+        setFormData({ name: "", email: "", message: "" });
       } else {
-        setStatus({ type: 'error', message: data.error || 'Failed to send message' });
+        setStatus({
+          type: "error",
+          message: data.error || "Failed to send message",
+        });
       }
     } catch (error) {
-      setStatus({ type: 'error', message: 'An error occurred. Please try again.' });
+      setStatus({
+        type: "error",
+        message: "An error occurred. Please try again.",
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -90,7 +99,10 @@ export const FooterSectionMobile = () => {
         {/* Contact Form */}
         <div className="mb-8">
           <h3 className="text-xl font-bold text-cyan-400 mb-4">Let's Talk</h3>
-          <form onSubmit={handleSubmit} className="bg-gray-900 p-4 rounded-xl border border-gray-800">
+          <form
+            onSubmit={handleSubmit}
+            className="bg-gray-900 p-4 rounded-xl border border-gray-800"
+          >
             <input
               type="text"
               name="name"
@@ -136,7 +148,9 @@ export const FooterSectionMobile = () => {
               )}
             </button>
             {status.type && (
-              <div className={`mt-3 p-3 rounded-lg text-xs ${status.type === 'success' ? 'bg-green-500/20 text-green-400 border border-green-500/30' : 'bg-red-500/20 text-red-400 border border-red-500/30'}`}>
+              <div
+                className={`mt-3 p-3 rounded-lg text-xs ${status.type === "success" ? "bg-green-500/20 text-green-400 border border-green-500/30" : "bg-red-500/20 text-red-400 border border-red-500/30"}`}
+              >
                 {status.message}
               </div>
             )}
@@ -147,13 +161,18 @@ export const FooterSectionMobile = () => {
         <div className="grid grid-cols-2 gap-6 mb-8">
           {/* Quick Links */}
           <div>
-            <h3 className="text-base font-bold text-gray-100 mb-3">Quick Links</h3>
+            <h3 className="text-base font-bold text-gray-100 mb-3">
+              Quick Links
+            </h3>
             <ul className="space-y-2">
               {Object.entries(QuickLinks).map(([key, data], idx) => {
                 const IconComponent = data.icon;
                 return (
                   <li key={idx}>
-                    <a href={data.url} className="flex items-center gap-2 text-xs text-gray-400">
+                    <a
+                      href={data.url}
+                      className="flex items-center gap-2 text-xs text-gray-400"
+                    >
                       <IconComponent className="w-3 h-3" />
                       <span>{key}</span>
                     </a>
@@ -171,7 +190,12 @@ export const FooterSectionMobile = () => {
                 const IconComponent = data.icon;
                 return (
                   <li key={idx}>
-                    <a href={data.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs text-gray-400">
+                    <a
+                      href={data.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-xs text-gray-400"
+                    >
                       <IconComponent className="w-3 h-3" />
                       <span>{key}</span>
                     </a>
@@ -185,7 +209,10 @@ export const FooterSectionMobile = () => {
         {/* Copyright and Back to Top */}
         <div className="pt-4 flex items-center justify-between">
           <p className="text-xs text-gray-600">© 2025 Shardendu Mishra</p>
-          <button onClick={scrollToTop} className="flex items-center gap-1 px-3 py-2 rounded-lg bg-gray-900 border border-gray-800 text-xs text-cyan-400">
+          <button
+            onClick={scrollToTop}
+            className="flex items-center gap-1 px-3 py-2 rounded-lg bg-gray-900 border border-gray-800 text-xs text-cyan-400"
+          >
             <ArrowUp className="w-3 h-3" />
             <span>Top</span>
           </button>
@@ -202,17 +229,20 @@ export const FooterSection = () => {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [status, setStatus] = useState<{ type: 'success' | 'error' | null; message: string }>({ type: null, message: '' });
+  const [status, setStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setStatus({ type: null, message: '' });
+    setStatus({ type: null, message: "" });
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
@@ -224,13 +254,19 @@ export const FooterSection = () => {
       const data = await response.json();
 
       if (response.ok) {
-        setStatus({ type: 'success', message: 'Message sent successfully!' });
-        setFormData({ name: '', email: '', message: '' });
+        setStatus({ type: "success", message: "Message sent successfully!" });
+        setFormData({ name: "", email: "", message: "" });
       } else {
-        setStatus({ type: 'error', message: data.error || 'Failed to send message' });
+        setStatus({
+          type: "error",
+          message: data.error || "Failed to send message",
+        });
       }
     } catch (error) {
-      setStatus({ type: 'error', message: 'An error occurred. Please try again.' });
+      setStatus({
+        type: "error",
+        message: "An error occurred. Please try again.",
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -409,7 +445,9 @@ export const FooterSection = () => {
                 )}
               </button>
               {status.type && (
-                <div className={`mt-4 p-4 rounded-lg text-sm ${status.type === 'success' ? 'bg-green-500/20 text-green-400 border border-green-500/30' : 'bg-red-500/20 text-red-400 border border-red-500/30'}`}>
+                <div
+                  className={`mt-4 p-4 rounded-lg text-sm ${status.type === "success" ? "bg-green-500/20 text-green-400 border border-green-500/30" : "bg-red-500/20 text-red-400 border border-red-500/30"}`}
+                >
                   {status.message}
                 </div>
               )}
@@ -508,7 +546,7 @@ export const FooterSection = () => {
           <div>
             <h3 className="text-lg md:text-xl font-bold text-gray-100 mb-5 flex items-center gap-2">
               <Code2 className="w-5 h-5 text-cyan-400" />
-              Coding 
+              Coding
             </h3>
             <ul className="space-y-4">
               {Object.entries(CodingProfiles).map(([key, data], idx) => {

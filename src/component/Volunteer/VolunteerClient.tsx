@@ -215,7 +215,9 @@ export function VolunteerClient({ initialVolunteers }: VolunteerClientProps) {
                   key={volunteerId}
                   href={`/volunteer/${volunteerId}`}
                   className="group relative h-full"
-                  style={{ animation: `cardFadeIn 0.6s ease-out ${index * 0.08}s both` }}
+                  style={{
+                    animation: `cardFadeIn 0.6s ease-out ${index * 0.08}s both`,
+                  }}
                 >
                   <div className="absolute -inset-0.5 bg-linear-to-r from-pink-500 via-purple-500 to-cyan-600 rounded-2xl blur opacity-0 group-hover:opacity-30 transition duration-500" />
 
@@ -269,23 +271,26 @@ export function VolunteerClient({ initialVolunteers }: VolunteerClientProps) {
                           </div>
                         )}
 
-                        {volunteer.technologies && volunteer.technologies.length > 0 && (
-                          <div className="flex flex-wrap gap-2">
-                            {volunteer.technologies.slice(0, 4).map((tech, idx) => (
-                              <span
-                                key={idx}
-                                className="px-3 py-1.5 text-xs font-semibold bg-gray-800/70 text-gray-300 rounded-lg border border-gray-700/50 group-hover:border-gray-600 group-hover:bg-gray-800 transition-all duration-200"
-                              >
-                                {tech}
-                              </span>
-                            ))}
-                            {volunteer.technologies.length > 4 && (
-                              <span className="px-3 py-1.5 text-xs font-semibold bg-linear-to-r from-pink-500/20 to-purple-500/20 text-pink-400 rounded-lg border border-pink-500/30 group-hover:from-pink-500/30 group-hover:to-purple-500/30 transition-all">
-                                +{volunteer.technologies.length - 4}
-                              </span>
-                            )}
-                          </div>
-                        )}
+                        {volunteer.technologies &&
+                          volunteer.technologies.length > 0 && (
+                            <div className="flex flex-wrap gap-2">
+                              {volunteer.technologies
+                                .slice(0, 4)
+                                .map((tech, idx) => (
+                                  <span
+                                    key={idx}
+                                    className="px-3 py-1.5 text-xs font-semibold bg-gray-800/70 text-gray-300 rounded-lg border border-gray-700/50 group-hover:border-gray-600 group-hover:bg-gray-800 transition-all duration-200"
+                                  >
+                                    {tech}
+                                  </span>
+                                ))}
+                              {volunteer.technologies.length > 4 && (
+                                <span className="px-3 py-1.5 text-xs font-semibold bg-linear-to-r from-pink-500/20 to-purple-500/20 text-pink-400 rounded-lg border border-pink-500/30 group-hover:from-pink-500/30 group-hover:to-purple-500/30 transition-all">
+                                  +{volunteer.technologies.length - 4}
+                                </span>
+                              )}
+                            </div>
+                          )}
                       </div>
 
                       <div className="flex items-center gap-2 pt-5 border-t border-gray-800/50 group-hover:border-gray-700/50 transition-colors">
@@ -321,7 +326,10 @@ export function VolunteerClient({ initialVolunteers }: VolunteerClientProps) {
               </button>
 
               <div className="flex gap-3 flex-wrap justify-center">
-                {Array.from({ length: totalFilteredPages }, (_, i) => i + 1).map((page) => (
+                {Array.from(
+                  { length: totalFilteredPages },
+                  (_, i) => i + 1,
+                ).map((page) => (
                   <button
                     key={page}
                     onClick={() => setCurrentPage(page)}

@@ -1,7 +1,7 @@
 // Mobile-optimized Projects Display - minimal JS, no animations, no backdrop-blur
 "use client";
 
-import { Github, ExternalLink } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { LoadingStateMobile } from "@/component/Loading";
@@ -94,7 +94,9 @@ export const ProjectsDisplayMobile = () => {
     return (
       <section className="py-8 px-4">
         <h2 className="text-2xl font-bold text-cyan-400 mb-4">Projects</h2>
-        <p className="text-gray-400 text-sm">{error || "No projects available"}</p>
+        <p className="text-gray-400 text-sm">
+          {error || "No projects available"}
+        </p>
       </section>
     );
   }

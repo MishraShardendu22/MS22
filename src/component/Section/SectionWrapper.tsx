@@ -11,7 +11,10 @@ interface SectionWrapperProps {
   className?: string;
 }
 
-const themeGradients: Record<SectionTheme, { primary: string; secondary: string }> = {
+const themeGradients: Record<
+  SectionTheme,
+  { primary: string; secondary: string }
+> = {
   cyan: { primary: "bg-cyan-500/5", secondary: "bg-blue-500/5" },
   blue: { primary: "bg-blue-500/5", secondary: "bg-indigo-500/5" },
   emerald: { primary: "bg-emerald-500/5", secondary: "bg-teal-500/5" },
@@ -33,16 +36,18 @@ export const SectionWrapper = memo(function SectionWrapper({
     <section
       className={`relative py-6 sm:py-8 md:py-12 px-4 sm:px-6 md:px-8 bg-linear-to-b from-transparent via-gray-950/50 to-transparent overflow-hidden ${className}`}
     >
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none will-change-auto">
         <div
-          className={`absolute top-1/4 left-1/4 w-64 h-64 md:w-96 md:h-96 ${gradients.primary} rounded-full blur-3xl`}
+          className={`absolute top-1/4 left-1/4 w-64 h-64 md:w-80 md:h-80 ${gradients.primary} rounded-full blur-2xl`}
         />
         <div
-          className={`absolute bottom-1/4 right-1/4 w-64 h-64 md:w-96 md:h-96 ${gradients.secondary} rounded-full blur-3xl`}
+          className={`absolute bottom-1/4 right-1/4 w-64 h-64 md:w-80 md:h-80 ${gradients.secondary} rounded-full blur-2xl`}
         />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f08_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f08_1px,transparent_1px)] bg-size-[4rem_4rem]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f06_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f06_1px,transparent_1px)] bg-size-[4rem_4rem]" />
       </div>
-      <div className="container mx-auto max-w-7xl relative z-10">{children}</div>
+      <div className="container mx-auto max-w-7xl relative z-10">
+        {children}
+      </div>
     </section>
   );
 });

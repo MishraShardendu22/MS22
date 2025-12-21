@@ -98,16 +98,10 @@ export const TimelineDisplay = ({
 
   return (
     <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 bg-linear-to-b from-transparent via-gray-950/50 to-transparent overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"
-          style={{ animationDelay: "1s" }}
-        ></div>
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/5 rounded-full blur-3xl animate-pulse"
-          style={{ animationDelay: "2s" }}
-        ></div>
+      <div className="absolute inset-0 pointer-events-none will-change-auto">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/8 rounded-full blur-2xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/8 rounded-full blur-2xl"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-2xl"></div>
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f08_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f08_1px,transparent_1px)] bg-size-[4rem_4rem]"></div>
       </div>
 
@@ -136,7 +130,7 @@ export const TimelineDisplay = ({
             }}
           >
             <div
-              className="relative bg-linear-to-br from-gray-900/60 to-gray-950/60 backdrop-blur-xl border border-gray-800 rounded-3xl pt-12 pb-8 px-8 shadow-2xl shadow-cyan-500/10 min-h-[500px] overflow-visible"
+              className="relative bg-gray-900/95 border border-gray-800 rounded-3xl pt-12 pb-8 px-8 shadow-xl min-h-[500px] overflow-visible"
               style={{
                 width: `${Math.max(processedData.months.length * (isMobile ? 80 : 120), 800)}px`,
                 minWidth: "100%",

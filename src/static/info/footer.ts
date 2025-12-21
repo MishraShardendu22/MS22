@@ -1,18 +1,18 @@
 import {
   Book,
-  MailIcon,
-  User2Icon,
   Briefcase,
   Code2Icon,
+  CompassIcon,
   FolderGit2,
   GithubIcon,
+  Instagram,
+  LinkedinIcon,
+  LockKeyhole,
+  MailIcon,
   ShieldCheck,
   TwitterIcon,
+  User2Icon,
   YoutubeIcon,
-  LockKeyhole,
-  CompassIcon,
-  LinkedinIcon,
-  Instagram,
 } from "lucide-react";
 
 export const QuickLinks = {
@@ -31,7 +31,7 @@ export const QuickLinks = {
   Certification: {
     url: "https://mishrashardendu22.is-a.dev/certificates",
     icon: User2Icon,
-  }
+  },
 };
 
 export const MyWebsites = {

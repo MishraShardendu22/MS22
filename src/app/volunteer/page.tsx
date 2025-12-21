@@ -1,10 +1,10 @@
 import { Heart } from "lucide-react";
 import { Sidebar } from "@/component/Sidebar";
-import { volunteerAPI } from "@/static/api/api.request";
 import { VolunteerClient } from "@/component/Volunteer";
+import { volunteerAPI } from "@/static/api/api.request";
 import type { Volunteer } from "@/static/api/api.types";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 export const revalidate = 3600;
 
 export default async function VolunteerPage() {
@@ -12,7 +12,10 @@ export default async function VolunteerPage() {
   let volunteers: Volunteer[] = [];
   try {
     const response = await volunteerAPI.getAllVolunteers(1, 500);
-    volunteers = response.status === 200 && response.data ? response.data.volunteer_experiences || [] : [];
+    volunteers =
+      response.status === 200 && response.data
+        ? response.data.volunteer_experiences || []
+        : [];
   } catch (error) {
     console.error("Error fetching volunteers:", error);
     // Return empty array on error - client will handle

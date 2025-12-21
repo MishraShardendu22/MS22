@@ -1,6 +1,11 @@
 import type { MetadataRoute } from "next";
+import {
+  certificatesAPI,
+  experiencesAPI,
+  projectsAPI,
+  volunteerAPI,
+} from "@/static/api/api.request";
 import { BaseURL } from "@/static/data";
-import { projectsAPI, experiencesAPI, certificatesAPI, volunteerAPI } from "@/static/api/api.request";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = BaseURL || "https://mishrashardendu22.is-a.dev";
@@ -53,19 +58,30 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   try {
     // Fetch dynamic routes - up to 500 items each
-    const [projectsRes, experiencesRes, certificatesRes, volunteersRes] = await Promise.all([
-      projectsAPI.getAllProjects(1, 500).catch(() => ({ data: { projects: [] } })),
-      experiencesAPI.getAllExperiences(1, 500).catch(() => ({ data: { experiences: [] } })),
-      certificatesAPI.getAllCertificates(1, 500).catch(() => ({ data: { certifications: [] } })),
-      volunteerAPI.getAllVolunteers(1, 500).catch(() => ({ data: { volunteer_experiences: [] } })),
-    ]);
+    const [projectsRes, experiencesRes, certificatesRes, volunteersRes] =
+      await Promise.all([
+        projectsAPI
+          .getAllProjects(1, 500)
+          .catch(() => ({ data: { projects: [] } })),
+        experiencesAPI
+          .getAllExperiences(1, 500)
+          .catch(() => ({ data: { experiences: [] } })),
+        certificatesAPI
+          .getAllCertificates(1, 500)
+          .catch(() => ({ data: { certifications: [] } })),
+        volunteerAPI
+          .getAllVolunteers(1, 500)
+          .catch(() => ({ data: { volunteer_experiences: [] } })),
+      ]);
 
     // Add project routes
     if (projectsRes.data?.projects) {
       projectsRes.data.projects.forEach((project) => {
         routes.push({
           url: `${baseUrl}/projects/${project._id}`,
-          lastModified: project.inline?.updated_at ? new Date(project.inline.updated_at) : new Date(),
+          lastModified: project.inline?.updated_at
+            ? new Date(project.inline.updated_at)
+            : new Date(),
           changeFrequency: "monthly" as const,
           priority: 0.8,
         });
@@ -89,7 +105,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       certificatesRes.data.certifications.forEach((certificate) => {
         routes.push({
           url: `${baseUrl}/certificates/${certificate._id}`,
-          lastModified: certificate.inline?.updated_at ? new Date(certificate.inline.updated_at) : new Date(),
+          lastModified: certificate.inline?.updated_at
+            ? new Date(certificate.inline.updated_at)
+            : new Date(),
           changeFrequency: "yearly" as const,
           priority: 0.6,
         });
@@ -101,7 +119,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       volunteersRes.data.volunteer_experiences.forEach((volunteer) => {
         routes.push({
           url: `${baseUrl}/volunteer/${volunteer._id}`,
-          lastModified: volunteer.inline?.updated_at ? new Date(volunteer.inline.updated_at) : new Date(),
+          lastModified: volunteer.inline?.updated_at
+            ? new Date(volunteer.inline.updated_at)
+            : new Date(),
           changeFrequency: "yearly" as const,
           priority: 0.6,
         });

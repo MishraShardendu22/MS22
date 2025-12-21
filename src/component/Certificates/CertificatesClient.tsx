@@ -21,7 +21,9 @@ interface CertificatesClientProps {
   initialCertificates: Certificate[];
 }
 
-export function CertificatesClient({ initialCertificates }: CertificatesClientProps) {
+export function CertificatesClient({
+  initialCertificates,
+}: CertificatesClientProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -175,7 +177,8 @@ export function CertificatesClient({ initialCertificates }: CertificatesClientPr
             <div className="flex items-center gap-2 px-5 py-3 bg-linear-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/30 rounded-xl">
               <Shield className="w-4 h-4 text-cyan-400" />
               <span className="text-cyan-400 font-semibold">
-                {selectedSkills.length} filter{selectedSkills.length > 1 ? "s" : ""} active
+                {selectedSkills.length} filter
+                {selectedSkills.length > 1 ? "s" : ""} active
               </span>
             </div>
           )}
@@ -260,7 +263,9 @@ export function CertificatesClient({ initialCertificates }: CertificatesClientPr
             {totalFilteredPages > 1 && (
               <div className="flex items-center justify-center gap-4 mt-12">
                 <button
-                  onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
+                  onClick={() =>
+                    setCurrentPage((prev) => Math.max(1, prev - 1))
+                  }
                   disabled={currentPage === 1}
                   className="group flex items-center gap-2 px-6 py-3 bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 text-gray-400 rounded-xl hover:border-cyan-500/40 hover:text-cyan-400 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:border-gray-800/50 disabled:hover:text-gray-400 transition-all shadow-lg"
                 >
@@ -269,7 +274,10 @@ export function CertificatesClient({ initialCertificates }: CertificatesClientPr
                 </button>
 
                 <div className="flex items-center gap-2">
-                  {Array.from({ length: totalFilteredPages }, (_, i) => i + 1).map((page) => (
+                  {Array.from(
+                    { length: totalFilteredPages },
+                    (_, i) => i + 1,
+                  ).map((page) => (
                     <button
                       key={page}
                       onClick={() => setCurrentPage(page)}
@@ -285,7 +293,11 @@ export function CertificatesClient({ initialCertificates }: CertificatesClientPr
                 </div>
 
                 <button
-                  onClick={() => setCurrentPage((prev) => Math.min(totalFilteredPages, prev + 1))}
+                  onClick={() =>
+                    setCurrentPage((prev) =>
+                      Math.min(totalFilteredPages, prev + 1),
+                    )
+                  }
                   disabled={currentPage === totalFilteredPages}
                   className="group flex items-center gap-2 px-6 py-3 bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 text-gray-400 rounded-xl hover:border-cyan-500/40 hover:text-cyan-400 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:border-gray-800/50 disabled:hover:text-gray-400 transition-all shadow-lg"
                 >
@@ -300,9 +312,12 @@ export function CertificatesClient({ initialCertificates }: CertificatesClientPr
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 mb-6">
               <Search className="w-10 h-10 text-gray-600" />
             </div>
-            <h3 className="text-2xl font-bold text-white mb-3">No certificates found</h3>
+            <h3 className="text-2xl font-bold text-white mb-3">
+              No certificates found
+            </h3>
             <p className="text-gray-400 mb-8">
-              Try adjusting your search or filters to find what you're looking for.
+              Try adjusting your search or filters to find what you're looking
+              for.
             </p>
             {(searchQuery || selectedSkills.length > 0) && (
               <button

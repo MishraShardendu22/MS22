@@ -2,19 +2,19 @@
 "use client";
 
 import {
-  Home,
-  Mail,
+  Award,
+  Briefcase,
   Clock,
   Code2,
-  Award,
-  Heart,
   FileText,
-  Briefcase,
   FolderGit2,
   GraduationCap,
+  Heart,
+  Home,
+  Link as LinkIcon,
+  Mail,
   Menu,
   X,
-  Link as LinkIcon,
 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -30,7 +30,11 @@ const navItems = [
   { name: "Certifications", href: "#certifications", icon: Award },
   { name: "Contact", href: "#contact", icon: Mail },
   { name: "My Socials", href: "/links", icon: LinkIcon },
-  { name: "Blog", href: "https://blogs.mishrashardendu22.is-a.dev/read", icon: FileText },
+  {
+    name: "Blog",
+    href: "https://blogs.mishrashardendu22.is-a.dev/read",
+    icon: FileText,
+  },
 ];
 
 export function SidebarMobile() {
@@ -53,7 +57,7 @@ export function SidebarMobile() {
 
       {/* Simple overlay - no blur */}
       {isOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/70 z-40"
           onClick={() => setIsOpen(false)}
         />
@@ -79,7 +83,9 @@ export function SidebarMobile() {
             })}
           </nav>
           <div className="px-4 py-4 border-t border-gray-800">
-            <p className="text-xs text-pink-400 font-semibold">Shardendu Mishra</p>
+            <p className="text-xs text-pink-400 font-semibold">
+              Shardendu Mishra
+            </p>
           </div>
         </aside>
       )}

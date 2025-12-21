@@ -20,7 +20,9 @@ interface ExperiencesClientProps {
   initialExperiences: Experience[];
 }
 
-export function ExperiencesClient({ initialExperiences }: ExperiencesClientProps) {
+export function ExperiencesClient({
+  initialExperiences,
+}: ExperiencesClientProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTechs, setSelectedTechs] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -161,7 +163,8 @@ export function ExperiencesClient({ initialExperiences }: ExperiencesClientProps
           </p>
           {(searchQuery || selectedTechs.length > 0) && (
             <p className="text-cyan-400 font-medium">
-              {selectedTechs.length > 0 && `${selectedTechs.length} filter${selectedTechs.length > 1 ? "s" : ""} active`}
+              {selectedTechs.length > 0 &&
+                `${selectedTechs.length} filter${selectedTechs.length > 1 ? "s" : ""} active`}
             </p>
           )}
         </div>
@@ -210,14 +213,20 @@ export function ExperiencesClient({ initialExperiences }: ExperiencesClientProps
                     {experience.experience_time_line &&
                       experience.experience_time_line.length > 0 && (
                         <div className="mb-6 space-y-2">
-                          {experience.experience_time_line.slice(0, 2).map((timeline, idx) => (
-                            <div key={idx} className="flex items-center gap-2 text-sm text-gray-400">
-                              <Calendar className="w-4 h-4" />
-                              <span>
-                                {timeline.start_date} - {timeline.end_date || "Present"}
-                              </span>
-                            </div>
-                          ))}
+                          {experience.experience_time_line
+                            .slice(0, 2)
+                            .map((timeline, idx) => (
+                              <div
+                                key={idx}
+                                className="flex items-center gap-2 text-sm text-gray-400"
+                              >
+                                <Calendar className="w-4 h-4" />
+                                <span>
+                                  {timeline.start_date} -{" "}
+                                  {timeline.end_date || "Present"}
+                                </span>
+                              </div>
+                            ))}
                         </div>
                       )}
 
@@ -227,25 +236,26 @@ export function ExperiencesClient({ initialExperiences }: ExperiencesClientProps
                     </p>
 
                     {/* Technologies */}
-                    {experience.technologies && experience.technologies.length > 0 && (
-                      <div className="mb-6">
-                        <div className="flex flex-wrap gap-2">
-                          {experience.technologies.slice(0, 3).map((tech) => (
-                            <span
-                              key={tech}
-                              className="px-3 py-1.5 bg-gray-800/50 text-gray-300 text-xs font-semibold rounded-lg border border-gray-700/50"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                          {experience.technologies.length > 3 && (
-                            <span className="px-3 py-1.5 bg-cyan-500/10 text-cyan-400 text-xs font-semibold rounded-lg border border-cyan-500/30">
-                              +{experience.technologies.length - 3} more
-                            </span>
-                          )}
+                    {experience.technologies &&
+                      experience.technologies.length > 0 && (
+                        <div className="mb-6">
+                          <div className="flex flex-wrap gap-2">
+                            {experience.technologies.slice(0, 3).map((tech) => (
+                              <span
+                                key={tech}
+                                className="px-3 py-1.5 bg-gray-800/50 text-gray-300 text-xs font-semibold rounded-lg border border-gray-700/50"
+                              >
+                                {tech}
+                              </span>
+                            ))}
+                            {experience.technologies.length > 3 && (
+                              <span className="px-3 py-1.5 bg-cyan-500/10 text-cyan-400 text-xs font-semibold rounded-lg border border-cyan-500/30">
+                                +{experience.technologies.length - 3} more
+                              </span>
+                            )}
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )}
 
                     {/* View Details Link */}
                     <div className="flex items-center gap-2 text-cyan-400 font-semibold group-hover:gap-3 transition-all">
@@ -261,7 +271,9 @@ export function ExperiencesClient({ initialExperiences }: ExperiencesClientProps
             {totalFilteredPages > 1 && (
               <div className="flex items-center justify-center gap-4 mt-12">
                 <button
-                  onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
+                  onClick={() =>
+                    setCurrentPage((prev) => Math.max(1, prev - 1))
+                  }
                   disabled={currentPage === 1}
                   className="group flex items-center gap-2 px-6 py-3 bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 text-gray-400 rounded-xl hover:border-cyan-500/40 hover:text-cyan-400 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:border-gray-800/50 disabled:hover:text-gray-400 transition-all shadow-lg"
                 >
@@ -270,7 +282,10 @@ export function ExperiencesClient({ initialExperiences }: ExperiencesClientProps
                 </button>
 
                 <div className="flex items-center gap-2">
-                  {Array.from({ length: totalFilteredPages }, (_, i) => i + 1).map((page) => (
+                  {Array.from(
+                    { length: totalFilteredPages },
+                    (_, i) => i + 1,
+                  ).map((page) => (
                     <button
                       key={page}
                       onClick={() => setCurrentPage(page)}
@@ -286,7 +301,11 @@ export function ExperiencesClient({ initialExperiences }: ExperiencesClientProps
                 </div>
 
                 <button
-                  onClick={() => setCurrentPage((prev) => Math.min(totalFilteredPages, prev + 1))}
+                  onClick={() =>
+                    setCurrentPage((prev) =>
+                      Math.min(totalFilteredPages, prev + 1),
+                    )
+                  }
                   disabled={currentPage === totalFilteredPages}
                   className="group flex items-center gap-2 px-6 py-3 bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 text-gray-400 rounded-xl hover:border-cyan-500/40 hover:text-cyan-400 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:border-gray-800/50 disabled:hover:text-gray-400 transition-all shadow-lg"
                 >
@@ -301,9 +320,12 @@ export function ExperiencesClient({ initialExperiences }: ExperiencesClientProps
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 mb-6">
               <Search className="w-10 h-10 text-gray-600" />
             </div>
-            <h3 className="text-2xl font-bold text-white mb-3">No experiences found</h3>
+            <h3 className="text-2xl font-bold text-white mb-3">
+              No experiences found
+            </h3>
             <p className="text-gray-400 mb-8">
-              Try adjusting your search or filters to find what you're looking for.
+              Try adjusting your search or filters to find what you're looking
+              for.
             </p>
             {(searchQuery || selectedTechs.length > 0) && (
               <button

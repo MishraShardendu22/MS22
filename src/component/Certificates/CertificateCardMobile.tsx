@@ -9,7 +9,11 @@ import { certificatesAPI } from "@/static/api/api.request";
 import type { Certificate } from "@/static/api/api.types";
 import { formatDate } from "@/utils/formatDate";
 
-const CertificateCardMobile = ({ certificate }: { certificate: Certificate }) => {
+const CertificateCardMobile = ({
+  certificate,
+}: {
+  certificate: Certificate;
+}) => {
   return (
     <div className="bg-gray-900/80 border border-gray-800 rounded-xl p-4">
       <div className="flex items-start justify-between gap-2 mb-2">
@@ -23,7 +27,9 @@ const CertificateCardMobile = ({ certificate }: { certificate: Certificate }) =>
       <p className="text-sm text-emerald-400 mb-1">{certificate.issuer}</p>
       <p className="text-xs text-gray-500 mb-2">
         Issued {formatDate(certificate.issue_date, { fallback: "" })}
-        {certificate.expiry_date ? ` • Expires ${formatDate(certificate.expiry_date, { fallback: "" })}` : " • No Expiration"}
+        {certificate.expiry_date
+          ? ` • Expires ${formatDate(certificate.expiry_date, { fallback: "" })}`
+          : " • No Expiration"}
       </p>
       {certificate.description && (
         <p className="text-gray-400 text-sm leading-relaxed mb-3 line-clamp-2">
@@ -32,7 +38,10 @@ const CertificateCardMobile = ({ certificate }: { certificate: Certificate }) =>
       )}
       <div className="flex flex-wrap gap-1">
         {certificate.skills?.slice(0, 3).map((skill, idx) => (
-          <span key={idx} className="px-2 py-0.5 text-xs bg-gray-800 text-gray-300 rounded">
+          <span
+            key={idx}
+            className="px-2 py-0.5 text-xs bg-gray-800 text-gray-300 rounded"
+          >
             {skill}
           </span>
         ))}
@@ -57,7 +66,9 @@ export const CertificatesDisplayMobile = () => {
         const response = await certificatesAPI.getAllCertificates(1, 4);
         if (response.status === 200 && response.data) {
           const certs = response.data.certifications || [];
-          setCertificates(certs.sort((a, b) => (a.order ?? 999) - (b.order ?? 999)));
+          setCertificates(
+            certs.sort((a, b) => (a.order ?? 999) - (b.order ?? 999)),
+          );
         }
       } catch (err) {
         setError("Failed to load certificates");
@@ -71,7 +82,9 @@ export const CertificatesDisplayMobile = () => {
   if (loading) {
     return (
       <section className="py-8 px-4">
-        <h2 className="text-2xl font-bold text-emerald-400 mb-4">Certifications</h2>
+        <h2 className="text-2xl font-bold text-emerald-400 mb-4">
+          Certifications
+        </h2>
         <LoadingStateMobile />
       </section>
     );
@@ -80,8 +93,12 @@ export const CertificatesDisplayMobile = () => {
   if (error || certificates.length === 0) {
     return (
       <section className="py-8 px-4">
-        <h2 className="text-2xl font-bold text-emerald-400 mb-4">Certifications</h2>
-        <p className="text-gray-400 text-sm">{error || "No certificates available"}</p>
+        <h2 className="text-2xl font-bold text-emerald-400 mb-4">
+          Certifications
+        </h2>
+        <p className="text-gray-400 text-sm">
+          {error || "No certificates available"}
+        </p>
       </section>
     );
   }
@@ -90,7 +107,10 @@ export const CertificatesDisplayMobile = () => {
     <section className="py-8 px-4">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-2xl font-bold text-emerald-400">Certifications</h2>
-        <Link href="/certificates" className="text-sm text-gray-400 hover:text-emerald-400">
+        <Link
+          href="/certificates"
+          className="text-sm text-gray-400 hover:text-emerald-400"
+        >
           View All →
         </Link>
       </div>
@@ -99,9 +119,11 @@ export const CertificatesDisplayMobile = () => {
       </p>
       <div className="space-y-4">
         {certificates.map((certificate, index) => (
-          <CertificateCardMobile 
-            key={certificate._id || certificate.credential_id || `cert-${index}`} 
-            certificate={certificate} 
+          <CertificateCardMobile
+            key={
+              certificate._id || certificate.credential_id || `cert-${index}`
+            }
+            certificate={certificate}
           />
         ))}
       </div>

@@ -94,11 +94,11 @@ body {
   html {
     font-size: 14px;
   }
-  
+
   body {
     -webkit-tap-highlight-color: rgba(174, 234, 0, 0.2);
   }
-  
+
   /* Ensure no horizontal overflow on mobile */
   * {
     max-width: 100%;
@@ -148,7 +148,7 @@ body {
   * {
     will-change: auto !important;
   }
-  
+
   img,
   video {
     content-visibility: auto;
@@ -170,7 +170,15 @@ body {
 ------------------------------ */
 
 /* Ensure proper text wrapping on all devices */
-h1, h2, h3, h4, h5, h6, p, span, div {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+div {
   overflow-wrap: break-word;
   word-wrap: break-word;
   hyphens: auto;
@@ -181,15 +189,16 @@ h1, h2, h3, h4, h5, h6, p, span, div {
   section {
     scroll-margin-top: 4rem;
   }
-  
+
   /* Ensure all containers are mobile-friendly */
   .container {
     padding-left: 1rem;
     padding-right: 1rem;
   }
-  
+
   /* Improve touch targets */
-  button, a {
+  button,
+  a {
     min-height: 44px;
     min-width: 44px;
   }
@@ -253,7 +262,7 @@ h1, h2, h3, h4, h5, h6, p, span, div {
   [class*="shadow-cyan"],
   [class*="shadow-blue"],
   [class*="shadow-purple"] {
-    box-shadow: 0 1px 3px rgba(0,0,0,0.3) !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
   }
 
   /* Kill filter effects */
@@ -288,4 +297,69 @@ h1, h2, h3, h4, h5, h6, p, span, div {
 .reduce-motion *::after {
   animation: none !important;
   transition: none !important;
+}
+
+/* ------------------------------
+   Desktop Performance Optimizations
+------------------------------ */
+
+@media (min-width: 769px) {
+  /* GPU acceleration for background elements */
+  .absolute.inset-0.pointer-events-none {
+    will-change: auto;
+    transform: translateZ(0);
+    contain: layout style paint;
+  }
+
+  /* Optimize off-screen content rendering */
+  section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 500px;
+  }
+
+  /* Reduce blur intensity for better performance */
+  .blur-3xl {
+    filter: blur(48px) !important;
+  }
+
+  /* Optimize backdrop blur - reduce intensity */
+  .backdrop-blur-xl {
+    backdrop-filter: blur(16px) !important;
+  }
+
+  .backdrop-blur-sm {
+    backdrop-filter: blur(2px) !important;
+  }
+
+  /* Optimize transitions - only animate necessary properties */
+  .transition-all {
+    transition-property:
+      color, background-color, border-color, opacity, transform !important;
+    transition-duration: 200ms !important;
+  }
+
+  /* Optimize hover shadows */
+  [class*="hover:shadow-2xl"],
+  [class*="hover:shadow-xl"] {
+    transition: box-shadow 0.2s ease-out !important;
+  }
+
+  /* Contain paint for cards and sections */
+  .group.relative,
+  section.relative {
+    contain: layout style;
+  }
+
+  /* Optimize scrollable areas */
+  [class*="overflow-x-auto"],
+  [class*="overflow-y-auto"] {
+    will-change: scroll-position;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Reduce paint area for animated elements */
+  .animate-pulse {
+    animation: none !important;
+    opacity: 1 !important;
+  }
 }

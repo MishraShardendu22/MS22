@@ -1,1 +1,5 @@
-export { formatDate, formatDateRange, type DateFormatStyle } from "./formatDate";
+export {
+  type DateFormatStyle,
+  formatDate,
+  formatDateRange,
+} from "./formatDate";

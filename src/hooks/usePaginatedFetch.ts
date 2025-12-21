@@ -108,7 +108,7 @@ export function usePaginatedFetch<T, R = T>({
         setPaginationLoading(false);
       }
     },
-    [fetchFn, itemsPerPage, dataKey, transform]
+    [fetchFn, itemsPerPage, dataKey, transform],
   );
 
   useEffect(() => {
@@ -137,7 +137,7 @@ export function usePaginatedFetch<T, R = T>({
         setCurrentPage(page);
       }
     },
-    [totalPages]
+    [totalPages],
   );
 
   const retry = useCallback(() => {

@@ -1,22 +1,35 @@
 import {
+  CertificatesDisplay,
+  CertificatesDisplayMobile,
+} from "@/component/Certificates";
+import {
+  ExperiencesDisplay,
+  ExperiencesDisplayMobile,
+} from "@/component/Experience";
+import { FooterSection, FooterSectionMobile } from "@/component/Footer/Footer";
+import { HeroSection } from "@/component/Hero/HeroSectionWrapper";
+import { ProjectsDisplay, ProjectsDisplayMobile } from "@/component/Projects";
+import { SidebarWrapper } from "@/component/Sidebar/SidebarWrapper";
+import SkillsDisplay, {
+  SkillsDisplayMobile,
+} from "@/component/Skill/SkillsDisplay";
+import { StructuredData } from "@/component/StructuredData";
+import dynamic from "next/dynamic";
+
+import { Time } from "@/component/Timeline/Time";
+import { StatsWrapper } from "@/component/Stats";
+import {
+  VolunteerDisplay,
+  VolunteerDisplayMobile,
+} from "@/component/Volunteer";
+import { getIsMobile } from "@/lib/isMobile";
+import {
   generateFAQSchema,
   generatePersonSchema,
-  generateWebSiteSchema,
+  generateProfessionalServiceSchema,
   generateProfilePageSchema,
-  generateProfessionalServiceSchema
+  generateWebSiteSchema,
 } from "@/lib/structuredData";
-import { getIsMobile } from "@/lib/isMobile";
-import { StatsWrapper } from "@/component/Stats";
-import { Time } from "@/component/Timeline/Time";
-import { StructuredData } from "@/component/StructuredData";
-import { HeroSection } from "@/component/Hero/HeroSectionWrapper";
-import { SidebarWrapper } from "@/component/Sidebar/SidebarWrapper";
-import { ProjectsDisplay, ProjectsDisplayMobile } from "@/component/Projects";
-import { FooterSection, FooterSectionMobile } from "@/component/Footer/Footer";
-import { VolunteerDisplay, VolunteerDisplayMobile } from "@/component/Volunteer";
-import SkillsDisplay, { SkillsDisplayMobile } from "@/component/Skill/SkillsDisplay";
-import { ExperiencesDisplay, ExperiencesDisplayMobile } from "@/component/Experience";
-import { CertificatesDisplay, CertificatesDisplayMobile } from "@/component/Certificates";
 
 const page = async () => {
   const isMobile = await getIsMobile();
@@ -28,7 +41,15 @@ const page = async () => {
 
   return (
     <>
-      <StructuredData data={[personSchema, websiteSchema, professionalServiceSchema, profilePageSchema, faqSchema]} />
+      <StructuredData
+        data={[
+          personSchema,
+          websiteSchema,
+          professionalServiceSchema,
+          profilePageSchema,
+          faqSchema,
+        ]}
+      />
       <SidebarWrapper />
       <main className="flex-1 lg:ml-0" role="main" aria-label="Main content">
         <HeroSection />
@@ -36,7 +57,11 @@ const page = async () => {
           {isMobile ? <SkillsDisplayMobile /> : <SkillsDisplay />}
         </section>
         {!isMobile && (
-          <section id="timeline" className="hidden lg:block" aria-label="Professional timeline">
+          <section
+            id="timeline"
+            className="hidden lg:block"
+            aria-label="Professional timeline"
+          >
             <Time />
           </section>
         )}

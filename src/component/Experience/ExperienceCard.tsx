@@ -4,7 +4,11 @@ import { useMemo } from "react";
 import { ErrorState } from "@/component/Error";
 import { LoadingState } from "@/component/Loading";
 import { PaginationControls } from "@/component/Pagination";
-import { ContentGrid, SectionHeader, SectionWrapper } from "@/component/Section";
+import {
+  ContentGrid,
+  SectionHeader,
+  SectionWrapper,
+} from "@/component/Section";
 import { UnifiedCard } from "@/component/UnifiedCard";
 import { usePaginatedFetch } from "@/hooks/usePaginatedFetch";
 import { experiencesAPI } from "@/static/api/api.request";

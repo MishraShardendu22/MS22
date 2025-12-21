@@ -43,7 +43,8 @@
     "format:check": "biome format",
     "type-check": "tsc --noEmit",
     "clean": "rm -rf .next out",
-    "preview": "pnpm build && pnpm start"
+    "preview": "pnpm build && pnpm start",
+    "prepare": "husky"
   },
   "dependencies": {
     "@vercel/analytics": "^1.6.1",
@@ -64,6 +65,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",
+    "husky": "^9.1.7",
     "tailwindcss": "^4.1.18",
     "typescript": "^5"
   }

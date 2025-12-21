@@ -1,10 +1,10 @@
 import { Briefcase } from "lucide-react";
+import { ExperiencesClient } from "@/component/Experience";
 import { Sidebar } from "@/component/Sidebar";
 import { experiencesAPI } from "@/static/api/api.request";
-import { ExperiencesClient } from "@/component/Experience";
 import type { Experience } from "@/static/api/api.types";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 export const revalidate = 3600;
 
 export default async function ExperiencesPage() {
@@ -12,7 +12,10 @@ export default async function ExperiencesPage() {
   let experiences: Experience[] = [];
   try {
     const response = await experiencesAPI.getAllExperiences(1, 500);
-    experiences = response.status === 200 && response.data ? response.data.experiences || [] : [];
+    experiences =
+      response.status === 200 && response.data
+        ? response.data.experiences || []
+        : [];
   } catch (error) {
     console.error("Error fetching experiences:", error);
     // Return empty array on error - client will handle

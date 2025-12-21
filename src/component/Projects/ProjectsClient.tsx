@@ -17,12 +17,14 @@ import { useState } from "react";
 import type { Project } from "@/static/api/api.types";
 
 interface ProjectsClientProps {
-    
   initialProjects: Project[];
   totalPages: number;
 }
 
-export function ProjectsClient({ initialProjects, totalPages }: ProjectsClientProps) {
+export function ProjectsClient({
+  initialProjects,
+  totalPages,
+}: ProjectsClientProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -172,9 +174,7 @@ export function ProjectsClient({ initialProjects, totalPages }: ProjectsClientPr
               <Filter className="w-3.5 h-3.5 text-cyan-400" />
               <span className="text-cyan-400 font-semibold">
                 Filtered by {selectedSkills.length}{" "}
-                {selectedSkills.length !== 1
-                  ? "technologies"
-                  : "technology"}
+                {selectedSkills.length !== 1 ? "technologies" : "technology"}
               </span>
             </div>
           )}
@@ -194,8 +194,7 @@ export function ProjectsClient({ initialProjects, totalPages }: ProjectsClientPr
             No projects found
           </h3>
           <p className="text-gray-400 text-base mb-6 max-w-md mx-auto">
-            Try adjusting your search terms or filters to discover more
-            projects
+            Try adjusting your search terms or filters to discover more projects
           </p>
           {(searchQuery || selectedSkills.length > 0) && (
             <button

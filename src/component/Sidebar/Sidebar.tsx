@@ -1,24 +1,24 @@
 "use client";
 
 import {
-  Home,
-  Mail,
+  Award,
+  Briefcase,
+  ChevronRight,
   Clock,
   Code2,
-  Award,
-  Heart,
   FileText,
-  Briefcase,
   FolderGit2,
-  ChevronRight,
   GraduationCap,
+  Heart,
+  Home,
+  Link as LinkIcon,
+  Mail,
   Menu,
   X,
-  Link as LinkIcon,
 } from "lucide-react";
 import Link from "next/link";
-import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 interface NavItem {
   name: string;
@@ -37,7 +37,11 @@ const navItems: NavItem[] = [
   { name: "Certifications", href: "#certifications", icon: Award },
   { name: "My Socials", href: "/links", icon: LinkIcon },
   { name: "Contact", href: "#contact", icon: Mail },
-  { name: "Blog", href: "https://blogs.mishrashardendu22.is-a.dev/read", icon: FileText },
+  {
+    name: "Blog",
+    href: "https://blogs.mishrashardendu22.is-a.dev/read",
+    icon: FileText,
+  },
 ];
 
 export function Sidebar() {
@@ -50,11 +54,19 @@ export function Sidebar() {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 1024);
     };
-    
+
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    
-    return () => window.removeEventListener('resize', checkMobile);
+    const resizeHandler = () => {
+      // Debounce resize handler
+      clearTimeout((window as any).__resizeTimer);
+      (window as any).__resizeTimer = setTimeout(checkMobile, 150);
+    };
+    window.addEventListener("resize", resizeHandler, { passive: true });
+
+    return () => {
+      window.removeEventListener("resize", resizeHandler);
+      clearTimeout((window as any).__resizeTimer);
+    };
   }, []);
 
   // Close mobile menu when clicking on a link
@@ -89,7 +101,7 @@ export function Sidebar() {
 
         {/* Mobile Menu Overlay */}
         {isMobileMenuOpen && (
-          <div 
+          <div
             className="fixed inset-0 bg-black/60 backdrop-blur-sm z-55"
             onClick={() => setIsMobileMenuOpen(false)}
           />
@@ -167,7 +179,7 @@ export function Sidebar() {
   return (
     <>
       <aside
-        className={`fixed left-0 top-0 h-screen bg-gray-950/95 backdrop-blur-xl border-r border-gray-800/50 z-50 transition-all duration-300 ease-in-out ${
+        className={`fixed left-0 top-0 h-screen bg-gray-950/98 backdrop-blur-sm border-r border-gray-800/50 z-50 transition-[width] duration-300 ease-in-out will-change-[width] ${
           isExpanded ? "w-64" : "w-20"
         }`}
         onMouseEnter={() => setIsExpanded(true)}
@@ -200,14 +212,14 @@ export function Sidebar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200 group relative ${
+                className={`flex items-center gap-4 px-4 py-3 rounded-xl transition-colors duration-200 group relative ${
                   active
                     ? "bg-linear-to-r from-cyan-500/20 to-blue-500/20 text-cyan-400 border border-cyan-500/40"
                     : "text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 border border-transparent"
                 }`}
               >
                 {active && (
-                  <div className="absolute inset-0 bg-linear-to-r from-cyan-500/10 to-blue-500/10 rounded-xl animate-pulse" />
+                  <div className="absolute inset-0 bg-linear-to-r from-cyan-500/10 to-blue-500/10 rounded-xl" />
                 )}
 
                 <Icon

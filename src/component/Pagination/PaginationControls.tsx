@@ -17,11 +17,14 @@ interface PaginationControlsProps {
   showViewAll?: boolean;
 }
 
-const themeClasses: Record<PaginationTheme, {
-  hoverBorder: string;
-  hoverText: string;
-  activeText: string;
-}> = {
+const themeClasses: Record<
+  PaginationTheme,
+  {
+    hoverBorder: string;
+    hoverText: string;
+    activeText: string;
+  }
+> = {
   cyan: {
     hoverBorder: "hover:border-cyan-500/30",
     hoverText: "hover:text-cyan-400",

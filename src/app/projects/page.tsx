@@ -1,10 +1,10 @@
-import { Sidebar } from "@/component/Sidebar";
-import { ProjectsClient } from "@/component/Projects/ProjectsClient";
-import { projectsAPI } from "@/static/api/api.request";
 import { ErrorState } from "@/component/Error";
+import { ProjectsClient } from "@/component/Projects/ProjectsClient";
+import { Sidebar } from "@/component/Sidebar";
+import { projectsAPI } from "@/static/api/api.request";
 import type { Project } from "@/static/api/api.types";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 export const revalidate = 3600; // Revalidate every hour
 
 export default async function ProjectsPage() {
@@ -14,7 +14,7 @@ export default async function ProjectsPage() {
 
   try {
     const response = await projectsAPI.getAllProjects(1, 500);
-    
+
     if (response.status === 200 && response.data) {
       projects = response.data.projects || [];
       totalPages = response.data.total_pages || 1;

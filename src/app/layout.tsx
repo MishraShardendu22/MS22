@@ -5,8 +5,11 @@ import type { Metadata, Viewport } from "next";
 import { Archivo, Inter } from "next/font/google";
 
 // Use environment variable or fallback to localhost for development
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+const BASE_URL =
+  process.env.NEXT_PUBLIC_BASE_URL ||
+  (process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "http://localhost:3000");
 
 const archivo = Archivo({
   variable: "--font-heading",
@@ -255,21 +258,22 @@ export const metadata: Metadata = {
     "msapplication-TileColor": "#000000",
     "msapplication-config": "/browserconfig.xml",
     "google-site-verification": "pending",
-    "author": "Shardendu Mishra",
-    "copyright": "Copyright 2025 Shardendu Mishra",
+    author: "Shardendu Mishra",
+    copyright: "Copyright 2025 Shardendu Mishra",
     "linkedin:owner": "shardendu-mishra",
-    "rating": "General",
-    "distribution": "Global",
+    rating: "General",
+    distribution: "Global",
     "revisit-after": "7 days",
     // Additional SEO meta tags
     "geo.region": "IN-KA",
     "geo.placename": "Bangalore",
     "geo.position": "12.9716;77.5946",
-    "ICBM": "12.9716, 77.5946",
+    ICBM: "12.9716, 77.5946",
     "dc.title": "Shardendu Mishra - Software Developer Portfolio",
     "dc.creator": "Shardendu Mishra",
     "dc.subject": "Software Development, Web Development, Portfolio",
-    "dc.description": "Software Developer and Engineer passionate about building impactful applications with modern technologies",
+    "dc.description":
+      "Software Developer and Engineer passionate about building impactful applications with modern technologies",
     "dc.publisher": "Shardendu Mishra",
     "dc.language": "en",
     "dc.coverage": "Worldwide",
@@ -286,10 +290,27 @@ export default function RootLayout({
     <html lang="en" dir="ltr" className="scroll-smooth">
       <body className={`${archivo.variable} ${inter.variable} antialiased`}>
         <noscript>
-          <div style={{ padding: '2rem', textAlign: 'center', backgroundColor: '#1a1a1a', color: '#fff' }}>
+          <div
+            style={{
+              padding: "2rem",
+              textAlign: "center",
+              backgroundColor: "#1a1a1a",
+              color: "#fff",
+            }}
+          >
             <h1>Shardendu Mishra - Software Developer</h1>
-            <p>Please enable JavaScript to view the full portfolio experience.</p>
-            <p>Email: <a href="mailto:mishrashardendu22@gmail.com" style={{ color: '#06b6d4' }}>mishrashardendu22@gmail.com</a></p>
+            <p>
+              Please enable JavaScript to view the full portfolio experience.
+            </p>
+            <p>
+              Email:{" "}
+              <a
+                href="mailto:mishrashardendu22@gmail.com"
+                style={{ color: "#06b6d4" }}
+              >
+                mishrashardendu22@gmail.com
+              </a>
+            </p>
           </div>
         </noscript>
         <Analytics />

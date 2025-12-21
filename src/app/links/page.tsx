@@ -1,23 +1,23 @@
 import {
-  Send,
-  Play,
-  Globe,
+  ArrowLeft,
+  BookOpen,
   Code2,
+  ExternalLink,
   Github,
+  Globe,
+  Instagram,
+  Linkedin,
+  MessageCircle,
+  Palette,
+  Play,
+  Send,
   Trophy,
   Twitter,
-  Palette,
-  BookOpen,
-  Linkedin,
-  ArrowLeft,
-  Instagram,
-  ExternalLink,
-  MessageCircle,
 } from "lucide-react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
-export const dynamic = 'force-static';
+export const dynamic = "force-static";
 
 interface SocialLink {
   url: string;
@@ -30,7 +30,6 @@ interface SocialLink {
 }
 
 export default function LinksPage() {
-
   const links: SocialLink[] = [
     // Main Portfolio
     {
@@ -189,15 +188,15 @@ export default function LinksPage() {
             <div className="absolute -inset-1 bg-linear-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-full blur opacity-75 animate-pulse" />
             <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-gray-900 shadow-2xl">
               <Image
-                src="/professional.avif" 
-                alt="Shardendu Mishra" 
+                src="/professional.avif"
+                alt="Shardendu Mishra"
                 width={128}
                 height={128}
                 className="w-full h-full object-cover"
               />
             </div>
           </div>
-          
+
           <h1 className="text-4xl md:text-5xl font-black text-white mb-3 bg-clip-text bg-linear-to-r from-cyan-400 via-purple-400 to-pink-400">
             Shardendu Mishra
           </h1>
@@ -223,7 +222,7 @@ export default function LinksPage() {
                 <span className="text-gray-300">{title}</span>
                 <span className="h-px flex-1 bg-linear-to-r from-transparent via-gray-700 to-transparent" />
               </h2>
-              
+
               <div className="space-y-3">
                 {links
                   .filter((link) => link.category === category)
@@ -236,10 +235,14 @@ export default function LinksPage() {
                       className="group block"
                     >
                       <div className="relative">
-                        <div className={`absolute -inset-0.5 bg-linear-to-r ${link.color} rounded-xl blur opacity-0 group-hover:opacity-75 transition duration-300`} />
+                        <div
+                          className={`absolute -inset-0.5 bg-linear-to-r ${link.color} rounded-xl blur opacity-0 group-hover:opacity-75 transition duration-300`}
+                        />
                         <div className="relative bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 rounded-xl p-4 hover:border-gray-700/50 transition-all duration-300 group-hover:scale-[1.02]">
                           <div className="flex items-center gap-4">
-                            <div className={`p-3 rounded-lg bg-linear-to-br ${link.color} text-white shrink-0 group-hover:scale-110 transition-transform duration-300`}>
+                            <div
+                              className={`p-3 rounded-lg bg-linear-to-br ${link.color} text-white shrink-0 group-hover:scale-110 transition-transform duration-300`}
+                            >
                               {link.icon}
                             </div>
                             <div className="flex-1 min-w-0">

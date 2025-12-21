@@ -74,7 +74,8 @@ export function SkillsDisplayMobile() {
                 <span>Prev</span>
               </button>
               <span className="text-gray-400 text-xs">
-                <span className="text-cyan-400">{currentPage}</span>/{totalPages}
+                <span className="text-cyan-400">{currentPage}</span>/
+                {totalPages}
               </span>
               <button
                 onClick={nextPage}
@@ -91,7 +92,9 @@ export function SkillsDisplayMobile() {
         {/* Skills Grid */}
         <div className="mb-4">
           {loading ? (
-            <div className="py-6 text-center text-gray-400 text-sm">Loading skills...</div>
+            <div className="py-6 text-center text-gray-400 text-sm">
+              Loading skills...
+            </div>
           ) : error ? (
             <div className="py-6 text-center text-red-400 text-sm">{error}</div>
           ) : (
@@ -156,11 +159,11 @@ export default function SkillsDisplay() {
 
   return (
     <section className="relative py-6 sm:py-8 md:py-12 px-4 sm:px-6 md:px-8 bg-linear-to-b from-transparent via-gray-950/50 to-transparent overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-cyan-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f08_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f08_1px,transparent_1px)] bg-size-[4rem_4rem]"></div>
+      {/* Background Effects - Optimized for performance */}
+      <div className="absolute inset-0 pointer-events-none will-change-auto">
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 md:w-80 md:h-80 bg-cyan-500/5 rounded-full blur-2xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-80 md:h-80 bg-blue-500/5 rounded-full blur-2xl"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f06_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f06_1px,transparent_1px)] bg-size-[4rem_4rem]"></div>
       </div>
 
       <div className="container mx-auto max-w-6xl relative z-10">
@@ -175,32 +178,40 @@ export default function SkillsDisplay() {
               </div>
               {totalPages > 1 && (
                 <div className="flex items-center justify-center gap-1.5 sm:gap-2 md:gap-3 flex-wrap shrink-0">
-                <button
-                  onClick={prevPage}
-                  disabled={!hasPrevious}
-                  className="flex items-center gap-1 sm:gap-1.5 md:gap-2 px-2 sm:px-2.5 md:px-3 py-1.5 rounded-lg bg-gray-900/50 border border-gray-800 hover:border-cyan-500/30 text-gray-400 hover:text-cyan-400 transition-colors duration-300 disabled:opacity-30 disabled:cursor-not-allowed text-xs"
-                >
-                  <ChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                  <span className="font-medium hidden sm:inline">Previous</span>
-                  <span className="font-medium sm:hidden">Prev</span>
-                </button>
+                  <button
+                    onClick={prevPage}
+                    disabled={!hasPrevious}
+                    className="flex items-center gap-1 sm:gap-1.5 md:gap-2 px-2 sm:px-2.5 md:px-3 py-1.5 rounded-lg bg-gray-900/50 border border-gray-800 hover:border-cyan-500/30 text-gray-400 hover:text-cyan-400 transition-colors duration-300 disabled:opacity-30 disabled:cursor-not-allowed text-xs"
+                  >
+                    <ChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    <span className="font-medium hidden sm:inline">
+                      Previous
+                    </span>
+                    <span className="font-medium sm:hidden">Prev</span>
+                  </button>
 
-                <span className="text-gray-400 text-xs font-medium px-1 sm:px-2">
-                  <span className="hidden sm:inline">Page </span>
-                  <span className="text-cyan-400 font-bold">{currentPage}</span><span className="hidden sm:inline"> of </span><span className="sm:hidden">/</span>
-                  <span className="text-cyan-400 font-bold">{totalPages}</span>
-                </span>
+                  <span className="text-gray-400 text-xs font-medium px-1 sm:px-2">
+                    <span className="hidden sm:inline">Page </span>
+                    <span className="text-cyan-400 font-bold">
+                      {currentPage}
+                    </span>
+                    <span className="hidden sm:inline"> of </span>
+                    <span className="sm:hidden">/</span>
+                    <span className="text-cyan-400 font-bold">
+                      {totalPages}
+                    </span>
+                  </span>
 
-                <button
-                  onClick={nextPage}
-                  disabled={!hasNext}
-                  className="flex items-center gap-1 sm:gap-1.5 md:gap-2 px-2 sm:px-2.5 md:px-3 py-1.5 rounded-lg bg-gray-900/50 border border-gray-800 hover:border-cyan-500/30 text-gray-400 hover:text-cyan-400 transition-colors duration-300 disabled:opacity-30 disabled:cursor-not-allowed text-xs"
-                >
-                  <span className="font-medium">Next</span>
-                  <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                </button>
-              </div>
-            )}
+                  <button
+                    onClick={nextPage}
+                    disabled={!hasNext}
+                    className="flex items-center gap-1 sm:gap-1.5 md:gap-2 px-2 sm:px-2.5 md:px-3 py-1.5 rounded-lg bg-gray-900/50 border border-gray-800 hover:border-cyan-500/30 text-gray-400 hover:text-cyan-400 transition-colors duration-300 disabled:opacity-30 disabled:cursor-not-allowed text-xs"
+                  >
+                    <span className="font-medium">Next</span>
+                    <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                  </button>
+                </div>
+              )}
             </div>
             <p className="text-gray-400 text-xs sm:text-sm md:text-base lg:text-lg text-center lg:text-left max-w-3xl px-4 lg:px-0">
               Technologies and tools I work with to build innovative solutions

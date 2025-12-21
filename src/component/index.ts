@@ -18,7 +18,13 @@ export { LoadingState, NameLoader } from "./Loading";
 export { PaginationControls, type PaginationTheme } from "./Pagination";
 export { ProjectCard, ProjectsDisplay } from "./Projects";
 // Section Wrapper Components
-export { ContentGrid, SectionHeader, SectionWrapper, type SectionTheme, type HeaderTheme } from "./Section";
+export {
+  ContentGrid,
+  type HeaderTheme,
+  SectionHeader,
+  type SectionTheme,
+  SectionWrapper,
+} from "./Section";
 export { SkillsDisplay } from "./Skill";
 export { StatsDisplay, StatsWrapper } from "./Stats";
 export { Time, TimelineDisplay } from "./Timeline";

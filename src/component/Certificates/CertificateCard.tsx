@@ -5,7 +5,11 @@ import { useMemo } from "react";
 import { ErrorState } from "@/component/Error";
 import { LoadingState } from "@/component/Loading";
 import { PaginationControls } from "@/component/Pagination";
-import { ContentGrid, SectionHeader, SectionWrapper } from "@/component/Section";
+import {
+  ContentGrid,
+  SectionHeader,
+  SectionWrapper,
+} from "@/component/Section";
 import { UnifiedCard } from "@/component/UnifiedCard";
 import { usePaginatedFetch } from "@/hooks/usePaginatedFetch";
 import { certificatesAPI } from "@/static/api/api.request";
@@ -36,7 +40,9 @@ export const CertificateCard = ({
       {certificate.expiry_date ? (
         <>
           <span>•</span>
-          <span>Expires {formatDate(certificate.expiry_date, { fallback: "" })}</span>
+          <span>
+            Expires {formatDate(certificate.expiry_date, { fallback: "" })}
+          </span>
         </>
       ) : (
         <>

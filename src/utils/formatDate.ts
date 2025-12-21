@@ -14,10 +14,11 @@ interface FormatDateOptions {
   fallback?: string;
 }
 
-const DATE_FORMAT_OPTIONS: Record<DateFormatStyle, Intl.DateTimeFormatOptions> = {
-  short: { month: "short", year: "numeric" },
-  long: { month: "long", year: "numeric" },
-} as const;
+const DATE_FORMAT_OPTIONS: Record<DateFormatStyle, Intl.DateTimeFormatOptions> =
+  {
+    short: { month: "short", year: "numeric" },
+    long: { month: "long", year: "numeric" },
+  } as const;
 
 /**
  * Formats a date string to locale format
@@ -28,7 +29,7 @@ const DATE_FORMAT_OPTIONS: Record<DateFormatStyle, Intl.DateTimeFormatOptions> =
  */
 export const formatDate = (
   dateString?: string | null,
-  options: FormatDateOptions = {}
+  options: FormatDateOptions = {},
 ): string => {
   const { style = "short", fallback = "Present" } = options;
 
@@ -51,11 +52,11 @@ export const formatDate = (
 export const formatDateRange = (
   startDate?: string | null,
   endDate?: string | null,
-  options: FormatDateOptions = {}
+  options: FormatDateOptions = {},
 ): string => {
   const start = formatDate(startDate, { ...options, fallback: "" });
   const end = formatDate(endDate, options);
-  
+
   if (!start) return end;
   return `${start} - ${end}`;
 };
