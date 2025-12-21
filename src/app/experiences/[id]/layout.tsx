@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { experiencesAPI } from "@/static/api/api.request";
 import { BaseURL } from "@/static/data";
+import { generateOrganizationSchema, generateBreadcrumbSchema } from "@/lib/structuredData";
+import { StructuredData } from "@/component/StructuredData";
 
 interface LayoutProps {
   params: Promise<{ id: string }>;
@@ -72,6 +74,14 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
         robots: {
           index: true,
           follow: true,
+          nocache: false,
+          googleBot: {
+            index: true,
+            follow: true,
+            "max-video-preview": -1,
+            "max-image-preview": "large",
+            "max-snippet": -1,
+          },
         },
       };
     }
@@ -85,6 +95,45 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
   };
 }
 
-export default function ExperienceDetailLayout({ children }: LayoutProps) {
-  return <>{children}</>;
+export default async function ExperienceDetailLayout({ params, children }: LayoutProps) {
+  const { id } = await params;
+  
+  let organizationSchema = null;
+  let breadcrumbSchema = null;
+  
+  try {
+    const response = await experiencesAPI.getExperienceById(id);
+    
+    if (response.status === 200 && response.data) {
+      const experience = response.data;
+      const timeline = experience.experience_time_line?.[0];
+      
+      if (timeline) {
+        organizationSchema = generateOrganizationSchema({
+          name: experience.company_name,
+          position: timeline.position,
+          startDate: timeline.start_date,
+          endDate: timeline.end_date,
+          description: experience.description,
+        });
+      }
+      
+      breadcrumbSchema = generateBreadcrumbSchema([
+        { name: "Home", url: BaseURL },
+        { name: "Experiences", url: `${BaseURL}/experiences` },
+        { name: experience.company_name, url: `${BaseURL}/experiences/${id}` },
+      ]);
+    }
+  } catch (error) {
+    console.error("Error generating structured data:", error);
+  }
+  
+  return (
+    <>
+      {organizationSchema && breadcrumbSchema && (
+        <StructuredData data={[organizationSchema, breadcrumbSchema]} />
+      )}
+      {children}
+    </>
+  );
 }

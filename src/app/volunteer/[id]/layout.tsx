@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { volunteerAPI } from "@/static/api/api.request";
 import { BaseURL } from "@/static/data";
+import { generateOrganizationSchema, generateBreadcrumbSchema } from "@/lib/structuredData";
+import { StructuredData } from "@/component/StructuredData";
 
 interface LayoutProps {
   params: Promise<{ id: string }>;
@@ -70,6 +72,14 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
         robots: {
           index: true,
           follow: true,
+          nocache: false,
+          googleBot: {
+            index: true,
+            follow: true,
+            "max-video-preview": -1,
+            "max-image-preview": "large",
+            "max-snippet": -1,
+          },
         },
       };
     }
@@ -83,6 +93,42 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
   };
 }
 
-export default function VolunteerDetailLayout({ children }: LayoutProps) {
-  return <>{children}</>;
+export default async function VolunteerDetailLayout({ params, children }: LayoutProps) {
+  const { id } = await params;
+  
+  let organizationSchema = null;
+  let breadcrumbSchema = null;
+  
+  try {
+    const response = await volunteerAPI.getVolunteerById(id);
+    
+    if (response.status === 200 && response.data) {
+      const volunteer = response.data;
+      
+      organizationSchema = generateOrganizationSchema({
+        name: volunteer.organisation,
+        position: volunteer.position || "Volunteer",
+        startDate: volunteer.start_date || "",
+        endDate: volunteer.end_date,
+        description: volunteer.description || "",
+      });
+      
+      breadcrumbSchema = generateBreadcrumbSchema([
+        { name: "Home", url: BaseURL },
+        { name: "Volunteer", url: `${BaseURL}/volunteer` },
+        { name: volunteer.organisation, url: `${BaseURL}/volunteer/${id}` },
+      ]);
+    }
+  } catch (error) {
+    console.error("Error generating structured data:", error);
+  }
+  
+  return (
+    <>
+      {organizationSchema && breadcrumbSchema && (
+        <StructuredData data={[organizationSchema, breadcrumbSchema]} />
+      )}
+      {children}
+    </>
+  );
 }

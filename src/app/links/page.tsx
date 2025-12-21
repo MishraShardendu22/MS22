@@ -178,16 +178,18 @@ export default function LinksPage() {
 
       <main className="relative z-10 container mx-auto px-4 py-12 max-w-2xl">
         {/* Back Button */}
-        <Link
-          href="/"
-          className="group inline-flex items-center gap-2 mb-8 px-4 py-2 bg-gray-900/50 hover:bg-gray-800/50 border border-gray-800 hover:border-cyan-500/50 rounded-lg transition-all duration-300 text-gray-400 hover:text-cyan-400"
-        >
-          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
-          <span className="text-sm font-medium">Back to Home</span>
-        </Link>
+        <nav aria-label="Back navigation">
+          <Link
+            href="/"
+            className="group inline-flex items-center gap-2 mb-8 px-4 py-2 bg-gray-900/50 hover:bg-gray-800/50 border border-gray-800 hover:border-cyan-500/50 rounded-lg transition-all duration-300 text-gray-400 hover:text-cyan-400"
+          >
+            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
+            <span className="text-sm font-medium">Back to Home</span>
+          </Link>
+        </nav>
 
         {/* Profile Section */}
-        <div className="text-center mb-12 animate-fadeIn">
+        <header className="text-center mb-12 animate-fadeIn">
           {/* Hide profile image on mobile for better performance */}
           <div className="relative mb-6 hidden md:inline-block">
             <div className="absolute -inset-1 bg-linear-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-full blur opacity-75 animate-pulse" />
@@ -195,6 +197,8 @@ export default function LinksPage() {
               <Image
                 src="/professional.avif" 
                 alt="Shardendu Mishra" 
+                width={128}
+                height={128}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -214,10 +218,10 @@ export default function LinksPage() {
               Software Engineer
             </span>
           </div>
-        </div>
+        </header>
 
         {/* Links Section */}
-        <div className="space-y-8">
+        <section aria-label="Social and project links" className="space-y-8">
           {Object.entries(categories).map(([category, title]) => (
             <div key={category} className="animate-fadeIn">
               <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
@@ -269,15 +273,15 @@ export default function LinksPage() {
               </div>
             </div>
           ))}
-        </div>
+        </section>
 
         {/* Footer */}
-        <div className="mt-12 text-center text-sm text-gray-500 animate-fadeIn">
+        <footer className="mt-12 text-center text-sm text-gray-500 animate-fadeIn">
           <p className="mb-2">© 2025 Shardendu Mishra. All rights reserved.</p>
           <p className="text-xs text-gray-600">
             Built with Next.js & Tailwind CSS
           </p>
-        </div>
+        </footer>
       </main>
 
       <style jsx>{`

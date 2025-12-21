@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { projectsAPI } from "@/static/api/api.request";
 import { BaseURL } from "@/static/data";
+import { generateProjectSchema, generateBreadcrumbSchema } from "@/lib/structuredData";
+import { StructuredData } from "@/component/StructuredData";
 
 interface LayoutProps {
   params: Promise<{ id: string }>;
@@ -71,6 +73,14 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
         robots: {
           index: true,
           follow: true,
+          nocache: false,
+          googleBot: {
+            index: true,
+            follow: true,
+            "max-video-preview": -1,
+            "max-image-preview": "large",
+            "max-snippet": -1,
+          },
         },
       };
     }
@@ -84,6 +94,42 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
   };
 }
 
-export default function ProjectDetailLayout({ children }: LayoutProps) {
-  return <>{children}</>;
+export default async function ProjectDetailLayout({ params, children }: LayoutProps) {
+  const { id } = await params;
+  
+  let projectSchema = null;
+  let breadcrumbSchema = null;
+  
+  try {
+    const response = await projectsAPI.getProjectById(id);
+    
+    if (response.status === 200 && response.data) {
+      const project = response.data;
+      
+      projectSchema = generateProjectSchema({
+        name: project.project_name,
+        description: project.small_description || project.description,
+        url: project.project_repository,
+        dateCreated: project.inline?.created_at,
+        technologies: project.skills,
+      });
+      
+      breadcrumbSchema = generateBreadcrumbSchema([
+        { name: "Home", url: BaseURL },
+        { name: "Projects", url: `${BaseURL}/projects` },
+        { name: project.project_name, url: `${BaseURL}/projects/${id}` },
+      ]);
+    }
+  } catch (error) {
+    console.error("Error generating structured data:", error);
+  }
+  
+  return (
+    <>
+      {projectSchema && breadcrumbSchema && (
+        <StructuredData data={[projectSchema, breadcrumbSchema]} />
+      )}
+      {children}
+    </>
+  );
 }

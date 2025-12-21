@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { certificatesAPI } from "@/static/api/api.request";
 import { BaseURL } from "@/static/data";
+import { generateCertificationSchema, generateBreadcrumbSchema } from "@/lib/structuredData";
+import { StructuredData } from "@/component/StructuredData";
 
 interface LayoutProps {
   params: Promise<{ id: string }>;
@@ -69,6 +71,14 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
         robots: {
           index: true,
           follow: true,
+          nocache: false,
+          googleBot: {
+            index: true,
+            follow: true,
+            "max-video-preview": -1,
+            "max-image-preview": "large",
+            "max-snippet": -1,
+          },
         },
       };
     }
@@ -82,6 +92,42 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
   };
 }
 
-export default function CertificateDetailLayout({ children }: LayoutProps) {
-  return <>{children}</>;
+export default async function CertificateDetailLayout({ params, children }: LayoutProps) {
+  const { id } = await params;
+  
+  let certificationSchema = null;
+  let breadcrumbSchema = null;
+  
+  try {
+    const response = await certificatesAPI.getCertificateById(id);
+    
+    if (response.status === 200 && response.data) {
+      const certificate = response.data;
+      
+      certificationSchema = generateCertificationSchema({
+        name: certificate.title,
+        issuer: certificate.issuer,
+        dateIssued: certificate.issue_date,
+        credentialUrl: certificate.certificate_url,
+        description: certificate.description,
+      });
+      
+      breadcrumbSchema = generateBreadcrumbSchema([
+        { name: "Home", url: BaseURL },
+        { name: "Certificates", url: `${BaseURL}/certificates` },
+        { name: certificate.title, url: `${BaseURL}/certificates/${id}` },
+      ]);
+    }
+  } catch (error) {
+    console.error("Error generating structured data:", error);
+  }
+  
+  return (
+    <>
+      {certificationSchema && breadcrumbSchema && (
+        <StructuredData data={[certificationSchema, breadcrumbSchema]} />
+      )}
+      {children}
+    </>
+  );
 }
