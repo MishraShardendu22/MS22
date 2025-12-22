@@ -317,7 +317,7 @@ export function ExperiencesFilterClient({
                       Math.min(totalFilteredPages, prev + 1),
                     )
                   }
-                  disabled={currentPage === totalFilteredPages}
+                  disabled={currentPage >= totalFilteredPages}
                   className="group flex items-center gap-2 px-6 py-3 bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 text-gray-400 rounded-xl hover:border-cyan-500/40 hover:text-cyan-400 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:border-gray-800/50 disabled:hover:text-gray-400 transition-all shadow-lg"
                 >
                   <span className="font-semibold">Next</span>

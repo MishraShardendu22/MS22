@@ -364,7 +364,7 @@ export function VolunteerFilterClient({
                     Math.min(totalFilteredPages, prev + 1),
                   )
                 }
-                disabled={currentPage === totalFilteredPages}
+                disabled={currentPage >= totalFilteredPages}
                 className="group flex items-center gap-2 px-6 py-3 bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 text-gray-400 rounded-xl disabled:opacity-40 disabled:cursor-not-allowed hover:border-pink-500/40 hover:text-pink-400 transition-all shadow-lg disabled:hover:border-gray-800/50 disabled:hover:text-gray-400"
               >
                 <span className="font-semibold">Next</span>
