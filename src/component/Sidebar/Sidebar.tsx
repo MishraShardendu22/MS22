@@ -25,9 +25,9 @@ const navItems: NavItem[] = [
   { name: "Skills", href: "#skills", icon: Code2 },
   { name: "Timeline", href: "#timeline", icon: Clock },
   { name: "Projects", href: "projects", icon: FolderGit2 },
-  { name: "Experience", href: "experience", icon: Briefcase },
+  { name: "Experience", href: "experiences", icon: Briefcase },
   { name: "Volunteer", href: "volunteer", icon: Heart },
-  { name: "Certifications", href: "certifications", icon: Award },
+  { name: "Certifications", href: "certificates", icon: Award },
   { name: "My Socials", href: "/links", icon: LinkIcon },
   { name: "Contact", href: "#contact", icon: Mail },
   {
