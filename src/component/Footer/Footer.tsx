@@ -1,8 +1,6 @@
-"use client";
-
-import { ArrowUp, Code2, Coffee, Heart, Send, Zap } from "lucide-react";
+import { Code2, Coffee, Heart, Zap } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { ContactForm } from "@/component/Contact/ContactForm";
 import {
   CodingProfiles,
   images,
@@ -10,77 +8,12 @@ import {
   QuickLinks,
   SocialMedia,
 } from "@/static/info/footer";
+import { ScrollToTop } from "./ScrollToTop";
 
-/**
- * Mobile-optimized Footer
- * - No background blur effects
- * - Simplified DOM structure
- * - Minimal styling without animations
- */
-export const FooterSectionMobile = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [status, setStatus] = useState<{
-    type: "success" | "error" | null;
-    message: string;
-  }>({ type: null, message: "" });
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setStatus({ type: null, message: "" });
-
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          subject: `Portfolio Contact from ${formData.name}`,
-          message: formData.message,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setStatus({ type: "success", message: "Message sent successfully!" });
-        setFormData({ name: "", email: "", message: "" });
-      } else {
-        setStatus({
-          type: "error",
-          message: data.error || "Failed to send message",
-        });
-      }
-    } catch (error) {
-      setStatus({
-        type: "error",
-        message: "An error occurred. Please try again.",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "instant" });
-  };
-
+export function FooterSectionMobile() {
   return (
     <footer className="bg-gray-950 pt-12 pb-6 px-4">
       <div className="container mx-auto max-w-400">
-        {/* Brand Info */}
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-10 h-10 rounded-lg bg-gray-900 flex items-center justify-center border border-gray-800">
@@ -96,65 +29,11 @@ export const FooterSectionMobile = () => {
           </p>
         </div>
 
-        {/* Contact Form */}
         <div className="mb-8">
           <h3 className="text-xl font-bold text-cyan-400 mb-4">Let's Talk</h3>
-          <form
-            onSubmit={handleSubmit}
-            className="bg-gray-900 p-4 rounded-xl border border-gray-800"
-          >
-            <input
-              type="text"
-              name="name"
-              placeholder="Full name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className="w-full bg-gray-950 border border-gray-700 rounded-lg px-4 py-3 text-gray-200 placeholder-gray-500 outline-none mb-3 text-sm"
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email address"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="w-full bg-gray-950 border border-gray-700 rounded-lg px-4 py-3 text-gray-200 placeholder-gray-500 outline-none mb-3 text-sm"
-            />
-            <textarea
-              name="message"
-              placeholder="Your message..."
-              value={formData.message}
-              onChange={handleChange}
-              required
-              rows={4}
-              className="w-full bg-gray-950 border border-gray-700 rounded-lg px-4 py-3 text-gray-200 placeholder-gray-500 outline-none resize-none mb-3 text-sm"
-            />
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="bg-cyan-500 hover:bg-cyan-600 disabled:bg-gray-600 text-white font-semibold text-sm w-full rounded-lg py-3 flex items-center justify-center gap-2 transition-colors"
-            >
-              {isSubmitting ? (
-                <>
-                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                  Sending...
-                </>
-              ) : (
-                <>
-                  <Send className="w-4 h-4" />
-                  Send message
-                </>
-              )}
-            </button>
-            {status.type && (
-              <div
-                className={`mt-3 p-3 rounded-lg text-xs ${status.type === "success" ? "bg-green-500/20 text-green-400 border border-green-500/30" : "bg-red-500/20 text-red-400 border border-red-500/30"}`}
-              >
-                {status.message}
-              </div>
-            )}
-          </form>
+          <div className="bg-gray-900 p-4 rounded-xl border border-gray-800">
+            <ContactForm variant="compact" includeSubject={false} />
+          </div>
         </div>
 
         {/* Quick Links Grid */}
@@ -171,7 +50,7 @@ export const FooterSectionMobile = () => {
                   <li key={idx}>
                     <a
                       href={data.url}
-                      className="flex items-center gap-2 text-xs text-gray-400"
+                      className="flex items-center gap-2 text-xs text-gray-400 hover:text-cyan-400 transition-colors"
                     >
                       <IconComponent className="w-3 h-3" />
                       <span>{key}</span>
@@ -194,7 +73,7 @@ export const FooterSectionMobile = () => {
                       href={data.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-xs text-gray-400"
+                      className="flex items-center gap-2 text-xs text-gray-400 hover:text-cyan-400 transition-colors"
                     >
                       <IconComponent className="w-3 h-3" />
                       <span>{key}</span>
@@ -209,86 +88,21 @@ export const FooterSectionMobile = () => {
         {/* Copyright and Back to Top */}
         <div className="pt-4 flex items-center justify-between">
           <p className="text-xs text-gray-600">© 2025 Shardendu Mishra</p>
-          <button
-            onClick={scrollToTop}
-            className="flex items-center gap-1 px-3 py-2 rounded-lg bg-gray-900 border border-gray-800 text-xs text-cyan-400"
-          >
-            <ArrowUp className="w-3 h-3" />
-            <span>Top</span>
-          </button>
+          <ScrollToTop variant="mobile" />
         </div>
       </div>
     </footer>
   );
-};
+}
 
-export const FooterSection = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [status, setStatus] = useState<{
-    type: "success" | "error" | null;
-    message: string;
-  }>({ type: null, message: "" });
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setStatus({ type: null, message: "" });
-
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          subject: `Portfolio Contact from ${formData.name}`,
-          message: formData.message,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setStatus({ type: "success", message: "Message sent successfully!" });
-        setFormData({ name: "", email: "", message: "" });
-      } else {
-        setStatus({
-          type: "error",
-          message: data.error || "Failed to send message",
-        });
-      }
-    } catch (error) {
-      setStatus({
-        type: "error",
-        message: "An error occurred. Please try again.",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
+export function FooterSection() {
   return (
     <footer className="relative bg-linear-to-b from-transparent via-gray-950/50 to-transparent pt-12 sm:pt-16 md:pt-24 pb-6 sm:pb-8 md:pb-10 px-4 sm:px-6 md:px-8 overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute bottom-0 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-cyan-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f08_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f08_1px,transparent_1px)] bg-size-[4rem_4rem]"></div>
+        <div className="absolute bottom-0 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-cyan-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-blue-500/5 rounded-full blur-3xl" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f08_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f08_1px,transparent_1px)] bg-size-[4rem_4rem]" />
       </div>
 
       <div className="container mx-auto max-w-400 relative z-10">
@@ -373,15 +187,7 @@ export const FooterSection = () => {
               </div>
 
               {/* Back to Top */}
-              <button
-                onClick={scrollToTop}
-                className="group flex items-center gap-2 px-5 py-2.5 rounded-lg bg-linear-to-br from-cyan-500/20 to-blue-500/20 hover:from-cyan-500/30 hover:to-blue-500/30 border border-cyan-500/30 hover:border-cyan-500/50 transition-colors duration-500"
-              >
-                <span className="text-sm font-medium text-cyan-400">
-                  Back to Top
-                </span>
-                <ArrowUp className="w-4 h-4 text-cyan-400" />
-              </button>
+              <ScrollToTop variant="desktop" />
             </div>
           </div>
 
@@ -394,69 +200,14 @@ export const FooterSection = () => {
               <p className="text-gray-400 text-sm">Get in touch with me</p>
             </div>
 
-            <form
-              onSubmit={handleSubmit}
-              className="bg-linear-to-br from-gray-900/80 to-gray-950/80 backdrop-blur-sm p-6 md:p-8 rounded-2xl border border-gray-800 shadow-2xl"
-            >
-              <div className="grid md:grid-cols-2 gap-4 mb-4">
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Full name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="bg-gray-900/50 border border-gray-700 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 rounded-lg px-4 py-3 text-gray-200 placeholder-gray-500 outline-none transition-all"
-                />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email address"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="bg-gray-900/50 border border-gray-700 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 rounded-lg px-4 py-3 text-gray-200 placeholder-gray-500 outline-none transition-all"
-                />
-              </div>
-              <textarea
-                name="message"
-                placeholder="Share details or say hello..."
-                value={formData.message}
-                onChange={handleChange}
-                required
-                rows={5}
-                className="w-full bg-gray-900/50 border border-gray-700 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 rounded-lg px-4 py-3 text-gray-200 placeholder-gray-500 outline-none transition-all resize-none mb-4"
-              />
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="bg-linear-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 disabled:from-gray-600 disabled:to-gray-700 hover:shadow-lg hover:shadow-cyan-500/50 text-white font-semibold text-base w-full rounded-lg py-3 flex items-center justify-center gap-2 transition-all duration-500"
-              >
-                {isSubmitting ? (
-                  <>
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                    Sending...
-                  </>
-                ) : (
-                  <>
-                    <Send className="w-5 h-5" />
-                    Send message
-                  </>
-                )}
-              </button>
-              {status.type && (
-                <div
-                  className={`mt-4 p-4 rounded-lg text-sm ${status.type === "success" ? "bg-green-500/20 text-green-400 border border-green-500/30" : "bg-red-500/20 text-red-400 border border-red-500/30"}`}
-                >
-                  {status.message}
-                </div>
-              )}
-            </form>
+            <div className="bg-linear-to-br from-gray-900/80 to-gray-950/80 backdrop-blur-sm p-6 md:p-8 rounded-2xl border border-gray-800 shadow-2xl">
+              <ContactForm variant="default" includeSubject={false} />
+            </div>
           </div>
         </div>
 
         {/* Divider */}
-        <div className="w-full h-px bg-linear-to-r from-transparent via-cyan-500/30 to-transparent mb-16"></div>
+        <div className="w-full h-px bg-linear-to-r from-transparent via-cyan-500/30 to-transparent mb-16" />
 
         {/* Footer Links Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-12 mb-16">
@@ -491,7 +242,7 @@ export const FooterSection = () => {
               My Websites
             </h3>
             <ul className="space-y-4">
-              {Object.entries(MyWebsites).map(([key, data], idx) => {
+              {Object.entries(MyWebsites).map(([_key, data], idx) => {
                 const IconComponent = data.icon;
                 return (
                   <li key={idx}>
@@ -571,4 +322,4 @@ export const FooterSection = () => {
       </div>
     </footer>
   );
-};
+}

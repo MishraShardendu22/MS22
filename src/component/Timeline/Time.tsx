@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { ErrorState } from "@/component/Error";
 import { LoadingState } from "@/component/Loading";
 import { TimelineAPI } from "@/static/api/api.request";
@@ -65,18 +65,6 @@ export const Time = () => {
     fetchTimeline();
   }, []);
 
-  // Memoize timeline display to prevent unnecessary re-renders
-  const timelineContent = useMemo(() => {
-    if (loading) return null;
-    if (error) return null;
-    return (
-      <TimelineDisplay
-        experiences={experiences}
-        volunteerExperiences={volunteerExperiences}
-      />
-    );
-  }, [loading, error, experiences, volunteerExperiences]);
-
   if (loading)
     return <LoadingState message="Loading timeline..." variant="cyan" />;
   if (error)
@@ -89,7 +77,12 @@ export const Time = () => {
       />
     );
 
-  return timelineContent;
+  return (
+    <TimelineDisplay
+      experiences={experiences}
+      volunteerExperiences={volunteerExperiences}
+    />
+  );
 };
 
 export default Time;

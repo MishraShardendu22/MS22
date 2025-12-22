@@ -44,7 +44,8 @@
     "type-check": "tsc --noEmit",
     "clean": "rm -rf .next out",
     "preview": "pnpm build && pnpm start",
-    "prepare": "husky"
+    "prepare": "husky",
+    "validate": "pnpm type-check && pnpm lint && pnpm build"
   },
   "dependencies": {
     "@vercel/analytics": "^1.6.1",

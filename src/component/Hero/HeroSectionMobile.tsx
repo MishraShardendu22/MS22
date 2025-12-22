@@ -1,5 +1,5 @@
-import { TextContent } from "./TextContent";
 import { EducationSection } from "./EducationSection";
+import { TextContent } from "./TextContent";
 
 export const HeroSectionMobile = () => {
   return (

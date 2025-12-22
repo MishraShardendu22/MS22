@@ -8,7 +8,6 @@ import {
   Instagram,
   LinkedinIcon,
   LockKeyhole,
-  MailIcon,
   ShieldCheck,
   TwitterIcon,
   User2Icon,

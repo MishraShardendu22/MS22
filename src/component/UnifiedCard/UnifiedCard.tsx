@@ -1,6 +1,4 @@
-"use client";
-
-import { Building, Calendar, CheckCircle2, ExternalLink } from "lucide-react";
+import { Building, Calendar, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
@@ -109,19 +107,6 @@ export const UnifiedCard = ({
         contain: "layout style paint",
       }}
     >
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(12px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
-
       <div
         className={`relative bg-linear-to-br from-gray-900/50 to-gray-950/50 border border-gray-800/50 rounded-xl md:rounded-2xl overflow-hidden transition-colors duration-200 ${colors.border}`}
       >

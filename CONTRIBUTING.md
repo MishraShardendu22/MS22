@@ -77,7 +77,7 @@ pnpm dev
 - Use functional components with hooks
 - Implement proper error boundaries
 - Use `"use client"` directive for client components
-- Optimize re-renders with `memo`, `useMemo`, `useCallback` when appropriate
+- React Compiler is enabled - no need for manual memoization (`memo`, `useMemo`, `useCallback`)
 
 ### File Naming
 

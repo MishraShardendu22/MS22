@@ -1,15 +1,15 @@
 import {
-  Home,
-  Mail,
-  Heart,
   Award,
+  Briefcase,
   Clock,
   Code2,
   FileText,
-  Briefcase,
   FolderGit2,
   GraduationCap,
+  Heart,
+  Home,
   Link as LinkIcon,
+  Mail,
 } from "lucide-react";
 import Link from "next/link";
 

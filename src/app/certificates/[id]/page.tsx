@@ -9,23 +9,61 @@ import {
   FileText,
   Shield,
 } from "lucide-react";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Sidebar } from "@/component/Sidebar";
+import { generatePageMetadata } from "@/lib/metadata";
 import { certificatesAPI } from "@/static/api/api.request";
 import type { Certificate } from "@/static/api/api.types";
 import { formatDate } from "@/utils/formatDate";
 
-// Use dynamic rendering to avoid rate limiting during build
 export const dynamic = "force-dynamic";
 export const revalidate = 3600;
 
-export default async function CertificateDetailPage({
-  params,
-}: {
+interface PageProps {
   params: { id: string };
-}) {
+}
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { id } = await params;
+
+  try {
+    const response = await certificatesAPI.getCertificateById(id);
+
+    if (response.status === 200 && response.data) {
+      const certificate = response.data;
+      const description = `${certificate.title} certification issued by ${certificate.issuer}. ${certificate.description?.substring(0, 120) || "View certification details and credentials."}`;
+
+      return generatePageMetadata({
+        title: certificate.title,
+        description,
+        path: `/certificates/${id}`,
+        keywords: [
+          certificate.title,
+          certificate.issuer,
+          "certification",
+          "credential",
+          "professional development",
+        ],
+      });
+    }
+  } catch (error) {
+    console.error("Error generating metadata:", error);
+  }
+
+  return generatePageMetadata({
+    title: "Certificate Details",
+    description:
+      "View detailed information about this professional certification.",
+    path: `/certificates/${id}`,
+  });
+}
+
+export default async function CertificateDetailPage({ params }: PageProps) {
   try {
     const response = await certificatesAPI.getCertificateById(params.id);
 
@@ -49,7 +87,10 @@ export default async function CertificateDetailPage({
           <article className="container mx-auto px-4 py-8 relative z-10">
             <nav>
               <Link href="/certificates">
-                <button className="group flex items-center gap-2 mb-8 px-6 py-3 bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 text-gray-400 rounded-xl hover:border-cyan-500/40 hover:text-cyan-400 transition-all shadow-lg">
+                <button
+                  type="button"
+                  className="group flex items-center gap-2 mb-8 px-6 py-3 bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 text-gray-400 rounded-xl hover:border-cyan-500/40 hover:text-cyan-400 transition-all shadow-lg"
+                >
                   <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
                   <span className="font-semibold">Back to Certificates</span>
                 </button>

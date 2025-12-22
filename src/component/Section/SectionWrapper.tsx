@@ -1,7 +1,4 @@
-"use client";
-
 import type { ReactNode } from "react";
-import { memo } from "react";
 
 export type SectionTheme = "cyan" | "blue" | "emerald" | "pink" | "purple";
 
@@ -25,7 +22,7 @@ const themeGradients: Record<
 /**
  * Reusable section wrapper with consistent background styling
  */
-export const SectionWrapper = memo(function SectionWrapper({
+export function SectionWrapper({
   children,
   theme = "cyan",
   className = "",
@@ -50,4 +47,4 @@ export const SectionWrapper = memo(function SectionWrapper({
       </div>
     </section>
   );
-});
+}

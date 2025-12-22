@@ -1,14 +1,33 @@
 import { Heart } from "lucide-react";
+import type { Metadata } from "next";
+import { Suspense } from "react";
+import { LoadingState } from "@/component/Loading";
 import { Sidebar } from "@/component/Sidebar";
-import { VolunteerClient } from "@/component/Volunteer";
+import { VolunteerFilterClient } from "@/component/Volunteer";
+import { generatePageMetadata } from "@/lib/metadata";
 import { volunteerAPI } from "@/static/api/api.request";
 import type { Volunteer } from "@/static/api/api.types";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 3600;
 
-export default async function VolunteerPage() {
-  // Fetch all volunteer experiences with error handling
+export const metadata: Metadata = generatePageMetadata({
+  title: "Volunteer Experience",
+  description:
+    "Community involvement and volunteer work. Discover my contributions to open-source projects, tech communities, and social initiatives. Making a positive impact through technology.",
+  path: "/volunteer",
+  keywords: [
+    "volunteer work",
+    "community service",
+    "open source contributions",
+    "tech community",
+    "social impact",
+    "community involvement",
+    "volunteer experience",
+  ],
+});
+
+async function VolunteerContent() {
   let volunteers: Volunteer[] = [];
   try {
     const response = await volunteerAPI.getAllVolunteers(1, 500);
@@ -18,9 +37,12 @@ export default async function VolunteerPage() {
         : [];
   } catch (error) {
     console.error("Error fetching volunteers:", error);
-    // Return empty array on error - client will handle
   }
 
+  return <VolunteerFilterClient initialVolunteers={volunteers} />;
+}
+
+export default function VolunteerPage() {
   return (
     <>
       <Sidebar />
@@ -55,7 +77,9 @@ export default async function VolunteerPage() {
           </div>
         </header>
 
-        <VolunteerClient initialVolunteers={volunteers} />
+        <Suspense fallback={<LoadingState />}>
+          <VolunteerContent />
+        </Suspense>
       </main>
     </>
   );

@@ -1,3 +1,6 @@
-export { ProjectCard, ProjectsDisplay } from "./ProjectCard";
-export { ProjectsDisplayMobile } from "./ProjectCardMobile";
-export { ProjectsClient } from "./ProjectsClient";
+export {
+  ProjectCard as ProjectCardServer,
+  ProjectsDisplayMobile,
+  ProjectsDisplayServer,
+} from "./ProjectCardServer";
+export { ProjectsFilterClient } from "./ProjectsFilterClient";

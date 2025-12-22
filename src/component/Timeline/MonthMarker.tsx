@@ -1,8 +1,8 @@
 import type { MonthData } from "./types";
 
 interface MonthMarkerProps {
-  month: MonthData;
   index: number;
+  month: MonthData;
   isMobile: boolean;
 }
 

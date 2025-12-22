@@ -1,1 +1,4 @@
-export { default as SkillsDisplay } from "./SkillsDisplay";
+export {
+  default as SkillsDisplay,
+  SkillsDisplayMobile,
+} from "./SkillsDisplayServer";

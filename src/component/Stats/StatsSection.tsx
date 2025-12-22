@@ -1,0 +1,146 @@
+import { Suspense } from "react";
+import { API_BASE_URL } from "@/constants/url";
+import { CommitsActivityCard } from "./CommitsActivityCard";
+import { GitHubProfileCard } from "./GitHubProfileCard";
+import { LeetCodeStatsCard } from "./LeetCodeStatsCard";
+import { TopRepositoriesCard } from "./TopRepositoriesCard";
+
+const BASE_URL = API_BASE_URL;
+
+async function fetchWithTimeout(url: string, ms = 8000) {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), ms);
+
+  try {
+    const res = await fetch(url, {
+      signal: controller.signal,
+      next: { revalidate: 3600 },
+    });
+    clearTimeout(timeoutId);
+    if (!res.ok) return null;
+    return res.json();
+  } catch {
+    clearTimeout(timeoutId);
+    return null;
+  }
+}
+
+async function GitHubProfileSection() {
+  const [gh, starsData] = await Promise.all([
+    fetchWithTimeout(`${BASE_URL}/api/github`),
+    fetchWithTimeout(`${BASE_URL}/api/github/stars`),
+  ]);
+
+  if (!gh) return null;
+
+  return <GitHubProfileCard github={gh} stars={starsData?.stars || 0} />;
+}
+
+async function LeetCodeSection() {
+  const lc = await fetchWithTimeout(`${BASE_URL}/api/leetcode`);
+
+  if (!lc?.data?.matchedUser) return null;
+
+  return <LeetCodeStatsCard leetcode={lc.data.matchedUser} />;
+}
+
+async function CommitsSection() {
+  const [commits, cal] = await Promise.all([
+    fetchWithTimeout(`${BASE_URL}/api/github/commits`),
+    fetchWithTimeout(`${BASE_URL}/api/github/calendar`),
+  ]);
+
+  if (!commits || commits.length === 0) return null;
+
+  return <CommitsActivityCard commits={commits} calendar={cal || {}} />;
+}
+
+async function TopReposSection() {
+  const top = await fetchWithTimeout(`${BASE_URL}/api/github/top-repos`);
+
+  if (!top || top.length === 0) return null;
+
+  return <TopRepositoriesCard topRepos={top} />;
+}
+
+function CardSkeleton() {
+  return (
+    <div className="bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 animate-pulse">
+      <div className="flex items-center gap-3 mb-6">
+        <div className="w-11 h-11 bg-gray-700/50 rounded-lg" />
+        <div className="space-y-2">
+          <div className="w-32 h-4 bg-gray-700/50 rounded" />
+          <div className="w-24 h-3 bg-gray-700/50 rounded" />
+        </div>
+      </div>
+      <div className="space-y-3">
+        <div className="grid grid-cols-2 gap-3">
+          <div className="h-16 bg-gray-800/30 rounded-lg" />
+          <div className="h-16 bg-gray-800/30 rounded-lg" />
+        </div>
+        <div className="h-16 bg-gray-800/30 rounded-lg" />
+      </div>
+    </div>
+  );
+}
+
+// Wide card skeleton for commits and repos sections
+function WideCardSkeleton() {
+  return (
+    <div className="lg:col-span-2 bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 animate-pulse">
+      <div className="flex items-center gap-3 mb-6">
+        <div className="w-11 h-11 bg-gray-700/50 rounded-lg" />
+        <div className="space-y-2">
+          <div className="w-40 h-4 bg-gray-700/50 rounded" />
+          <div className="w-32 h-3 bg-gray-700/50 rounded" />
+        </div>
+      </div>
+      <div className="h-64 bg-gray-800/30 rounded-lg" />
+    </div>
+  );
+}
+
+export async function StatsSection() {
+  return (
+    <section className="relative py-6 sm:py-8 md:py-12 px-4 sm:px-6 md:px-8 bg-linear-to-br from-transparent via-gray-950/50 to-transparent overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none will-change-auto">
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 md:w-80 md:h-80 bg-cyan-500/5 rounded-full blur-2xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-80 md:h-80 bg-blue-500/5 rounded-full blur-2xl" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f06_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f06_1px,transparent_1px)] bg-size-[4rem_4rem]" />
+      </div>
+
+      <div className="container mx-auto max-w-7xl relative z-10">
+        <div className="text-center mb-6 md:mb-8 px-2">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-linear-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent mb-3 md:mb-4">
+            Coding Statistics
+          </h2>
+          <p className="text-gray-400 text-xs sm:text-sm md:text-base max-w-2xl mx-auto px-4">
+            Overview of my coding activity and achievements across platforms
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
+          <Suspense fallback={<CardSkeleton />}>
+            <GitHubProfileSection />
+          </Suspense>
+
+          <Suspense fallback={<CardSkeleton />}>
+            <LeetCodeSection />
+          </Suspense>
+
+          <Suspense fallback={<WideCardSkeleton />}>
+            <div className="lg:col-span-2">
+              <CommitsSection />
+            </div>
+          </Suspense>
+
+          <Suspense fallback={<WideCardSkeleton />}>
+            <div className="lg:col-span-2">
+              <TopReposSection />
+            </div>
+          </Suspense>
+        </div>
+      </div>
+    </section>
+  );
+}

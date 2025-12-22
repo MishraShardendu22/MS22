@@ -286,8 +286,46 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Shardendu Mishra",
+    url: BASE_URL,
+    image: `${BASE_URL}/professional.avif`,
+    jobTitle: "Software Developer and Engineer",
+    worksFor: {
+      "@type": "Organization",
+      name: "IIIT Dharwad",
+    },
+    alumniOf: {
+      "@type": "EducationalOrganization",
+      name: "Indian Institute of Information Technology Dharwad",
+    },
+    sameAs: [
+      "https://github.com/MishraShardendu22",
+      "https://linkedin.com/in/shardendu-mishra",
+      "https://twitter.com/Shardendu_M",
+      "https://leetcode.com/MishraShardendu22",
+    ],
+    knowsAbout: [
+      "Software Development",
+      "Go Programming",
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Web Development",
+      "Cloud Computing",
+    ],
+  };
+
   return (
     <html lang="en" dir="ltr" className="scroll-smooth">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={`${archivo.variable} ${inter.variable} antialiased`}>
         <noscript>
           <div

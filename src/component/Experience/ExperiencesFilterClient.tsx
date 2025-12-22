@@ -7,7 +7,6 @@ import {
   Calendar,
   ChevronLeft,
   ChevronRight,
-  ExternalLink,
   Filter,
   Search,
   X,
@@ -16,13 +15,17 @@ import Link from "next/link";
 import { useState } from "react";
 import type { Experience } from "@/static/api/api.types";
 
-interface ExperiencesClientProps {
+interface ExperiencesFilterClientProps {
   initialExperiences: Experience[];
 }
 
-export function ExperiencesClient({
+/**
+ * Client-side filter component for experiences
+ * Only handles search and filtering - data is fetched on the server
+ */
+export function ExperiencesFilterClient({
   initialExperiences,
-}: ExperiencesClientProps) {
+}: ExperiencesFilterClientProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTechs, setSelectedTechs] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);

@@ -40,7 +40,7 @@ export const useAnimeOnIntersection = (
 
     observer.observe(element);
     return () => observer.disconnect();
-  }, []);
+  }, [animationConfig, threshold]);
 
   return elementRef;
 };
@@ -65,7 +65,7 @@ export const useAnimeHover = (
       element.removeEventListener("mouseenter", handleEnter);
       element.removeEventListener("mouseleave", handleLeave);
     };
-  }, []);
+  }, [enterConfig, leaveConfig]);
 
   return elementRef;
 };

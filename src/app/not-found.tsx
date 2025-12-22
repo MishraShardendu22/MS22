@@ -1,10 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import { animate, svg } from "animejs";
-import { Teko } from "next/font/google";
-import { useEffect, useRef } from "react";
 import { ArrowLeft, Home } from "lucide-react";
+import { Teko } from "next/font/google";
+import Link from "next/link";
+import { useEffect, useRef } from "react";
 
 const teko = Teko({
   subsets: ["latin"],
@@ -133,6 +133,7 @@ export default function NotFound() {
           </Link>
 
           <button
+            type="button"
             onClick={() => window.history.back()}
             className="group flex items-center gap-3 px-8 py-4 rounded-xl bg-gray-900/50 hover:bg-gray-800/50 border border-gray-800 hover:border-orange-500/30 text-gray-300 hover:text-orange-400 font-semibold text-lg transition-all hover:scale-105"
           >

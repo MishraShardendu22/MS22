@@ -1,8 +1,5 @@
-"use client";
-
 import { ChevronLeft, ChevronRight, Eye } from "lucide-react";
 import Link from "next/link";
-import { memo } from "react";
 
 export type PaginationTheme = "cyan" | "blue" | "emerald" | "pink" | "purple";
 
@@ -52,11 +49,7 @@ const themeClasses: Record<
   },
 };
 
-/**
- * Reusable pagination controls component
- * Eliminates duplicated pagination UI across display components
- */
-export const PaginationControls = memo(function PaginationControls({
+export function PaginationControls({
   currentPage,
   totalPages,
   onPrevPage,
@@ -112,4 +105,4 @@ export const PaginationControls = memo(function PaginationControls({
       </button>
     </div>
   );
-});
+}

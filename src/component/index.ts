@@ -1,23 +1,13 @@
-// State Components
-
-export { CertificateCard, CertificatesDisplay } from "./Certificates";
 export { ErrorState, NotFound } from "./Error";
-export { ExperienceCard, ExperiencesDisplay } from "./Experience";
-// Section Components
 export { FooterSection } from "./Footer";
-// Hero Components
 export {
-  BackgroundElements,
   EducationSection,
   HeroSection,
   ImageContainer,
   TextContent,
 } from "./Hero";
 export { LoadingState, NameLoader } from "./Loading";
-// Pagination Components
 export { PaginationControls, type PaginationTheme } from "./Pagination";
-export { ProjectCard, ProjectsDisplay } from "./Projects";
-// Section Wrapper Components
 export {
   ContentGrid,
   type HeaderTheme,
@@ -26,9 +16,7 @@ export {
   SectionWrapper,
 } from "./Section";
 export { SkillsDisplay } from "./Skill";
-export { StatsDisplay, StatsWrapper } from "./Stats";
+export { StatsLoadingSkeleton, StatsSection } from "./Stats";
 export { Time, TimelineDisplay } from "./Timeline";
 export type { CardTheme } from "./UnifiedCard";
-// Shared Components
 export { UnifiedCard } from "./UnifiedCard";
-export { VolunteerCard, VolunteerDisplay } from "./Volunteer";

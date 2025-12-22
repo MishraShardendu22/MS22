@@ -1,6 +1,3 @@
-// Mobile-optimized loading state - NO animations, NO JS, NO heavy dependencies
-// Server component friendly - can be rendered without "use client"
-
 export const LoadingStateMobile = () => {
   return (
     <div className="flex flex-col items-center justify-center py-8 px-4 gap-4">

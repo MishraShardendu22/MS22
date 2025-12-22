@@ -1,1 +1,2 @@
-export { FooterSection } from "./Footer";
+export { FooterSection, FooterSectionMobile } from "./Footer";
+export { ScrollToTop } from "./ScrollToTop";

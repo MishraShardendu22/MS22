@@ -1,16 +1,13 @@
-"use client";
-
 import type { ReactNode } from "react";
-import { memo } from "react";
 import { LoadingState } from "@/component/Loading";
 
 interface ContentGridProps {
+  minHeight?: string;
   children: ReactNode;
   isLoading?: boolean;
+  columns?: 1 | 2 | 3 | 4;
   loadingMessage?: string;
   loadingVariant?: "cyan" | "purple" | "emerald" | "pink" | "blue";
-  columns?: 1 | 2 | 3 | 4;
-  minHeight?: string;
 }
 
 const gridCols: Record<number, string> = {
@@ -20,10 +17,7 @@ const gridCols: Record<number, string> = {
   4: "grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
 };
 
-/**
- * Reusable content grid with loading overlay
- */
-export const ContentGrid = memo(function ContentGrid({
+export function ContentGrid({
   children,
   isLoading = false,
   loadingMessage = "Loading...",
@@ -50,4 +44,4 @@ export const ContentGrid = memo(function ContentGrid({
       </div>
     </div>
   );
-});
+}

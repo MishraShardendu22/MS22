@@ -1,5 +1,3 @@
-"use client";
-
 import { Award, Trophy, User } from "lucide-react";
 import type { LeetCodeData } from "@/types/stats";
 

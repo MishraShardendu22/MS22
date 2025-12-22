@@ -1,14 +1,34 @@
 import { Award } from "lucide-react";
-import { CertificatesClient } from "@/component/Certificates";
+import type { Metadata } from "next";
+import { Suspense } from "react";
+import { CertificatesFilterClient } from "@/component/Certificates";
+import { LoadingState } from "@/component/Loading";
 import { Sidebar } from "@/component/Sidebar";
+import { generatePageMetadata } from "@/lib/metadata";
 import { certificatesAPI } from "@/static/api/api.request";
 import type { Certificate } from "@/static/api/api.types";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 3600;
 
-export default async function CertificatesPage() {
-  // Fetch all certificates with error handling
+export const metadata: Metadata = generatePageMetadata({
+  title: "Certifications & Achievements",
+  description:
+    "Professional certifications, technical credentials, and achievements in software development. View my verified skills and qualifications in programming, cloud technologies, and software engineering.",
+  path: "/certificates",
+  keywords: [
+    "certifications",
+    "achievements",
+    "professional credentials",
+    "technical certifications",
+    "developer certifications",
+    "programming certificates",
+    "cloud certifications",
+    "verified skills",
+  ],
+});
+
+async function CertificatesContent() {
   let certificates: Certificate[] = [];
   try {
     const response = await certificatesAPI.getAllCertificates(1, 500);
@@ -18,9 +38,12 @@ export default async function CertificatesPage() {
         : [];
   } catch (error) {
     console.error("Error fetching certificates:", error);
-    // Return empty array on error - client will handle
   }
 
+  return <CertificatesFilterClient initialCertificates={certificates} />;
+}
+
+export default function CertificatesPage() {
   return (
     <>
       <Sidebar />
@@ -55,7 +78,9 @@ export default async function CertificatesPage() {
           </div>
         </header>
 
-        <CertificatesClient initialCertificates={certificates} />
+        <Suspense fallback={<LoadingState />}>
+          <CertificatesContent />
+        </Suspense>
       </main>
     </>
   );

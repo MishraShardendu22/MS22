@@ -81,6 +81,7 @@ const InlineError = ({
         {/* Retry Button */}
         {onRetry && (
           <button
+            type="button"
             onClick={onRetry}
             className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-linear-to-r ${currentColors.button} text-white font-semibold shadow-lg ${currentColors.shadow} transition-all hover:scale-105`}
           >

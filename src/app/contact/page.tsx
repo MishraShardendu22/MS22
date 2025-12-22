@@ -1,5 +1,23 @@
 import { Mail, MessageCircle } from "lucide-react";
+import type { Metadata } from "next";
 import { ContactForm } from "@/component/Contact";
+import { generatePageMetadata } from "@/lib/metadata";
+
+export const metadata: Metadata = generatePageMetadata({
+  title: "Contact Me",
+  description:
+    "Get in touch with Shardendu Mishra. Let's discuss your project, collaboration opportunities, or any questions about software development. I'm always open to new opportunities.",
+  path: "/contact",
+  keywords: [
+    "contact",
+    "get in touch",
+    "hire developer",
+    "collaboration",
+    "work together",
+    "freelance developer",
+    "software consultant",
+  ],
+});
 
 export default function ContactPage() {
   return (

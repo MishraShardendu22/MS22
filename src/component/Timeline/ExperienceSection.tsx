@@ -1,23 +1,21 @@
-// ExperienceSection.tsx
-
 import { ExperienceCard } from "./ExperienceCard";
 import type { ExperiencePosition, ProcessedExperience } from "./types";
 import { getCompanyColor } from "./utils";
 
 interface ExperienceSectionProps {
-  experiences: ProcessedExperience[];
-  type: "work" | "volunteer";
   isMobile: boolean;
+  type: "work" | "volunteer";
   hoveredCard: string | null;
+  experiences: ProcessedExperience[];
   setHoveredCard: (id: string | null) => void;
   getExperiencePosition: (exp: ProcessedExperience) => ExperiencePosition;
 }
 
 export const ExperienceSection = ({
-  experiences,
   type,
   isMobile,
   hoveredCard,
+  experiences,
   setHoveredCard,
   getExperiencePosition,
 }: ExperienceSectionProps) => {

@@ -1,3 +1,6 @@
-export { ExperienceCard, ExperiencesDisplay } from "./ExperienceCard";
-export { ExperiencesDisplayMobile } from "./ExperienceCardMobile";
-export { ExperiencesClient } from "./ExperiencesClient";
+export {
+  ExperienceCard as ExperienceCardServer,
+  ExperiencesDisplayMobile,
+  ExperiencesDisplayServer,
+} from "./ExperienceCardServer";
+export { ExperiencesFilterClient } from "./ExperiencesFilterClient";

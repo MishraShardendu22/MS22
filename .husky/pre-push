@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+pnpm type-check || {
+  exit 1
+}
+
+pnpm lint || {
+  exit 1
+}
+
+pnpm build || {
+  exit 1
+}

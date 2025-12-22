@@ -1,3 +1,6 @@
-export { VolunteerCard, VolunteerDisplay } from "./VolunteerCard";
-export { VolunteerDisplayMobile } from "./VolunteerCardMobile";
-export { VolunteerClient } from "./VolunteerClient";
+export {
+  VolunteerCard as VolunteerCardServer,
+  VolunteerDisplayMobile,
+  VolunteerDisplayServer,
+} from "./VolunteerCardServer";
+export { VolunteerFilterClient } from "./VolunteerFilterClient";

@@ -1,6 +1,6 @@
-import { TextContent } from "./TextContent";
-import { ImageContainer } from "./ImageContainer";
 import { EducationSection } from "./EducationSection";
+import { ImageContainer } from "./ImageContainer";
+import { TextContent } from "./TextContent";
 
 export const HeroSectionDesktop = () => {
   return (

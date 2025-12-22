@@ -1,15 +1,37 @@
+import type { Metadata } from "next";
+import { Suspense } from "react";
 import { ErrorState } from "@/component/Error";
-import { ProjectsClient } from "@/component/Projects/ProjectsClient";
+import { LoadingState } from "@/component/Loading";
+import { ProjectsFilterClient } from "@/component/Projects";
 import { Sidebar } from "@/component/Sidebar";
+import { generatePageMetadata } from "@/lib/metadata";
 import { projectsAPI } from "@/static/api/api.request";
 import type { Project } from "@/static/api/api.types";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 3600; // Revalidate every hour
 
-export default async function ProjectsPage() {
+export const metadata: Metadata = generatePageMetadata({
+  title: "Projects",
+  description:
+    "Explore my portfolio of software development projects including web applications, APIs, and open-source contributions. Built with Go, React, Next.js, TypeScript, and modern technologies.",
+  path: "/projects",
+  keywords: [
+    "projects",
+    "portfolio",
+    "web development",
+    "software projects",
+    "Go projects",
+    "React projects",
+    "Next.js applications",
+    "TypeScript projects",
+    "open source",
+    "GitHub projects",
+  ],
+});
+
+async function ProjectsContent() {
   let projects: Project[] = [];
-  let totalPages = 1;
   let error: string | null = null;
 
   try {
@@ -17,7 +39,6 @@ export default async function ProjectsPage() {
 
     if (response.status === 200 && response.data) {
       projects = response.data.projects || [];
-      totalPages = response.data.total_pages || 1;
     } else {
       throw new Error(response.message || "Failed to fetch projects");
     }
@@ -29,6 +50,10 @@ export default async function ProjectsPage() {
     return <ErrorState message={error} />;
   }
 
+  return <ProjectsFilterClient initialProjects={projects} />;
+}
+
+export default async function ProjectsPage() {
   return (
     <>
       <Sidebar />
@@ -60,7 +85,13 @@ export default async function ProjectsPage() {
         </div>
 
         <div className="container mx-auto px-4 py-12 relative z-10">
-          <ProjectsClient initialProjects={projects} totalPages={totalPages} />
+          <Suspense
+            fallback={
+              <LoadingState message="Loading projects..." variant="cyan" />
+            }
+          >
+            <ProjectsContent />
+          </Suspense>
         </div>
       </main>
     </>

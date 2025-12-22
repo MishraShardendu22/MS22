@@ -1,14 +1,33 @@
 import { Briefcase } from "lucide-react";
-import { ExperiencesClient } from "@/component/Experience";
+import type { Metadata } from "next";
+import { Suspense } from "react";
+import { ExperiencesFilterClient } from "@/component/Experience";
+import { LoadingState } from "@/component/Loading";
 import { Sidebar } from "@/component/Sidebar";
+import { generatePageMetadata } from "@/lib/metadata";
 import { experiencesAPI } from "@/static/api/api.request";
 import type { Experience } from "@/static/api/api.types";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 3600;
 
-export default async function ExperiencesPage() {
-  // Fetch all experiences with error handling
+export const metadata: Metadata = generatePageMetadata({
+  title: "Work Experience",
+  description:
+    "Professional work experience as a Software Developer and Engineer. Explore my career journey, roles, responsibilities, and technical achievements in software development.",
+  path: "/experiences",
+  keywords: [
+    "work experience",
+    "professional experience",
+    "software engineer experience",
+    "developer career",
+    "employment history",
+    "professional journey",
+    "tech career",
+  ],
+});
+
+async function ExperiencesContent() {
   let experiences: Experience[] = [];
   try {
     const response = await experiencesAPI.getAllExperiences(1, 500);
@@ -21,6 +40,10 @@ export default async function ExperiencesPage() {
     // Return empty array on error - client will handle
   }
 
+  return <ExperiencesFilterClient initialExperiences={experiences} />;
+}
+
+export default function ExperiencesPage() {
   return (
     <>
       <Sidebar />
@@ -55,7 +78,9 @@ export default async function ExperiencesPage() {
           </div>
         </header>
 
-        <ExperiencesClient initialExperiences={experiences} />
+        <Suspense fallback={<LoadingState />}>
+          <ExperiencesContent />
+        </Suspense>
       </main>
     </>
   );

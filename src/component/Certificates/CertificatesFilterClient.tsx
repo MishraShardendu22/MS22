@@ -7,7 +7,6 @@ import {
   CheckCircle,
   ChevronLeft,
   ChevronRight,
-  ExternalLink,
   Filter,
   Search,
   Shield,
@@ -17,13 +16,13 @@ import Link from "next/link";
 import { useState } from "react";
 import type { Certificate } from "@/static/api/api.types";
 
-interface CertificatesClientProps {
+interface CertificatesFilterClientProps {
   initialCertificates: Certificate[];
 }
 
-export function CertificatesClient({
+export function CertificatesFilterClient({
   initialCertificates,
-}: CertificatesClientProps) {
+}: CertificatesFilterClientProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);

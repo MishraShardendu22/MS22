@@ -143,6 +143,7 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           {reset && (
             <button
+              type="button"
               onClick={reset}
               className="group flex items-center gap-3 px-8 py-4 rounded-xl bg-linear-to-r from-red-500 via-orange-500 to-yellow-500 hover:from-red-600 hover:via-orange-600 hover:to-yellow-600 text-white font-semibold text-lg shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 transition-all hover:scale-105"
             >

@@ -1,5 +1,3 @@
-"use client";
-
 import { Star, TrendingUp } from "lucide-react";
 import Link from "next/link";
 import type { Repository } from "@/types/stats";

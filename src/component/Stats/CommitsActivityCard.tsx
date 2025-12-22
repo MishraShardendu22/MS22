@@ -2,9 +2,7 @@
 
 import { Activity, GitCommit } from "lucide-react";
 import dynamic from "next/dynamic";
-import { useMemo } from "react";
 
-// Lazy load Recharts components
 const ResponsiveContainer = dynamic(
   () => import("recharts").then((mod) => mod.ResponsiveContainer),
   { ssr: false },
@@ -83,64 +81,60 @@ export const CommitsActivityCard = ({
     return null;
   }
 
-  // Memoize data processing to avoid recalculation
-  const { weeklyData, enrichedData, avgCommits } = useMemo(() => {
-    const weekly = commits
-      .reduce((acc: any[], commit: { date: string; count: number }) => {
-        if (!commit.date || !commit.count) return acc;
+  // Data processing - automatically optimized by React Compiler
+  const weekly = commits
+    .reduce((acc: any[], commit: { date: string; count: number }) => {
+      if (!commit.date || !commit.count) return acc;
 
-        const date = new Date(commit.date);
-        const weekStart = new Date(date);
-        weekStart.setDate(date.getDate() - date.getDay());
-        const weekKey = weekStart.toISOString().split("T")[0];
+      const date = new Date(commit.date);
+      const weekStart = new Date(date);
+      weekStart.setDate(date.getDate() - date.getDay());
+      const weekKey = weekStart.toISOString().split("T")[0];
 
-        const existing = acc.find((w: any) => w.week === weekKey);
-        if (existing) {
-          existing.commits += commit.count;
-        } else {
-          acc.push({
-            week: weekKey,
-            commits: commit.count,
-          });
-        }
-        return acc;
-      }, [])
-      .slice(-52);
+      const existing = acc.find((w: any) => w.week === weekKey);
+      if (existing) {
+        existing.commits += commit.count;
+      } else {
+        acc.push({
+          week: weekKey,
+          commits: commit.count,
+        });
+      }
+      return acc;
+    }, [])
+    .slice(-52);
 
-    const avgCommits =
-      weekly.reduce((sum: number, w: any) => sum + w.commits, 0) /
-      weekly.length;
+  const avgCommits =
+    weekly.reduce((sum: number, w: any) => sum + w.commits, 0) / weekly.length;
 
-    const enriched = weekly.map((week: any, index: number) => {
-      const movingAvg =
-        index >= 3
-          ? weekly
-              .slice(Math.max(0, index - 3), index + 1)
-              .reduce((sum: number, w: any) => sum + w.commits, 0) /
-            Math.min(4, index + 1)
-          : week.commits;
+  const enriched = weekly.map((week: any, index: number) => {
+    const movingAvg =
+      index >= 3
+        ? weekly
+            .slice(Math.max(0, index - 3), index + 1)
+            .reduce((sum: number, w: any) => sum + w.commits, 0) /
+          Math.min(4, index + 1)
+        : week.commits;
 
-      const trend = (((week.commits - avgCommits) / avgCommits) * 100).toFixed(
-        1,
-      );
+    const trend = (((week.commits - avgCommits) / avgCommits) * 100).toFixed(1);
 
-      // Format date label
-      const date = new Date(week.week);
-      const weekLabel = date.toLocaleDateString("en-US", {
-        month: "short",
-        day: "numeric",
-      });
-
-      return {
-        ...week,
-        weekLabel,
-        movingAvg: Math.round(movingAvg),
-        trend: Number.parseFloat(trend),
-      };
+    // Format date label
+    const date = new Date(week.week);
+    const weekLabel = date.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
     });
 
-    return { weeklyData: weekly, enrichedData: enriched, avgCommits };
-  }, [commits]);
+    return {
+      ...week,
+      weekLabel,
+      movingAvg: Math.round(movingAvg),
+      trend: Number.parseFloat(trend),
+    };
+  });
+
+  const weeklyData = weekly;
+  const enrichedData = enriched;
 
   const totalCommits = weeklyData.reduce(
     (sum: number, w: any) => sum + w.commits,

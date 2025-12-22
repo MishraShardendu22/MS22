@@ -2,8 +2,6 @@
 
 import {
   ArrowUpRight,
-  ChevronLeft,
-  ChevronRight,
   Code2,
   ExternalLink,
   Filter,
@@ -16,18 +14,15 @@ import Link from "next/link";
 import { useState } from "react";
 import type { Project } from "@/static/api/api.types";
 
-interface ProjectsClientProps {
+interface ProjectsFilterClientProps {
   initialProjects: Project[];
-  totalPages: number;
 }
 
-export function ProjectsClient({
+export function ProjectsFilterClient({
   initialProjects,
-  totalPages,
-}: ProjectsClientProps) {
+}: ProjectsFilterClientProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
   const [showFilters, setShowFilters] = useState(false);
 
   const allSkills = (() => {
@@ -217,22 +212,6 @@ export function ProjectsClient({
           ))}
         </div>
       )}
-
-      <style jsx>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-fadeIn {
-          animation: fadeIn 0.5s ease-out;
-        }
-      `}</style>
     </>
   );
 }
@@ -258,19 +237,6 @@ function ProjectCard({ project, index }: ProjectCardProps) {
           animation: `cardFadeIn 0.5s ease-out ${index * 0.05}s both`,
         }}
       >
-        <style jsx>{`
-          @keyframes cardFadeIn {
-            from {
-              opacity: 0;
-              transform: translateY(20px) scale(0.95);
-            }
-            to {
-              opacity: 1;
-              transform: translateY(0) scale(1);
-            }
-          }
-        `}</style>
-
         <div className="absolute -inset-0.5 bg-linear-to-r from-cyan-500 via-blue-500 to-purple-600 rounded-xl blur opacity-0 group-hover:opacity-30 transition duration-500" />
 
         <div className="relative h-full bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-xl overflow-hidden transition-all duration-500 hover:border-cyan-500/50 hover:shadow-2xl hover:shadow-cyan-500/20 hover:-translate-y-1 cursor-pointer">

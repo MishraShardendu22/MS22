@@ -7,12 +7,14 @@ export function generatePageMetadata({
   path = "",
   keywords = [],
   images = [],
+  noIndex = false,
 }: {
   title: string;
   description: string;
   path?: string;
   keywords?: string[];
   images?: Array<{ url: string; width: number; height: number; alt: string }>;
+  noIndex?: boolean;
 }): Metadata {
   const url = `${BaseURL}${path}`;
   const defaultImages =
@@ -36,6 +38,9 @@ export function generatePageMetadata({
       "Software Developer",
       "Portfolio",
     ],
+    authors: [{ name: "Shardendu Mishra", url: BaseURL }],
+    creator: "Shardendu Mishra",
+    publisher: "Shardendu Mishra",
     openGraph: {
       title,
       description,
@@ -50,22 +55,33 @@ export function generatePageMetadata({
       title,
       description,
       creator: "@Shardendu_M",
+      site: "@Shardendu_M",
       images: defaultImages.map((img) => img.url),
     },
     alternates: {
       canonical: url,
+      languages: {
+        "en-US": url,
+      },
     },
     robots: {
-      index: true,
-      follow: true,
+      index: !noIndex,
+      follow: !noIndex,
       nocache: false,
       googleBot: {
-        index: true,
-        follow: true,
+        index: !noIndex,
+        follow: !noIndex,
         "max-video-preview": -1,
         "max-image-preview": "large",
         "max-snippet": -1,
       },
+    },
+    other: {
+      "og:url": url,
+      "og:type": "website",
+      "article:author": "Shardendu Mishra",
+      "twitter:domain": BaseURL.replace(/^https?:\/\//, ""),
+      "twitter:url": url,
     },
   };
 }

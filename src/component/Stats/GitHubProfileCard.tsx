@@ -1,5 +1,3 @@
-"use client";
-
 import {
   BookOpen,
   Code,
@@ -12,16 +10,16 @@ import {
 import type { GitHubData } from "@/types/stats";
 
 interface StatsCardProps {
-  icon: React.ElementType;
   label: string;
   value: number;
   iconColor?: string;
+  icon: React.ElementType;
 }
 
 const StatsCard = ({
-  icon: Icon,
   label,
   value,
+  icon: Icon,
   iconColor = "text-cyan-400",
 }: StatsCardProps) => (
   <div className="p-4 bg-gray-800/30 rounded-lg border border-gray-700/50 hover:border-gray-600 transition-colors">

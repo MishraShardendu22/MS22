@@ -7,10 +7,12 @@ import {
   Code2,
   ExternalLink,
 } from "lucide-react";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Sidebar } from "@/component/Sidebar";
+import { generatePageMetadata } from "@/lib/metadata";
 import { experiencesAPI } from "@/static/api/api.request";
 import type { Experience } from "@/static/api/api.types";
 import { formatDate } from "@/utils/formatDate";
@@ -19,11 +21,50 @@ import { formatDate } from "@/utils/formatDate";
 export const dynamic = "force-dynamic";
 export const revalidate = 3600;
 
-export default async function ExperienceDetailPage({
-  params,
-}: {
+interface PageProps {
   params: { id: string };
-}) {
+}
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { id } = await params;
+
+  try {
+    const response = await experiencesAPI.getExperienceById(id);
+
+    if (response.status === 200 && response.data) {
+      const experience = response.data;
+      const position =
+        experience.experience_time_line?.[0]?.position || "Professional";
+      const description = `${position} at ${experience.company_name}. ${experience.description?.substring(0, 120) || "View my professional experience and contributions."}`;
+
+      return generatePageMetadata({
+        title: `${position} at ${experience.company_name}`,
+        description,
+        path: `/experiences/${id}`,
+        keywords: [
+          experience.company_name,
+          position,
+          "work experience",
+          "professional experience",
+          "career",
+        ],
+      });
+    }
+  } catch (error) {
+    console.error("Error generating metadata:", error);
+  }
+
+  return generatePageMetadata({
+    title: "Experience Details",
+    description:
+      "View detailed information about this professional experience.",
+    path: `/experiences/${id}`,
+  });
+}
+
+export default async function ExperienceDetailPage({ params }: PageProps) {
   try {
     const response = await experiencesAPI.getExperienceById(params.id);
 
@@ -47,7 +88,7 @@ export default async function ExperienceDetailPage({
           <article className="container mx-auto px-4 py-8 relative z-10">
             <nav>
               <Link href="/experiences">
-                <button className="group flex items-center gap-2 mb-8 px-6 py-3 bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 text-gray-400 rounded-xl hover:border-blue-500/40 hover:text-blue-400 transition-all shadow-lg">
+                <button type="button" className="group flex items-center gap-2 mb-8 px-6 py-3 bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 text-gray-400 rounded-xl hover:border-blue-500/40 hover:text-blue-400 transition-all shadow-lg">
                   <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
                   <span className="font-semibold">Back to Experiences</span>
                 </button>

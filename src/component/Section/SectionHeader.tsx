@@ -1,29 +1,23 @@
-"use client";
-
 import type { ReactNode } from "react";
-import { memo } from "react";
 
 export type HeaderTheme = "cyan" | "blue" | "emerald" | "pink" | "purple";
 
 interface SectionHeaderProps {
   title: string;
-  description?: string;
   theme?: HeaderTheme;
-  children?: ReactNode; // For pagination controls
+  description?: string;
+  children?: ReactNode;
 }
 
 const titleGradients: Record<HeaderTheme, string> = {
+  pink: "from-pink-400 via-rose-400 to-red-400",
   cyan: "from-cyan-400 via-blue-400 to-purple-400",
   blue: "from-blue-400 via-indigo-400 to-purple-400",
   emerald: "from-emerald-400 via-teal-400 to-green-400",
-  pink: "from-pink-400 via-rose-400 to-red-400",
   purple: "from-purple-400 via-violet-400 to-indigo-400",
 };
 
-/**
- * Reusable section header with title, description, and optional controls
- */
-export const SectionHeader = memo(function SectionHeader({
+export function SectionHeader({
   title,
   description,
   theme = "cyan",
@@ -52,4 +46,4 @@ export const SectionHeader = memo(function SectionHeader({
       </div>
     </div>
   );
-});
+}

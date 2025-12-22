@@ -1,3 +1,6 @@
-export { CertificateCard, CertificatesDisplay } from "./CertificateCard";
-export { CertificatesDisplayMobile } from "./CertificateCardMobile";
-export { CertificatesClient } from "./CertificatesClient";
+export {
+  CertificateCard as CertificateCardServer,
+  CertificatesDisplayMobile,
+  CertificatesDisplayServer,
+} from "./CertificateCardServer";
+export { CertificatesFilterClient } from "./CertificatesFilterClient";

@@ -16,11 +16,13 @@ import Link from "next/link";
 import { useState } from "react";
 import type { Volunteer } from "@/static/api/api.types";
 
-interface VolunteerClientProps {
+interface VolunteerFilterClientProps {
   initialVolunteers: Volunteer[];
 }
 
-export function VolunteerClient({ initialVolunteers }: VolunteerClientProps) {
+export function VolunteerFilterClient({
+  initialVolunteers,
+}: VolunteerFilterClientProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTechs, setSelectedTechs] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -363,13 +365,6 @@ export function VolunteerClient({ initialVolunteers }: VolunteerClientProps) {
           )}
         </>
       )}
-
-      <style jsx>{`
-        @keyframes cardFadeIn {
-          from { opacity: 0; transform: translateY(40px) scale(0.95); }
-          to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-      `}</style>
     </div>
   );
 }

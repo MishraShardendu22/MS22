@@ -1,4 +1,3 @@
-// ExperienceCard.tsx
 import Image from "next/image";
 import type { ExperiencePosition, ProcessedExperience } from "./types";
 

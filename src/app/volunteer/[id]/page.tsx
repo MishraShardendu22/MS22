@@ -8,10 +8,12 @@ import {
   MapPin,
   Users,
 } from "lucide-react";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Sidebar } from "@/component/Sidebar";
+import { generatePageMetadata } from "@/lib/metadata";
 import { volunteerAPI } from "@/static/api/api.request";
 import type { Volunteer } from "@/static/api/api.types";
 
@@ -19,11 +21,47 @@ import type { Volunteer } from "@/static/api/api.types";
 export const dynamic = "force-dynamic";
 export const revalidate = 3600;
 
-export default async function VolunteerDetailPage({
-  params,
-}: {
+interface PageProps {
   params: { id: string };
-}) {
+}
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { id } = await params;
+
+  try {
+    const response = await volunteerAPI.getVolunteerById(id);
+
+    if (response.status === 200 && response.data) {
+      const volunteer = response.data;
+      const description = `${volunteer.position} at ${volunteer.organisation}. ${volunteer.description?.substring(0, 120) || "View volunteer experience and community contributions."}`;
+
+      return generatePageMetadata({
+        title: `${volunteer.position} at ${volunteer.organisation}`,
+        description,
+        path: `/volunteer/${id}`,
+        keywords: [
+          volunteer.organisation,
+          volunteer.position || "volunteer",
+          "volunteer",
+          "community service",
+          "social impact",
+        ].filter((keyword): keyword is string => Boolean(keyword)),
+      });
+    }
+  } catch (error) {
+    console.error("Error generating metadata:", error);
+  }
+
+  return generatePageMetadata({
+    title: "Volunteer Experience Details",
+    description: "View detailed information about this volunteer experience.",
+    path: `/volunteer/${id}`,
+  });
+}
+
+export default async function VolunteerDetailPage({ params }: PageProps) {
   try {
     const response = await volunteerAPI.getVolunteerById(params.id);
 
@@ -47,7 +85,7 @@ export default async function VolunteerDetailPage({
           <article className="container mx-auto px-4 py-8 relative z-10">
             <nav>
               <Link href="/volunteer">
-                <button className="group flex items-center gap-2 mb-8 px-6 py-3 bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 text-gray-400 rounded-xl hover:border-pink-500/40 hover:text-pink-400 transition-all shadow-lg">
+                <button type="button" className="group flex items-center gap-2 mb-8 px-6 py-3 bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 text-gray-400 rounded-xl hover:border-pink-500/40 hover:text-pink-400 transition-all shadow-lg">
                   <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
                   <span className="font-semibold">
                     Back to Volunteer Experiences
