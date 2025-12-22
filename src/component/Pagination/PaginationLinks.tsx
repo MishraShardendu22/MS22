@@ -66,14 +66,14 @@ export function PaginationLinks({
   if (totalPages <= 1) return null;
 
   // Split baseHref into path and hash (e.g., "/#experience" -> "/" + "#experience")
-  const [basePath, hash] = baseHref.includes('#') 
-    ? baseHref.split('#')
-    : [baseHref, ''];
-  
-  const prevHref = hash 
+  const [basePath, hash] = baseHref.includes("#")
+    ? baseHref.split("#")
+    : [baseHref, ""];
+
+  const prevHref = hash
     ? `${basePath}?${pageParam}=${currentPage - 1}#${hash}`
     : `${basePath}?${pageParam}=${currentPage - 1}`;
-  const nextHref = hash 
+  const nextHref = hash
     ? `${basePath}?${pageParam}=${currentPage + 1}#${hash}`
     : `${basePath}?${pageParam}=${currentPage + 1}`;
 
