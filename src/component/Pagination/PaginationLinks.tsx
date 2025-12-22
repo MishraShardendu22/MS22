@@ -12,7 +12,6 @@ interface PaginationLinksProps {
   theme?: PaginationTheme;
   viewAllHref?: string;
   showViewAll?: boolean;
-  /** Query parameter name for pagination (e.g., 'projectsPage', 'experiencesPage') */
   pageParam?: string;
 }
 
@@ -66,15 +65,23 @@ export function PaginationLinks({
 
   if (totalPages <= 1) return null;
 
-  const prevHref = `${baseHref}?${pageParam}=${currentPage - 1}`;
-  const nextHref = `${baseHref}?${pageParam}=${currentPage + 1}`;
+  // Split baseHref into path and hash (e.g., "/#experience" -> "/" + "#experience")
+  const [basePath, hash] = baseHref.includes('#') 
+    ? baseHref.split('#')
+    : [baseHref, ''];
+  
+  const prevHref = hash 
+    ? `${basePath}?${pageParam}=${currentPage - 1}#${hash}`
+    : `${basePath}?${pageParam}=${currentPage - 1}`;
+  const nextHref = hash 
+    ? `${basePath}?${pageParam}=${currentPage + 1}#${hash}`
+    : `${basePath}?${pageParam}=${currentPage + 1}`;
 
   return (
     <div className="flex items-center justify-center gap-2 md:gap-3 flex-wrap shrink-0">
       {hasPrevious ? (
         <Link
           href={prevHref}
-          scroll={false}
           className={`flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gray-900/50 border border-gray-800 ${colors.hoverBorder} text-gray-400 ${colors.hoverText} transition-colors duration-300`}
           aria-label="Previous page"
         >
@@ -108,7 +115,6 @@ export function PaginationLinks({
       {hasNext ? (
         <Link
           href={nextHref}
-          scroll={false}
           className={`flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gray-900/50 border border-gray-800 ${colors.hoverBorder} text-gray-400 ${colors.hoverText} transition-colors duration-300`}
           aria-label="Next page"
         >
