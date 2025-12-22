@@ -127,7 +127,7 @@ export default async function VolunteerDetailPage({ params }: PageProps) {
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6 border-t border-gray-800/50">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6 /50">
                         {volunteer.location && (
                           <div className="flex items-center gap-3">
                             <div className="p-2 bg-gray-800/50 rounded-lg">
@@ -165,7 +165,7 @@ export default async function VolunteerDetailPage({ params }: PageProps) {
 
                       {volunteer.volunteer_time_line &&
                         volunteer.volunteer_time_line.length > 0 && (
-                          <div className="space-y-3 pt-6 mt-6 border-t border-gray-800/50">
+                          <div className="space-y-3 pt-6 mt-6 /50">
                             <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wide">
                               Timeline
                             </h3>

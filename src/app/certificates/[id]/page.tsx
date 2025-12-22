@@ -136,7 +136,7 @@ export default async function CertificateDetailPage({ params }: PageProps) {
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6 border-t border-gray-800/50">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6 /50">
                         {certificate.issue_date && (
                           <div className="flex items-center gap-3">
                             <div className="p-2 bg-gray-800/50 rounded-lg">

@@ -282,7 +282,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
               </div>
             </div>
 
-            <div className="flex items-center gap-1.5 pt-4 border-t border-gray-800/50 group-hover:border-gray-700/50 transition-colors">
+            <div className="flex items-center gap-1.5 pt-4 /50 group-hover:border-gray-700/50 transition-colors">
               {project.project_repository && (
                 <div className="flex items-center gap-1 px-2.5 py-1.5 text-xs font-semibold bg-gray-800/50 text-gray-400 rounded-md group-hover:bg-gray-800 group-hover:text-cyan-400 transition-all duration-200">
                   <Github className="w-3.5 h-3.5" />

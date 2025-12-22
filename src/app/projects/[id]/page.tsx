@@ -472,7 +472,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           )}
 
           {/* Bottom Nav */}
-          <nav className="pt-6 border-t border-gray-800/30">
+          <nav className="pt-6 /30">
             <Link
               href="/projects"
               className="inline-flex items-center gap-2 px-4 py-2 bg-gray-900/60 text-gray-300 text-sm border border-gray-800/30 rounded-lg hover:border-cyan-500/30 hover:text-cyan-400 transition-all group font-bold"

@@ -301,7 +301,7 @@ export function VolunteerFilterClient({
                           )}
                       </div>
 
-                      <div className="flex items-center gap-2 pt-5 border-t border-gray-800/50 group-hover:border-gray-700/50 transition-colors">
+                      <div className="flex items-center gap-2 pt-5 /50 group-hover:border-gray-700/50 transition-colors">
                         {volunteer.certificate_link && (
                           <div className="flex items-center gap-1.5 px-3 py-2 text-xs font-semibold bg-gray-800/50 text-gray-400 rounded-lg group-hover:bg-gray-800 group-hover:text-pink-400 transition-all duration-200">
                             <ExternalLink className="w-4 h-4" />

@@ -125,7 +125,7 @@ export default async function ExperienceDetailPage({ params }: PageProps) {
 
                       {experience.experience_time_line &&
                         experience.experience_time_line.length > 0 && (
-                          <div className="space-y-3 pt-6 border-t border-gray-800/50">
+                          <div className="space-y-3 pt-6 /50">
                             {experience.experience_time_line.map(
                               (timeline, idx) => (
                                 <div

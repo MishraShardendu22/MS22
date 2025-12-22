@@ -53,7 +53,7 @@ export const EducationSection = () => {
           </div>
 
           {/* Course Info */}
-          <div className="pt-4 sm:pt-5 border-t border-gray-800 mb-4 sm:mb-5">
+          <div className="pt-4 sm:pt-5  mb-4 sm:mb-5">
             <div className="flex items-start gap-1.5 sm:gap-2">
               <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-400 mt-1 shrink-0" />
               <div>
@@ -68,7 +68,7 @@ export const EducationSection = () => {
           </div>
 
           {/* Languages Section */}
-          <div className="pt-4 sm:pt-5 border-t border-gray-800">
+          <div className="pt-4 sm:pt-5 ">
             <div className="flex items-center gap-1.5 sm:gap-2 mb-2 sm:mb-3">
               <Globe className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-400" />
               <h3 className="text-xs sm:text-sm font-semibold text-gray-300">
@@ -113,7 +113,7 @@ export const EducationSection = () => {
           </div>
 
           {/* Grades */}
-          <div className="pt-5 border-t border-gray-800 space-y-4">
+          <div className="pt-5  space-y-4">
             {/* Class 12th */}
             <div className="bg-gray-800/40 rounded-lg p-4 hover:bg-gray-800/60 transition-colors duration-200">
               <div className="flex items-center justify-between mb-2">

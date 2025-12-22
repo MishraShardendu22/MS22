@@ -30,7 +30,7 @@ export const TimelineLegend = () => {
           </div>
         </div>
 
-        <div className="mt-6 pt-6 border-t border-gray-800">
+        <div className="mt-6 pt-6 ">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <div className="flex items-center gap-2 text-sm text-gray-400">
               <div className="w-8 h-2 bg-linear-to-r from-cyan-400 via-blue-400 to-purple-400 rounded-full shadow-lg shadow-cyan-500/30"></div>

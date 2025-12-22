@@ -70,7 +70,7 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
             )}
           </div>
 
-          <div className="flex items-center gap-2 pt-2 md:pt-3 border-t border-gray-800/50 flex-wrap">
+          <div className="flex items-center gap-2 pt-2 md:pt-3 /50 flex-wrap">
             {project.project_repository && (
               <Link
                 href={project.project_repository}
@@ -174,7 +174,7 @@ export async function ProjectsDisplayMobile() {
                 </span>
               )}
             </div>
-            <div className="flex items-center gap-2 pt-2 border-t border-gray-800">
+            <div className="flex items-center gap-2 pt-2 ">
               {project.project_repository && (
                 <Link
                   href={project.project_repository}
