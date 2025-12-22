@@ -170,6 +170,7 @@ export async function ExperiencesDisplayServer({
         baseHref="/#experience"
         theme="blue"
         viewAllHref="/experiences"
+        pageParam="experiencesPage"
       />
     </SectionHeader>
   );

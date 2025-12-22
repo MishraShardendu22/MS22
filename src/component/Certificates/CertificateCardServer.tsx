@@ -184,6 +184,7 @@ export async function CertificatesDisplayServer({
         baseHref="/#certifications"
         theme="emerald"
         viewAllHref="/certificates"
+        pageParam="certificatesPage"
       />
     </SectionHeader>
   );

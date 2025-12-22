@@ -208,6 +208,7 @@ export async function VolunteerDisplayServer({
         baseHref="/#volunteer"
         theme="pink"
         viewAllHref="/volunteer"
+        pageParam="volunteerPage"
       />
     </SectionHeader>
   );

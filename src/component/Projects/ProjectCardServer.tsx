@@ -240,6 +240,7 @@ export async function ProjectsDisplayServer({
         baseHref="/#projects"
         theme="cyan"
         viewAllHref="/projects"
+        pageParam="projectsPage"
       />
     </SectionHeader>
   );

@@ -12,6 +12,8 @@ interface PaginationLinksProps {
   theme?: PaginationTheme;
   viewAllHref?: string;
   showViewAll?: boolean;
+  /** Query parameter name for pagination (e.g., 'projectsPage', 'experiencesPage') */
+  pageParam?: string;
 }
 
 const themeClasses: Record<
@@ -58,13 +60,14 @@ export function PaginationLinks({
   theme = "cyan",
   viewAllHref,
   showViewAll = true,
+  pageParam = "page",
 }: PaginationLinksProps) {
   const colors = themeClasses[theme];
 
   if (totalPages <= 1) return null;
 
-  const prevHref = `${baseHref}?page=${currentPage - 1}`;
-  const nextHref = `${baseHref}?page=${currentPage + 1}`;
+  const prevHref = `${baseHref}?${pageParam}=${currentPage - 1}`;
+  const nextHref = `${baseHref}?${pageParam}=${currentPage + 1}`;
 
   return (
     <div className="flex items-center justify-center gap-2 md:gap-3 flex-wrap shrink-0">
