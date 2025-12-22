@@ -1,4 +1,5 @@
 import { MapPin } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { PaginationLinks } from "@/component/Pagination";
 import {
@@ -125,9 +126,11 @@ export async function VolunteerDisplayMobile() {
             >
               <div className="flex items-start gap-3 mb-3">
                 {vol.organisation_logo && (
-                  <img
+                  <Image
                     src={vol.organisation_logo}
                     alt={vol.organisation}
+                    width={40}
+                    height={40}
                     className="w-10 h-10 rounded-lg object-contain bg-white/5 p-1"
                   />
                 )}
@@ -145,9 +148,9 @@ export async function VolunteerDisplayMobile() {
                 {vol.description}
               </p>
               <div className="flex flex-wrap gap-1">
-                {vol.technologies?.slice(0, 3).map((tech, idx) => (
+                {vol.technologies?.slice(0, 3).map((tech) => (
                   <span
-                    key={idx}
+                    key={tech}
                     className="px-2 py-0.5 text-xs bg-gray-800 text-gray-300 rounded"
                   >
                     {tech}

@@ -34,6 +34,8 @@ export const NameLoader = () => {
           viewBox="0 0 915.869 72.022"
           className="w-full h-auto"
           xmlns="http://www.w3.org/2000/svg"
+          role="img"
+          aria-label="Loading"
         >
           <defs>
             <linearGradient id="nameGradient" x1="0%" y1="0%" x2="100%" y2="0%">

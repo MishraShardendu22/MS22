@@ -5,12 +5,32 @@ import { ErrorState } from "@/component/Error";
 import { LoadingState } from "@/component/Loading";
 import { TimelineAPI } from "@/static/api/api.request";
 import { TimelineDisplay } from "./TimelineDisplay";
+import type { ExperienceInput, VolunteerInput } from "./types";
+
+interface TimelineApiItem {
+  company_name?: string;
+  company_logo?: string;
+  organisation?: string;
+  organisation_logo?: string;
+  description?: string;
+  technologies?: string[];
+  position: string;
+  start_date: string;
+  end_date?: string;
+}
+
+interface TimelineApiResponse {
+  experience_timeline?: TimelineApiItem[];
+  volunteer_experience_timeline?: TimelineApiItem[];
+}
 
 export const Time = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [experiences, setExperiences] = useState<any[]>([]);
-  const [volunteerExperiences, setVolunteerExperiences] = useState<any[]>([]);
+  const [experiences, setExperiences] = useState<ExperienceInput[]>([]);
+  const [volunteerExperiences, setVolunteerExperiences] = useState<
+    VolunteerInput[]
+  >([]);
 
   useEffect(() => {
     const fetchTimeline = async () => {
@@ -18,12 +38,12 @@ export const Time = () => {
         setLoading(true);
         const res = await TimelineAPI.getAllEndpoints();
 
-        const data: any = res.data;
+        const data = res.data as TimelineApiResponse | null;
         const experienceTimeline = data?.experience_timeline || [];
         const volunteerTimeline = data?.volunteer_experience_timeline || [];
 
-        const workExps = experienceTimeline.map((item: any) => ({
-          company_name: item.company_name,
+        const workExps: ExperienceInput[] = experienceTimeline.map((item) => ({
+          company_name: item.company_name || "",
           company_logo: item.company_logo,
           description: item.description,
           technologies: item.technologies || [],
@@ -36,19 +56,21 @@ export const Time = () => {
           ],
         }));
 
-        const volunteerExps = volunteerTimeline.map((item: any) => ({
-          organisation: item.organisation,
-          organisation_logo: item.organisation_logo,
-          description: item.description,
-          technologies: item.technologies || [],
-          volunteer_time_line: [
-            {
-              position: item.position,
-              start_date: item.start_date,
-              end_date: item.end_date || "",
-            },
-          ],
-        }));
+        const volunteerExps: VolunteerInput[] = volunteerTimeline.map(
+          (item) => ({
+            organisation: item.organisation || "",
+            organisation_logo: item.organisation_logo,
+            description: item.description,
+            technologies: item.technologies || [],
+            volunteer_time_line: [
+              {
+                position: item.position,
+                start_date: item.start_date,
+                end_date: item.end_date || "",
+              },
+            ],
+          }),
+        );
 
         setExperiences(workExps);
         setVolunteerExperiences(volunteerExps);

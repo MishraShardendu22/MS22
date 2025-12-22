@@ -39,10 +39,30 @@ const Legend = dynamic(() => import("recharts").then((mod) => mod.Legend), {
 
 interface CommitsActivityCardProps {
   commits: Array<{ date: string; count: number }>;
-  calendar: any;
+  calendar: unknown;
 }
 
-const CustomTooltip = ({ active, payload }: any) => {
+interface WeeklyData {
+  week: string;
+  commits: number;
+}
+
+interface EnrichedData extends WeeklyData {
+  weekLabel: string;
+  movingAvg: number;
+  trend: number;
+}
+
+interface TooltipPayload {
+  payload: EnrichedData;
+}
+
+interface CustomTooltipProps {
+  active?: boolean;
+  payload?: TooltipPayload[];
+}
+
+const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
     return (
@@ -75,7 +95,7 @@ const CustomTooltip = ({ active, payload }: any) => {
 
 export const CommitsActivityCard = ({
   commits,
-  calendar,
+  calendar: _calendar,
 }: CommitsActivityCardProps) => {
   if (!commits || commits.length === 0) {
     return null;
@@ -83,7 +103,7 @@ export const CommitsActivityCard = ({
 
   // Data processing - automatically optimized by React Compiler
   const weekly = commits
-    .reduce((acc: any[], commit: { date: string; count: number }) => {
+    .reduce((acc: WeeklyData[], commit: { date: string; count: number }) => {
       if (!commit.date || !commit.count) return acc;
 
       const date = new Date(commit.date);
@@ -91,7 +111,7 @@ export const CommitsActivityCard = ({
       weekStart.setDate(date.getDate() - date.getDay());
       const weekKey = weekStart.toISOString().split("T")[0];
 
-      const existing = acc.find((w: any) => w.week === weekKey);
+      const existing = acc.find((w) => w.week === weekKey);
       if (existing) {
         existing.commits += commit.count;
       } else {
@@ -105,54 +125,56 @@ export const CommitsActivityCard = ({
     .slice(-52);
 
   const avgCommits =
-    weekly.reduce((sum: number, w: any) => sum + w.commits, 0) / weekly.length;
+    weekly.reduce((sum: number, w) => sum + w.commits, 0) / weekly.length;
 
-  const enriched = weekly.map((week: any, index: number) => {
-    const movingAvg =
-      index >= 3
-        ? weekly
-            .slice(Math.max(0, index - 3), index + 1)
-            .reduce((sum: number, w: any) => sum + w.commits, 0) /
-          Math.min(4, index + 1)
-        : week.commits;
+  const enriched: EnrichedData[] = weekly.map(
+    (week: WeeklyData, index: number) => {
+      const movingAvg =
+        index >= 3
+          ? weekly
+              .slice(Math.max(0, index - 3), index + 1)
+              .reduce((sum: number, w) => sum + w.commits, 0) /
+            Math.min(4, index + 1)
+          : week.commits;
 
-    const trend = (((week.commits - avgCommits) / avgCommits) * 100).toFixed(1);
+      const trend = (((week.commits - avgCommits) / avgCommits) * 100).toFixed(
+        1,
+      );
 
-    // Format date label
-    const date = new Date(week.week);
-    const weekLabel = date.toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-    });
+      // Format date label
+      const date = new Date(week.week);
+      const weekLabel = date.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+      });
 
-    return {
-      ...week,
-      weekLabel,
-      movingAvg: Math.round(movingAvg),
-      trend: Number.parseFloat(trend),
-    };
-  });
+      return {
+        ...week,
+        weekLabel,
+        movingAvg: Math.round(movingAvg),
+        trend: Number.parseFloat(trend),
+      };
+    },
+  );
 
   const weeklyData = weekly;
   const enrichedData = enriched;
 
   const totalCommits = weeklyData.reduce(
-    (sum: number, w: any) => sum + w.commits,
+    (sum: number, w) => sum + w.commits,
     0,
   );
   const avgPerWeek = Math.round(avgCommits);
   const peakWeek = weeklyData.reduce(
-    (max: any, w: any) => (w.commits > (max?.commits || 0) ? w : max),
-    { commits: 0 },
+    (max: WeeklyData, w) => (w.commits > max.commits ? w : max),
+    { week: "", commits: 0 },
   );
 
   const recentTrend =
-    enrichedData.slice(-4).reduce((sum: number, w: any) => sum + w.commits, 0) /
-    4;
+    enrichedData.slice(-4).reduce((sum: number, w) => sum + w.commits, 0) / 4;
   const previousTrend =
-    enrichedData
-      .slice(-8, -4)
-      .reduce((sum: number, w: any) => sum + w.commits, 0) / 4;
+    enrichedData.slice(-8, -4).reduce((sum: number, w) => sum + w.commits, 0) /
+    4;
   const trendChange = (
     ((recentTrend - previousTrend) / previousTrend) *
     100

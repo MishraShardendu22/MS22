@@ -247,7 +247,7 @@ export default function LinksPage() {
                   .filter((link) => link.category === category)
                   .map((link, index) => (
                     <a
-                      key={index}
+                      key={`${link.url}-${link.name}-${index}`}
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"

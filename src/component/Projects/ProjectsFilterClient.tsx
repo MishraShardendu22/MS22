@@ -27,9 +27,11 @@ export function ProjectsFilterClient({
 
   const allSkills = (() => {
     const skillsSet = new Set<string>();
-    initialProjects.forEach((project) => {
-      project.skills.forEach((skill) => skillsSet.add(skill));
-    });
+    for (const project of initialProjects) {
+      for (const skill of project.skills) {
+        skillsSet.add(skill);
+      }
+    }
     return Array.from(skillsSet).sort();
   })();
 
@@ -84,6 +86,7 @@ export function ProjectsFilterClient({
             </div>
           </div>
           <button
+            type="button"
             onClick={() => setShowFilters(!showFilters)}
             className={`flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm transition-all shadow-lg relative group ${
               showFilters || selectedSkills.length > 0
@@ -101,6 +104,7 @@ export function ProjectsFilterClient({
           </button>
           {(searchQuery || selectedSkills.length > 0) && (
             <button
+              type="button"
               onClick={clearFilters}
               className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm bg-linear-to-r from-red-500/20 to-pink-500/20 text-red-400 border border-red-500/40 hover:from-red-500/30 hover:to-pink-500/30 transition-all shadow-lg shadow-red-500/20"
             >
@@ -129,6 +133,7 @@ export function ProjectsFilterClient({
               <div className="flex flex-wrap gap-2">
                 {allSkills.map((skill) => (
                   <button
+                    type="button"
                     key={skill}
                     onClick={() => toggleSkillFilter(skill)}
                     className={`group/skill relative px-3 py-1.5 text-xs font-semibold rounded-lg transition-all duration-300 ${
@@ -193,6 +198,7 @@ export function ProjectsFilterClient({
           </p>
           {(searchQuery || selectedSkills.length > 0) && (
             <button
+              type="button"
               onClick={clearFilters}
               className="inline-flex items-center gap-2 px-6 py-3 bg-linear-to-r from-cyan-500/10 to-blue-500/10 text-cyan-400 border border-cyan-500/30 rounded-lg hover:from-cyan-500/20 hover:to-blue-500/20 transition-all font-semibold text-sm shadow-lg shadow-cyan-500/10"
             >
@@ -260,9 +266,9 @@ function ProjectCard({ project, index }: ProjectCardProps) {
 
             <div className="flex-1 mb-4">
               <div className="flex flex-wrap gap-1.5">
-                {project.skills.slice(0, 5).map((skill, idx) => (
+                {project.skills.slice(0, 5).map((skill) => (
                   <span
-                    key={idx}
+                    key={skill}
                     className="px-2 py-1 text-xs font-semibold bg-gray-800/70 text-gray-300 rounded-md border border-gray-700/50 group-hover:border-gray-600 group-hover:bg-gray-800 transition-all duration-200"
                   >
                     {skill}

@@ -124,9 +124,9 @@ export async function CertificatesDisplayMobile() {
                 </p>
               )}
               <div className="flex flex-wrap gap-1">
-                {cert.skills?.slice(0, 3).map((skill, idx) => (
+                {cert.skills?.slice(0, 3).map((skill) => (
                   <span
-                    key={idx}
+                    key={skill}
                     className="px-2 py-0.5 text-xs bg-gray-800 text-gray-300 rounded"
                   >
                     {skill}

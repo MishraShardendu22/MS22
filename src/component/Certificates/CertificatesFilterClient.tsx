@@ -31,9 +31,11 @@ export function CertificatesFilterClient({
 
   const allSkills = (() => {
     const skillsSet = new Set<string>();
-    initialCertificates.forEach((cert) => {
-      cert.skills?.forEach((skill) => skillsSet.add(skill));
-    });
+    for (const cert of initialCertificates) {
+      for (const skill of cert.skills ?? []) {
+        skillsSet.add(skill);
+      }
+    }
     return Array.from(skillsSet).sort();
   })();
 
@@ -94,6 +96,7 @@ export function CertificatesFilterClient({
             </div>
           </div>
           <button
+            type="button"
             onClick={() => setShowFilters(!showFilters)}
             className={`flex items-center justify-center gap-2 px-6 py-4 rounded-2xl font-semibold transition-all shadow-lg relative group ${
               showFilters || selectedSkills.length > 0
@@ -111,6 +114,7 @@ export function CertificatesFilterClient({
           </button>
           {(searchQuery || selectedSkills.length > 0) && (
             <button
+              type="button"
               onClick={clearFilters}
               className="flex items-center justify-center gap-2 px-6 py-4 rounded-2xl font-semibold bg-linear-to-r from-red-500/20 to-pink-500/20 text-red-400 border border-red-500/40 hover:from-red-500/30 hover:to-pink-500/30 transition-all shadow-lg shadow-red-500/20"
             >
@@ -138,6 +142,7 @@ export function CertificatesFilterClient({
               <div className="flex flex-wrap gap-3">
                 {allSkills.map((skill) => (
                   <button
+                    type="button"
                     key={skill}
                     onClick={() => toggleSkillFilter(skill)}
                     className={`group/skill relative px-4 py-2.5 text-sm font-semibold rounded-xl transition-all duration-300 ${
@@ -262,6 +267,7 @@ export function CertificatesFilterClient({
             {totalFilteredPages > 1 && (
               <div className="flex items-center justify-center gap-4 mt-12">
                 <button
+                  type="button"
                   onClick={() =>
                     setCurrentPage((prev) => Math.max(1, prev - 1))
                   }
@@ -278,6 +284,7 @@ export function CertificatesFilterClient({
                     (_, i) => i + 1,
                   ).map((page) => (
                     <button
+                      type="button"
                       key={page}
                       onClick={() => setCurrentPage(page)}
                       className={`min-w-11 h-11 rounded-xl font-bold transition-all shadow-lg ${
@@ -292,6 +299,7 @@ export function CertificatesFilterClient({
                 </div>
 
                 <button
+                  type="button"
                   onClick={() =>
                     setCurrentPage((prev) =>
                       Math.min(totalFilteredPages, prev + 1),
@@ -320,6 +328,7 @@ export function CertificatesFilterClient({
             </p>
             {(searchQuery || selectedSkills.length > 0) && (
               <button
+                type="button"
                 onClick={clearFilters}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-linear-to-r from-cyan-500/20 to-blue-500/20 text-cyan-400 border border-cyan-500/40 rounded-xl hover:from-cyan-500/30 hover:to-blue-500/30 font-semibold transition-all shadow-lg shadow-cyan-500/20"
               >

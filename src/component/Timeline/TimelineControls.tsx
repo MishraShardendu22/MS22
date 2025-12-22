@@ -14,6 +14,7 @@ export const TimelineControls = ({
       {!isMobile && (
         <div className="flex items-center justify-center gap-4 mt-6">
           <button
+            type="button"
             onClick={() => onScroll("left")}
             className="p-4 bg-linear-to-br from-gray-900/90 to-gray-950/90 backdrop-blur-md border border-cyan-500/30 rounded-xl shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 hover:border-cyan-500/50 transition-all duration-300 group"
             aria-label="Scroll left"
@@ -21,6 +22,7 @@ export const TimelineControls = ({
             <ArrowLeft className="w-5 h-5 text-cyan-400 group-hover:text-cyan-300 transition-colors" />
           </button>
           <button
+            type="button"
             onClick={() => onScroll("right")}
             className="p-4 bg-linear-to-br from-gray-900/90 to-gray-950/90 backdrop-blur-md border border-cyan-500/30 rounded-xl shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 hover:border-cyan-500/50 transition-all duration-300 group"
             aria-label="Scroll right"

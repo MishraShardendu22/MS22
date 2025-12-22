@@ -25,6 +25,7 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
       }}
     >
       <style
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: CSS animation keyframes - static trusted content
         dangerouslySetInnerHTML={{
           __html: `
         @keyframes fadeInUp {
@@ -54,9 +55,9 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
           </p>
 
           <div className="flex flex-wrap gap-1.5 md:gap-2 mb-3 md:mb-4">
-            {project.skills.slice(0, 4).map((skill, idx) => (
+            {project.skills.slice(0, 4).map((skill) => (
               <span
-                key={idx}
+                key={skill}
                 className="px-2 md:px-2.5 py-0.5 md:py-1 text-xs font-medium bg-gray-800/50 text-gray-300 rounded-md border border-gray-700/50 hover:border-gray-600 transition-colors duration-200"
               >
                 {skill}
@@ -159,9 +160,9 @@ export async function ProjectsDisplayMobile() {
               {project.small_description}
             </p>
             <div className="flex flex-wrap gap-1 mb-3">
-              {project.skills.slice(0, 3).map((skill, idx) => (
+              {project.skills.slice(0, 3).map((skill) => (
                 <span
-                  key={idx}
+                  key={skill}
                   className="px-2 py-0.5 text-xs bg-gray-800 text-gray-300 rounded"
                 >
                   {skill}

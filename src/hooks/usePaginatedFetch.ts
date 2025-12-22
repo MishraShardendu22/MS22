@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export interface PaginatedResponse<T> {
   status: number;
@@ -74,39 +74,42 @@ export function usePaginatedFetch<T, R = T>({
   const [currentPage, setCurrentPage] = useState(1);
   const [totalItems, setTotalItems] = useState(0);
 
-  const fetchData = async (page: number) => {
-    try {
-      if (page === 1) {
-        setLoading(true);
-      } else {
-        setPaginationLoading(true);
-      }
-      setError(null);
+  const fetchData = useCallback(
+    async (page: number) => {
+      try {
+        if (page === 1) {
+          setLoading(true);
+        } else {
+          setPaginationLoading(true);
+        }
+        setError(null);
 
-      const response = await fetchFn(page, itemsPerPage);
+        const response = await fetchFn(page, itemsPerPage);
 
-      if (response.status === 200 && response.data) {
-        const rawItems = (response.data[dataKey] as T[]) || [];
-        const processedItems = transform
-          ? transform(rawItems)
-          : (rawItems as unknown as R[]);
+        if (response.status === 200 && response.data) {
+          const rawItems = (response.data[dataKey] as T[]) || [];
+          const processedItems = transform
+            ? transform(rawItems)
+            : (rawItems as unknown as R[]);
 
-        setItems(processedItems);
-        setTotalItems(response.data.total || processedItems.length);
-      } else {
+          setItems(processedItems);
+          setTotalItems(response.data.total || processedItems.length);
+        } else {
+          setItems([]);
+          setTotalItems(0);
+        }
+      } catch (err) {
+        console.error(`Error fetching ${dataKey}:`, err);
+        setError(`Failed to load ${dataKey}. Please try again later.`);
         setItems([]);
         setTotalItems(0);
+      } finally {
+        setLoading(false);
+        setPaginationLoading(false);
       }
-    } catch (err) {
-      console.error(`Error fetching ${dataKey}:`, err);
-      setError(`Failed to load ${dataKey}. Please try again later.`);
-      setItems([]);
-      setTotalItems(0);
-    } finally {
-      setLoading(false);
-      setPaginationLoading(false);
-    }
-  };
+    },
+    [fetchFn, itemsPerPage, dataKey, transform],
+  );
 
   useEffect(() => {
     if (fetchOnMount) {

@@ -235,16 +235,18 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                     {sections[0].content.slice(0, 4).map((item, itemIdx) => {
                       const isListItem =
                         item.trim().startsWith("-") || item.includes("**");
+                      const itemKey = `overview-${item.substring(0, 20).replace(/\s/g, "-")}-${itemIdx}`;
 
                       if (isListItem) {
                         return (
                           <div
-                            key={itemIdx}
+                            key={itemKey}
                             className="flex items-start gap-2 group/item"
                           >
                             <CheckCircle2 className="w-3 h-3 text-cyan-400 shrink-0 mt-0.5" />
                             <div
                               className="text-gray-300 text-xs leading-relaxed flex-1"
+                              // biome-ignore lint/security/noDangerouslySetInnerHtml: Content is from trusted API and sanitized by formatListItem
                               dangerouslySetInnerHTML={{
                                 __html: formatListItem(item),
                               }}
@@ -255,8 +257,9 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
                       return (
                         <p
-                          key={itemIdx}
+                          key={itemKey}
                           className="text-gray-300 text-xs leading-relaxed"
+                          // biome-ignore lint/security/noDangerouslySetInnerHtml: Content is from trusted API and sanitized by formatListItem
                           dangerouslySetInnerHTML={{
                             __html: formatListItem(item),
                           }}
@@ -287,7 +290,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 <div className="flex flex-wrap gap-1.5">
                   {project.skills.map((skill, idx) => (
                     <span
-                      key={idx}
+                      key={`${project._id}-skill-${skill}-${idx}`}
                       className="px-2 py-1 text-xs font-bold bg-gray-800/60 text-gray-300 rounded-lg border border-gray-700/40 hover:border-cyan-500/40 hover:text-cyan-400 transition-all cursor-default"
                     >
                       {skill}
@@ -361,7 +364,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           {/* Remaining Sections */}
           {sections.slice(1).map((section, idx) => (
             <section
-              key={idx}
+              key={`${project._id}-section-${section.title}-${idx}`}
               className="group relative animate-fadeInUp mb-6"
               style={{ animationDelay: `${0.25 + idx * 0.05}s` }}
             >
@@ -386,16 +389,18 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                   {section.content.map((item, itemIdx) => {
                     const isListItem =
                       item.trim().startsWith("-") || item.includes("**");
+                    const itemKey = `section-${section.title.substring(0, 10)}-${item.substring(0, 15).replace(/\s/g, "-")}-${itemIdx}`;
 
                     if (isListItem) {
                       return (
                         <div
-                          key={itemIdx}
+                          key={itemKey}
                           className="flex items-start gap-2 group/item"
                         >
                           <CheckCircle2 className="w-3 h-3 text-cyan-400 shrink-0 mt-0.5" />
                           <div
                             className="text-gray-300 text-xs leading-relaxed flex-1"
+                            // biome-ignore lint/security/noDangerouslySetInnerHtml: Content is from trusted API and sanitized by formatListItem
                             dangerouslySetInnerHTML={{
                               __html: formatListItem(item),
                             }}
@@ -406,8 +411,9 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
                     return (
                       <p
-                        key={itemIdx}
+                        key={itemKey}
                         className="text-gray-300 text-xs leading-relaxed md:col-span-2"
+                        // biome-ignore lint/security/noDangerouslySetInnerHtml: Content is from trusted API and sanitized by formatListItem
                         dangerouslySetInnerHTML={{
                           __html: formatListItem(item),
                         }}
@@ -455,7 +461,9 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                         src={project.project_video}
                         controls
                         className="w-full h-full"
-                      />
+                      >
+                        <track kind="captions" />
+                      </video>
                     )}
                   </div>
                 </div>

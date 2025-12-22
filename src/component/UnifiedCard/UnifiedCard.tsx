@@ -141,9 +141,9 @@ export const UnifiedCard = ({
               </div>
             </div>
             <div className="flex flex-col items-end gap-2 shrink-0">
-              {badges?.map((badge, idx) => (
+              {badges?.map((badge) => (
                 <span
-                  key={idx}
+                  key={badge.label}
                   className={`flex items-center gap-1 px-2.5 py-1 text-xs font-bold ${colors.certificateBg} ${colors.certificateText} rounded-md ${colors.certificateBorder}`}
                 >
                   {badge.icon}
@@ -189,9 +189,9 @@ export const UnifiedCard = ({
 
           {technologies && technologies.length > 0 && (
             <div className="flex flex-wrap gap-2">
-              {technologies.slice(0, maxTechDisplay).map((tech, idx) => (
+              {technologies.slice(0, maxTechDisplay).map((tech) => (
                 <span
-                  key={idx}
+                  key={tech}
                   className="px-2.5 py-1 text-xs font-medium bg-gray-800/50 text-gray-300 rounded-md border border-gray-700/50 hover:border-gray-600 transition-colors duration-200"
                 >
                   {tech}

@@ -44,10 +44,10 @@ export function FooterSectionMobile() {
               Quick Links
             </h3>
             <ul className="space-y-2">
-              {Object.entries(QuickLinks).map(([key, data], idx) => {
+              {Object.entries(QuickLinks).map(([key, data]) => {
                 const IconComponent = data.icon;
                 return (
-                  <li key={idx}>
+                  <li key={key}>
                     <a
                       href={data.url}
                       className="flex items-center gap-2 text-xs text-gray-400 hover:text-cyan-400 transition-colors"
@@ -65,10 +65,10 @@ export function FooterSectionMobile() {
           <div>
             <h3 className="text-base font-bold text-gray-100 mb-3">Social</h3>
             <ul className="space-y-2">
-              {Object.entries(SocialMedia).map(([key, data], idx) => {
+              {Object.entries(SocialMedia).map(([key, data]) => {
                 const IconComponent = data.icon;
                 return (
-                  <li key={idx}>
+                  <li key={key}>
                     <a
                       href={data.url}
                       target="_blank"
@@ -218,10 +218,10 @@ export function FooterSection() {
               Quick Links
             </h3>
             <ul className="space-y-4">
-              {Object.entries(QuickLinks).map(([key, data], idx) => {
+              {Object.entries(QuickLinks).map(([key, data]) => {
                 const IconComponent = data.icon;
                 return (
-                  <li key={idx}>
+                  <li key={key}>
                     <a
                       href={data.url}
                       className="flex items-center gap-2 text-sm md:text-base text-gray-400 hover:text-cyan-400 transition-colors duration-500 group"
@@ -242,10 +242,10 @@ export function FooterSection() {
               My Websites
             </h3>
             <ul className="space-y-4">
-              {Object.entries(MyWebsites).map(([_key, data], idx) => {
+              {Object.entries(MyWebsites).map(([websiteKey, data]) => {
                 const IconComponent = data.icon;
                 return (
-                  <li key={idx}>
+                  <li key={websiteKey}>
                     <a
                       href={data.url}
                       target="_blank"
@@ -268,16 +268,17 @@ export function FooterSection() {
                 className="w-5 h-5 text-cyan-400"
                 fill="currentColor"
                 viewBox="0 0 24 24"
+                aria-hidden="true"
               >
                 <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z" />
               </svg>
               Social Media
             </h3>
             <ul className="space-y-4">
-              {Object.entries(SocialMedia).map(([key, data], idx) => {
+              {Object.entries(SocialMedia).map(([key, data]) => {
                 const IconComponent = data.icon;
                 return (
-                  <li key={idx}>
+                  <li key={key}>
                     <a
                       href={data.url}
                       target="_blank"
@@ -300,10 +301,10 @@ export function FooterSection() {
               Coding
             </h3>
             <ul className="space-y-4">
-              {Object.entries(CodingProfiles).map(([key, data], idx) => {
+              {Object.entries(CodingProfiles).map(([key, data]) => {
                 const IconComponent = data.icon;
                 return (
-                  <li key={idx}>
+                  <li key={key}>
                     <a
                       href={data.url}
                       target="_blank"

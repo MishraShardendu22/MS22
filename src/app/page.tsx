@@ -151,7 +151,7 @@ const page = async ({ searchParams }: PageProps) => {
             </Suspense>
           </section>
         )}
-        <footer id="contact" aria-label="Contact information">
+        <footer id="contact">
           {isMobile ? <FooterSectionMobile /> : <FooterSection />}
         </footer>
       </main>

@@ -86,9 +86,11 @@ export function StatsLoadingSkeleton() {
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {[...Array(6)].map((_, i) => (
-                <div key={i} className="h-24 bg-gray-800/30 rounded-lg" />
-              ))}
+              {Array.from({ length: 6 }, (_, i) => `skeleton-repo-${i}`).map(
+                (key) => (
+                  <div key={key} className="h-24 bg-gray-800/30 rounded-lg" />
+                ),
+              )}
             </div>
           </div>
         </div>

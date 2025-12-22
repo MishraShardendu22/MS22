@@ -11,9 +11,31 @@ export interface ProcessedExperience {
   technologies?: string[];
 }
 
+export interface TimelineEntry {
+  position: string;
+  start_date: string;
+  end_date?: string;
+}
+
+export interface ExperienceInput {
+  company_name: string;
+  company_logo?: string;
+  description?: string;
+  technologies?: string[];
+  experience_time_line: TimelineEntry[];
+}
+
+export interface VolunteerInput {
+  organisation: string;
+  organisation_logo?: string;
+  description?: string;
+  technologies?: string[];
+  volunteer_time_line: TimelineEntry[];
+}
+
 export interface TimelineDisplayProps {
-  experiences: any[];
-  volunteerExperiences: any[];
+  experiences: ExperienceInput[];
+  volunteerExperiences: VolunteerInput[];
 }
 
 export interface MonthData {

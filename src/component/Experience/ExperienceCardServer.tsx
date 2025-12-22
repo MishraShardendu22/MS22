@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { PaginationLinks } from "@/component/Pagination";
 import {
@@ -85,9 +86,11 @@ export async function ExperiencesDisplayMobile() {
             >
               <div className="flex items-start gap-3 mb-3">
                 {experience.company_logo && (
-                  <img
+                  <Image
                     src={experience.company_logo}
                     alt={experience.company_name}
+                    width={40}
+                    height={40}
                     className="w-10 h-10 rounded-lg object-contain bg-white/5 p-1"
                   />
                 )}
@@ -107,9 +110,9 @@ export async function ExperiencesDisplayMobile() {
                 {experience.description}
               </p>
               <div className="flex flex-wrap gap-1">
-                {experience.technologies?.slice(0, 3).map((tech, idx) => (
+                {experience.technologies?.slice(0, 3).map((tech) => (
                   <span
-                    key={idx}
+                    key={tech}
                     className="px-2 py-0.5 text-xs bg-gray-800 text-gray-300 rounded"
                   >
                     {tech}

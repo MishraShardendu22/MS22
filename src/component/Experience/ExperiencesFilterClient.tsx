@@ -35,9 +35,11 @@ export function ExperiencesFilterClient({
   // Get all unique technologies from experiences
   const allTechnologies = (() => {
     const techsSet = new Set<string>();
-    initialExperiences.forEach((exp) => {
-      exp.technologies?.forEach((tech) => techsSet.add(tech));
-    });
+    for (const exp of initialExperiences) {
+      for (const tech of exp.technologies ?? []) {
+        techsSet.add(tech);
+      }
+    }
     return Array.from(techsSet).sort();
   })();
 
@@ -102,6 +104,7 @@ export function ExperiencesFilterClient({
             </div>
           </div>
           <button
+            type="button"
             onClick={() => setShowFilters(!showFilters)}
             className={`flex items-center justify-center gap-2 px-6 py-4 rounded-2xl font-semibold transition-all shadow-lg relative group ${
               showFilters || selectedTechs.length > 0
@@ -119,6 +122,7 @@ export function ExperiencesFilterClient({
           </button>
           {(searchQuery || selectedTechs.length > 0) && (
             <button
+              type="button"
               onClick={clearFilters}
               className="flex items-center justify-center gap-2 px-6 py-4 rounded-2xl font-semibold bg-linear-to-r from-red-500/20 to-pink-500/20 text-red-400 border border-red-500/40 hover:from-red-500/30 hover:to-pink-500/30 transition-all shadow-lg shadow-red-500/20"
             >
@@ -139,6 +143,7 @@ export function ExperiencesFilterClient({
               <div className="flex flex-wrap gap-2">
                 {allTechnologies.map((tech) => (
                   <button
+                    type="button"
                     key={tech}
                     onClick={() => toggleTechFilter(tech)}
                     className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all ${
@@ -218,9 +223,9 @@ export function ExperiencesFilterClient({
                         <div className="mb-6 space-y-2">
                           {experience.experience_time_line
                             .slice(0, 2)
-                            .map((timeline, idx) => (
+                            .map((timeline) => (
                               <div
-                                key={idx}
+                                key={`${timeline.start_date}-${timeline.end_date || "present"}`}
                                 className="flex items-center gap-2 text-sm text-gray-400"
                               >
                                 <Calendar className="w-4 h-4" />
@@ -274,6 +279,7 @@ export function ExperiencesFilterClient({
             {totalFilteredPages > 1 && (
               <div className="flex items-center justify-center gap-4 mt-12">
                 <button
+                  type="button"
                   onClick={() =>
                     setCurrentPage((prev) => Math.max(1, prev - 1))
                   }
@@ -290,6 +296,7 @@ export function ExperiencesFilterClient({
                     (_, i) => i + 1,
                   ).map((page) => (
                     <button
+                      type="button"
                       key={page}
                       onClick={() => setCurrentPage(page)}
                       className={`min-w-11 h-11 rounded-xl font-bold transition-all shadow-lg ${
@@ -304,6 +311,7 @@ export function ExperiencesFilterClient({
                 </div>
 
                 <button
+                  type="button"
                   onClick={() =>
                     setCurrentPage((prev) =>
                       Math.min(totalFilteredPages, prev + 1),
@@ -332,6 +340,7 @@ export function ExperiencesFilterClient({
             </p>
             {(searchQuery || selectedTechs.length > 0) && (
               <button
+                type="button"
                 onClick={clearFilters}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-linear-to-r from-cyan-500/20 to-blue-500/20 text-cyan-400 border border-cyan-500/40 rounded-xl hover:from-cyan-500/30 hover:to-blue-500/30 font-semibold transition-all shadow-lg shadow-cyan-500/20"
               >

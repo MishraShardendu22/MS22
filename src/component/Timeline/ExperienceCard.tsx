@@ -23,8 +23,9 @@ export const ExperienceCard = ({
   return (
     <>
       {/* Experience Bar - Render FIRST so it's behind */}
-      <div
-        className="absolute rounded-full transition-[height,transform,box-shadow] duration-200 cursor-pointer shadow-lg"
+      <button
+        type="button"
+        className="absolute rounded-full transition-[height,transform,box-shadow] duration-200 cursor-pointer shadow-lg border-none bg-transparent p-0"
         style={{
           left: `${position.left}px`,
           width: `${position.width}px`,
@@ -39,6 +40,9 @@ export const ExperienceCard = ({
         }}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
+        onFocus={onMouseEnter}
+        onBlur={onMouseLeave}
+        aria-label={`Experience at ${exp.name}`}
       >
         {/* Start Dot */}
         <div
@@ -62,18 +66,22 @@ export const ExperienceCard = ({
               : `0 0 10px ${companyColor}80`,
           }}
         />
-      </div>
+      </button>
 
       {/* Company Logo - Render SECOND so it's on top */}
-      <div
-        className="absolute transition-[transform] duration-200"
+      <button
+        type="button"
+        className="absolute transition-[transform] duration-200 border-none bg-transparent p-0"
         style={{
           left: `${position.left + position.width / 2 - 28}px`,
-          top: "4px", // Above the bar
+          top: "4px",
           zIndex: isHovered ? 100 : 30,
         }}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
+        onFocus={onMouseEnter}
+        onBlur={onMouseLeave}
+        aria-label={`${exp.name} logo`}
       >
         <div
           className={`
@@ -131,7 +139,7 @@ export const ExperienceCard = ({
             }}
           />
         </div>
-      </div>
+      </button>
 
       {/* Date Range - Below the bar */}
       <div

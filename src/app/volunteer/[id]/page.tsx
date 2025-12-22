@@ -85,7 +85,10 @@ export default async function VolunteerDetailPage({ params }: PageProps) {
           <article className="container mx-auto px-4 py-8 relative z-10">
             <nav>
               <Link href="/volunteer">
-                <button type="button" className="group flex items-center gap-2 mb-8 px-6 py-3 bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 text-gray-400 rounded-xl hover:border-pink-500/40 hover:text-pink-400 transition-all shadow-lg">
+                <button
+                  type="button"
+                  className="group flex items-center gap-2 mb-8 px-6 py-3 bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 text-gray-400 rounded-xl hover:border-pink-500/40 hover:text-pink-400 transition-all shadow-lg"
+                >
                   <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
                   <span className="font-semibold">
                     Back to Volunteer Experiences
@@ -169,7 +172,7 @@ export default async function VolunteerDetailPage({ params }: PageProps) {
                             {volunteer.volunteer_time_line.map(
                               (timeline, idx) => (
                                 <div
-                                  key={idx}
+                                  key={`${volunteer._id}-timeline-${timeline.position}-${timeline.start_date}-${idx}`}
                                   className="flex items-center gap-3 text-sm p-3 bg-gray-800/30 rounded-lg"
                                 >
                                   <Briefcase className="w-4 h-4 text-pink-400" />
@@ -219,7 +222,7 @@ export default async function VolunteerDetailPage({ params }: PageProps) {
                         <div className="grid grid-cols-2 gap-4">
                           {volunteer.images.map((image, idx) => (
                             <div
-                              key={idx}
+                              key={`${volunteer._id}-image-${image}-${idx}`}
                               className="relative aspect-16/11 rounded-xl overflow-hidden border border-gray-800/50 hover:border-pink-500/40 transition-all group/img"
                             >
                               <Image
@@ -252,7 +255,7 @@ export default async function VolunteerDetailPage({ params }: PageProps) {
                           <div className="flex flex-wrap gap-2">
                             {volunteer.technologies.map((tech, idx) => (
                               <span
-                                key={idx}
+                                key={`${volunteer._id}-tech-${tech}-${idx}`}
                                 className="px-3 py-2 text-sm font-semibold bg-linear-to-r from-pink-500/10 to-purple-500/10 text-pink-400 rounded-lg border border-pink-500/30 hover:from-pink-500/20 hover:to-purple-500/20 transition-all"
                               >
                                 {tech}
@@ -296,7 +299,7 @@ export default async function VolunteerDetailPage({ params }: PageProps) {
                         <div className="space-y-2">
                           {volunteer.projects.map((project, idx) => (
                             <div
-                              key={idx}
+                              key={`${volunteer._id}-project-${project}-${idx}`}
                               className="p-3 bg-gray-800/50 rounded-lg text-gray-300 text-sm"
                             >
                               {project}

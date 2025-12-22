@@ -69,6 +69,8 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
             viewBox="0 0 190.8 72.001"
             className="w-full h-auto max-w-2xl mx-auto"
             xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-label="Error"
           >
             <defs>
               <linearGradient

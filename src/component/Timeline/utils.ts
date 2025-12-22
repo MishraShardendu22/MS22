@@ -1,17 +1,20 @@
 import type {
+  ExperienceInput,
   MonthData,
   ProcessedExperience,
   ProcessedTimelineData,
+  TimelineEntry,
+  VolunteerInput,
 } from "./types";
 
 export const processTimelineData = (
-  experiences: any[],
-  volunteerExperiences: any[],
+  experiences: ExperienceInput[],
+  volunteerExperiences: VolunteerInput[],
 ): ProcessedTimelineData => {
   const allExperiences: ProcessedExperience[] = [];
 
   experiences.forEach((exp) => {
-    exp.experience_time_line.forEach((timeline: any) => {
+    exp.experience_time_line.forEach((timeline: TimelineEntry) => {
       const startDate = new Date(timeline.start_date);
       const endDate = timeline.end_date
         ? new Date(timeline.end_date)
@@ -33,7 +36,7 @@ export const processTimelineData = (
   });
 
   volunteerExperiences.forEach((exp) => {
-    exp.volunteer_time_line.forEach((timeline: any) => {
+    exp.volunteer_time_line.forEach((timeline: TimelineEntry) => {
       const startDate = new Date(timeline.start_date);
       const endDate = timeline.end_date
         ? new Date(timeline.end_date)

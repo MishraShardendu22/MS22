@@ -76,9 +76,9 @@ async function SkillsDisplayMobileServer({
         {/* Skills Grid */}
         <div className="mb-4">
           <div className="flex flex-wrap justify-center gap-2 px-2">
-            {skills.map((skill, index) => (
+            {skills.map((skill) => (
               <span
-                key={`${skill}-${index}`}
+                key={skill}
                 className="px-3 py-1.5 rounded-lg bg-gray-900 border border-gray-800 text-gray-300 text-xs"
               >
                 {skill}
@@ -208,9 +208,9 @@ export default async function SkillsDisplay({
         {/* Skills Grid */}
         <div className="mb-4 md:mb-6">
           <div className="flex flex-wrap justify-center gap-2 sm:gap-2.5 md:gap-3 content-start px-2">
-            {skills.map((skill, index) => (
+            {skills.map((skill) => (
               <span
-                key={`${skill}-${index}`}
+                key={skill}
                 className="skill-badge group px-3 sm:px-4 md:px-5 lg:px-6 py-1.5 sm:py-2 md:py-2.5 lg:py-3 rounded-lg md:rounded-xl bg-linear-to-br from-gray-900/80 to-gray-950/80 backdrop-blur-sm border border-gray-800 hover:border-cyan-500/50 text-gray-300 hover:text-cyan-400 font-semibold text-xs sm:text-sm md:text-base shadow-lg hover:shadow-xl hover:shadow-cyan-500/20 transition-colors duration-300 cursor-default"
               >
                 {skill}

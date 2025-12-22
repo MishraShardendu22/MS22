@@ -3,15 +3,19 @@ import { useEffect, useRef } from "react";
 
 export const useAnimeOnMount = (
   animationConfig: AnimationOptions,
-  dependencies: any[] = [],
+  dependencies: React.DependencyList = [],
 ) => {
   const elementRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
-    if (!elementRef.current) return;
+  useEffect(
+    () => {
+      if (!elementRef.current) return;
 
-    animate(elementRef.current, animationConfig);
-  }, dependencies);
+      animate(elementRef.current, animationConfig);
+    },
+    // biome-ignore lint/correctness/useExhaustiveDependencies: Dependencies are intentionally passed dynamically by the consumer
+    dependencies,
+  );
 
   return elementRef;
 };

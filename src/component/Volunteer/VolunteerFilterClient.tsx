@@ -31,9 +31,11 @@ export function VolunteerFilterClient({
 
   const allTechnologies = (() => {
     const techsSet = new Set<string>();
-    initialVolunteers.forEach((vol) => {
-      vol.technologies?.forEach((tech) => techsSet.add(tech));
-    });
+    for (const vol of initialVolunteers) {
+      for (const tech of vol.technologies ?? []) {
+        techsSet.add(tech);
+      }
+    }
     return Array.from(techsSet).sort();
   })();
 
@@ -93,6 +95,7 @@ export function VolunteerFilterClient({
             </div>
           </div>
           <button
+            type="button"
             onClick={() => setShowFilters(!showFilters)}
             className={`flex items-center justify-center gap-2 px-6 py-4 rounded-2xl font-semibold transition-all shadow-lg relative group ${
               showFilters || selectedTechs.length > 0
@@ -110,6 +113,7 @@ export function VolunteerFilterClient({
           </button>
           {(searchQuery || selectedTechs.length > 0) && (
             <button
+              type="button"
               onClick={clearFilters}
               className="flex items-center justify-center gap-2 px-6 py-4 rounded-2xl font-semibold bg-linear-to-r from-red-500/20 to-pink-500/20 text-red-400 border border-red-500/40 hover:from-red-500/30 hover:to-pink-500/30 transition-all shadow-lg shadow-red-500/20"
             >
@@ -137,6 +141,7 @@ export function VolunteerFilterClient({
               <div className="flex flex-wrap gap-3">
                 {allTechnologies.map((tech) => (
                   <button
+                    type="button"
                     key={tech}
                     onClick={() => toggleTechFilter(tech)}
                     className={`group/tech relative px-4 py-2.5 text-sm font-semibold rounded-xl transition-all duration-300 ${
@@ -199,6 +204,7 @@ export function VolunteerFilterClient({
           </p>
           {(searchQuery || selectedTechs.length > 0) && (
             <button
+              type="button"
               onClick={clearFilters}
               className="inline-flex items-center gap-2 px-8 py-4 bg-linear-to-r from-pink-500/10 to-purple-500/10 text-pink-400 border-2 border-pink-500/30 rounded-xl hover:from-pink-500/20 hover:to-purple-500/20 transition-all font-semibold shadow-lg shadow-pink-500/10"
             >
@@ -278,9 +284,9 @@ export function VolunteerFilterClient({
                             <div className="flex flex-wrap gap-2">
                               {volunteer.technologies
                                 .slice(0, 4)
-                                .map((tech, idx) => (
+                                .map((tech) => (
                                   <span
-                                    key={idx}
+                                    key={tech}
                                     className="px-3 py-1.5 text-xs font-semibold bg-gray-800/70 text-gray-300 rounded-lg border border-gray-700/50 group-hover:border-gray-600 group-hover:bg-gray-800 transition-all duration-200"
                                   >
                                     {tech}
@@ -319,6 +325,7 @@ export function VolunteerFilterClient({
           {totalFilteredPages > 1 && (
             <div className="max-w-7xl mx-auto mt-16 flex flex-col sm:flex-row items-center justify-center gap-6">
               <button
+                type="button"
                 onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
                 disabled={currentPage === 1}
                 className="group flex items-center gap-2 px-6 py-3 bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 text-gray-400 rounded-xl disabled:opacity-40 disabled:cursor-not-allowed hover:border-pink-500/40 hover:text-pink-400 transition-all shadow-lg disabled:hover:border-gray-800/50 disabled:hover:text-gray-400"
@@ -333,6 +340,7 @@ export function VolunteerFilterClient({
                   (_, i) => i + 1,
                 ).map((page) => (
                   <button
+                    type="button"
                     key={page}
                     onClick={() => setCurrentPage(page)}
                     className={`relative min-w-12 px-5 py-3 rounded-xl font-bold transition-all shadow-lg ${
@@ -350,6 +358,7 @@ export function VolunteerFilterClient({
               </div>
 
               <button
+                type="button"
                 onClick={() =>
                   setCurrentPage((prev) =>
                     Math.min(totalFilteredPages, prev + 1),

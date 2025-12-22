@@ -4,7 +4,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
 import { Archivo, Inter } from "next/font/google";
 
-// Use environment variable or fallback to localhost for development
 const BASE_URL =
   process.env.NEXT_PUBLIC_BASE_URL ||
   (process.env.VERCEL_URL
@@ -56,43 +55,43 @@ export const metadata: Metadata = {
   applicationName: "Shardendu Mishra Portfolio",
   keywords: [
     "Shardendu Mishra",
-    "Software Developer",
     "Software Engineer",
+    "Software Developer",
+    "IIIT Dharwad",
     "Go Developer",
     "Golang Expert",
     "React Developer",
+    "Software Engineer",
     "Next.js Developer",
     "TypeScript Developer",
     "JavaScript Developer",
-    "Software Engineer",
-    "IIIT Dharwad",
     "Indian Institute of Information Technology",
+    "LeetCode",
     "Portfolio",
     "Web Development",
     "Software Engineering",
-    "Cloud Native Development",
-    "Open Source Contributor",
-    "LeetCode",
     "Competitive Programming",
-    "Developer Portfolio",
+    "Open Source Contributor",
+    "Cloud Native Development",
     "Software Projects",
+    "Developer Portfolio",
     "Programming Projects",
+    "Docker",
     "MongoDB",
     "PostgreSQL",
-    "Docker",
     "Kubernetes",
-    "Linux",
     "Git",
+    "Linux",
     "GitHub",
+    "Algorithms",
     "System Design",
     "Data Structures",
-    "Algorithms",
-    "Backend Development",
-    "Frontend Development",
     "API Development",
     "Database Design",
     "ShardenduMishra22",
     "MishraShardendu22",
+    "Backend Development",
+    "Frontend Development",
     "Code",
     "Programming",
     "Technology",
@@ -302,10 +301,10 @@ export default function RootLayout({
       name: "Indian Institute of Information Technology Dharwad",
     },
     sameAs: [
-      "https://github.com/MishraShardendu22",
-      "https://linkedin.com/in/shardendu-mishra",
       "https://twitter.com/Shardendu_M",
+      "https://github.com/MishraShardendu22",
       "https://leetcode.com/MishraShardendu22",
+      "https://linkedin.com/in/shardendu-mishra",
     ],
     knowsAbout: [
       "Software Development",
@@ -323,6 +322,7 @@ export default function RootLayout({
       <head>
         <script
           type="application/ld+json"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD structured data requires dangerouslySetInnerHTML - content is safe static data
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>

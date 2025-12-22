@@ -39,6 +39,8 @@ const InlineLoader = ({ message = "Loading..." }: LoadingStateProps) => {
           viewBox="0 0 915.869 72.022"
           className="w-full h-auto"
           xmlns="http://www.w3.org/2000/svg"
+          role="img"
+          aria-label="Loading"
         >
           <defs>
             <linearGradient id="nameGradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -92,7 +94,8 @@ const InlineLoader = ({ message = "Loading..." }: LoadingStateProps) => {
 
 export const LoadingState = ({
   message,
-  variant,
+  // variant is kept for future use with different loading styles
+  variant: _variant,
   fullPage = false,
 }: LoadingStateProps) => {
   if (fullPage) {

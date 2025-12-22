@@ -2,9 +2,20 @@ import { Star, TrendingUp } from "lucide-react";
 import Link from "next/link";
 import type { Repository } from "@/types/stats";
 
-const RepoCard = ({ repo, index }: { repo: any; index: number }) => {
-  const repoUrl = (repo as any).url || repo.html_url;
-  const stars = (repo as any).stars || repo.stargazers_count || 0;
+interface ExtendedRepository extends Repository {
+  url?: string;
+  stars?: number;
+}
+
+const RepoCard = ({
+  repo,
+  index,
+}: {
+  repo: ExtendedRepository;
+  index: number;
+}) => {
+  const repoUrl = repo.url || repo.html_url;
+  const stars = repo.stars || repo.stargazers_count || 0;
 
   if (!repoUrl) return null;
 
@@ -77,7 +88,8 @@ export const TopRepositoriesCard = ({ topRepos }: TopRepositoriesCardProps) => {
   }
 
   const validRepos = topRepos.filter(
-    (repo) => (repo as any).url || repo.html_url,
+    (repo): repo is ExtendedRepository =>
+      !!((repo as ExtendedRepository).url || repo.html_url),
   );
 
   if (validRepos.length === 0) {
