@@ -39,7 +39,7 @@ export default function ContactPage() {
 
         {/* Contact Form Card */}
         <article className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-12">
-          <ContactForm />
+          <ContactFormWrapper />
         </article>
 
         {/* Additional Contact Info */}

@@ -1,7 +1,5 @@
 "use server";
 
-import { API_BASE_URL } from "@/constants/url";
-
 interface ContactFormState {
   success: boolean;
   message: string;
@@ -53,9 +51,10 @@ export async function submitContactForm(
     };
   }
 
-  // Submit to backend API
+  // Submit to backend API route
   try {
-    const response = await fetch(`${API_BASE_URL}/api/contact`, {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    const response = await fetch(`${baseUrl}/api/contact`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

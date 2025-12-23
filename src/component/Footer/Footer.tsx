@@ -1,6 +1,6 @@
 import { Code2, Coffee, Heart, Zap } from "lucide-react";
 import Image from "next/image";
-import { ContactForm } from "@/component/Contact/ContactForm";
+import { ContactFormWrapper } from "@/component/Contact/ContactFormWrapper";
 import {
   CodingProfiles,
   images,
@@ -32,7 +32,7 @@ export function FooterSectionMobile() {
         <div className="mb-8">
           <h3 className="text-xl font-bold text-cyan-400 mb-4">Let's Talk</h3>
           <div className="bg-gray-900 p-4 rounded-xl border border-gray-800">
-            <ContactForm variant="compact" includeSubject={false} />
+            <ContactFormWrapper variant="compact" includeSubject={false} />
           </div>
         </div>
 
@@ -201,7 +201,7 @@ export function FooterSection() {
             </div>
 
             <div className="bg-linear-to-br from-gray-900/80 to-gray-950/80 backdrop-blur-sm p-6 md:p-8 rounded-2xl border border-gray-800 shadow-2xl">
-              <ContactForm variant="default" includeSubject={false} />
+              <ContactFormWrapper variant="default" includeSubject={false} />
             </div>
           </div>
         </div>
