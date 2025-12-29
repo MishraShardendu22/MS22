@@ -1,6 +1,6 @@
 import { Mail, MessageCircle } from "lucide-react";
 import type { Metadata } from "next";
-import { ContactForm, ContactFormWrapper } from "@/component/Contact";
+import { ContactFormWrapper } from "@/component/Contact";
 import { generatePageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = generatePageMetadata({

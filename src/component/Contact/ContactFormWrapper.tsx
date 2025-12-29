@@ -30,7 +30,11 @@ export function ContactFormWrapper({
         </div>
       )}
 
-      <ContactForm variant={variant} includeSubject={includeSubject} state={state} />
+      <ContactForm
+        variant={variant}
+        includeSubject={includeSubject}
+        state={state}
+      />
     </form>
   );
 }

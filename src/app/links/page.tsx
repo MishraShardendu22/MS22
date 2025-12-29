@@ -202,27 +202,28 @@ export default function LinksPage() {
 
         {/* Profile Section */}
         <header className="text-center mb-12 animate-fadeIn">
-          {/* Hide profile image on mobile for better performance */}
-          <div className="relative mb-6 hidden md:inline-block">
+          {/* Profile image with proper mobile display */}
+          <div className="relative mb-6 inline-block">
             <div className="absolute -inset-1 bg-linear-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-full blur opacity-75 animate-pulse" />
-            <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-gray-900 shadow-2xl">
+            <div className="relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-gray-900 shadow-2xl bg-gray-900">
               <Image
                 src="/professional.avif"
                 alt="Shardendu Mishra"
                 width={128}
                 height={128}
                 className="w-full h-full object-cover"
+                priority
               />
             </div>
           </div>
 
-          <h1 className="text-4xl md:text-5xl font-black text-white mb-3 bg-clip-text bg-linear-to-r from-cyan-400 via-purple-400 to-pink-400">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-3 bg-clip-text bg-linear-to-r from-cyan-400 via-purple-400 to-pink-400">
             Shardendu Mishra
           </h1>
-          <p className="text-lg text-gray-400 mb-4 max-w-md mx-auto">
+          <p className="text-base md:text-lg text-gray-400 mb-4 max-w-md mx-auto px-4">
             Software Developer & Engineer | Building with Go, React, Next.js
           </p>
-          <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
+          <div className="flex items-center justify-center gap-2 text-xs md:text-sm text-gray-500 flex-wrap px-4">
             <span className="px-3 py-1 bg-gray-800/50 rounded-full border border-gray-700/50">
               IIIT Dharwad
             </span>
@@ -233,12 +234,17 @@ export default function LinksPage() {
         </header>
 
         {/* Links Section */}
-        <section aria-label="Social and project links" className="space-y-8">
+        <section
+          aria-label="Social and project links"
+          className="space-y-6 md:space-y-8"
+        >
           {Object.entries(categories).map(([category, title]) => (
             <div key={category} className="animate-fadeIn">
-              <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+              <h2 className="text-lg md:text-xl font-bold text-white mb-3 md:mb-4 flex items-center gap-2 px-2 md:px-0">
                 <span className="h-px flex-1 bg-linear-to-r from-transparent via-gray-700 to-transparent" />
-                <span className="text-gray-300">{title}</span>
+                <span className="text-gray-300 text-sm md:text-base">
+                  {title}
+                </span>
                 <span className="h-px flex-1 bg-linear-to-r from-transparent via-gray-700 to-transparent" />
               </h2>
 
@@ -257,24 +263,24 @@ export default function LinksPage() {
                         <div
                           className={`absolute -inset-0.5 bg-linear-to-r ${link.color} rounded-xl blur opacity-0 group-hover:opacity-75 transition duration-300`}
                         />
-                        <div className="relative bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 rounded-xl p-4 hover:border-gray-700/50 transition-all duration-300 group-hover:scale-[1.02]">
-                          <div className="flex items-center gap-4">
+                        <div className="relative bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 rounded-xl p-4 md:p-5 hover:border-gray-700/50 transition-all duration-300 group-hover:translate-x-2 group-hover:scale-[1.02]">
+                          <div className="flex items-center gap-3 md:gap-4">
                             <div
-                              className={`p-3 rounded-lg bg-linear-to-br ${link.color} text-white shrink-0 group-hover:scale-110 transition-transform duration-300`}
+                              className={`p-2.5 md:p-3 rounded-lg bg-linear-to-br ${link.color} text-white shrink-0 group-hover:scale-110 transition-transform duration-300`}
                             >
                               {link.icon}
                             </div>
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center gap-2 mb-1">
-                                <h3 className="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">
+                                <h3 className="text-base md:text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">
                                   {link.name}
                                 </h3>
                                 <ExternalLink className="w-4 h-4 text-gray-500 group-hover:text-cyan-400 transition-colors" />
                               </div>
-                              <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors mb-1">
+                              <p className="text-xs md:text-sm text-gray-400 group-hover:text-gray-300 transition-colors mb-1">
                                 {link.username}
                               </p>
-                              <p className="text-xs text-gray-500 line-clamp-1">
+                              <p className="text-xs text-gray-500 line-clamp-1 hidden md:block">
                                 {link.description}
                               </p>
                             </div>
