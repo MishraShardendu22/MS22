@@ -3,9 +3,9 @@ import {
   Briefcase,
   Code2Icon,
   CompassIcon,
-  FolderGit2,
   GithubIcon,
   Instagram,
+  Link,
   LinkedinIcon,
   LockKeyhole,
   ShieldCheck,
@@ -15,9 +15,9 @@ import {
 } from "lucide-react";
 
 export const QuickLinks = {
-  Projects: {
-    url: "https://mishrashardendu22.is-a.dev/projects",
-    icon: FolderGit2,
+  Social_Media: {
+    url: "https://mishrashardendu22.is-a.dev/links",
+    icon: Link,
   },
   Experience: {
     url: "https://mishrashardendu22.is-a.dev/experience",
