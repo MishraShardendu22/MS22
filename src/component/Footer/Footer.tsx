@@ -21,6 +21,7 @@ export function FooterSectionMobile() {
             </div>
             <h2 className="text-xl font-bold">
               <span className="text-white">Shardendu</span>{" "}
+              <span className="text-white">Sankrit</span>{" "}
               <span className="text-cyan-400">Mishra</span>
             </h2>
           </div>
@@ -186,12 +187,10 @@ export function FooterSection() {
                 <span>in Machine.</span>
               </div>
 
-              {/* Back to Top */}
               <ScrollToTop variant="desktop" />
             </div>
           </div>
 
-          {/* Right: Contact Form */}
           <div>
             <div className="mb-6">
               <h3 className="text-2xl md:text-3xl font-bold bg-linear-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-2">
@@ -206,12 +205,9 @@ export function FooterSection() {
           </div>
         </div>
 
-        {/* Divider */}
         <div className="w-full h-px bg-linear-to-r from-transparent via-cyan-500/30 to-transparent mb-16" />
 
-        {/* Footer Links Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-12 mb-16">
-          {/* Quick Links */}
           <div>
             <h3 className="text-lg md:text-xl font-bold text-gray-100 mb-5 flex items-center gap-2">
               <Zap className="w-5 h-5 text-cyan-400" />
@@ -235,7 +231,6 @@ export function FooterSection() {
             </ul>
           </div>
 
-          {/* My Websites */}
           <div>
             <h3 className="text-lg md:text-xl font-bold text-gray-100 mb-5 flex items-center gap-2">
               <Code2 className="w-5 h-5 text-cyan-400" />
@@ -261,7 +256,6 @@ export function FooterSection() {
             </ul>
           </div>
 
-          {/* Social Media */}
           <div>
             <h3 className="text-lg md:text-xl font-bold text-gray-100 mb-5 flex items-center gap-2">
               <svg
@@ -294,7 +288,6 @@ export function FooterSection() {
             </ul>
           </div>
 
-          {/* Coding Profiles */}
           <div>
             <h3 className="text-lg md:text-xl font-bold text-gray-100 mb-5 flex items-center gap-2">
               <Code2 className="w-5 h-5 text-cyan-400" />
