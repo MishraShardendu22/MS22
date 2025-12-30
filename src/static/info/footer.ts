@@ -1,18 +1,18 @@
 import {
-  Link,
   Book,
-  User2Icon,
   Briefcase,
   Code2Icon,
+  CompassIcon,
   GithubIcon,
   Instagram,
+  Link,
+  LinkedinIcon,
   LockKeyhole,
   PackagePlus,
   ShieldCheck,
   TwitterIcon,
+  User2Icon,
   YoutubeIcon,
-  CompassIcon,
-  LinkedinIcon,
 } from "lucide-react";
 
 export const QuickLinks = {
