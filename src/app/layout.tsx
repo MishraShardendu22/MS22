@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     default: "Shardendu Mishra | Software Developer and Engineer",
   },
   description:
-    "Shardendu Mishra - Software Developer & Engineer specializing in Go, React, Next.js, TypeScript, Docker & Kubernetes. Building scalable web applications.",
+    "Software Developer specializing in Go, React, Next.js & TypeScript. Building scalable web applications with Docker, Kubernetes & cloud-native tech.",
   applicationName: "Shardendu Mishra Portfolio",
   keywords: [
     "Shardendu Mishra",
@@ -183,7 +183,7 @@ export const metadata: Metadata = {
     url: BASE_URL,
     title: "Shardendu Mishra - Software Developer and Engineer",
     description:
-      "Shardendu Mishra - Software Developer & Engineer specializing in Go, React, Next.js, TypeScript, Docker & Kubernetes. Building scalable web applications.",
+      "Software Developer specializing in Go, React, Next.js & TypeScript. Building scalable web applications with Docker, Kubernetes & cloud-native tech.",
     siteName: "Shardendu Mishra Portfolio",
     images: [
       {
@@ -205,7 +205,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Shardendu Mishra - Software Developer and Engineer",
     description:
-      "Shardendu Mishra - Software Developer & Engineer specializing in Go, React, Next.js, TypeScript, Docker & Kubernetes. Building scalable web applications.",
+      "Software Developer specializing in Go, React, Next.js & TypeScript. Building scalable web applications with Docker, Kubernetes & cloud-native tech.",
     site: "@Shardendu_M",
     creator: "@Shardendu_M",
     images: [
