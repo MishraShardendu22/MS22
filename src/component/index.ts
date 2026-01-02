@@ -1,4 +1,4 @@
-export { ErrorState, NotFound } from "./Error";
+export { ErrorState } from "./Error";
 export { FooterSection } from "./Footer";
 export {
   EducationSection,
