@@ -194,76 +194,77 @@ export function CertificatesFilterClient({
           <>
             <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 mb-12">
               {paginatedCertificates.map((certificate, index) => {
-                const certificateId = certificate._id || certificate.inline?.id || "";
+                const certificateId =
+                  certificate._id || certificate.inline?.id || "";
                 return (
-                <Link
-                  key={certificateId}
-                  href={`/certificates/${certificateId}`}
-                  className="group relative animate-fadeInUp"
-                  style={{ animationDelay: `${index * 50}ms` }}
-                >
-                  <div className="absolute -inset-0.5 bg-linear-to-r from-cyan-500 via-blue-500 to-purple-600 rounded-3xl blur opacity-0 group-hover:opacity-50 transition duration-500" />
-                  <div className="relative h-full p-8 bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-3xl hover:border-cyan-500/40 transition-all overflow-hidden">
-                    <div className="flex items-start justify-between gap-3 mb-6">
-                      <div className="p-3 bg-linear-to-br from-cyan-500/20 to-blue-500/20 rounded-2xl border border-cyan-500/30">
-                        <Award className="w-6 h-6 text-cyan-400" />
+                  <Link
+                    key={certificateId}
+                    href={`/certificates/${certificateId}`}
+                    className="group relative animate-fadeInUp"
+                    style={{ animationDelay: `${index * 50}ms` }}
+                  >
+                    <div className="absolute -inset-0.5 bg-linear-to-r from-cyan-500 via-blue-500 to-purple-600 rounded-3xl blur opacity-0 group-hover:opacity-50 transition duration-500" />
+                    <div className="relative h-full p-8 bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-3xl hover:border-cyan-500/40 transition-all overflow-hidden">
+                      <div className="flex items-start justify-between gap-3 mb-6">
+                        <div className="p-3 bg-linear-to-br from-cyan-500/20 to-blue-500/20 rounded-2xl border border-cyan-500/30">
+                          <Award className="w-6 h-6 text-cyan-400" />
+                        </div>
+                        {certificate.verified && (
+                          <div className="flex items-center gap-1.5 px-3 py-1.5 bg-green-500/20 text-green-400 rounded-lg border border-green-500/30 text-xs font-semibold">
+                            <CheckCircle className="w-3.5 h-3.5" />
+                            Verified
+                          </div>
+                        )}
                       </div>
-                      {certificate.verified && (
-                        <div className="flex items-center gap-1.5 px-3 py-1.5 bg-green-500/20 text-green-400 rounded-lg border border-green-500/30 text-xs font-semibold">
-                          <CheckCircle className="w-3.5 h-3.5" />
-                          Verified
+
+                      <h3 className="text-xl font-black text-white mb-3 line-clamp-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-cyan-400 group-hover:to-blue-500 transition-all">
+                        {certificate.title}
+                      </h3>
+
+                      <p className="text-cyan-400 font-semibold text-base mb-4">
+                        {certificate.issuer}
+                      </p>
+
+                      {certificate.description && (
+                        <p className="text-gray-400 text-sm line-clamp-3 mb-6 leading-relaxed">
+                          {certificate.description}
+                        </p>
+                      )}
+
+                      {certificate.skills && certificate.skills.length > 0 && (
+                        <div className="mb-6">
+                          <div className="flex flex-wrap gap-2">
+                            {certificate.skills.slice(0, 3).map((skill) => (
+                              <span
+                                key={skill}
+                                className="px-3 py-1.5 bg-gray-800/50 text-gray-300 text-xs font-semibold rounded-lg border border-gray-700/50"
+                              >
+                                {skill}
+                              </span>
+                            ))}
+                            {certificate.skills.length > 3 && (
+                              <span className="px-3 py-1.5 bg-cyan-500/10 text-cyan-400 text-xs font-semibold rounded-lg border border-cyan-500/30">
+                                +{certificate.skills.length - 3} more
+                              </span>
+                            )}
+                          </div>
                         </div>
                       )}
-                    </div>
 
-                    <h3 className="text-xl font-black text-white mb-3 line-clamp-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-cyan-400 group-hover:to-blue-500 transition-all">
-                      {certificate.title}
-                    </h3>
-
-                    <p className="text-cyan-400 font-semibold text-base mb-4">
-                      {certificate.issuer}
-                    </p>
-
-                    {certificate.description && (
-                      <p className="text-gray-400 text-sm line-clamp-3 mb-6 leading-relaxed">
-                        {certificate.description}
-                      </p>
-                    )}
-
-                    {certificate.skills && certificate.skills.length > 0 && (
-                      <div className="mb-6">
-                        <div className="flex flex-wrap gap-2">
-                          {certificate.skills.slice(0, 3).map((skill) => (
-                            <span
-                              key={skill}
-                              className="px-3 py-1.5 bg-gray-800/50 text-gray-300 text-xs font-semibold rounded-lg border border-gray-700/50"
-                            >
-                              {skill}
-                            </span>
-                          ))}
-                          {certificate.skills.length > 3 && (
-                            <span className="px-3 py-1.5 bg-cyan-500/10 text-cyan-400 text-xs font-semibold rounded-lg border border-cyan-500/30">
-                              +{certificate.skills.length - 3} more
-                            </span>
-                          )}
+                      {certificate.issue_date && (
+                        <div className="flex items-center gap-2 text-sm text-gray-400 mb-6">
+                          <Calendar className="w-4 h-4" />
+                          <span>Issued {certificate.issue_date}</span>
                         </div>
-                      </div>
-                    )}
+                      )}
 
-                    {certificate.issue_date && (
-                      <div className="flex items-center gap-2 text-sm text-gray-400 mb-6">
-                        <Calendar className="w-4 h-4" />
-                        <span>Issued {certificate.issue_date}</span>
+                      <div className="flex items-center gap-2 text-cyan-400 font-semibold group-hover:gap-3 transition-all">
+                        <span>View Details</span>
+                        <ArrowUpRight className="w-5 h-5" />
                       </div>
-                    )}
-
-                    <div className="flex items-center gap-2 text-cyan-400 font-semibold group-hover:gap-3 transition-all">
-                      <span>View Details</span>
-                      <ArrowUpRight className="w-5 h-5" />
                     </div>
-                  </div>
-                </Link>
-              );
+                  </Link>
+                );
               })}
             </div>
 

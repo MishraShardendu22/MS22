@@ -186,95 +186,97 @@ export function ExperiencesFilterClient({
               {paginatedExperiences.map((experience, index) => {
                 const experienceId = experience._id || "";
                 return (
-                <Link
-                  key={experienceId}
-                  href={`/experiences/${experienceId}`}
-                  className="group relative animate-fadeInUp"
-                  style={{ animationDelay: `${index * 50}ms` }}
-                >
-                  <div className="absolute -inset-0.5 bg-linear-to-r from-blue-500 via-cyan-500 to-purple-600 rounded-3xl blur opacity-0 group-hover:opacity-50 transition duration-500" />
-                  <div className="relative h-full p-8 bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-3xl hover:border-cyan-500/40 transition-all overflow-hidden">
-                    {/* Company Badge */}
-                    <div className="flex items-center gap-3 mb-6">
-                      <div className="p-3 bg-linear-to-br from-blue-500/20 to-purple-500/20 rounded-2xl border border-blue-500/30">
-                        <Building2 className="w-6 h-6 text-blue-400" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="text-xl font-black text-white truncate group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-cyan-400 group-hover:to-blue-500 transition-all">
-                          {experience.company_name}
-                        </h3>
-                      </div>
-                    </div>
-
-                    {/* Position */}
-                    {experience.experience_time_line &&
-                      experience.experience_time_line.length > 0 && (
-                        <div className="mb-4">
-                          <div className="flex items-start gap-2 text-cyan-400 font-semibold text-lg">
-                            <Briefcase className="w-5 h-5 mt-0.5 shrink-0" />
-                            <p className="line-clamp-2">
-                              {experience.experience_time_line[0].position}
-                            </p>
-                          </div>
+                  <Link
+                    key={experienceId}
+                    href={`/experiences/${experienceId}`}
+                    className="group relative animate-fadeInUp"
+                    style={{ animationDelay: `${index * 50}ms` }}
+                  >
+                    <div className="absolute -inset-0.5 bg-linear-to-r from-blue-500 via-cyan-500 to-purple-600 rounded-3xl blur opacity-0 group-hover:opacity-50 transition duration-500" />
+                    <div className="relative h-full p-8 bg-gray-900/90 backdrop-blur-xl border border-gray-800/50 rounded-3xl hover:border-cyan-500/40 transition-all overflow-hidden">
+                      {/* Company Badge */}
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="p-3 bg-linear-to-br from-blue-500/20 to-purple-500/20 rounded-2xl border border-blue-500/30">
+                          <Building2 className="w-6 h-6 text-blue-400" />
                         </div>
-                      )}
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-xl font-black text-white truncate group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-cyan-400 group-hover:to-blue-500 transition-all">
+                            {experience.company_name}
+                          </h3>
+                        </div>
+                      </div>
 
-                    {/* Timeline */}
-                    {experience.experience_time_line &&
-                      experience.experience_time_line.length > 0 && (
-                        <div className="mb-6 space-y-2">
-                          {experience.experience_time_line
-                            .slice(0, 2)
-                            .map((timeline) => (
-                              <div
-                                key={`${timeline.start_date}-${timeline.end_date || "present"}`}
-                                className="flex items-center gap-2 text-sm text-gray-400"
-                              >
-                                <Calendar className="w-4 h-4" />
-                                <span>
-                                  {timeline.start_date} -{" "}
-                                  {timeline.end_date || "Present"}
+                      {/* Position */}
+                      {experience.experience_time_line &&
+                        experience.experience_time_line.length > 0 && (
+                          <div className="mb-4">
+                            <div className="flex items-start gap-2 text-cyan-400 font-semibold text-lg">
+                              <Briefcase className="w-5 h-5 mt-0.5 shrink-0" />
+                              <p className="line-clamp-2">
+                                {experience.experience_time_line[0].position}
+                              </p>
+                            </div>
+                          </div>
+                        )}
+
+                      {/* Timeline */}
+                      {experience.experience_time_line &&
+                        experience.experience_time_line.length > 0 && (
+                          <div className="mb-6 space-y-2">
+                            {experience.experience_time_line
+                              .slice(0, 2)
+                              .map((timeline) => (
+                                <div
+                                  key={`${timeline.start_date}-${timeline.end_date || "present"}`}
+                                  className="flex items-center gap-2 text-sm text-gray-400"
+                                >
+                                  <Calendar className="w-4 h-4" />
+                                  <span>
+                                    {timeline.start_date} -{" "}
+                                    {timeline.end_date || "Present"}
+                                  </span>
+                                </div>
+                              ))}
+                          </div>
+                        )}
+
+                      {/* Description */}
+                      <p className="text-gray-400 text-sm line-clamp-3 mb-6 leading-relaxed">
+                        {experience.description}
+                      </p>
+
+                      {/* Technologies */}
+                      {experience.technologies &&
+                        experience.technologies.length > 0 && (
+                          <div className="mb-6">
+                            <div className="flex flex-wrap gap-2">
+                              {experience.technologies
+                                .slice(0, 3)
+                                .map((tech) => (
+                                  <span
+                                    key={tech}
+                                    className="px-3 py-1.5 bg-gray-800/50 text-gray-300 text-xs font-semibold rounded-lg border border-gray-700/50"
+                                  >
+                                    {tech}
+                                  </span>
+                                ))}
+                              {experience.technologies.length > 3 && (
+                                <span className="px-3 py-1.5 bg-cyan-500/10 text-cyan-400 text-xs font-semibold rounded-lg border border-cyan-500/30">
+                                  +{experience.technologies.length - 3} more
                                 </span>
-                              </div>
-                            ))}
-                        </div>
-                      )}
-
-                    {/* Description */}
-                    <p className="text-gray-400 text-sm line-clamp-3 mb-6 leading-relaxed">
-                      {experience.description}
-                    </p>
-
-                    {/* Technologies */}
-                    {experience.technologies &&
-                      experience.technologies.length > 0 && (
-                        <div className="mb-6">
-                          <div className="flex flex-wrap gap-2">
-                            {experience.technologies.slice(0, 3).map((tech) => (
-                              <span
-                                key={tech}
-                                className="px-3 py-1.5 bg-gray-800/50 text-gray-300 text-xs font-semibold rounded-lg border border-gray-700/50"
-                              >
-                                {tech}
-                              </span>
-                            ))}
-                            {experience.technologies.length > 3 && (
-                              <span className="px-3 py-1.5 bg-cyan-500/10 text-cyan-400 text-xs font-semibold rounded-lg border border-cyan-500/30">
-                                +{experience.technologies.length - 3} more
-                              </span>
-                            )}
+                              )}
+                            </div>
                           </div>
-                        </div>
-                      )}
+                        )}
 
-                    {/* View Details Link */}
-                    <div className="flex items-center gap-2 text-cyan-400 font-semibold group-hover:gap-3 transition-all">
-                      <span>View Details</span>
-                      <ArrowUpRight className="w-5 h-5" />
+                      {/* View Details Link */}
+                      <div className="flex items-center gap-2 text-cyan-400 font-semibold group-hover:gap-3 transition-all">
+                        <span>View Details</span>
+                        <ArrowUpRight className="w-5 h-5" />
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              );
+                  </Link>
+                );
               })}
             </div>
 
