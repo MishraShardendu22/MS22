@@ -22,7 +22,7 @@ export const dynamic = "force-dynamic";
 export const revalidate = 3600;
 
 interface PageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export async function generateMetadata({
@@ -62,8 +62,9 @@ export async function generateMetadata({
 }
 
 export default async function VolunteerDetailPage({ params }: PageProps) {
+  const { id } = await params;
   try {
-    const response = await volunteerAPI.getVolunteerById(params.id);
+    const response = await volunteerAPI.getVolunteerById(id);
 
     if (response.status !== 200 || !response.data) {
       notFound();

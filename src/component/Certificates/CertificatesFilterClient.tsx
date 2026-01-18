@@ -193,10 +193,12 @@ export function CertificatesFilterClient({
         {paginatedCertificates.length > 0 ? (
           <>
             <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 mb-12">
-              {paginatedCertificates.map((certificate, index) => (
+              {paginatedCertificates.map((certificate, index) => {
+                const certificateId = certificate._id || certificate.inline?.id || "";
+                return (
                 <Link
-                  key={certificate._id}
-                  href={`/certificates/${certificate._id}`}
+                  key={certificateId}
+                  href={`/certificates/${certificateId}`}
                   className="group relative animate-fadeInUp"
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
@@ -261,7 +263,8 @@ export function CertificatesFilterClient({
                     </div>
                   </div>
                 </Link>
-              ))}
+              );
+              })}
             </div>
 
             {totalFilteredPages > 1 && (

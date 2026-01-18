@@ -183,10 +183,12 @@ export function ExperiencesFilterClient({
         {paginatedExperiences.length > 0 ? (
           <>
             <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 mb-12">
-              {paginatedExperiences.map((experience, index) => (
+              {paginatedExperiences.map((experience, index) => {
+                const experienceId = experience._id || "";
+                return (
                 <Link
-                  key={experience._id}
-                  href={`/experiences/${experience._id}`}
+                  key={experienceId}
+                  href={`/experiences/${experienceId}`}
                   className="group relative animate-fadeInUp"
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
@@ -272,7 +274,8 @@ export function ExperiencesFilterClient({
                     </div>
                   </div>
                 </Link>
-              ))}
+              );
+              })}
             </div>
 
             {/* Pagination */}

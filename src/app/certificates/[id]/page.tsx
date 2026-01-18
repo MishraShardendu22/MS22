@@ -23,7 +23,7 @@ export const dynamic = "force-dynamic";
 export const revalidate = 3600;
 
 interface PageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export async function generateMetadata({
@@ -64,8 +64,9 @@ export async function generateMetadata({
 }
 
 export default async function CertificateDetailPage({ params }: PageProps) {
+  const { id } = await params;
   try {
-    const response = await certificatesAPI.getCertificateById(params.id);
+    const response = await certificatesAPI.getCertificateById(id);
 
     if (response.status !== 200 || !response.data) {
       notFound();

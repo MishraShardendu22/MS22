@@ -22,7 +22,7 @@ export const dynamic = "force-dynamic";
 export const revalidate = 3600;
 
 interface PageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export async function generateMetadata({
@@ -65,8 +65,9 @@ export async function generateMetadata({
 }
 
 export default async function ExperienceDetailPage({ params }: PageProps) {
+  const { id } = await params;
   try {
-    const response = await experiencesAPI.getExperienceById(params.id);
+    const response = await experiencesAPI.getExperienceById(id);
 
     if (response.status !== 200 || !response.data) {
       notFound();

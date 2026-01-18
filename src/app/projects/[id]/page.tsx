@@ -23,7 +23,7 @@ export const dynamic = "force-dynamic";
 export const revalidate = 3600;
 
 interface PageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export async function generateMetadata({
