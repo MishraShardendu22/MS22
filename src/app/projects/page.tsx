@@ -6,10 +6,9 @@ import { ProjectsFilterClient } from "@/component/Projects";
 import { Sidebar } from "@/component/Sidebar";
 import { generatePageMetadata } from "@/lib/metadata";
 import { projectsAPI } from "@/static/api/api.request";
-import type { Project } from "@/static/api/api.types";
 
 export const dynamic = "force-dynamic";
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = 3600;
 
 export const metadata: Metadata = generatePageMetadata({
   title: "Projects",
@@ -30,17 +29,52 @@ export const metadata: Metadata = generatePageMetadata({
   ],
 });
 
-async function ProjectsContent() {
-  let projects: Project[] = [];
+const ITEMS_PER_PAGE = 8;
+
+interface PageProps {
+  searchParams: Promise<{
+    page?: string;
+    search?: string;
+    skills?: string;
+  }>;
+}
+
+async function ProjectsContent({ searchParams }: PageProps) {
+  const params = await searchParams;
+  const currentPage = Math.max(1, Number.parseInt(params.page || "1", 10));
+  const searchQuery = params.search || "";
+  const selectedSkills = params.skills ? params.skills.split(",") : [];
+
+  let projects: import("@/static/api/api.types").Project[] = [];
+  let totalPages = 1;
+  let total = 0;
+  let allSkills: string[] = [];
   let error: string | null = null;
 
   try {
-    const response = await projectsAPI.getAllProjects(1, 500);
+    const response = await projectsAPI.getAllProjects(
+      currentPage,
+      ITEMS_PER_PAGE,
+    );
 
     if (response.status === 200 && response.data) {
       projects = response.data.projects || [];
+      totalPages = response.data.total_pages || 1;
+      total = response.data.total || 0;
     } else {
       throw new Error(response.message || "Failed to fetch projects");
+    }
+
+    // Fetch all for skills extraction (cached)
+    const allResponse = await projectsAPI.getAllProjects(1, 500);
+    if (allResponse.status === 200 && allResponse.data) {
+      const skillsSet = new Set<string>();
+      for (const project of allResponse.data.projects || []) {
+        for (const skill of project.skills) {
+          skillsSet.add(skill);
+        }
+      }
+      allSkills = Array.from(skillsSet).sort();
     }
   } catch (err) {
     error = err instanceof Error ? err.message : "An error occurred";
@@ -50,46 +84,37 @@ async function ProjectsContent() {
     return <ErrorState message={error} />;
   }
 
-  return <ProjectsFilterClient initialProjects={projects} />;
+  return (
+    <ProjectsFilterClient
+      projects={projects}
+      currentPage={currentPage}
+      totalPages={totalPages}
+      total={total}
+      allSkills={allSkills}
+      searchQuery={searchQuery}
+      selectedSkills={selectedSkills}
+    />
+  );
 }
 
-export default async function ProjectsPage() {
+export default async function ProjectsPage({ searchParams }: PageProps) {
   return (
     <>
       <Sidebar />
       <main className="flex-1 min-h-screen bg-gray-950 relative overflow-hidden">
-        {/* Animated Background */}
+        {/* Subtle Background */}
         <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-          <div className="absolute top-0 -left-4 w-72 h-72 bg-cyan-500/8 rounded-full mix-blend-multiply filter blur-3xl animate-blob" />
-          <div className="absolute top-0 -right-4 w-72 h-72 bg-purple-500/8 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" />
+          <div className="absolute top-0 -left-4 w-72 h-72 bg-cyan-500/8 rounded-full mix-blend-multiply filter blur-3xl" />
+          <div className="absolute top-0 -right-4 w-72 h-72 bg-purple-500/8 rounded-full mix-blend-multiply filter blur-3xl" />
         </div>
 
-        {/* Compact Header */}
-        <div className="relative border-b border-gray-800/50 z-10">
-          <div className="absolute inset-0 bg-linear-to-b from-cyan-500/5 via-transparent to-transparent" />
-          <div className="container mx-auto px-4 py-6 relative">
-            <div className="max-w-7xl mx-auto">
-              <h1 className="text-2xl md:text-3xl font-black text-white mb-1 tracking-tight">
-                My{" "}
-                <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 via-blue-500 to-purple-600">
-                  Projects
-                </span>
-              </h1>
-              <p className="text-gray-500 text-sm max-w-2xl">
-                Explore my portfolio of innovative projects showcasing
-                cutting-edge technologies and creative solutions
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="container mx-auto px-4 py-4 relative z-10">
+        <div className="container mx-auto px-4 py-6 relative z-10 max-w-[1600px]">
           <Suspense
             fallback={
               <LoadingState message="Loading projects..." variant="cyan" />
             }
           >
-            <ProjectsContent />
+            <ProjectsContent searchParams={searchParams} />
           </Suspense>
         </div>
       </main>

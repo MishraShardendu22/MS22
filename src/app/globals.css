@@ -366,7 +366,7 @@ div {
 
 @layer components {
   .glow-effect {
-    @apply absolute -inset-4 md:-inset-8 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full blur-3xl opacity-0 transition-all duration-400;
+    @apply absolute -inset-4 md:-inset-8 bg-linear-to-r from-cyan-500 to-blue-500 rounded-full blur-3xl opacity-0 transition-all duration-400;
   }
 
   .image-container:hover .glow-effect {
@@ -469,4 +469,43 @@ div {
 
 .sidebar-scroll::-webkit-scrollbar-thumb:hover {
   background: rgba(107, 114, 128, 0.7);
+}
+
+/* Sidebar tooltip styling */
+.nav-tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: calc(100% + 0.75rem);
+  top: 50%;
+  transform: translateY(-50%) translateX(-8px);
+  white-space: nowrap;
+  background: #1a1f28;
+  color: #e5eaf0;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid rgba(75, 85, 99, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease,
+    visibility 0.15s;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.nav-tooltip:hover::after,
+.nav-tooltip:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+}
+
+@media (max-width: 768px) {
+  .nav-tooltip::after {
+    display: none;
+  }
 }

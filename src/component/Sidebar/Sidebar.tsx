@@ -40,14 +40,22 @@ const navItems: NavItem[] = [
 export function Sidebar() {
   return (
     <>
-      <aside className="fixed left-0 top-0 h-screen w-16 bg-gray-950/98 backdrop-blur-sm border-r border-gray-800/50 z-50">
+      <nav
+        className="fixed left-0 top-0 h-screen w-16 bg-background border-r border-border z-50"
+        aria-label="Main navigation"
+      >
         {/* Header */}
-        <div className="h-20 flex items-center justify-center border-b border-gray-800/50">
-          <p className="text-sm font-bold text-white">SM</p>
+        <div className="h-20 flex items-center justify-center border-b border-border">
+          <span
+            className="text-sm font-bold text-white"
+            title="Shardendu Mishra"
+          >
+            SM
+          </span>
         </div>
 
         {/* Navigation */}
-        <nav className="py-6 px-2 space-y-1 overflow-y-auto sidebar-scroll max-h-[calc(100vh-5rem)]">
+        <div className="py-6 px-2 space-y-1 overflow-y-auto sidebar-scroll max-h-[calc(100vh-5rem)]">
           {navItems.map((item) => {
             const Icon = item.icon;
 
@@ -55,18 +63,19 @@ export function Sidebar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="nav-tooltip group relative flex items-center justify-center p-3 rounded-xl text-gray-400 hover:bg-gray-800/50 hover:text-cyan-400 transition-all duration-200"
+                className="nav-tooltip group relative flex items-center justify-center p-3 rounded-xl text-gray-400 hover:bg-surface-elevated hover:text-cyan-400 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 data-tooltip={item.name}
+                aria-label={item.name}
               >
-                <Icon className="w-5 h-5 shrink-0" />
+                <Icon className="w-5 h-5 shrink-0" aria-hidden="true" />
               </Link>
             );
           })}
-        </nav>
-      </aside>
+        </div>
+      </nav>
 
       {/* Spacer */}
-      <div className="w-16" />
+      <div className="w-16" aria-hidden="true" />
     </>
   );
 }

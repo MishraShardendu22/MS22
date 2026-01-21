@@ -143,7 +143,12 @@ export interface ExperienceTimeLine {
 }
 
 export interface Experience {
-  _id: string;
+  _id?: string; // Legacy field, may not be present
+  inline?: {
+    id: string;
+    created_at: string;
+    updated_at: string;
+  };
   images?: string[];
   technologies?: string[];
   created_by?: string;

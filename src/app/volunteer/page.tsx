@@ -1,4 +1,3 @@
-import { Heart } from "lucide-react";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { LoadingState } from "@/component/Loading";
@@ -6,7 +5,6 @@ import { Sidebar } from "@/component/Sidebar";
 import { VolunteerFilterClient } from "@/component/Volunteer";
 import { generatePageMetadata } from "@/lib/metadata";
 import { volunteerAPI } from "@/static/api/api.request";
-import type { Volunteer } from "@/static/api/api.types";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 3600;
@@ -27,59 +25,89 @@ export const metadata: Metadata = generatePageMetadata({
   ],
 });
 
-async function VolunteerContent() {
-  let volunteers: Volunteer[] = [];
+const ITEMS_PER_PAGE = 8;
+
+interface PageProps {
+  searchParams: Promise<{
+    page?: string;
+    search?: string;
+    techs?: string;
+  }>;
+}
+
+async function VolunteerContent({ searchParams }: PageProps) {
+  const params = await searchParams;
+  const currentPage = Math.max(1, Number.parseInt(params.page || "1", 10));
+  const searchQuery = params.search || "";
+  const selectedTechs = params.techs ? params.techs.split(",") : [];
+
+  let volunteers: import("@/static/api/api.types").Volunteer[] = [];
+  let totalPages = 1;
+  let total = 0;
+  let allTechnologies: string[] = [];
+
   try {
-    const response = await volunteerAPI.getAllVolunteers(1, 500);
-    volunteers =
-      response.status === 200 && response.data
-        ? response.data.volunteer_experiences || []
-        : [];
+    const response = await volunteerAPI.getAllVolunteers(
+      currentPage,
+      ITEMS_PER_PAGE,
+    );
+    if (response.status === 200 && response.data) {
+      volunteers = response.data.volunteer_experiences || [];
+      totalPages = response.data.total_pages || 1;
+      total = response.data.total || 0;
+    }
+
+    // Fetch all for tech extraction (cached)
+    const allResponse = await volunteerAPI.getAllVolunteers(1, 500);
+    if (allResponse.status === 200 && allResponse.data) {
+      const techsSet = new Set<string>();
+      for (const vol of allResponse.data.volunteer_experiences || []) {
+        for (const tech of vol.technologies ?? []) {
+          techsSet.add(tech);
+        }
+      }
+      allTechnologies = Array.from(techsSet).sort();
+    }
   } catch (error) {
     console.error("Error fetching volunteers:", error);
   }
 
-  return <VolunteerFilterClient initialVolunteers={volunteers} />;
+  return (
+    <VolunteerFilterClient
+      volunteers={volunteers}
+      currentPage={currentPage}
+      totalPages={totalPages}
+      total={total}
+      allTechnologies={allTechnologies}
+      searchQuery={searchQuery}
+      selectedTechs={selectedTechs}
+    />
+  );
 }
 
-export default function VolunteerPage() {
+export default async function VolunteerPage({ searchParams }: PageProps) {
   return (
     <>
       <Sidebar />
       <main className="flex-1 min-h-screen bg-gray-950 relative overflow-hidden">
-        {/* Animated Background */}
+        {/* Subtle Background */}
         <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-          <div className="absolute top-0 -left-4 w-96 h-96 bg-pink-500/10 rounded-full mix-blend-multiply filter blur-3xl animate-blob" />
-          <div className="absolute top-0 -right-4 w-96 h-96 bg-purple-500/10 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" />
-          <div className="absolute -bottom-8 left-20 w-96 h-96 bg-cyan-500/10 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000" />
+          <div className="absolute top-0 -left-4 w-72 h-72 bg-pink-500/8 rounded-full mix-blend-multiply filter blur-3xl" />
+          <div className="absolute top-0 -right-4 w-72 h-72 bg-purple-500/8 rounded-full mix-blend-multiply filter blur-3xl" />
         </div>
 
-        {/* Header */}
-        <header className="relative border-b border-gray-800/50 z-10">
-          <div className="absolute inset-0 bg-linear-to-b from-pink-500/5 via-transparent to-transparent" />
-          <div className="container mx-auto px-4 py-20 md:py-28 relative">
-            <div className="max-w-5xl mx-auto">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-linear-to-r from-pink-500/10 to-purple-500/10 border border-pink-500/20 rounded-full text-pink-400 text-sm font-semibold mb-8 backdrop-blur-sm animate-fadeIn">
-                <Heart className="w-4 h-4" />
-                <span>Community Impact</span>
-              </div>
-              <h1 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tight animate-fadeInUp">
-                Volunteer{" "}
-                <span className="text-transparent bg-clip-text bg-linear-to-r from-pink-400 via-purple-500 to-cyan-600 animate-gradient">
-                  Experience
-                </span>
-              </h1>
-              <p className="text-gray-400 text-xl md:text-2xl max-w-3xl leading-relaxed animate-fadeInUp animation-delay-200">
-                Explore my volunteer work and contributions to various
-                communities and organizations
-              </p>
-            </div>
-          </div>
-        </header>
-
-        <Suspense fallback={<LoadingState />}>
-          <VolunteerContent />
-        </Suspense>
+        <div className="container mx-auto px-4 py-6 relative z-10 max-w-400">
+          <Suspense
+            fallback={
+              <LoadingState
+                message="Loading volunteer experiences..."
+                variant="pink"
+              />
+            }
+          >
+            <VolunteerContent searchParams={searchParams} />
+          </Suspense>
+        </div>
       </main>
     </>
   );

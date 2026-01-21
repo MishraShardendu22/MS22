@@ -1,5 +1,5 @@
 /* TEAM */
-Developer: Shardendu Mishra
+Engineer: Shardendu Mishra
 Site: https://mishrashardendu22.is-a.dev
 Twitter: @Shardendu_M
 GitHub: MishraShardendu22

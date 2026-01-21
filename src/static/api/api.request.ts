@@ -47,6 +47,35 @@ export const projectsAPI = {
     const response = await api.get(`/projects/${id}`);
     return response.data;
   },
+
+  getProjectsByIds: async (
+    ids: string[],
+  ): Promise<{ projects: Project[]; failed: string[] }> => {
+    if (ids.length === 0) {
+      return { projects: [], failed: [] };
+    }
+
+    const results = await Promise.allSettled(
+      ids.map((id) => projectsAPI.getProjectById(id)),
+    );
+
+    const projects: Project[] = [];
+    const failed: string[] = [];
+
+    results.forEach((result, index) => {
+      if (
+        result.status === "fulfilled" &&
+        result.value.status === 200 &&
+        result.value.data
+      ) {
+        projects.push(result.value.data);
+      } else {
+        failed.push(ids[index]);
+      }
+    });
+
+    return { projects, failed };
+  },
 };
 
 export const volunteerAPI = {
