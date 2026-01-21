@@ -33,7 +33,7 @@ export const SocialLinks = {
 };
 
 export const myIntro: Introduction = {
-  name: "Shardendu Sankrit Mishra",
+  name: "Shardendu Sankritya Mishra",
   role: "Software Engineer and AI/ML Enthusiast",
   about:
     "I am a Software Engineer, I work with Linux, Git, Web Technologies, Cloud Platforms and AI/ML. I absolutely love Engineering solutions for problems.",

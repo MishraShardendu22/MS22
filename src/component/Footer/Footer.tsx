@@ -21,7 +21,7 @@ export function FooterSectionMobile() {
             </div>
             <h2 className="text-xl font-bold">
               <span className="text-white">Shardendu</span>{" "}
-              <span className="text-white">Sankrit</span>{" "}
+              <span className="text-white">Sankritya</span>{" "}
               <span className="text-cyan-400">Mishra</span>
             </h2>
           </div>
