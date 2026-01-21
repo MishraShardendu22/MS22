@@ -83,7 +83,7 @@ export function DetailTreeView({ data }: DetailTreeViewProps) {
       <header
         className={`shrink-0 px-4 py-3 ${colors.headerBg} border-b ${colors.headerBorder} backdrop-blur-sm`}
       >
-        <div className="max-w-screen-2xl mx-auto flex items-center gap-4">
+        <div className="max-w-screen-2xl flex items-center gap-4">
           {/* Back Navigation */}
           <Link href={data.backLink.href}>
             <button
