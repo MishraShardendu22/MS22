@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { DetailTreeView } from "@/component/DetailTree";
-import { Sidebar } from "@/component/Sidebar";
 import { generatePageMetadata } from "@/lib/metadata";
 import { certificatesAPI, projectsAPI } from "@/static/api/api.request";
 import type { Project } from "@/static/api/api.types";
@@ -72,16 +71,12 @@ export default async function CertificateDetailPage({ params }: PageProps) {
       resolvedProjects = projects;
     }
 
-    // Normalize certificate data
     const treeData = normalizeCertificate(rawCertificate, resolvedProjects);
 
     return (
-      <>
-        <Sidebar />
-        <main className="flex-1 min-h-screen bg-gray-950">
-          <DetailTreeView data={treeData} />
-        </main>
-      </>
+      <main className="flex-1 min-h-screen bg-gray-950">
+        <DetailTreeView data={treeData} />
+      </main>
     );
   } catch {
     notFound();

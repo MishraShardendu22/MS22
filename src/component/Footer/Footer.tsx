@@ -113,11 +113,9 @@ export function FooterSection() {
           <div className="space-y-5 sm:space-y-6 md:space-y-8">
             <div>
               <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg sm:rounded-xl bg-linear-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center ring-2 ring-cyan-500/30">
-                  <Code2 className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-cyan-400" />
-                </div>
                 <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">
                   <span className="text-white">Shardendu</span>{" "}
+                  <span className="text-white">Sankritya</span>{" "}
                   <span className="text-cyan-400">Mishra</span>
                 </h2>
               </div>
@@ -133,7 +131,7 @@ export function FooterSection() {
               <Heart className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-500" />
               <span>and</span>
               <Coffee className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-400" />
-              <span>by Shardendu</span>
+              <span>by Shardendu Sankritya Mishra</span>
             </div>
 
             {/* Tech Stack Badges */}
@@ -157,7 +155,7 @@ export function FooterSection() {
 
             {/* Copyright */}
             <p className="text-xs text-gray-600">
-              © 2025 Shardendu Mishra. All rights reserved.
+              © 2025 Shardendu Sankritya Mishra. All rights reserved.
             </p>
 
             {/* Made in GO and Fedora + Back to Top */}

@@ -1,9 +1,9 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
+import { LIST_CARD_THEME_CONFIG, type ListCardTheme } from "@/constants/theme";
+import { ExternalLink } from "./ExternalLink";
 
-export type ListCardTheme = "cyan" | "blue" | "pink" | "purple";
+export type { ListCardTheme } from "@/constants/theme";
 
 interface ListCardProps {
   id: string;
@@ -23,76 +23,6 @@ interface ListCardProps {
   maxTechDisplay?: number;
 }
 
-const themeConfig: Record<
-  ListCardTheme,
-  {
-    border: string;
-    gradientBg: string;
-    titleHover: string;
-    subtitleColor: string;
-    techExtraBg: string;
-    techExtraText: string;
-    techExtraBorder: string;
-    viewColor: string;
-    activeBg: string;
-    activeText: string;
-    activeBorder: string;
-  }
-> = {
-  cyan: {
-    border: "hover:border-cyan-500/40",
-    gradientBg: "from-cyan-500 via-blue-500 to-purple-600",
-    titleHover: "group-hover:text-cyan-400",
-    subtitleColor: "text-cyan-400/80",
-    techExtraBg: "bg-cyan-500/10",
-    techExtraText: "text-cyan-400",
-    techExtraBorder: "border-cyan-500/25",
-    viewColor: "text-cyan-400",
-    activeBg: "bg-green-500/10",
-    activeText: "text-green-400",
-    activeBorder: "border-green-500/25",
-  },
-  blue: {
-    border: "hover:border-blue-500/40",
-    gradientBg: "from-blue-500 via-purple-500 to-pink-500",
-    titleHover: "group-hover:text-blue-400",
-    subtitleColor: "text-blue-400/80",
-    techExtraBg: "bg-blue-500/10",
-    techExtraText: "text-blue-400",
-    techExtraBorder: "border-blue-500/25",
-    viewColor: "text-blue-400",
-    activeBg: "bg-green-500/10",
-    activeText: "text-green-400",
-    activeBorder: "border-green-500/25",
-  },
-  pink: {
-    border: "hover:border-pink-500/40",
-    gradientBg: "from-pink-500 via-purple-500 to-cyan-500",
-    titleHover: "group-hover:text-pink-400",
-    subtitleColor: "text-pink-400/80",
-    techExtraBg: "bg-pink-500/10",
-    techExtraText: "text-pink-400",
-    techExtraBorder: "border-pink-500/25",
-    viewColor: "text-pink-400",
-    activeBg: "bg-green-500/10",
-    activeText: "text-green-400",
-    activeBorder: "border-green-500/25",
-  },
-  purple: {
-    border: "hover:border-purple-500/40",
-    gradientBg: "from-purple-500 via-pink-500 to-cyan-500",
-    titleHover: "group-hover:text-purple-400",
-    subtitleColor: "text-purple-400/80",
-    techExtraBg: "bg-purple-500/10",
-    techExtraText: "text-purple-400",
-    techExtraBorder: "border-purple-500/25",
-    viewColor: "text-purple-400",
-    activeBg: "bg-green-500/10",
-    activeText: "text-green-400",
-    activeBorder: "border-green-500/25",
-  },
-};
-
 export function ListCard({
   href,
   theme,
@@ -106,21 +36,19 @@ export function ListCard({
   isActive,
   maxTechDisplay = 3,
 }: ListCardProps) {
-  const colors = themeConfig[theme];
+  const colors = LIST_CARD_THEME_CONFIG[theme];
 
   return (
     <Link href={href} className="group relative block h-full">
       <div
-        className={`absolute -inset-0.5 bg-linear-to-r ${colors.gradientBg} rounded-xl blur opacity-0 group-hover:opacity-20 transition duration-300`}
+        className={`absolute -inset-0.5 bg-gradient-to-r ${colors.gradientBg} rounded-xl blur-sm opacity-0 group-hover:opacity-25 transition-all duration-500`}
       />
       <div
-        className={`relative h-full p-5 bg-gray-900/90 border border-gray-800/50 rounded-xl ${colors.border} transition-all overflow-hidden flex flex-col`}
+        className={`relative h-full p-6 bg-gray-900/95 backdrop-blur-sm border border-gray-800/70 rounded-xl group-hover:${colors.border} transition-all duration-300 overflow-hidden flex flex-col shadow-lg group-hover:shadow-xl`}
       >
-        {/* Header with Logo */}
-        <div className="flex items-start gap-3 mb-3">
-          {/* Logo */}
+        <div className="flex items-start gap-4 mb-4">
           {logo && (
-            <div className="shrink-0 w-12 h-12 rounded-lg bg-gray-800/50 border border-gray-700/50 flex items-center justify-center overflow-hidden">
+            <div className="shrink-0 w-12 h-12 rounded-lg bg-gray-800/70 border border-gray-700/70 flex items-center justify-center overflow-hidden group-hover:border-gray-600/70 transition-all duration-300">
               <Image
                 src={logo}
                 alt={title}
@@ -132,17 +60,16 @@ export function ListCard({
             </div>
           )}
 
-          {/* Title & Subtitle */}
           <div className="flex-1 min-w-0">
-            <div className="flex items-start justify-between gap-2">
+            <div className="flex items-start justify-between gap-3">
               <h3
-                className={`text-base font-bold text-white line-clamp-1 ${colors.titleHover} transition-colors`}
+                className={`text-lg font-bold text-white line-clamp-1 group-hover:${colors.titleHover} transition-colors duration-300`}
               >
                 {title}
               </h3>
               {isActive && (
                 <span
-                  className={`shrink-0 px-2 py-0.5 text-[10px] font-medium rounded ${colors.activeBg} ${colors.activeText} border ${colors.activeBorder}`}
+                  className={`shrink-0 px-2.5 py-1 text-[10px] font-semibold rounded-md ${colors.activeBg} ${colors.activeText} border ${colors.activeBorder} uppercase tracking-wide shadow-sm`}
                 >
                   Active
                 </span>
@@ -150,38 +77,38 @@ export function ListCard({
             </div>
             {subtitle && (
               <p
-                className={`${colors.subtitleColor} text-sm font-medium mt-0.5 line-clamp-1`}
+                className={`${colors.subtitleColor} text-sm font-medium mt-1.5 line-clamp-1`}
               >
                 {subtitle}
               </p>
             )}
             {dateRange && (
-              <p className="text-gray-500 text-xs mt-1">{dateRange}</p>
+              <p className="text-gray-500 text-xs mt-1.5 font-medium">
+                {dateRange}
+              </p>
             )}
           </div>
         </div>
 
-        {/* Description */}
         {description && (
-          <p className="text-gray-400 text-sm line-clamp-2 mb-3 leading-relaxed flex-1">
+          <p className="text-gray-400 text-sm line-clamp-2 mb-4 leading-relaxed flex-1">
             {description}
           </p>
         )}
 
-        {/* Technologies */}
         {technologies && technologies.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 mb-3">
+          <div className="flex flex-wrap gap-2 mb-4">
             {technologies.slice(0, maxTechDisplay).map((tech) => (
               <span
                 key={tech}
-                className="px-2 py-0.5 bg-gray-800/60 text-gray-400 text-xs font-medium rounded border border-gray-700/50"
+                className="px-2.5 py-1 bg-gray-800/80 text-gray-300 text-xs font-medium rounded-md border border-gray-700/70 hover:bg-gray-700/80 hover:border-gray-600/70 transition-all duration-200"
               >
                 {tech}
               </span>
             ))}
             {technologies.length > maxTechDisplay && (
               <span
-                className={`px-2 py-0.5 ${colors.techExtraBg} ${colors.techExtraText} text-xs font-medium rounded border ${colors.techExtraBorder}`}
+                className={`px-2.5 py-1 ${colors.techExtraBg} ${colors.techExtraText} text-xs font-semibold rounded-md border ${colors.techExtraBorder}`}
               >
                 +{technologies.length - maxTechDisplay}
               </span>
@@ -189,30 +116,22 @@ export function ListCard({
           </div>
         )}
 
-        {/* Footer */}
-        <div className="flex items-center justify-between pt-3 border-t border-gray-800/50 mt-auto">
-          {/* Links */}
+        <div className="flex items-center justify-between pt-4 border-t border-gray-800/70 mt-auto">
           <div className="flex flex-wrap gap-2">
             {links &&
               links.length > 0 &&
               links.map((link) => (
-                <button
+                <ExternalLink
                   key={link.label}
-                  type="button"
-                  className={`px-2.5 py-1 ${colors.techExtraBg} ${colors.techExtraText} text-xs font-medium rounded-lg border ${colors.techExtraBorder} hover:opacity-80 transition-all truncate`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    window.open(link.url, "_blank", "noopener,noreferrer");
-                  }}
-                >
-                  {link.label}
-                </button>
+                  href={link.url}
+                  label={link.label}
+                  className={`px-3 py-1.5 ${colors.techExtraBg} ${colors.techExtraText} text-xs font-semibold rounded-lg border ${colors.techExtraBorder} hover:scale-105 hover:shadow-md transition-all duration-200 truncate`}
+                />
               ))}
           </div>
 
           <span
-            className={`${colors.viewColor} text-sm font-medium group-hover:underline transition-all shrink-0`}
+            className={`${colors.viewColor} text-sm font-semibold group-hover:translate-x-1 transition-all duration-300 shrink-0 flex items-center gap-1`}
           >
             View →
           </span>

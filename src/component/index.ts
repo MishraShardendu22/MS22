@@ -9,6 +9,13 @@ export {
 export { LoadingState, NameLoader } from "./Loading";
 export { PaginationControls, type PaginationTheme } from "./Pagination";
 export {
+  HeaderSearchButton,
+  PageSearch,
+  SearchBar,
+  SearchModalContent,
+  SidebarSearchButton,
+} from "./Search";
+export {
   ContentGrid,
   type HeaderTheme,
   SectionHeader,

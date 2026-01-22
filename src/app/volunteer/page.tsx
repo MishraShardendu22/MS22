@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { LoadingState } from "@/component/Loading";
-import { Sidebar } from "@/component/Sidebar";
-import { VolunteerFilterClient } from "@/component/Volunteer";
+import { EmptyState, ListCard, ServerPageHeader } from "@/component/Section";
 import { generatePageMetadata } from "@/lib/metadata";
 import { volunteerAPI } from "@/static/api/api.request";
+import type { Volunteer } from "@/static/api/api.types";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 3600;
@@ -30,85 +30,115 @@ const ITEMS_PER_PAGE = 8;
 interface PageProps {
   searchParams: Promise<{
     page?: string;
-    search?: string;
-    techs?: string;
+    filter?: string;
   }>;
 }
 
 async function VolunteerContent({ searchParams }: PageProps) {
   const params = await searchParams;
   const currentPage = Math.max(1, Number.parseInt(params.page || "1", 10));
-  const searchQuery = params.search || "";
-  const selectedTechs = params.techs ? params.techs.split(",") : [];
 
-  let volunteers: import("@/static/api/api.types").Volunteer[] = [];
+  let volunteers: Volunteer[] = [];
   let totalPages = 1;
   let total = 0;
-  let allTechnologies: string[] = [];
 
   try {
-    const response = await volunteerAPI.getAllVolunteers(
-      currentPage,
-      ITEMS_PER_PAGE,
-    );
-    if (response.status === 200 && response.data) {
-      volunteers = response.data.volunteer_experiences || [];
-      totalPages = response.data.total_pages || 1;
-      total = response.data.total || 0;
-    }
-
-    // Fetch all for tech extraction (cached)
+    // Fetch all volunteers for pagination
     const allResponse = await volunteerAPI.getAllVolunteers(1, 500);
     if (allResponse.status === 200 && allResponse.data) {
-      const techsSet = new Set<string>();
-      for (const vol of allResponse.data.volunteer_experiences || []) {
-        for (const tech of vol.technologies ?? []) {
-          techsSet.add(tech);
-        }
-      }
-      allTechnologies = Array.from(techsSet).sort();
+      const allVolunteers = allResponse.data.volunteer_experiences || [];
+
+      // Calculate pagination
+      total = allVolunteers.length;
+      totalPages = Math.max(1, Math.ceil(total / ITEMS_PER_PAGE));
+
+      // Get current page slice
+      const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+      volunteers = allVolunteers.slice(startIndex, startIndex + ITEMS_PER_PAGE);
     }
   } catch (error) {
     console.error("Error fetching volunteers:", error);
   }
 
   return (
-    <VolunteerFilterClient
-      volunteers={volunteers}
-      currentPage={currentPage}
-      totalPages={totalPages}
-      total={total}
-      allTechnologies={allTechnologies}
-      searchQuery={searchQuery}
-      selectedTechs={selectedTechs}
-    />
+    <div className="w-full relative z-10">
+      {/* Server-rendered Header with Link-based pagination */}
+      <ServerPageHeader
+        title="Volunteer Experience"
+        theme="pink"
+        currentPage={currentPage}
+        totalPages={totalPages}
+        basePath="/volunteer"
+        resultCount={total}
+        resultLabel="volunteer experiences"
+      />
+
+      {/* Volunteers Grid */}
+      {volunteers.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {volunteers.map((volunteer) => {
+            const volunteerId = volunteer._id || volunteer.inline?.id || "";
+
+            const latestFromTimeline = volunteer.volunteer_time_line?.[0];
+            const position = latestFromTimeline?.position || volunteer.position;
+
+            const startDate =
+              latestFromTimeline?.start_date || volunteer.start_date;
+            const endDate = latestFromTimeline?.end_date || volunteer.end_date;
+            const dateRange = startDate
+              ? `${startDate} - ${endDate || (volunteer.current ? "Present" : "")}`
+              : undefined;
+
+            return (
+              <ListCard
+                key={volunteerId}
+                id={volunteerId}
+                href={`/volunteer/${volunteerId}`}
+                theme="pink"
+                logo={volunteer.organisation_logo}
+                title={volunteer.organisation}
+                subtitle={position}
+                description={volunteer.description}
+                dateRange={dateRange}
+                technologies={volunteer.technologies}
+                isActive={volunteer.current}
+                maxTechDisplay={3}
+              />
+            );
+          })}
+        </div>
+      ) : (
+        <EmptyState
+          title="No volunteer experiences found"
+          description="No volunteer experiences available at the moment"
+          theme="pink"
+        />
+      )}
+    </div>
   );
 }
 
 export default async function VolunteerPage({ searchParams }: PageProps) {
   return (
-    <>
-      <Sidebar />
-      <main className="flex-1 min-h-screen bg-gray-950 relative overflow-hidden">
-        {/* Subtle Background */}
-        <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-          <div className="absolute top-0 -left-4 w-72 h-72 bg-pink-500/8 rounded-full mix-blend-multiply filter blur-3xl" />
-          <div className="absolute top-0 -right-4 w-72 h-72 bg-purple-500/8 rounded-full mix-blend-multiply filter blur-3xl" />
-        </div>
+    <main className="flex-1 min-h-screen bg-gray-950 relative overflow-hidden">
+      {/* Subtle Background */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div className="absolute top-0 -left-4 w-72 h-72 bg-pink-500/8 rounded-full mix-blend-multiply filter blur-3xl" />
+        <div className="absolute top-0 -right-4 w-72 h-72 bg-purple-500/8 rounded-full mix-blend-multiply filter blur-3xl" />
+      </div>
 
-        <div className="container mx-auto px-4 py-6 relative z-10 max-w-400">
-          <Suspense
-            fallback={
-              <LoadingState
-                message="Loading volunteer experiences..."
-                variant="pink"
-              />
-            }
-          >
-            <VolunteerContent searchParams={searchParams} />
-          </Suspense>
-        </div>
-      </main>
-    </>
+      <div className="container mx-auto px-4 py-6 relative z-10 max-w-400">
+        <Suspense
+          fallback={
+            <LoadingState
+              message="Loading volunteer experiences..."
+              variant="pink"
+            />
+          }
+        >
+          <VolunteerContent searchParams={searchParams} />
+        </Suspense>
+      </div>
+    </main>
   );
 }

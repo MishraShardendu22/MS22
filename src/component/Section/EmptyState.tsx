@@ -1,36 +1,31 @@
-"use client";
+import Link from "next/link";
+import {
+  EMPTY_STATE_DEFAULT_ICONS,
+  EMPTY_STATE_THEME_CONFIG,
+  type ListCardTheme,
+} from "@/constants/theme";
 
-type ThemeType = "cyan" | "blue" | "pink" | "purple";
+type ThemeType = ListCardTheme;
 
-interface EmptyStateProps {
+export interface EmptyStateProps {
   title: string;
   description: string;
-  hasFilters: boolean;
-  onClearFilters: () => void;
+  hasFilters?: boolean;
+  onClearFilters?: () => void;
+  clearFiltersHref?: string;
   theme: ThemeType;
   icon?: string;
 }
 
-const themeClasses: Record<ThemeType, string> = {
-  cyan: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30 hover:bg-cyan-500/20",
-  blue: "bg-blue-500/10 text-blue-400 border-blue-500/30 hover:bg-blue-500/20",
-  pink: "bg-pink-500/10 text-pink-400 border-pink-500/30 hover:bg-pink-500/20",
-  purple:
-    "bg-purple-500/10 text-purple-400 border-purple-500/30 hover:bg-purple-500/20",
-};
-
-const defaultIcons: Record<ThemeType, string> = {
-  cyan: "📁",
-  blue: "💼",
-  pink: "❤️",
-  purple: "🏆",
-};
+const themeClasses = EMPTY_STATE_THEME_CONFIG;
+const defaultIcons = EMPTY_STATE_DEFAULT_ICONS;
 
 export function EmptyState({
   title,
   description,
-  hasFilters,
+  hasFilters = false,
   onClearFilters,
+  clearFiltersHref,
   theme,
   icon,
 }: EmptyStateProps) {
@@ -43,7 +38,15 @@ export function EmptyState({
       </div>
       <h3 className="text-lg font-bold text-white mb-2">{title}</h3>
       <p className="text-gray-500 text-sm mb-4">{description}</p>
-      {hasFilters && (
+      {hasFilters && clearFiltersHref && (
+        <Link
+          href={clearFiltersHref}
+          className={`inline-flex items-center gap-2 px-4 py-2 ${themeClasses[theme]} border rounded-lg font-medium text-sm transition-all`}
+        >
+          Clear filters
+        </Link>
+      )}
+      {hasFilters && onClearFilters && !clearFiltersHref && (
         <button
           type="button"
           onClick={onClearFilters}

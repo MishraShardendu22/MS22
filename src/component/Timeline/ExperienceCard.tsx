@@ -22,14 +22,13 @@ export const ExperienceCard = ({
 }: ExperienceCardProps) => {
   return (
     <>
-      {/* Experience Bar - Render FIRST so it's behind */}
       <button
         type="button"
         className="absolute rounded-full transition-[height,transform,box-shadow] duration-200 cursor-pointer shadow-lg border-none bg-transparent p-0"
         style={{
           left: `${position.left}px`,
           width: `${position.width}px`,
-          top: "32px", // Positioned on the main timeline
+          top: "32px",
           background: `linear-gradient(90deg, ${companyColor}E6 0%, ${companyColor}CC 100%)`,
           height: isHovered ? "10px" : "8px",
           transform: isHovered ? "translateY(-1px)" : "none",
@@ -44,7 +43,6 @@ export const ExperienceCard = ({
         onBlur={onMouseLeave}
         aria-label={`Experience at ${exp.name}`}
       >
-        {/* Start Dot */}
         <div
           className="absolute -left-2 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-2 border-gray-950 shadow-lg"
           style={{
@@ -53,7 +51,6 @@ export const ExperienceCard = ({
           }}
         />
 
-        {/* End Dot */}
         <div
           className={`
             absolute -right-2 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-2 border-gray-950 shadow-lg
@@ -68,7 +65,6 @@ export const ExperienceCard = ({
         />
       </button>
 
-      {/* Company Logo - Render SECOND so it's on top */}
       <button
         type="button"
         className="absolute transition-[transform] duration-200 border-none bg-transparent p-0"
@@ -112,7 +108,6 @@ export const ExperienceCard = ({
           )}
         </div>
 
-        {/* Tooltip */}
         <div
           className={`
             absolute top-16 left-1/2 -translate-x-1/2 
@@ -141,7 +136,6 @@ export const ExperienceCard = ({
         </div>
       </button>
 
-      {/* Date Range - Below the bar */}
       <div
         className="absolute text-xs text-gray-500 text-center font-medium pointer-events-none my-6"
         style={{

@@ -7,6 +7,9 @@ import type {
   ExperiencesResponse,
   Project,
   ProjectsResponse,
+  SearchResponse,
+  SearchResultType,
+  SearchSuggestionsResponse,
   SkillsResponse,
   TimelineItem,
   Volunteer,
@@ -41,6 +44,53 @@ export const projectsAPI = {
       params: { page, limit },
     });
     return response.data;
+  },
+
+  /**
+   * Fetches ALL projects by paginating through the API
+   * The backend limits each request to max 100 items, so we fetch in batches
+   */
+  getAllProjectsPaginated: async (): Promise<{
+    projects: Project[];
+    total: number;
+  }> => {
+    const allProjects: Project[] = [];
+    const batchSize = 100; // Backend max limit
+    let currentPage = 1;
+    let totalFetched = 0;
+    let totalProjects = 0;
+
+    // Fetch first page to get total count
+    const firstResponse = await projectsAPI.getAllProjects(1, batchSize);
+    if (firstResponse.status === 200 && firstResponse.data) {
+      allProjects.push(...(firstResponse.data.projects || []));
+      totalProjects = firstResponse.data.total;
+      totalFetched = allProjects.length;
+      currentPage = 2;
+
+      // Fetch remaining pages in parallel for better performance
+      if (totalFetched < totalProjects) {
+        const remainingPages = Math.ceil(
+          (totalProjects - totalFetched) / batchSize,
+        );
+        const pagePromises = [];
+
+        for (let i = 0; i < remainingPages; i++) {
+          pagePromises.push(
+            projectsAPI.getAllProjects(currentPage + i, batchSize),
+          );
+        }
+
+        const responses = await Promise.all(pagePromises);
+        for (const response of responses) {
+          if (response.status === 200 && response.data?.projects) {
+            allProjects.push(...response.data.projects);
+          }
+        }
+      }
+    }
+
+    return { projects: allProjects, total: totalProjects };
   },
 
   getProjectById: async (id: string): Promise<ApiResponse<Project>> => {
@@ -134,6 +184,41 @@ export const experiencesAPI = {
 
   getExperienceById: async (id: string): Promise<ApiResponse<Experience>> => {
     const response = await api.get(`/experiences/${id}`);
+    return response.data;
+  },
+};
+
+export const searchAPI = {
+  /**
+   * Search across all content types using BM25 algorithm
+   * @param query - Search query string
+   * @param type - Optional filter by content type
+   * @param limit - Max results to return (default 10, max 50)
+   */
+  search: async (
+    query: string,
+    type?: SearchResultType,
+    limit: number = 10,
+  ): Promise<ApiResponse<SearchResponse>> => {
+    const response = await api.get<ApiResponse<SearchResponse>>("/search", {
+      params: { q: query, type, limit },
+    });
+    return response.data;
+  },
+
+  /**
+   * Get search suggestions for autocomplete
+   * @param query - Partial query for suggestions (min 2 chars)
+   */
+  getSuggestions: async (
+    query: string,
+  ): Promise<ApiResponse<SearchSuggestionsResponse>> => {
+    const response = await api.get<ApiResponse<SearchSuggestionsResponse>>(
+      "/search/suggestions",
+      {
+        params: { q: query },
+      },
+    );
     return response.data;
   },
 };

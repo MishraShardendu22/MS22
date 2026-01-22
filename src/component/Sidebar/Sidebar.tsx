@@ -12,6 +12,7 @@ import {
   Mail,
 } from "lucide-react";
 import Link from "next/link";
+import { SidebarSearchButton } from "@/component/Search";
 
 interface NavItem {
   name: string;
@@ -21,15 +22,15 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { name: "Home", href: "/", icon: Home },
-  { name: "Education", href: "#education", icon: GraduationCap },
-  { name: "Skills", href: "#skills", icon: Code2 },
-  { name: "Timeline", href: "#timeline", icon: Clock },
+  { name: "Education", href: "/#education", icon: GraduationCap },
+  { name: "Skills", href: "/#skills", icon: Code2 },
+  { name: "Timeline", href: "/#timeline", icon: Clock },
   { name: "Projects", href: "/projects", icon: FolderGit2 },
   { name: "Experience", href: "/experiences", icon: Briefcase },
   { name: "Volunteer", href: "/volunteer", icon: Heart },
   { name: "Certifications", href: "/certificates", icon: Award },
   { name: "My Socials", href: "/links", icon: LinkIcon },
-  { name: "Contact", href: "#contact", icon: Mail },
+  { name: "Contact", href: "/#contact", icon: Mail },
   {
     name: "Blog",
     href: "https://blogs.mishrashardendu22.is-a.dev/read",
@@ -44,7 +45,6 @@ export function Sidebar() {
         className="fixed left-0 top-0 h-screen w-16 bg-background border-r border-border z-50"
         aria-label="Main navigation"
       >
-        {/* Header */}
         <div className="h-20 flex items-center justify-center border-b border-border">
           <span
             className="text-sm font-bold text-white"
@@ -54,8 +54,10 @@ export function Sidebar() {
           </span>
         </div>
 
-        {/* Navigation */}
         <div className="py-6 px-2 space-y-1 overflow-y-auto sidebar-scroll max-h-[calc(100vh-5rem)]">
+          {/* Search Button */}
+          <SidebarSearchButton />
+
           {navItems.map((item) => {
             const Icon = item.icon;
 
@@ -74,7 +76,6 @@ export function Sidebar() {
         </div>
       </nav>
 
-      {/* Spacer */}
       <div className="w-16" aria-hidden="true" />
     </>
   );

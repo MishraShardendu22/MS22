@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { DetailTreeView } from "@/component/DetailTree";
-import { Sidebar } from "@/component/Sidebar";
 import { generatePageMetadata } from "@/lib/metadata";
 import { volunteerAPI } from "@/static/api/api.request";
 import type { Volunteer } from "@/static/api/api.types";
@@ -65,12 +64,9 @@ export default async function VolunteerDetailPage({ params }: PageProps) {
     const treeData = normalizeVolunteer(volunteer);
 
     return (
-      <>
-        <Sidebar />
-        <main className="flex-1 min-h-screen bg-gray-950">
-          <DetailTreeView data={treeData} />
-        </main>
-      </>
+      <main className="flex-1 min-h-screen bg-gray-950">
+        <DetailTreeView data={treeData} />
+      </main>
     );
   } catch {
     notFound();

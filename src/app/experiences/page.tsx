@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { ExperiencesFilterClient } from "@/component/Experience";
 import { LoadingState } from "@/component/Loading";
-import { Sidebar } from "@/component/Sidebar";
+import { EmptyState, ListCard, ServerPageHeader } from "@/component/Section";
 import { generatePageMetadata } from "@/lib/metadata";
 import { experiencesAPI } from "@/static/api/api.request";
+import type { Experience } from "@/static/api/api.types";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 3600;
@@ -30,82 +30,113 @@ const ITEMS_PER_PAGE = 8;
 interface PageProps {
   searchParams: Promise<{
     page?: string;
-    search?: string;
-    techs?: string;
+    filter?: string;
   }>;
 }
 
 async function ExperiencesContent({ searchParams }: PageProps) {
   const params = await searchParams;
   const currentPage = Math.max(1, Number.parseInt(params.page || "1", 10));
-  const searchQuery = params.search || "";
-  const selectedTechs = params.techs ? params.techs.split(",") : [];
 
-  let experiences: import("@/static/api/api.types").Experience[] = [];
+  let experiences: Experience[] = [];
   let totalPages = 1;
   let total = 0;
-  let allTechnologies: string[] = [];
 
   try {
-    const response = await experiencesAPI.getAllExperiences(
-      currentPage,
-      ITEMS_PER_PAGE,
-    );
-    if (response.status === 200 && response.data) {
-      experiences = response.data.experiences || [];
-      totalPages = response.data.total_pages || 1;
-      total = response.data.total || 0;
-    }
-
-    // Fetch all for tech extraction (cached)
+    // Fetch all experiences for pagination
     const allResponse = await experiencesAPI.getAllExperiences(1, 500);
     if (allResponse.status === 200 && allResponse.data) {
-      const techsSet = new Set<string>();
-      for (const exp of allResponse.data.experiences || []) {
-        for (const tech of exp.technologies ?? []) {
-          techsSet.add(tech);
-        }
-      }
-      allTechnologies = Array.from(techsSet).sort();
+      const allExperiences = allResponse.data.experiences || [];
+
+      // Calculate pagination
+      total = allExperiences.length;
+      totalPages = Math.max(1, Math.ceil(total / ITEMS_PER_PAGE));
+
+      // Get current page slice
+      const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+      experiences = allExperiences.slice(
+        startIndex,
+        startIndex + ITEMS_PER_PAGE,
+      );
     }
   } catch (error) {
     console.error("Error fetching experiences:", error);
   }
 
   return (
-    <ExperiencesFilterClient
-      experiences={experiences}
-      currentPage={currentPage}
-      totalPages={totalPages}
-      total={total}
-      allTechnologies={allTechnologies}
-      searchQuery={searchQuery}
-      selectedTechs={selectedTechs}
-    />
+    <div className="w-full relative z-10">
+      {/* Server-rendered Header with Link-based pagination */}
+      <ServerPageHeader
+        title="Work Experience"
+        theme="blue"
+        currentPage={currentPage}
+        totalPages={totalPages}
+        basePath="/experiences"
+        resultCount={total}
+        resultLabel="experiences"
+      />
+
+      {/* Experiences Grid */}
+      {experiences.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {experiences.map((experience) => {
+            const experienceId = experience.inline?.id || experience._id || "";
+            if (!experienceId) return null;
+
+            const latestPosition = experience.experience_time_line?.[0];
+            const position = latestPosition?.position;
+            const startDate = latestPosition?.start_date;
+            const endDate = latestPosition?.end_date;
+            const dateRange = startDate
+              ? `${startDate} - ${endDate || "Present"}`
+              : undefined;
+
+            return (
+              <ListCard
+                key={experienceId}
+                id={experienceId}
+                href={`/experiences/${experienceId}`}
+                theme="blue"
+                logo={experience.company_logo}
+                title={experience.company_name}
+                subtitle={position}
+                description={experience.description}
+                dateRange={dateRange}
+                technologies={experience.technologies}
+                maxTechDisplay={3}
+              />
+            );
+          })}
+        </div>
+      ) : (
+        <EmptyState
+          title="No experiences found"
+          description="No work experiences available at the moment"
+          theme="blue"
+        />
+      )}
+    </div>
   );
 }
 
 export default async function ExperiencesPage({ searchParams }: PageProps) {
   return (
-    <>
-      <Sidebar />
-      <main className="flex-1 min-h-screen bg-gray-950 relative overflow-hidden">
-        {/* Subtle Background */}
-        <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-          <div className="absolute top-0 -left-4 w-72 h-72 bg-blue-500/8 rounded-full mix-blend-multiply filter blur-3xl" />
-          <div className="absolute top-0 -right-4 w-72 h-72 bg-purple-500/8 rounded-full mix-blend-multiply filter blur-3xl" />
-        </div>
+    <main className="flex-1 min-h-screen bg-gray-950 relative overflow-hidden">
+      {/* Subtle Background */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div className="absolute top-0 -left-4 w-72 h-72 bg-blue-500/8 rounded-full mix-blend-multiply filter blur-3xl" />
+        <div className="absolute top-0 -right-4 w-72 h-72 bg-purple-500/8 rounded-full mix-blend-multiply filter blur-3xl" />
+      </div>
 
-        <div className="container mx-auto px-4 py-6 relative z-10 max-w-[1600px]">
-          <Suspense
-            fallback={
-              <LoadingState message="Loading experiences..." variant="blue" />
-            }
-          >
-            <ExperiencesContent searchParams={searchParams} />
-          </Suspense>
-        </div>
-      </main>
-    </>
+      <div className="container mx-auto px-4 py-6 relative z-10 max-w-400">
+        <Suspense
+          fallback={
+            <LoadingState message="Loading experiences..." variant="blue" />
+          }
+        >
+          <ExperiencesContent searchParams={searchParams} />
+        </Suspense>
+      </div>
+    </main>
   );
 }

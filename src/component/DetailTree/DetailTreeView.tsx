@@ -1,6 +1,7 @@
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { PageSearch } from "@/component/Search";
 import type { DetailTreeData } from "@/types/detailTree";
 import { getLinkLabel } from "@/utils/linkDetection";
 import { ExpandableTreeSection } from "./ExpandableTreeSection";
@@ -149,6 +150,9 @@ export function DetailTreeView({ data }: DetailTreeViewProps) {
               })}
             </div>
           )}
+
+          {/* Page Search Button */}
+          <PageSearch defaultFilter={data.entityType} />
         </div>
       </header>
 

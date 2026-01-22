@@ -40,7 +40,7 @@ export const ExperienceSection = ({
       </div>
 
       {/* Increased height to accommodate logos above the line */}
-      <div className="relative h-[120px]">
+      <div className="relative h-30">
         {/* Main timeline line - positioned in the middle */}
         <div
           className={`absolute top-8 left-8 right-8 h-px bg-linear-to-r ${config.lineGradient} rounded-full`}

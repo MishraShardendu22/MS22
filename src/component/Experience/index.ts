@@ -3,4 +3,3 @@ export {
   ExperiencesDisplayMobile,
   ExperiencesDisplayServer,
 } from "./ExperienceCardServer";
-export { ExperiencesFilterClient } from "./ExperiencesFilterClient";

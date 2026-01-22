@@ -3,4 +3,3 @@ export {
   CertificatesDisplayMobile,
   CertificatesDisplayServer,
 } from "./CertificateCardServer";
-export { CertificatesFilterClient } from "./CertificatesFilterClient";

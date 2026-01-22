@@ -73,7 +73,6 @@ const VOLUNTEERS_PER_PAGE = 4;
 const sortByOrder = (items: Volunteer[]) =>
   [...items].sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
 
-// Mobile-optimized server component
 export async function VolunteerDisplayMobile() {
   const response = await volunteerAPI.getAllVolunteers(1, 4);
   const volunteers = sortByOrder(response.data?.volunteer_experiences || []);

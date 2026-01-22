@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
 import { Archivo, Inter } from "next/font/google";
+import { SidebarWrapper } from "@/component/Sidebar/SidebarWrapper";
 
 const BASE_URL =
   process.env.NEXT_PUBLIC_BASE_URL ||
@@ -353,7 +354,10 @@ export default function RootLayout({
         </noscript>
         <Analytics />
         <SpeedInsights />
-        <div className="flex min-h-screen">{children}</div>
+        <div className="flex min-h-screen">
+          <SidebarWrapper />
+          {children}
+        </div>
       </body>
     </html>
   );

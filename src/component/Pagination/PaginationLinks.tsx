@@ -1,7 +1,11 @@
 import { ChevronLeft, ChevronRight, Eye } from "lucide-react";
 import Link from "next/link";
+import {
+  PAGINATION_THEME_CONFIG,
+  type PaginationTheme,
+} from "@/constants/theme";
 
-export type PaginationTheme = "cyan" | "blue" | "emerald" | "pink" | "purple";
+export type { PaginationTheme } from "@/constants/theme";
 
 interface PaginationLinksProps {
   currentPage: number;
@@ -15,40 +19,7 @@ interface PaginationLinksProps {
   pageParam?: string;
 }
 
-const themeClasses: Record<
-  PaginationTheme,
-  {
-    hoverBorder: string;
-    hoverText: string;
-    activeText: string;
-  }
-> = {
-  cyan: {
-    hoverBorder: "hover:border-cyan-500/30",
-    hoverText: "hover:text-cyan-400",
-    activeText: "text-cyan-400",
-  },
-  blue: {
-    hoverBorder: "hover:border-blue-500/30",
-    hoverText: "hover:text-blue-400",
-    activeText: "text-blue-400",
-  },
-  emerald: {
-    hoverBorder: "hover:border-emerald-500/30",
-    hoverText: "hover:text-emerald-400",
-    activeText: "text-emerald-400",
-  },
-  pink: {
-    hoverBorder: "hover:border-pink-500/30",
-    hoverText: "hover:text-pink-400",
-    activeText: "text-pink-400",
-  },
-  purple: {
-    hoverBorder: "hover:border-purple-500/30",
-    hoverText: "hover:text-purple-400",
-    activeText: "text-purple-400",
-  },
-};
+const themeClasses = PAGINATION_THEME_CONFIG;
 
 export function PaginationLinks({
   currentPage,

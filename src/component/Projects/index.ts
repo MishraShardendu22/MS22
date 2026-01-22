@@ -3,4 +3,3 @@ export {
   ProjectsDisplayMobile,
   ProjectsDisplayServer,
 } from "./ProjectCardServer";
-export { ProjectsFilterClient } from "./ProjectsFilterClient";

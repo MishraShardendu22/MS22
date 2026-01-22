@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { DetailTreeView } from "@/component/DetailTree";
-import { Sidebar } from "@/component/Sidebar";
 import { generatePageMetadata } from "@/lib/metadata";
 import { experiencesAPI } from "@/static/api/api.request";
 import type { Experience } from "@/static/api/api.types";
@@ -67,12 +66,9 @@ export default async function ExperienceDetailPage({ params }: PageProps) {
     const treeData = normalizeExperience(experience);
 
     return (
-      <>
-        <Sidebar />
-        <main className="flex-1 min-h-screen bg-gray-950">
-          <DetailTreeView data={treeData} />
-        </main>
-      </>
+      <main className="flex-1 min-h-screen bg-gray-950">
+        <DetailTreeView data={treeData} />
+      </main>
     );
   } catch {
     notFound();

@@ -169,3 +169,31 @@ export interface ExperiencesResponse {
   has_next: boolean;
   has_previous: boolean;
 }
+
+// Search Types
+export type SearchResultType =
+  | "project"
+  | "experience"
+  | "certificate"
+  | "volunteer";
+
+export interface SearchResult {
+  id: string;
+  type: SearchResultType;
+  title: string;
+  subtitle?: string;
+  description: string;
+  skills?: string[];
+  score: number;
+  url: string;
+}
+
+export interface SearchResponse {
+  results: SearchResult[];
+  query: string;
+  total_count: number;
+}
+
+export interface SearchSuggestionsResponse {
+  suggestions: string[];
+}

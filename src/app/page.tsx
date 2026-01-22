@@ -14,7 +14,6 @@ import {
   ProjectsDisplayMobile,
   ProjectsDisplayServer,
 } from "@/component/Projects";
-import { SidebarWrapper } from "@/component/Sidebar/SidebarWrapper";
 import { SkillsDisplay, SkillsDisplayMobile } from "@/component/Skill";
 import { StatsLoadingSkeleton, StatsSection } from "@/component/Stats";
 import { StructuredData } from "@/component/StructuredData";
@@ -61,7 +60,6 @@ const page = async ({ searchParams }: PageProps) => {
           faqSchema,
         ]}
       />
-      <SidebarWrapper />
       <main className="flex-1 lg:ml-0" aria-label="Main content">
         <HeroSection />
         <section id="skills" aria-label="Technical skills and expertise">
@@ -83,7 +81,13 @@ const page = async ({ searchParams }: PageProps) => {
             className="hidden lg:block"
             aria-label="Professional timeline"
           >
-            <Time />
+            <Suspense
+              fallback={
+                <LoadingState message="Loading timeline..." variant="blue" />
+              }
+            >
+              <Time />
+            </Suspense>
           </section>
         )}
         <section id="projects" aria-label="Featured projects and work">
