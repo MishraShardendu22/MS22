@@ -38,5 +38,8 @@ Crawl-delay: 10
 # Sitemap location
 Sitemap: https://mishrashardendu22.is-a.dev/sitemap.xml
 
+# RSS Feed
+Feed: https://mishrashardendu22.is-a.dev/feed.xml
+
 # Host
 Host: https://mishrashardendu22.is-a.dev

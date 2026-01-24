@@ -248,6 +248,11 @@ export const metadata: Metadata = {
     languages: {
       "en-US": BASE_URL,
     },
+    types: {
+      "application/rss+xml": [
+        { url: "/feed.xml", title: "RSS Feed" },
+      ],
+    },
   },
   other: {
     "mobile-web-app-capable": "yes",
@@ -321,6 +326,12 @@ export default function RootLayout({
   return (
     <html lang="en" dir="ltr" className="scroll-smooth">
       <head>
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="RSS Feed for Shardendu Mishra"
+          href="/feed.xml"
+        />
         <script
           type="application/ld+json"
           // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD structured data requires dangerouslySetInnerHTML - content is safe static data

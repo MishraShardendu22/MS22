@@ -1,17 +1,17 @@
 import {
+  Rss,
+  Link,
   Book,
   Briefcase,
   Code2Icon,
   CompassIcon,
   GithubIcon,
   Instagram,
-  Link,
   LinkedinIcon,
   LockKeyhole,
   PackagePlus,
   ShieldCheck,
   TwitterIcon,
-  User2Icon,
   YoutubeIcon,
 } from "lucide-react";
 
@@ -20,13 +20,13 @@ export const QuickLinks = {
     url: "https://mishrashardendu22.is-a.dev/links",
     icon: Link,
   },
-  Experience: {
-    url: "https://mishrashardendu22.is-a.dev/experience",
-    icon: Briefcase,
+  RSS_Feed: {
+    url: "https://mishrashardendu22.is-a.dev/feed.xml",
+    icon: Rss,
   },
-  Volunteer: {
-    url: "https://mishrashardendu22.is-a.dev/volunteer",
-    icon: User2Icon,
+  Project: {
+    url: "https://mishrashardendu22.is-a.dev/projects",
+    icon: Briefcase,
   },
   Certification: {
     url: "https://mishrashardendu22.is-a.dev/certificates",
