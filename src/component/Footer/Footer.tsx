@@ -194,7 +194,9 @@ export function FooterSection() {
               <h3 className="text-2xl md:text-4xl lg:text-5xl font-bold bg-linear-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-2 md:mb-4">
                 Let's Talk
               </h3>
-              <p className="text-gray-400 text-sm md:text-lg lg:text-xl">Get in touch with me</p>
+              <p className="text-gray-400 text-sm md:text-lg lg:text-xl">
+                Get in touch with me
+              </p>
             </div>
 
             <div className="bg-linear-to-br from-gray-900/80 to-gray-950/80 backdrop-blur-sm p-6 md:p-10 lg:p-12 rounded-2xl border border-gray-800 shadow-2xl">
@@ -300,17 +302,23 @@ export function FooterSection() {
             </ul>
           </div>
         </div>
-<div className="text-center py-8 md:py-12 lg:py-16">
+        <div className="text-center py-8 md:py-12 lg:py-16">
           <h2 className="font-black text-5xl sm:text-7xl md:text-9xl lg:text-[10rem] xl:text-[14rem] 2xl:text-[18rem] tracking-wider leading-none">
             <span
               className="text-[#004D98]"
-              style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic" }}
+              style={{
+                fontFamily: "'Playfair Display', serif",
+                fontStyle: "italic",
+              }}
             >
               VISCA EL{" "}
             </span>
             <span
               className="text-[#A50044]"
-              style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic" }}
+              style={{
+                fontFamily: "'Playfair Display', serif",
+                fontStyle: "italic",
+              }}
             >
               BARÇA
             </span>

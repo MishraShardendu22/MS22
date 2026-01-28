@@ -249,9 +249,7 @@ export const metadata: Metadata = {
       "en-US": BASE_URL,
     },
     types: {
-      "application/rss+xml": [
-        { url: "/feed.xml", title: "RSS Feed" },
-      ],
+      "application/rss+xml": [{ url: "/feed.xml", title: "RSS Feed" }],
     },
   },
   other: {

@@ -11,12 +11,12 @@ import type {
   Project,
   Volunteer,
 } from "@/static/api/api.types";
-import { RSSItem } from "@/static/info/types";
-
+import type { RSSItem } from "@/static/info/types";
 
 const SITE_NAME = "Shardendu Mishra";
-const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL!;
-const SITE_DESCRIPTION = "Professional personal website showcasing projects, experiences, skills, and certifications";
+const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || "";
+const SITE_DESCRIPTION =
+  "Professional personal website showcasing projects, experiences, skills, and certifications";
 
 function escapeXml(unsafe: string): string {
   return unsafe
@@ -37,9 +37,14 @@ function formatDate(dateString: string): string {
 }
 
 function projectToRSSItem(project: Project): RSSItem {
-  const id = project._id || project.inline?.id || project.inline?._id || project.id || `project-${project.order}`;
+  const id =
+    project._id ||
+    project.inline?.id ||
+    project.inline?._id ||
+    project.id ||
+    `project-${project.order}`;
   const pubDate = project.inline?.created_at || new Date().toISOString();
-  
+
   return {
     title: project.project_name,
     link: `${SITE_URL}/projects/${id}`,
@@ -51,14 +56,17 @@ function projectToRSSItem(project: Project): RSSItem {
 }
 
 function experienceToRSSItem(experience: Experience): RSSItem {
-  const id = experience._id || experience.inline?.id || `experience-${Date.now()}`;
+  const id =
+    experience._id || experience.inline?.id || `experience-${Date.now()}`;
   const pubDate = experience.inline?.created_at || new Date().toISOString();
-  const latestPosition = experience.experience_time_line?.[0]?.position || "Experience";
-  
+  const latestPosition =
+    experience.experience_time_line?.[0]?.position || "Experience";
+
   return {
     title: `${latestPosition} at ${experience.company_name}`,
     link: `${SITE_URL}/experiences/${id}`,
-    description: experience.description || `Work experience at ${experience.company_name}`,
+    description:
+      experience.description || `Work experience at ${experience.company_name}`,
     pubDate: formatDate(pubDate),
     category: "Experience",
     guid: `${SITE_URL}/experiences/${id}`,
@@ -67,12 +75,16 @@ function experienceToRSSItem(experience: Experience): RSSItem {
 
 function certificateToRSSItem(certificate: Certificate): RSSItem {
   const id = certificate._id || certificate.inline?.id || `cert-${Date.now()}`;
-  const pubDate = certificate.inline?.created_at || certificate.issue_date || new Date().toISOString();
-  
+  const pubDate =
+    certificate.inline?.created_at ||
+    certificate.issue_date ||
+    new Date().toISOString();
+
   return {
     title: certificate.title,
     link: `${SITE_URL}/certificates/${id}`,
-    description: certificate.description || `Certificate from ${certificate.issuer}`,
+    description:
+      certificate.description || `Certificate from ${certificate.issuer}`,
     pubDate: formatDate(pubDate),
     category: "Certificate",
     guid: `${SITE_URL}/certificates/${id}`,
@@ -82,12 +94,16 @@ function certificateToRSSItem(certificate: Certificate): RSSItem {
 function volunteerToRSSItem(volunteer: Volunteer): RSSItem {
   const id = volunteer._id || volunteer.inline?.id || `volunteer-${Date.now()}`;
   const pubDate = volunteer.inline?.created_at || new Date().toISOString();
-  const position = volunteer.position || volunteer.volunteer_time_line?.[0]?.position || "Volunteer";
-  
+  const position =
+    volunteer.position ||
+    volunteer.volunteer_time_line?.[0]?.position ||
+    "Volunteer";
+
   return {
     title: `${position} at ${volunteer.organisation}`,
     link: `${SITE_URL}/volunteer/${id}`,
-    description: volunteer.description || `Volunteer work at ${volunteer.organisation}`,
+    description:
+      volunteer.description || `Volunteer work at ${volunteer.organisation}`,
     pubDate: formatDate(pubDate),
     category: "Volunteer",
     guid: `${SITE_URL}/volunteer/${id}`,
@@ -108,37 +124,60 @@ function generateRSSItem(item: RSSItem): string {
 
 export async function GET() {
   try {
-    const [projectsRes, experiencesRes, certificatesRes, volunteerRes] = await Promise.allSettled([
-      projectsAPI.getAllProjects(1, 100).catch(() => null),
-      experiencesAPI.getAllExperiences(1, 100).catch(() => null),
-      certificatesAPI.getAllCertificates(1, 100).catch(() => null),
-      volunteerAPI.getAllVolunteers(1, 100).catch(() => null),
-    ]);
+    const [projectsRes, experiencesRes, certificatesRes, volunteerRes] =
+      await Promise.allSettled([
+        projectsAPI.getAllProjects(1, 100).catch(() => null),
+        experiencesAPI.getAllExperiences(1, 100).catch(() => null),
+        certificatesAPI.getAllCertificates(1, 100).catch(() => null),
+        volunteerAPI.getAllVolunteers(1, 100).catch(() => null),
+      ]);
 
     const items: RSSItem[] = [];
 
     // Add projects
-    if (projectsRes.status === "fulfilled" && projectsRes.value?.data?.projects) {
+    if (
+      projectsRes.status === "fulfilled" &&
+      projectsRes.value?.data?.projects
+    ) {
       items.push(...projectsRes.value.data.projects.map(projectToRSSItem));
     }
 
     // Add experiences
-    if (experiencesRes.status === "fulfilled" && experiencesRes.value?.data?.experiences) {
-      items.push(...experiencesRes.value.data.experiences.map(experienceToRSSItem));
+    if (
+      experiencesRes.status === "fulfilled" &&
+      experiencesRes.value?.data?.experiences
+    ) {
+      items.push(
+        ...experiencesRes.value.data.experiences.map(experienceToRSSItem),
+      );
     }
 
     // Add certificates
-    if (certificatesRes.status === "fulfilled" && certificatesRes.value?.data?.certifications) {
-      items.push(...certificatesRes.value.data.certifications.map(certificateToRSSItem));
+    if (
+      certificatesRes.status === "fulfilled" &&
+      certificatesRes.value?.data?.certifications
+    ) {
+      items.push(
+        ...certificatesRes.value.data.certifications.map(certificateToRSSItem),
+      );
     }
 
     // Add volunteer work
-    if (volunteerRes.status === "fulfilled" && volunteerRes.value?.data?.volunteer_experiences) {
-      items.push(...volunteerRes.value.data.volunteer_experiences.map(volunteerToRSSItem));
+    if (
+      volunteerRes.status === "fulfilled" &&
+      volunteerRes.value?.data?.volunteer_experiences
+    ) {
+      items.push(
+        ...volunteerRes.value.data.volunteer_experiences.map(
+          volunteerToRSSItem,
+        ),
+      );
     }
 
     // Sort by date (newest first)
-    items.sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());
+    items.sort(
+      (a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime(),
+    );
 
     const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" 
@@ -158,12 +197,12 @@ export async function GET() {
     return new NextResponse(rss, {
       headers: {
         "Content-Type": "application/xml; charset=utf-8",
-        "Cache-Control": "public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400",
+        "Cache-Control":
+          "public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400",
       },
     });
   } catch (error) {
     console.error("Error generating RSS feed:", error);
-    
 
     const errorRss = `<?xml version="1.0" encoding="UTF-8"?>
     <rss version="2.0">
