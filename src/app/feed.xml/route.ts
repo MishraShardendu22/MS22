@@ -14,7 +14,8 @@ import type {
 import type { RSSItem } from "@/static/info/types";
 
 const SITE_NAME = "Shardendu Mishra";
-const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || "";
+const SITE_URL =
+  process.env.NEXT_PUBLIC_BASE_URL || "https://mishrashardendu22.is-a.dev";
 const SITE_DESCRIPTION =
   "Professional personal website showcasing projects, experiences, skills, and certifications";
 
