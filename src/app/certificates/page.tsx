@@ -47,7 +47,7 @@ async function CertificatesContent({ searchParams }: PageProps) {
     // Fetch all certificates for pagination
     const allResponse = await certificatesAPI.getAllCertificates(1, 500);
     if (allResponse.status === 200 && allResponse.data) {
-      const allCertificates = allResponse.data.certifications || [];
+      const allCertificates = allResponse.data?.certifications || [];
 
       // Calculate pagination
       total = allCertificates.length;

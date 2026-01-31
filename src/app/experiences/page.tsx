@@ -46,7 +46,7 @@ async function ExperiencesContent({ searchParams }: PageProps) {
     // Fetch all experiences for pagination
     const allResponse = await experiencesAPI.getAllExperiences(1, 500);
     if (allResponse.status === 200 && allResponse.data) {
-      const allExperiences = allResponse.data.experiences || [];
+      const allExperiences = allResponse.data?.experiences || [];
 
       // Calculate pagination
       total = allExperiences.length;

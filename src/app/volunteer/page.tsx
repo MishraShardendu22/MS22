@@ -46,7 +46,7 @@ async function VolunteerContent({ searchParams }: PageProps) {
     // Fetch all volunteers for pagination
     const allResponse = await volunteerAPI.getAllVolunteers(1, 500);
     if (allResponse.status === 200 && allResponse.data) {
-      const allVolunteers = allResponse.data.volunteer_experiences || [];
+      const allVolunteers = allResponse.data?.volunteer_experiences || [];
 
       // Calculate pagination
       total = allVolunteers.length;

@@ -17,7 +17,7 @@ interface ExperienceCardProps {
 }
 
 export const ExperienceCard = ({ experience, index }: ExperienceCardProps) => {
-  const latestPosition = experience.experience_time_line[0];
+  const latestPosition = experience.experience_time_line?.[0];
   const startDate = formatDate(latestPosition?.start_date);
   const endDate = latestPosition?.end_date
     ? formatDate(latestPosition.end_date)
@@ -73,7 +73,7 @@ export async function ExperiencesDisplayMobile() {
       </p>
       <div className="space-y-4">
         {experiences.map((experience) => {
-          const latestPosition = experience.experience_time_line[0];
+          const latestPosition = experience.experience_time_line?.[0];
           const startDate = formatDate(latestPosition?.start_date);
           const endDate = latestPosition?.end_date
             ? formatDate(latestPosition.end_date)
@@ -151,10 +151,10 @@ export async function ExperiencesDisplayServer({
     throw new Error("Failed to load experiences");
   }
 
-  const experiences = response.data.experiences || [];
-  const totalPages = response.data.total_pages || 1;
-  const hasNext = response.data.has_next || false;
-  const hasPrevious = response.data.has_previous || false;
+  const experiences = response.data?.experiences || [];
+  const totalPages = response.data?.total_pages || 1;
+  const hasNext = response.data?.has_next || false;
+  const hasPrevious = response.data?.has_previous || false;
 
   const headerContent = (
     <SectionHeader

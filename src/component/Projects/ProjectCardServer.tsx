@@ -221,10 +221,10 @@ export async function ProjectsDisplayServer({
     throw new Error("Failed to load projects");
   }
 
-  const projects = sortByOrder(response.data.projects || []);
-  const totalPages = response.data.total_pages || 1;
-  const hasNext = response.data.has_next || false;
-  const hasPrevious = response.data.has_previous || false;
+  const projects = sortByOrder(response.data?.projects || []);
+  const totalPages = response.data?.total_pages || 1;
+  const hasNext = response.data?.has_next || false;
+  const hasPrevious = response.data?.has_previous || false;
 
   const headerContent = (
     <SectionHeader

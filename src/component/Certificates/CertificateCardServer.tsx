@@ -165,10 +165,10 @@ export async function CertificatesDisplayServer({
     throw new Error("Failed to load certificates");
   }
 
-  const certificates = sortByOrder(response.data.certifications || []);
-  const totalPages = response.data.total_pages || 1;
-  const hasNext = response.data.has_next || false;
-  const hasPrevious = response.data.has_previous || false;
+  const certificates = sortByOrder(response.data?.certifications || []);
+  const totalPages = response.data?.total_pages || 1;
+  const hasNext = response.data?.has_next || false;
+  const hasPrevious = response.data?.has_previous || false;
 
   const headerContent = (
     <SectionHeader

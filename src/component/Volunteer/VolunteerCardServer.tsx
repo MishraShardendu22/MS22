@@ -188,10 +188,10 @@ export async function VolunteerDisplayServer({
     throw new Error("Failed to load volunteer experiences");
   }
 
-  const volunteers = sortByOrder(response.data.volunteer_experiences || []);
-  const totalPages = response.data.total_pages || 1;
-  const hasNext = response.data.has_next || false;
-  const hasPrevious = response.data.has_previous || false;
+  const volunteers = sortByOrder(response.data?.volunteer_experiences || []);
+  const totalPages = response.data?.total_pages || 1;
+  const hasNext = response.data?.has_next || false;
+  const hasPrevious = response.data?.has_previous || false;
 
   const headerContent = (
     <SectionHeader

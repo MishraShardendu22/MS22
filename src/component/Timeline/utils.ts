@@ -14,7 +14,8 @@ export const processTimelineData = (
   const allExperiences: ProcessedExperience[] = [];
 
   experiences.forEach((exp) => {
-    exp.experience_time_line.forEach((timeline: TimelineEntry) => {
+    const timelines = exp.experience_time_line || [];
+    timelines.forEach((timeline: TimelineEntry) => {
       const startDate = new Date(timeline.start_date);
       const endDate = timeline.end_date
         ? new Date(timeline.end_date)
@@ -36,7 +37,8 @@ export const processTimelineData = (
   });
 
   volunteerExperiences.forEach((exp) => {
-    exp.volunteer_time_line.forEach((timeline: TimelineEntry) => {
+    const timelines = exp.volunteer_time_line || [];
+    timelines.forEach((timeline: TimelineEntry) => {
       const startDate = new Date(timeline.start_date);
       const endDate = timeline.end_date
         ? new Date(timeline.end_date)
