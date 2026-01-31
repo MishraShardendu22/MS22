@@ -21,7 +21,6 @@ import {
   useModalState,
 } from "./HeaderSearchButton";
 
-// Static config - zero runtime overhead
 const FILTER_CONFIG = {
   project: {
     icon: FolderGit2,
