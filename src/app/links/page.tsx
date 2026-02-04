@@ -125,6 +125,15 @@ export default function LinksPage() {
       description: "Direct messaging and quick updates",
     },
     {
+      name: "Discord",
+      username: "shardendumishra_22",
+      url: "https://discord.com/users/shardendumishra_22",
+      icon: <MessageCircle className="w-6 h-6" />,
+      category: "social",
+      color: "from-indigo-500 to-purple-600",
+      description: "Gaming, tech communities, and collaboration",
+    },
+    {
       name: "YouTube",
       username: "@Shardendu_Mishra",
       url: "https://www.youtube.com/@Shardendu_Mishra",
@@ -315,7 +324,7 @@ export default function LinksPage() {
               <div className="absolute -inset-1 bg-linear-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-2xl blur opacity-50 animate-pulse" />
               <div className="relative bg-white p-4 rounded-2xl shadow-2xl">
                 <Image
-                  src="/gravatar-qr.webp"
+                  src="/shardendu-sankritya mishra.avif"
                   alt="QR Code - Gravatar Profile"
                   width={200}
                   height={200}
