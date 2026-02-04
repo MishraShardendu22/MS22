@@ -133,6 +133,15 @@ export default function LinksPage() {
       color: "from-red-500 to-red-700",
       description: "Tech tutorials and coding videos",
     },
+    {
+      name: "Gravatar",
+      username: "@personahonestly8a347f9823",
+      url: "https://gravatar.com/personahonestly8a347f9823",
+      icon: <Globe className="w-6 h-6" />,
+      category: "social",
+      color: "from-blue-500 to-cyan-600",
+      description: "My globally recognized avatar profile",
+    },
     // Coding Platforms
     {
       name: "LeetCode",
@@ -292,6 +301,33 @@ export default function LinksPage() {
               </div>
             </div>
           ))}
+        </section>
+
+        {/* QR Code Section */}
+        <section className="mt-12 mb-8 animate-fadeIn">
+          <div className="text-center">
+            <h2 className="text-xl md:text-2xl font-bold text-white mb-6 flex items-center gap-2 justify-center">
+              <span className="h-px flex-1 max-w-[100px] bg-linear-to-r from-transparent via-gray-700 to-transparent" />
+              <span className="text-gray-300">Scan to Connect</span>
+              <span className="h-px flex-1 max-w-[100px] bg-linear-to-r from-transparent via-gray-700 to-transparent" />
+            </h2>
+            <div className="relative inline-block">
+              <div className="absolute -inset-1 bg-linear-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-2xl blur opacity-50 animate-pulse" />
+              <div className="relative bg-white p-4 rounded-2xl shadow-2xl">
+                <Image
+                  src="/gravatar-qr.webp"
+                  alt="QR Code - Gravatar Profile"
+                  width={200}
+                  height={200}
+                  className="w-48 h-48 md:w-56 md:h-56"
+                  priority
+                />
+              </div>
+            </div>
+            <p className="mt-4 text-sm text-gray-400">
+              Scan to view my Gravatar profile
+            </p>
+          </div>
         </section>
 
         {/* Footer */}
