@@ -83,12 +83,7 @@ async function ProjectsContent({ searchParams }: PageProps) {
       {projects.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {projects.map((project) => {
-            const projectId =
-              project._id ||
-              project.id ||
-              project.inline?.id ||
-              project.inline?._id ||
-              "";
+            const projectId = project.inline?.id as string;
 
             // Build links array from available URLs
             const links: Array<{ label: string; url: string }> = [];

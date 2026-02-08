@@ -19,7 +19,7 @@ export async function generateStaticParams() {
     if (response.status === 200 && response.data?.experiences) {
       return response.data.experiences
         .map((experience) => ({
-          id: experience._id || "",
+          id: experience.inline?.id as string,
         }))
         .filter((e) => e.id);
     }

@@ -518,7 +518,7 @@ export function normalizeCertificate(
   if (relatedProjects.length > 0) {
     const projectNodes: TreeNode[] = relatedProjects.map((p) =>
       createProjectNode(
-        p._id || p.inline?.id || "",
+        p.inline?.id as string,
         p.project_name,
         p.small_description,
         p.skills,

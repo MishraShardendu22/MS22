@@ -79,7 +79,7 @@ async function ExperiencesContent({ searchParams }: PageProps) {
       {experiences.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {experiences.map((experience) => {
-            const experienceId = experience.inline?.id || experience._id || "";
+            const experienceId = experience.inline?.id as string;
             if (!experienceId) return null;
 
             const latestPosition = experience.experience_time_line?.[0];

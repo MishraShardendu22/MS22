@@ -150,7 +150,7 @@ export async function ProjectsDisplayMobile() {
       <div className="space-y-4">
         {projects.map((project, _idx) => (
           <div
-            key={project._id}
+            key={project.inline?.id}
             className="bg-gray-900/80 border border-gray-800 rounded-xl p-4"
           >
             <h3 className="text-base font-bold text-white mb-2 line-clamp-1">
@@ -264,7 +264,7 @@ export async function ProjectsDisplayServer({
       <ContentGrid columns={2}>
         {projects.map((project, index) => (
           <ProjectCard
-            key={`${project._id}-${index}`}
+            key={`${project.inline?.id}-${index}`}
             project={project}
             index={index}
           />

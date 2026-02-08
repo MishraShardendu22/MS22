@@ -40,14 +40,11 @@ export interface TimelineResponse {
 }
 
 export interface Project {
-  _id?: string;
   inline?: {
     id?: string;
-    _id?: string;
     created_at?: string;
     updated_at?: string;
   };
-  id?: string;
   order: number;
   skills: string[];
   description: string;
@@ -74,7 +71,6 @@ export interface Volunteer {
     created_at: string;
     updated_at: string;
   };
-  _id?: string;
   order?: number;
   position?: string;
   organisation: string;
@@ -111,7 +107,6 @@ export interface Certificate {
     created_at: string;
     updated_at: string;
   };
-  _id?: string;
   order?: number;
   title: string;
   issuer: string;
@@ -143,7 +138,6 @@ export interface ExperienceTimeLine {
 }
 
 export interface Experience {
-  _id?: string; // Legacy field, may not be present
   inline?: {
     id: string;
     created_at: string;

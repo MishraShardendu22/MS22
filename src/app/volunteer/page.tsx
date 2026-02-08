@@ -76,7 +76,7 @@ async function VolunteerContent({ searchParams }: PageProps) {
       {volunteers.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {volunteers.map((volunteer) => {
-            const volunteerId = volunteer._id || volunteer.inline?.id || "";
+            const volunteerId = volunteer.inline?.id as string;
 
             const latestFromTimeline = volunteer.volunteer_time_line?.[0];
             const position = latestFromTimeline?.position || volunteer.position;

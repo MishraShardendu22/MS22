@@ -38,12 +38,7 @@ function formatDate(dateString: string): string {
 }
 
 function projectToRSSItem(project: Project): RSSItem {
-  const id =
-    project._id ||
-    project.inline?.id ||
-    project.inline?._id ||
-    project.id ||
-    `project-${project.order}`;
+  const id = project.inline?.id as string;
   const pubDate = project.inline?.created_at || new Date().toISOString();
 
   return {
@@ -57,8 +52,7 @@ function projectToRSSItem(project: Project): RSSItem {
 }
 
 function experienceToRSSItem(experience: Experience): RSSItem {
-  const id =
-    experience._id || experience.inline?.id || `experience-${Date.now()}`;
+  const id = experience.inline?.id as string;
   const pubDate = experience.inline?.created_at || new Date().toISOString();
   const latestPosition =
     experience.experience_time_line?.[0]?.position || "Experience";
@@ -75,7 +69,7 @@ function experienceToRSSItem(experience: Experience): RSSItem {
 }
 
 function certificateToRSSItem(certificate: Certificate): RSSItem {
-  const id = certificate._id || certificate.inline?.id || `cert-${Date.now()}`;
+  const id = certificate.inline?.id || `cert-${Date.now()}`;
   const pubDate =
     certificate.inline?.created_at ||
     certificate.issue_date ||
@@ -93,7 +87,7 @@ function certificateToRSSItem(certificate: Certificate): RSSItem {
 }
 
 function volunteerToRSSItem(volunteer: Volunteer): RSSItem {
-  const id = volunteer._id || volunteer.inline?.id || `volunteer-${Date.now()}`;
+  const id = volunteer.inline?.id as string;
   const pubDate = volunteer.inline?.created_at || new Date().toISOString();
   const position =
     volunteer.position ||

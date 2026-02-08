@@ -120,7 +120,7 @@ export async function VolunteerDisplayMobile() {
 
           return (
             <div
-              key={vol._id}
+              key={vol.inline?.id}
               className="bg-gray-900/80 border border-gray-800 rounded-xl p-4"
             >
               <div className="flex items-start gap-3 mb-3">
@@ -230,7 +230,7 @@ export async function VolunteerDisplayServer({
       {headerContent}
       <ContentGrid columns={2}>
         {volunteers.map((volunteer, index) => {
-          const volId = volunteer.inline?.id || volunteer._id || `vol-${index}`;
+          const volId = volunteer.inline?.id as string;
           return (
             <VolunteerCard key={volId} volunteer={volunteer} index={index} />
           );

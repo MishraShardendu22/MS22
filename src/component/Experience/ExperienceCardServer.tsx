@@ -81,7 +81,7 @@ export async function ExperiencesDisplayMobile() {
 
           return (
             <div
-              key={experience._id}
+              key={experience.inline?.id}
               className="bg-gray-900/80 border border-gray-800 rounded-xl p-4"
             >
               <div className="flex items-start gap-3 mb-3">
@@ -194,7 +194,7 @@ export async function ExperiencesDisplayServer({
       <ContentGrid columns={2}>
         {experiences.map((experience, index) => (
           <ExperienceCard
-            key={`${experience._id}-${index}`}
+            key={`${experience.inline?.id}-${index}`}
             experience={experience}
             index={index}
           />

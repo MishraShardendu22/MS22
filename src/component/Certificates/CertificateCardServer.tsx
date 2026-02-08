@@ -110,7 +110,7 @@ export async function CertificatesDisplayMobile() {
 
           return (
             <div
-              key={cert._id}
+              key={cert.inline?.id}
               className="bg-gray-900/80 border border-gray-800 rounded-xl p-4"
             >
               <h3 className="text-base font-bold text-white mb-1 line-clamp-1">
@@ -207,8 +207,7 @@ export async function CertificatesDisplayServer({
       {headerContent}
       <ContentGrid columns={2}>
         {certificates.map((certificate, index) => {
-          const certId =
-            certificate.inline?.id || certificate._id || `cert-${index}`;
+          const certId = certificate.inline?.id as string;
           return (
             <CertificateCard
               key={certId}

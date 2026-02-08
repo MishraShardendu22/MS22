@@ -19,7 +19,7 @@ export async function generateStaticParams() {
     if (response.status === 200 && response.data?.certifications) {
       return response.data.certifications
         .map((certificate) => ({
-          id: certificate._id || certificate.inline?.id || "",
+          id: certificate.inline?.id as string,
         }))
         .filter((c) => c.id);
     }

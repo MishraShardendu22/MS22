@@ -19,7 +19,7 @@ export async function generateStaticParams() {
     if (response.status === 200 && response.data?.projects) {
       return response.data.projects
         .map((project) => ({
-          id: project._id || project.id || "",
+          id: project.inline?.id as string,
         }))
         .filter((p) => p.id);
     }
