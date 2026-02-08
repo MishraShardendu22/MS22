@@ -15,15 +15,16 @@ api.interceptors.response.use(undefined, async (error: AxiosError) => {
   const config = error.config;
   if (!config) return Promise.reject(error);
 
+  // biome-ignore lint/suspicious/noExplicitAny: Axios config doesn't have __retryCount in type definition
   const retryCount = ((config as any).__retryCount as number | undefined) ?? 0;
   const maxRetries = 2;
   const status = error.response?.status;
 
-  // Retry on 429 (rate-limited) or 5xx (server error), up to maxRetries
   if (
     retryCount < maxRetries &&
     (status === 429 || (status && status >= 500))
   ) {
+    // biome-ignore lint/suspicious/noExplicitAny: Axios config doesn't have __retryCount in type definition
     (config as any).__retryCount = retryCount + 1;
     // Exponential backoff: 500ms, 1500ms
     const delay = (retryCount + 1) * 500 + Math.random() * 300;
