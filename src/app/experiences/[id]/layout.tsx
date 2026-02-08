@@ -4,32 +4,12 @@ import {
   generateBreadcrumbSchema,
   generateOrganizationSchema,
 } from "@/lib/structuredData";
-import { experiencesAPI } from "@/static/api/api.request";
+import { getCachedExperienceById } from "@/static/api/api.request";
 import { BaseURL } from "@/static/data";
 
 interface LayoutProps {
   params: Promise<{ id: string }>;
   children: React.ReactNode;
-}
-
-export async function generateStaticParams() {
-  try {
-    const response = await experiencesAPI.getAllExperiences(1, 500);
-
-    if (response.status === 200 && response.data?.experiences) {
-      return response.data.experiences
-        .map((experience) => ({
-          id: experience.inline?.id as string,
-        }))
-        .filter((e) => e.id);
-    }
-  } catch (error) {
-    console.error("Error generating static params for experiences:", error);
-    // Return empty array to allow build to continue
-  }
-
-  // Return empty array if API fails - pages will be generated on-demand
-  return [];
 }
 
 export async function generateMetadata({
@@ -38,7 +18,7 @@ export async function generateMetadata({
   const { id } = await params;
 
   try {
-    const response = await experiencesAPI.getExperienceById(id);
+    const response = await getCachedExperienceById(id);
 
     if (response.status === 200 && response.data) {
       const experience = response.data;
@@ -120,7 +100,7 @@ export default async function ExperienceDetailLayout({
   let breadcrumbSchema = null;
 
   try {
-    const response = await experiencesAPI.getExperienceById(id);
+    const response = await getCachedExperienceById(id);
 
     if (response.status === 200 && response.data) {
       const experience = response.data;

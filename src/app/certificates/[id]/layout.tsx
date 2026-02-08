@@ -4,30 +4,12 @@ import {
   generateBreadcrumbSchema,
   generateCertificationSchema,
 } from "@/lib/structuredData";
-import { certificatesAPI } from "@/static/api/api.request";
+import { getCachedCertificateById } from "@/static/api/api.request";
 import { BaseURL } from "@/static/data";
 
 interface LayoutProps {
   params: Promise<{ id: string }>;
   children: React.ReactNode;
-}
-
-export async function generateStaticParams() {
-  try {
-    const response = await certificatesAPI.getAllCertificates(1, 500);
-
-    if (response.status === 200 && response.data?.certifications) {
-      return response.data.certifications
-        .map((certificate) => ({
-          id: certificate.inline?.id as string,
-        }))
-        .filter((c) => c.id);
-    }
-  } catch (error) {
-    console.error("Error generating static params for certificates:", error);
-  }
-
-  return [];
 }
 
 export async function generateMetadata({
@@ -36,7 +18,7 @@ export async function generateMetadata({
   const { id } = await params;
 
   try {
-    const response = await certificatesAPI.getCertificateById(id);
+    const response = await getCachedCertificateById(id);
 
     if (response.status === 200 && response.data) {
       const certificate = response.data;
@@ -115,7 +97,7 @@ export default async function CertificateDetailLayout({
   let breadcrumbSchema = null;
 
   try {
-    const response = await certificatesAPI.getCertificateById(id);
+    const response = await getCachedCertificateById(id);
 
     if (response.status === 200 && response.data) {
       const certificate = response.data;

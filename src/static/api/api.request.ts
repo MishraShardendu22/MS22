@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { api } from "./api.response";
 import type {
   ApiResponse,
@@ -222,3 +223,23 @@ export const searchAPI = {
     return response.data;
   },
 };
+
+// ─── React.cache() wrappers for request deduplication ───
+// These ensure that layout (generateMetadata + body) and page
+// share a single API call per render instead of making 3 separate requests.
+
+export const getCachedProjectById = cache((id: string) =>
+  projectsAPI.getProjectById(id),
+);
+
+export const getCachedCertificateById = cache((id: string) =>
+  certificatesAPI.getCertificateById(id),
+);
+
+export const getCachedExperienceById = cache((id: string) =>
+  experiencesAPI.getExperienceById(id),
+);
+
+export const getCachedVolunteerById = cache((id: string) =>
+  volunteerAPI.getVolunteerById(id),
+);

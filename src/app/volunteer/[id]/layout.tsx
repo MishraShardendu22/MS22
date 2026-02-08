@@ -4,30 +4,12 @@ import {
   generateBreadcrumbSchema,
   generateOrganizationSchema,
 } from "@/lib/structuredData";
-import { volunteerAPI } from "@/static/api/api.request";
+import { getCachedVolunteerById } from "@/static/api/api.request";
 import { BaseURL } from "@/static/data";
 
 interface LayoutProps {
   params: Promise<{ id: string }>;
   children: React.ReactNode;
-}
-
-export async function generateStaticParams() {
-  try {
-    const response = await volunteerAPI.getAllVolunteers(1, 500);
-
-    if (response.status === 200 && response.data?.volunteer_experiences) {
-      return response.data.volunteer_experiences
-        .map((volunteer) => ({
-          id: volunteer.inline?.id as string,
-        }))
-        .filter((v) => v.id);
-    }
-  } catch (error) {
-    console.error("Error generating static params for volunteers:", error);
-  }
-
-  return [];
 }
 
 export async function generateMetadata({
@@ -36,7 +18,7 @@ export async function generateMetadata({
   const { id } = await params;
 
   try {
-    const response = await volunteerAPI.getVolunteerById(id);
+    const response = await getCachedVolunteerById(id);
 
     if (response.status === 200 && response.data) {
       const volunteer = response.data;
@@ -116,7 +98,7 @@ export default async function VolunteerDetailLayout({
   let breadcrumbSchema = null;
 
   try {
-    const response = await volunteerAPI.getVolunteerById(id);
+    const response = await getCachedVolunteerById(id);
 
     if (response.status === 200 && response.data) {
       const volunteer = response.data;
