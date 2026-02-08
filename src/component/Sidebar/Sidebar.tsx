@@ -11,6 +11,7 @@ import {
   Link as LinkIcon,
   Mail,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { SidebarSearchButton } from "@/component/Search";
 
@@ -46,12 +47,14 @@ export function Sidebar() {
         aria-label="Main navigation"
       >
         <div className="h-20 flex items-center justify-center border-b border-border">
-          <span
-            className="text-sm font-bold text-white"
+          <Image
+            src="/icon-svg/fc-barcelona.svg"
+            alt="FCB Logo"
+            width={40}
+            height={40}
+            className="object-contain"
             title="Shardendu Mishra"
-          >
-            SM
-          </span>
+          />
         </div>
 
         <div className="py-6 px-2 space-y-1 overflow-y-auto sidebar-scroll max-h-[calc(100vh-5rem)]">

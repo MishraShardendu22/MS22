@@ -195,7 +195,7 @@ export const metadata: Metadata = {
         type: "image/png",
       },
       {
-        url: "/professional.avif",
+        url: "/images-avif/professional.avif",
         width: 512,
         height: 512,
         alt: "Shardendu Mishra Professional Photo",
@@ -294,7 +294,7 @@ export default function RootLayout({
     "@type": "Person",
     name: "Shardendu Mishra",
     url: BASE_URL,
-    image: `${BASE_URL}/professional.avif`,
+    image: `${BASE_URL}/images-avif/professional.avif`,
     jobTitle: "Software Developer and Engineer",
     worksFor: {
       "@type": "Organization",

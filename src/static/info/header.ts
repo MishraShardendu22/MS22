@@ -9,8 +9,9 @@ import {
 } from "lucide-react";
 import type { Education, Introduction, SocialLink } from "./types";
 
-export const Icon: string = "/public/icon.avif";
-export const professionalImage: string = "/public/professional.avif";
+export const Icon: string = "/public/images-avif/icon.avif";
+export const professionalImage: string =
+  "/public/images-avif/professional.avif";
 
 export const mail: SocialLink = {
   url: "mishrashardendu22@gmail.com",

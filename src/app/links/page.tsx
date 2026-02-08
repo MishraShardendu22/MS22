@@ -225,7 +225,7 @@ export default function LinksPage() {
             <div className="absolute -inset-1 bg-linear-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-full blur opacity-75 animate-pulse" />
             <div className="relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-gray-900 shadow-2xl bg-gray-900">
               <Image
-                src="/professional.avif"
+                src="/images-avif/professional.avif"
                 alt="Shardendu Mishra"
                 width={128}
                 height={128}
@@ -324,7 +324,7 @@ export default function LinksPage() {
               <div className="absolute -inset-1 bg-linear-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-2xl blur opacity-50 animate-pulse" />
               <div className="relative bg-white p-4 rounded-2xl shadow-2xl">
                 <Image
-                  src="/shardendu-sankritya mishra.avif"
+                  src="/images-avif/shardendu-sankritya mishra.avif"
                   alt="QR Code - Gravatar Profile"
                   width={200}
                   height={200}

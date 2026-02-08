@@ -78,7 +78,7 @@ export function generatePersonSchema(): PersonSchema {
       "@type": "CollegeOrUniversity",
       name: "Indian Institute of Information Technology Dharwad",
     },
-    image: `${BaseURL}/professional.avif`,
+    image: `${BaseURL}/images-avif/professional.avif`,
     description:
       "Software Developer and Engineer passionate about building impactful applications with modern technologies. Specializing in Go, React, Next.js, TypeScript, and cloud-native solutions.",
   };
@@ -93,7 +93,7 @@ export function generateProfessionalServiceSchema() {
     description:
       "Professional software development services specializing in Go, React, Next.js, TypeScript, and cloud-native solutions",
     url: BaseURL,
-    image: `${BaseURL}/professional.avif`,
+    image: `${BaseURL}/images-avif/professional.avif`,
     priceRange: "$$",
     address: {
       "@type": "PostalAddress",
@@ -157,7 +157,7 @@ export function generateProfilePageSchema() {
       identifier: "mishrashardendu22",
       description:
         "Software Developer and Engineer specializing in Go, React, and cloud-native solutions",
-      image: `${BaseURL}/professional.avif`,
+      image: `${BaseURL}/images-avif/professional.avif`,
       sameAs: [
         "https://github.com/MishraShardendu22",
         "https://github.com/ShardenduMishra22",

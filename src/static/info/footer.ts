@@ -97,11 +97,11 @@ export const CodingProfiles = {
 
 export const images = {
   go: {
-    loc: "/go.avif",
+    loc: "/icon-svg/Go-Logo_Aqua.svg",
     alt: "Golang Logo",
   },
   fedora: {
-    loc: "/fedora.avif",
+    loc: "/icon-svg/fedora-svgrepo-com.svg",
     alt: "Fedora Logo",
   },
 };
