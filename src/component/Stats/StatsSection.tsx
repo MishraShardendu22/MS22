@@ -5,8 +5,6 @@ import { GitHubProfileCard } from "./GitHubProfileCard";
 import { LeetCodeStatsCard } from "./LeetCodeStatsCard";
 import { TopRepositoriesCard } from "./TopRepositoriesCard";
 
-const BASE_URL = API_BASE_URL;
-
 async function fetchWithTimeout(url: string, ms = 8000) {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), ms);
@@ -27,8 +25,8 @@ async function fetchWithTimeout(url: string, ms = 8000) {
 
 async function GitHubProfileSection() {
   const [gh, starsData] = await Promise.all([
-    fetchWithTimeout(`${BASE_URL}/api/github`),
-    fetchWithTimeout(`${BASE_URL}/api/github/stars`),
+    fetchWithTimeout(`${API_BASE_URL}/api/github`),
+    fetchWithTimeout(`${API_BASE_URL}/api/github/stars`),
   ]);
 
   if (!gh) return null;
@@ -37,7 +35,7 @@ async function GitHubProfileSection() {
 }
 
 async function LeetCodeSection() {
-  const lc = await fetchWithTimeout(`${BASE_URL}/api/leetcode`);
+  const lc = await fetchWithTimeout(`${API_BASE_URL}/api/leetcode`);
 
   if (!lc?.data?.matchedUser) return null;
 
@@ -46,8 +44,8 @@ async function LeetCodeSection() {
 
 async function CommitsSection() {
   const [commits, cal] = await Promise.all([
-    fetchWithTimeout(`${BASE_URL}/api/github/commits`),
-    fetchWithTimeout(`${BASE_URL}/api/github/calendar`),
+    fetchWithTimeout(`${API_BASE_URL}/api/github/commits`),
+    fetchWithTimeout(`${API_BASE_URL}/api/github/calendar`),
   ]);
 
   if (!commits || commits.length === 0) return null;
@@ -56,7 +54,7 @@ async function CommitsSection() {
 }
 
 async function TopReposSection() {
-  const top = await fetchWithTimeout(`${BASE_URL}/api/github/top-repos`);
+  const top = await fetchWithTimeout(`${API_BASE_URL}/api/github/top-repos`);
 
   if (!top || top.length === 0) return null;
 

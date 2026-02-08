@@ -58,33 +58,8 @@ interface TopRepositoriesCardProps {
 }
 
 export const TopRepositoriesCard = ({ topRepos }: TopRepositoriesCardProps) => {
-  if (!topRepos) {
-    return (
-      <div className="bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6">
-        <p className="text-red-400">Debug: topRepos is null or undefined</p>
-      </div>
-    );
-  }
-
-  if (!Array.isArray(topRepos)) {
-    return (
-      <div className="bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6">
-        <p className="text-red-400">
-          Debug: topRepos is not an array. Type: {typeof topRepos}
-        </p>
-        <pre className="text-xs text-gray-400 mt-2">
-          {JSON.stringify(topRepos, null, 2)}
-        </pre>
-      </div>
-    );
-  }
-
-  if (topRepos.length === 0) {
-    return (
-      <div className="bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6">
-        <p className="text-yellow-400">Debug: topRepos array is empty</p>
-      </div>
-    );
+  if (!topRepos || !Array.isArray(topRepos) || topRepos.length === 0) {
+    return null;
   }
 
   const validRepos = topRepos.filter(
@@ -93,16 +68,7 @@ export const TopRepositoriesCard = ({ topRepos }: TopRepositoriesCardProps) => {
   );
 
   if (validRepos.length === 0) {
-    return (
-      <div className="bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6">
-        <p className="text-orange-400">
-          Debug: No repos with valid url/html_url
-        </p>
-        <pre className="text-xs text-gray-400 mt-2">
-          {JSON.stringify(topRepos.slice(0, 2), null, 2)}
-        </pre>
-      </div>
-    );
+    return null;
   }
 
   return (

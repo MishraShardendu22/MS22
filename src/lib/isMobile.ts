@@ -13,14 +13,3 @@ export async function getIsMobile(): Promise<boolean> {
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i;
   return mobileRegex.test(userAgent);
 }
-
-/**
- * Check if device is tablet
- */
-export async function getIsTablet(): Promise<boolean> {
-  const headersList = await headers();
-  const userAgent = headersList.get("user-agent") || "";
-
-  const tabletRegex = /iPad|Android(?!.*Mobile)|Tablet/i;
-  return tabletRegex.test(userAgent);
-}

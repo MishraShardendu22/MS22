@@ -56,29 +56,3 @@ export function getLinkLabel(type: LinkType): string {
       return "Open Link";
   }
 }
-
-export function getYouTubeEmbedUrl(url: string): string | null {
-  try {
-    if (url.includes("youtube.com/watch?v=")) {
-      const videoId = url.split("watch?v=")[1]?.split("&")[0];
-      return videoId
-        ? `https://www.youtube-nocookie.com/embed/${videoId}`
-        : null;
-    }
-    if (url.includes("youtu.be/")) {
-      const videoId = url.split("youtu.be/")[1]?.split("?")[0];
-      return videoId
-        ? `https://www.youtube-nocookie.com/embed/${videoId}`
-        : null;
-    }
-  } catch {
-    return null;
-  }
-  return null;
-}
-
-export function canEmbedUrl(url: string): boolean {
-  const linkType = detectLinkType(url);
-  // Only allow embedding for actual live demos (not GitHub, LinkedIn, etc.)
-  return linkType === "live-demo";
-}

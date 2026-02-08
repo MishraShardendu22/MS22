@@ -70,7 +70,9 @@
   --color-info: var(--info);
 
   --font-sans: var(--font-body);
-  --font-mono: var(--font-mono);
+  --font-mono:
+    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",
+    monospace;
 }
 
 /* ------------------------------

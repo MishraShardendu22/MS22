@@ -73,13 +73,6 @@ function generateNodeId(prefix: string): string {
   return `${prefix}-${nodeCounter}`;
 }
 
-/**
- * Reset node counter (for testing purposes)
- */
-export function resetNodeCounter(): void {
-  nodeCounter = 0;
-}
-
 // =============================================================================
 // Tree Node Builders
 // =============================================================================
@@ -226,34 +219,12 @@ function createTimelineEntryNode(
 }
 
 /**
- * Get a human-readable label for a URL based on its type
- */
-function getLinkLabelFromUrl(url: string): string {
-  const type = detectLinkType(url);
-  switch (type) {
-    case "github":
-      return "View Code";
-    case "youtube":
-      return "View Demo";
-    case "linkedin":
-      return "View Post";
-    case "live-demo":
-      return "View Demo";
-    case "certificate":
-      return "View Certificate";
-    default:
-      return "Open Link";
-  }
-}
-
-/**
  * Create a media/links folder node from an array of URLs
  * Detects link types and creates appropriate link nodes
  */
 function createMediaLinksNode(label: string, urls: string[]): TreeNode {
   const linkNodes: TreeNode[] = urls.map((url, idx) => {
     const linkType = detectLinkType(url);
-    const _linkLabel = getLinkLabelFromUrl(url);
 
     // Create a descriptive label based on link type
     let displayLabel: string;

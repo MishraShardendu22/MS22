@@ -1,7 +1,7 @@
 "use client";
 
 import { Command, Search } from "lucide-react";
-import { useSyncExternalStore } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import type { SearchResultType } from "@/static/api/api.types";
 
 // Minimal external store for modal state
@@ -51,23 +51,16 @@ export function HeaderSearchButton({
   label = "Search",
   theme = "cyan",
 }: HeaderSearchButtonProps) {
-  // Set up global keyboard shortcut
-  if (typeof window !== "undefined") {
+  useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
         openSearchModal(filterType);
       }
     };
-    // Only add once
-    if (
-      !(window as unknown as { __searchShortcut?: boolean }).__searchShortcut
-    ) {
-      (window as unknown as { __searchShortcut?: boolean }).__searchShortcut =
-        true;
-      window.addEventListener("keydown", handler);
-    }
-  }
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [filterType]);
 
   return (
     <button

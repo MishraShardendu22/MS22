@@ -5,7 +5,7 @@
  * @returns Formatted date string
  */
 
-export type DateFormatStyle = "short" | "long";
+type DateFormatStyle = "short" | "long";
 
 interface FormatDateOptions {
   /** Format style: "short" = "Jan 2024", "long" = "January 2024" */

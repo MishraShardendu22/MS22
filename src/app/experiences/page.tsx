@@ -6,7 +6,6 @@ import { generatePageMetadata } from "@/lib/metadata";
 import { experiencesAPI } from "@/static/api/api.request";
 import type { Experience } from "@/static/api/api.types";
 
-export const dynamic = "force-dynamic";
 export const revalidate = 3600;
 
 export const metadata: Metadata = generatePageMetadata({

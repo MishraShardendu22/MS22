@@ -94,8 +94,6 @@ const InlineLoader = ({ message = "Loading..." }: LoadingStateProps) => {
 
 export const LoadingState = ({
   message,
-  // variant is kept for future use with different loading styles
-  variant: _variant,
   fullPage = false,
 }: LoadingStateProps) => {
   if (fullPage) {

@@ -6,7 +6,6 @@ import { generatePageMetadata } from "@/lib/metadata";
 import { certificatesAPI } from "@/static/api/api.request";
 import type { Certificate } from "@/static/api/api.types";
 
-export const dynamic = "force-dynamic";
 export const revalidate = 3600;
 
 export const metadata: Metadata = generatePageMetadata({
