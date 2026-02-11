@@ -1,5 +1,8 @@
 import { BaseURL } from "@/static/data";
 
+const CDN_PROFESSIONAL_AVIF =
+  "https://res.cloudinary.com/dkxw15and/image/upload/v1770811228/image-upload-app/iyeqraabcu6gn77dg48d.avif";
+
 export interface PersonSchema {
   "@context": string;
   "@type": string;
@@ -78,7 +81,7 @@ export function generatePersonSchema(): PersonSchema {
       "@type": "CollegeOrUniversity",
       name: "Indian Institute of Information Technology Dharwad",
     },
-    image: `${BaseURL}/images-avif/professional.avif`,
+    image: CDN_PROFESSIONAL_AVIF,
     description:
       "Software Developer and Engineer passionate about building impactful applications with modern technologies. Specializing in Go, React, Next.js, TypeScript, and cloud-native solutions.",
   };
@@ -93,7 +96,7 @@ export function generateProfessionalServiceSchema() {
     description:
       "Professional software development services specializing in Go, React, Next.js, TypeScript, and cloud-native solutions",
     url: BaseURL,
-    image: `${BaseURL}/images-avif/professional.avif`,
+    image: CDN_PROFESSIONAL_AVIF,
     priceRange: "$$",
     address: {
       "@type": "PostalAddress",
@@ -157,7 +160,7 @@ export function generateProfilePageSchema() {
       identifier: "mishrashardendu22",
       description:
         "Software Developer and Engineer specializing in Go, React, and cloud-native solutions",
-      image: `${BaseURL}/images-avif/professional.avif`,
+      image: CDN_PROFESSIONAL_AVIF,
       sameAs: [
         "https://github.com/MishraShardendu22",
         "https://github.com/ShardenduMishra22",

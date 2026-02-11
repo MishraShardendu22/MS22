@@ -168,6 +168,7 @@ export function FooterSection() {
                     src={images.go.loc}
                     alt={images.go.alt}
                     fill
+                    unoptimized
                     className="object-contain"
                     sizes="(max-width: 768px) 32px, (max-width: 1024px) 48px, 56px"
                   />
@@ -178,6 +179,7 @@ export function FooterSection() {
                     src={images.fedora.loc}
                     alt={images.fedora.alt}
                     fill
+                    unoptimized
                     className="object-contain"
                     sizes="(max-width: 768px) 32px, (max-width: 1024px) 48px, 56px"
                   />

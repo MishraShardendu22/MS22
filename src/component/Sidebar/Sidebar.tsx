@@ -15,6 +15,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { SidebarSearchButton } from "@/component/Search";
 
+const CDN_BARCA_SVG =
+  "https://res.cloudinary.com/dkxw15and/image/upload/v1770811194/image-upload-app/bmif2nh9ceq0xv4wlahz.svg";
+
 interface NavItem {
   name: string;
   href: string;
@@ -48,10 +51,11 @@ export function Sidebar() {
       >
         <div className="h-20 flex items-center justify-center border-b border-border">
           <Image
-            src="/icon-svg/fc-barcelona.svg"
+            src={CDN_BARCA_SVG}
             alt="FCB Logo"
             width={40}
             height={40}
+            unoptimized
             className="object-contain"
             title="Shardendu Mishra"
           />

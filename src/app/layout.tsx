@@ -11,6 +11,11 @@ const BASE_URL =
     ? `https://${process.env.VERCEL_URL}`
     : "http://localhost:3000");
 
+const CDN_ICON_PNG =
+  "https://res.cloudinary.com/dkxw15and/image/upload/v1770811006/image-upload-app/ehth0fbefclihy2a2qmj.png";
+const CDN_PROFESSIONAL_AVIF =
+  "https://res.cloudinary.com/dkxw15and/image/upload/v1770811228/image-upload-app/iyeqraabcu6gn77dg48d.avif";
+
 const archivo = Archivo({
   variable: "--font-heading",
   subsets: ["latin"],
@@ -156,13 +161,13 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
-      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
-      { url: "/icons/icon-512.png", sizes: "512x512", type: "image/png" },
+      { url: CDN_ICON_PNG, sizes: "192x192", type: "image/png" },
+      { url: CDN_ICON_PNG, sizes: "512x512", type: "image/png" },
     ],
     shortcut: "/favicon.ico",
     apple: [
-      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
-      { url: "/icons/icon-512.png", sizes: "512x512", type: "image/png" },
+      { url: CDN_ICON_PNG, sizes: "192x192", type: "image/png" },
+      { url: CDN_ICON_PNG, sizes: "512x512", type: "image/png" },
     ],
     other: [
       {
@@ -174,7 +179,7 @@ export const metadata: Metadata = {
       {
         rel: "apple-touch-icon",
         sizes: "180x180",
-        url: "/icons/icon-192.png",
+        url: CDN_ICON_PNG,
       },
     ],
   },
@@ -195,7 +200,7 @@ export const metadata: Metadata = {
         type: "image/png",
       },
       {
-        url: "/images-avif/professional.avif",
+        url: CDN_PROFESSIONAL_AVIF,
         width: 512,
         height: 512,
         alt: "Shardendu Mishra Professional Photo",
@@ -238,7 +243,7 @@ export const metadata: Metadata = {
     capable: true,
     statusBarStyle: "default",
     title: "Shardendu Portfolio",
-    startupImage: "/icons/icon-512.png",
+    startupImage: CDN_ICON_PNG,
   },
   formatDetection: {
     telephone: false,
@@ -294,7 +299,7 @@ export default function RootLayout({
     "@type": "Person",
     name: "Shardendu Mishra",
     url: BASE_URL,
-    image: `${BASE_URL}/images-avif/professional.avif`,
+    image: CDN_PROFESSIONAL_AVIF,
     jobTitle: "Software Developer and Engineer",
     worksFor: {
       "@type": "Organization",

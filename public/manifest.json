@@ -21,31 +21,31 @@
       "type": "image/x-icon"
     },
     {
-      "src": "/icons/icon-192.png",
+      "src": "https://res.cloudinary.com/dkxw15and/image/upload/v1770811006/image-upload-app/ehth0fbefclihy2a2qmj.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icons/icon-512.png",
+      "src": "https://res.cloudinary.com/dkxw15and/image/upload/v1770811006/image-upload-app/ehth0fbefclihy2a2qmj.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icons/icon-192.png",
+      "src": "https://res.cloudinary.com/dkxw15and/image/upload/v1770811006/image-upload-app/ehth0fbefclihy2a2qmj.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "/icons/icon-512.png",
+      "src": "https://res.cloudinary.com/dkxw15and/image/upload/v1770811006/image-upload-app/ehth0fbefclihy2a2qmj.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "/icons/apple-touch-icon.png",
+      "src": "https://res.cloudinary.com/dkxw15and/image/upload/v1770811006/image-upload-app/ehth0fbefclihy2a2qmj.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
@@ -53,7 +53,7 @@
   ],
   "screenshots": [
     {
-      "src": "/professional.avif",
+      "src": "https://res.cloudinary.com/dkxw15and/image/upload/v1770811228/image-upload-app/iyeqraabcu6gn77dg48d.avif",
       "sizes": "512x512",
       "type": "image/avif",
       "label": "Shardendu Mishra Portfolio Homepage"
@@ -67,7 +67,7 @@
       "url": "/projects",
       "icons": [
         {
-          "src": "/icons/icon-192.png",
+          "src": "https://res.cloudinary.com/dkxw15and/image/upload/v1770811006/image-upload-app/ehth0fbefclihy2a2qmj.png",
           "sizes": "192x192"
         }
       ]
@@ -79,7 +79,7 @@
       "url": "/experiences",
       "icons": [
         {
-          "src": "/icons/icon-192.png",
+          "src": "https://res.cloudinary.com/dkxw15and/image/upload/v1770811006/image-upload-app/ehth0fbefclihy2a2qmj.png",
           "sizes": "192x192"
         }
       ]
@@ -91,7 +91,7 @@
       "url": "/certificates",
       "icons": [
         {
-          "src": "/icons/icon-192.png",
+          "src": "https://res.cloudinary.com/dkxw15and/image/upload/v1770811006/image-upload-app/ehth0fbefclihy2a2qmj.png",
           "sizes": "192x192"
         }
       ]
