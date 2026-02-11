@@ -1,21 +1,12 @@
 import type { ReactNode } from "react";
-
-export type HeaderTheme = "cyan" | "blue" | "emerald" | "pink" | "purple";
+import { SECTION_HEADER_GRADIENTS, type SectionTheme } from "@/constants/theme";
 
 interface SectionHeaderProps {
   title: string;
-  theme?: HeaderTheme;
+  theme?: SectionTheme;
   description?: string;
   children?: ReactNode;
 }
-
-const titleGradients: Record<HeaderTheme, string> = {
-  pink: "from-pink-400 via-rose-400 to-red-400",
-  cyan: "from-cyan-400 via-blue-400 to-purple-400",
-  blue: "from-blue-400 via-indigo-400 to-purple-400",
-  emerald: "from-emerald-400 via-teal-400 to-green-400",
-  purple: "from-purple-400 via-violet-400 to-indigo-400",
-};
 
 export function SectionHeader({
   title,
@@ -23,7 +14,7 @@ export function SectionHeader({
   theme = "cyan",
   children,
 }: SectionHeaderProps) {
-  const gradient = titleGradients[theme];
+  const gradient = SECTION_HEADER_GRADIENTS[theme];
 
   return (
     <div className="mb-6 md:mb-8">

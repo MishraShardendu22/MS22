@@ -3,43 +3,16 @@
 import { ChevronDown, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
+import {
+  DETAIL_TREE_THEME_CONFIG,
+  type DetailTreeTheme,
+} from "@/constants/theme";
 import type { TreeSection } from "@/types/detailTree";
 
 interface ExpandableTreeSectionProps {
   section: TreeSection;
-  theme: "cyan" | "blue" | "purple" | "pink";
+  theme: DetailTreeTheme;
 }
-
-const themeColors = {
-  cyan: {
-    border: "border-cyan-500/30",
-    text: "text-cyan-400",
-    bg: "bg-cyan-500/10",
-    hover: "hover:border-cyan-500/50",
-    bullet: "bg-cyan-500",
-  },
-  blue: {
-    border: "border-blue-500/30",
-    text: "text-blue-400",
-    bg: "bg-blue-500/10",
-    hover: "hover:border-blue-500/50",
-    bullet: "bg-blue-500",
-  },
-  purple: {
-    border: "border-purple-500/30",
-    text: "text-purple-400",
-    bg: "bg-purple-500/10",
-    hover: "hover:border-purple-500/50",
-    bullet: "bg-purple-500",
-  },
-  pink: {
-    border: "border-pink-500/30",
-    text: "text-pink-400",
-    bg: "bg-pink-500/10",
-    hover: "hover:border-pink-500/50",
-    bullet: "bg-pink-500",
-  },
-};
 
 export function ExpandableTreeSection({
   section,
@@ -48,7 +21,7 @@ export function ExpandableTreeSection({
   const [isExpanded, setIsExpanded] = useState(
     section.defaultExpanded ?? false,
   );
-  const colors = themeColors[theme];
+  const colors = DETAIL_TREE_THEME_CONFIG[theme];
 
   const toggleExpanded = () => {
     setIsExpanded(!isExpanded);
@@ -56,7 +29,7 @@ export function ExpandableTreeSection({
 
   return (
     <div
-      className={`border ${colors.border} ${colors.hover} rounded-xl bg-gray-900/60 overflow-hidden transition-all`}
+      className={`border ${colors.border} ${colors.bgHover} rounded-xl bg-gray-900/60 overflow-hidden transition-all`}
     >
       {/* Header */}
       <button
@@ -95,7 +68,7 @@ interface SectionContentProps {
 }
 
 function SectionContent({ content, theme }: SectionContentProps) {
-  const colors = themeColors[theme];
+  const colors = DETAIL_TREE_THEME_CONFIG[theme];
 
   switch (content.type) {
     case "text":

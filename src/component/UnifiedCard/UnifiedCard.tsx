@@ -2,12 +2,14 @@ import { Building, Calendar, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
-
-export type CardTheme = "blue" | "pink" | "emerald" | "purple";
+import {
+  UNIFIED_CARD_THEME_CONFIG,
+  type UnifiedCardTheme,
+} from "@/constants/theme";
 
 interface UnifiedCardProps {
   index: number;
-  theme: CardTheme;
+  theme: UnifiedCardTheme;
   logo?: string;
   logoAlt?: string;
   title: string;
@@ -27,57 +29,6 @@ interface UnifiedCardProps {
   maxTechDisplay?: number;
 }
 
-const themeConfig = {
-  blue: {
-    border: "hover:border-blue-500/40",
-    shadow: "hover:shadow-blue-500/10",
-    gradient: "from-blue-500/5 via-transparent to-indigo-500/5",
-    titleHover: "group-hover:text-blue-400",
-    certificateBg: "bg-blue-500/10 hover:bg-blue-500/20",
-    certificateText: "text-blue-400 hover:text-blue-300",
-    certificateBorder: "border-blue-500/30",
-    techExtraBg: "bg-blue-500/10",
-    techExtraText: "text-blue-400",
-    techExtraBorder: "border-blue-500/30",
-  },
-  pink: {
-    border: "hover:border-pink-500/40",
-    shadow: "hover:shadow-pink-500/10",
-    gradient: "from-pink-500/5 via-transparent to-rose-500/5",
-    titleHover: "group-hover:text-pink-400",
-    certificateBg: "bg-pink-500/10 hover:bg-pink-500/20",
-    certificateText: "text-pink-400 hover:text-pink-300",
-    certificateBorder: "border-pink-500/30",
-    techExtraBg: "bg-pink-500/10",
-    techExtraText: "text-pink-400",
-    techExtraBorder: "border-pink-500/30",
-  },
-  emerald: {
-    border: "hover:border-emerald-500/40",
-    shadow: "hover:shadow-emerald-500/10",
-    gradient: "from-emerald-500/5 via-transparent to-teal-500/5",
-    titleHover: "group-hover:text-emerald-400",
-    certificateBg: "bg-emerald-500/10 hover:bg-emerald-500/20",
-    certificateText: "text-emerald-400 hover:text-emerald-300",
-    certificateBorder: "border-emerald-500/30",
-    techExtraBg: "bg-emerald-500/10",
-    techExtraText: "text-emerald-400",
-    techExtraBorder: "border-emerald-500/30",
-  },
-  purple: {
-    border: "hover:border-purple-500/40",
-    shadow: "hover:shadow-purple-500/10",
-    gradient: "from-purple-500/5 via-transparent to-violet-500/5",
-    titleHover: "group-hover:text-purple-400",
-    certificateBg: "bg-purple-500/10 hover:bg-purple-500/20",
-    certificateText: "text-purple-400 hover:text-purple-300",
-    certificateBorder: "border-purple-500/30",
-    techExtraBg: "bg-purple-500/10",
-    techExtraText: "text-purple-400",
-    techExtraBorder: "border-purple-500/30",
-  },
-};
-
 export const UnifiedCard = ({
   index,
   theme,
@@ -96,7 +47,7 @@ export const UnifiedCard = ({
   extraInfo,
   maxTechDisplay = 4,
 }: UnifiedCardProps) => {
-  const colors = themeConfig[theme];
+  const colors = UNIFIED_CARD_THEME_CONFIG[theme];
 
   return (
     <div

@@ -1,3 +1,4 @@
+export type { UnifiedCardTheme } from "@/constants/theme";
 export { ErrorState } from "./Error";
 export { FooterSection } from "./Footer";
 export {
@@ -17,7 +18,6 @@ export {
 } from "./Search";
 export {
   ContentGrid,
-  type HeaderTheme,
   SectionHeader,
   type SectionTheme,
   SectionWrapper,
@@ -25,5 +25,4 @@ export {
 export { SkillsDisplay } from "./Skill";
 export { StatsLoadingSkeleton, StatsSection } from "./Stats";
 export { Time, TimelineDisplay } from "./Timeline";
-export type { CardTheme } from "./UnifiedCard";
 export { UnifiedCard } from "./UnifiedCard";

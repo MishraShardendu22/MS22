@@ -1,23 +1,14 @@
 import type { ReactNode } from "react";
-
-export type SectionTheme = "cyan" | "blue" | "emerald" | "pink" | "purple";
+import {
+  SECTION_WRAPPER_THEME_CONFIG,
+  type SectionTheme,
+} from "@/constants/theme";
 
 interface SectionWrapperProps {
   children: ReactNode;
   theme?: SectionTheme;
   className?: string;
 }
-
-const themeGradients: Record<
-  SectionTheme,
-  { primary: string; secondary: string }
-> = {
-  cyan: { primary: "bg-cyan-500/5", secondary: "bg-blue-500/5" },
-  blue: { primary: "bg-blue-500/5", secondary: "bg-indigo-500/5" },
-  emerald: { primary: "bg-emerald-500/5", secondary: "bg-teal-500/5" },
-  pink: { primary: "bg-pink-500/5", secondary: "bg-rose-500/5" },
-  purple: { primary: "bg-purple-500/5", secondary: "bg-violet-500/5" },
-};
 
 /**
  * Reusable section wrapper with consistent background styling
@@ -27,7 +18,7 @@ export function SectionWrapper({
   theme = "cyan",
   className = "",
 }: SectionWrapperProps) {
-  const gradients = themeGradients[theme];
+  const gradients = SECTION_WRAPPER_THEME_CONFIG[theme];
 
   return (
     <section

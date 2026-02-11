@@ -2,6 +2,7 @@ import { ArrowLeft, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { PageSearch } from "@/component/Search";
+import { DETAIL_TREE_VIEW_THEME_CONFIG } from "@/constants/theme";
 import type { DetailTreeData } from "@/types/detailTree";
 import { getLinkLabel } from "@/utils/linkDetection";
 import { ExpandableTreeSection } from "./ExpandableTreeSection";
@@ -11,61 +12,6 @@ interface DetailTreeViewProps {
   data: DetailTreeData;
 }
 
-const themeColors = {
-  cyan: {
-    accent: "text-cyan-400",
-    border: "border-cyan-500/40",
-    bg: "bg-cyan-500/10",
-    hover: "hover:border-cyan-500/50",
-    gradient: "from-cyan-500 via-blue-500 to-purple-600",
-    glow: "from-cyan-500/10 to-purple-500/10",
-    linkBg: "bg-linear-to-r from-cyan-500/20 to-blue-500/20",
-    linkBorder: "border-cyan-500/40",
-    linkHover: "hover:from-cyan-500/30 hover:to-blue-500/30",
-    headerBg: "bg-cyan-950/20",
-    headerBorder: "border-cyan-500/20",
-  },
-  blue: {
-    accent: "text-blue-400",
-    border: "border-blue-500/40",
-    bg: "bg-blue-500/10",
-    hover: "hover:border-blue-500/50",
-    gradient: "from-blue-500 via-indigo-500 to-purple-600",
-    glow: "from-blue-500/10 to-purple-500/10",
-    linkBg: "bg-linear-to-r from-blue-500/20 to-indigo-500/20",
-    linkBorder: "border-blue-500/40",
-    linkHover: "hover:from-blue-500/30 hover:to-indigo-500/30",
-    headerBg: "bg-blue-950/20",
-    headerBorder: "border-blue-500/20",
-  },
-  purple: {
-    accent: "text-purple-400",
-    border: "border-purple-500/40",
-    bg: "bg-purple-500/10",
-    hover: "hover:border-purple-500/50",
-    gradient: "from-purple-500 via-pink-500 to-rose-600",
-    glow: "from-purple-500/10 to-pink-500/10",
-    linkBg: "bg-linear-to-r from-purple-500/20 to-pink-500/20",
-    linkBorder: "border-purple-500/40",
-    linkHover: "hover:from-purple-500/30 hover:to-pink-500/30",
-    headerBg: "bg-purple-950/20",
-    headerBorder: "border-purple-500/20",
-  },
-  pink: {
-    accent: "text-pink-400",
-    border: "border-pink-500/40",
-    bg: "bg-pink-500/10",
-    hover: "hover:border-pink-500/50",
-    gradient: "from-pink-500 via-rose-500 to-purple-600",
-    glow: "from-pink-500/10 to-purple-500/10",
-    linkBg: "bg-linear-to-r from-pink-500/20 to-rose-500/20",
-    linkBorder: "border-pink-500/40",
-    linkHover: "hover:from-pink-500/30 hover:to-rose-500/30",
-    headerBg: "bg-pink-950/20",
-    headerBorder: "border-pink-500/20",
-  },
-};
-
 const badgeVariants = {
   default: "bg-gray-500/10 border-gray-500/20 text-gray-400",
   success: "bg-green-500/10 border-green-500/20 text-green-400",
@@ -74,7 +20,7 @@ const badgeVariants = {
 };
 
 export function DetailTreeView({ data }: DetailTreeViewProps) {
-  const colors = themeColors[data.theme];
+  const colors = DETAIL_TREE_VIEW_THEME_CONFIG[data.theme];
   const hasTree = data.tree && data.tree.length > 0;
   const hasSections = data.sections && data.sections.length > 0;
 

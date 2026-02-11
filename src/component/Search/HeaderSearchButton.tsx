@@ -2,6 +2,10 @@
 
 import { Command, Search } from "lucide-react";
 import { useEffect, useSyncExternalStore } from "react";
+import {
+  SEARCH_BUTTON_THEME_CONFIG,
+  type SearchButtonTheme,
+} from "@/constants/theme";
 import type { SearchResultType } from "@/static/api/api.types";
 
 // Minimal external store for modal state
@@ -36,15 +40,8 @@ export const getServerModalSnapshot = () => ({
 interface HeaderSearchButtonProps {
   filterType?: SearchResultType;
   label?: string;
-  theme?: "cyan" | "blue" | "purple" | "pink";
+  theme?: SearchButtonTheme;
 }
-
-const themeStyles = {
-  cyan: "hover:border-cyan-500/50 hover:text-cyan-400",
-  blue: "hover:border-blue-500/50 hover:text-blue-400",
-  purple: "hover:border-purple-500/50 hover:text-purple-400",
-  pink: "hover:border-pink-500/50 hover:text-pink-400",
-};
 
 export function HeaderSearchButton({
   filterType,
@@ -66,7 +63,7 @@ export function HeaderSearchButton({
     <button
       type="button"
       onClick={() => openSearchModal(filterType)}
-      className={`flex items-center gap-2 px-3 py-2 bg-gray-800/70 hover:bg-gray-800 border border-gray-700/70 rounded-lg text-gray-400 ${themeStyles[theme]} transition-colors`}
+      className={`flex items-center gap-2 px-3 py-2 bg-gray-800/70 hover:bg-gray-800 border border-gray-700/70 rounded-lg text-gray-400 ${SEARCH_BUTTON_THEME_CONFIG[theme]} transition-colors`}
       aria-label="Search"
     >
       <Search className="w-4 h-4" />

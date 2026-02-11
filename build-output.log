@@ -1,0 +1,27 @@
+
+> mishrashardendu22@4.0.0 build /home/mishrashardendu22/MS-Personal/MS22
+> next build
+
+▲ Next.js 16.1.6 (Turbopack)
+- Environments: .env.local
+- Experiments (use with caution):
+  ✓ optimizeCss
+  · optimizePackageImports
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 15.0s
+  Running TypeScript ...
+Failed to compile.
+
+./src/component/DetailTree/ExpandableTreeSection.tsx:21:18
+Type error: Cannot find name 'themeColors'.
+
+[0m [90m 19 |[39m     section[33m.[39mdefaultExpanded [33m?[39m[33m?[39m [36mfalse[39m[33m,[39m
+ [90m 20 |[39m   )[33m;[39m
+[31m[1m>[22m[39m[90m 21 |[39m   [36mconst[39m colors [33m=[39m themeColors[theme][33m;[39m
+ [90m    |[39m                  [31m[1m^[22m[39m
+ [90m 22 |[39m
+ [90m 23 |[39m   [36mconst[39m toggleExpanded [33m=[39m () [33m=>[39m {
+ [90m 24 |[39m     setIsExpanded([33m![39misExpanded)[33m;[39m[0m
+Next.js build worker exited with code: 1 and signal: null
+ ELIFECYCLE  Command failed with exit code 1.

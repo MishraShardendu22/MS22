@@ -3,53 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  DETAIL_TREE_THEME_CONFIG,
+  type DetailTreeTheme,
+} from "@/constants/theme";
 import type { TreeNode, TreeNodePayload } from "@/types/detailTree";
 import { TreeNodeIcon } from "./TreeNodeIcon";
-
-// =============================================================================
-// Theme Colors
-// =============================================================================
-
-const themeColors = {
-  cyan: {
-    text: "text-cyan-400",
-    textHover: "hover:text-cyan-300",
-    border: "border-cyan-500/30",
-    bg: "bg-cyan-500/10",
-    bgHover: "hover:bg-cyan-500/5",
-    bullet: "bg-cyan-500",
-    line: "border-cyan-500/20",
-  },
-  blue: {
-    text: "text-blue-400",
-    textHover: "hover:text-blue-300",
-    border: "border-blue-500/30",
-    bg: "bg-blue-500/10",
-    bgHover: "hover:bg-blue-500/5",
-    bullet: "bg-blue-500",
-    line: "border-blue-500/20",
-  },
-  purple: {
-    text: "text-purple-400",
-    textHover: "hover:text-purple-300",
-    border: "border-purple-500/30",
-    bg: "bg-purple-500/10",
-    bgHover: "hover:bg-purple-500/5",
-    bullet: "bg-purple-500",
-    line: "border-purple-500/20",
-  },
-  pink: {
-    text: "text-pink-400",
-    textHover: "hover:text-pink-300",
-    border: "border-pink-500/30",
-    bg: "bg-pink-500/10",
-    bgHover: "hover:bg-pink-500/5",
-    bullet: "bg-pink-500",
-    line: "border-pink-500/20",
-  },
-};
-
-type Theme = keyof typeof themeColors;
 
 // =============================================================================
 // Chevron Component
@@ -80,11 +39,11 @@ function Chevron({ isExpanded, className = "" }: ChevronProps) {
 
 interface ContentRendererProps {
   payload: TreeNodePayload;
-  theme: Theme;
+  theme: DetailTreeTheme;
 }
 
 function ContentRenderer({ payload, theme }: ContentRendererProps) {
-  const colors = themeColors[theme];
+  const colors = DETAIL_TREE_THEME_CONFIG[theme];
 
   switch (payload.type) {
     case "text":
@@ -267,7 +226,7 @@ function ContentRenderer({ payload, theme }: ContentRendererProps) {
 interface TreeRowProps {
   node: TreeNode;
   depth: number;
-  theme: Theme;
+  theme: DetailTreeTheme;
   isLast: boolean;
   parentPath: boolean[];
   onToggle: (nodeId: string) => void;
@@ -287,7 +246,7 @@ function TreeRow({
   focusedNodeId,
   onFocus,
 }: TreeRowProps) {
-  const colors = themeColors[theme];
+  const colors = DETAIL_TREE_THEME_CONFIG[theme];
   const hasChildren = node.children && node.children.length > 0;
   const isFolder = node.type === "folder" || hasChildren;
   const isExpanded = expandedNodes.has(node.id);
@@ -451,7 +410,7 @@ function TreeRow({
 
 interface TreeContainerProps {
   nodes: TreeNode[];
-  theme: Theme;
+  theme: DetailTreeTheme;
 }
 
 export function TreeContainer({ nodes, theme }: TreeContainerProps) {

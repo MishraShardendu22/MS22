@@ -1,2 +1,2 @@
-export type { CardTheme } from "./UnifiedCard";
+export type { UnifiedCardTheme } from "@/constants/theme";
 export { UnifiedCard } from "./UnifiedCard";
