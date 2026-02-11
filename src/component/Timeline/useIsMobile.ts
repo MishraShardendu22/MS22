@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 
+const MOBILE_QUERY = "(max-width: 767px)";
+
 export const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+    const mql = window.matchMedia(MOBILE_QUERY);
+    setIsMobile(mql.matches);
+
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
   }, []);
 
   return isMobile;

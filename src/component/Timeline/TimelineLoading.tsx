@@ -1,5 +1,5 @@
-import { LoadingState } from "@/component/Loading";
+import { LoadingStateLight } from "@/component/Loading";
 
 export const TimelineLoading = () => {
-  return <LoadingState message="Loading timeline..." variant="blue" />;
+  return <LoadingStateLight message="Loading timeline..." variant="blue" />;
 };

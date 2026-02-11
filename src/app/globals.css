@@ -102,7 +102,9 @@ body {
   }
 
   /* Ensure no horizontal overflow on mobile */
-  * {
+  .container,
+  main,
+  section {
     max-width: 100%;
   }
 }
@@ -157,24 +159,16 @@ body {
 
 /* Optimize rendering for mobile */
 @media (max-width: 768px) {
-  * {
-    will-change: auto;
-  }
-
   img,
   video {
     content-visibility: auto;
   }
 }
 
-/* Hardware acceleration for transforms */
-.transform,
-[class*="translate"],
-[class*="scale"],
-[class*="rotate"] {
+/* Hardware acceleration for transforms - only for animated elements */
+.transform {
   transform: translateZ(0);
   backface-visibility: hidden;
-  perspective: 1000px;
 }
 
 /* ------------------------------
@@ -188,12 +182,9 @@ h3,
 h4,
 h5,
 h6,
-p,
-span,
-div {
+p {
   overflow-wrap: break-word;
   word-wrap: break-word;
-  hyphens: auto;
 }
 
 /* Prevent layout shift on mobile */
@@ -215,83 +206,29 @@ div {
     min-width: 44px;
   }
 
-  /* Kill all animations on mobile for performance */
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms;
-    animation-iteration-count: 1;
-    transition-duration: 0.01ms;
-    scroll-behavior: auto;
-  }
-
-  /* Remove blur effects on mobile */
+  /* Reduce heavy visual effects on mobile for perf */
   .blur-3xl,
-  .blur-2xl,
-  .blur-xl,
-  .blur-lg,
-  .blur-md,
-  .blur {
-    filter: none;
-    backdrop-filter: none;
+  .blur-2xl {
+    filter: blur(24px);
   }
 
   /* Remove backdrop blur on mobile */
-  .backdrop-blur-sm,
-  .backdrop-blur,
-  .backdrop-blur-md,
-  .backdrop-blur-lg,
-  .backdrop-blur-xl {
-    backdrop-filter: none;
+  .backdrop-blur-xl,
+  .backdrop-blur-lg {
+    backdrop-filter: blur(8px);
   }
 
   /* Remove animated backgrounds on mobile */
-  .animate-blob,
-  .animate-pulse,
-  .animate-bounce,
-  .animate-spin,
-  .animate-ping {
+  .animate-blob {
     animation: none;
   }
 
-  /* Remove gradients complexity on mobile */
-  .bg-linear-to-r,
-  .bg-linear-to-l,
-  .bg-linear-to-t,
-  .bg-linear-to-b,
-  .bg-linear-to-br,
-  .bg-linear-to-bl,
-  .bg-linear-to-tr,
-  .bg-linear-to-tl {
-    background-size: 100% 100%;
-    animation: none;
-  }
-
-  /* Remove shadow complexity on mobile */
-  .shadow-lg,
-  .shadow-xl,
+  /* Reduce shadow complexity on mobile */
   .shadow-2xl,
   [class*="shadow-cyan"],
   [class*="shadow-blue"],
   [class*="shadow-purple"] {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  }
-
-  /* Kill filter effects */
-  [class*="filter"],
-  [class*="drop-shadow"] {
-    filter: none;
-  }
-
-  /* Simplify borders */
-  [class*="border-"] {
-    border-width: 1px;
-  }
-
-  /* Remove SVG animations */
-  svg * {
-    animation: none;
-    transition: none;
   }
 
   /* Force simple backgrounds */

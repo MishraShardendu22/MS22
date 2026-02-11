@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { LoadingState } from "@/component/Loading";
+import { LoadingStateLight } from "@/component/Loading";
 import { EmptyState, ListCard, ServerPageHeader } from "@/component/Section";
 import { generatePageMetadata } from "@/lib/metadata";
 import { volunteerAPI } from "@/static/api/api.request";
@@ -129,7 +129,7 @@ export default async function VolunteerPage({ searchParams }: PageProps) {
       <div className="container mx-auto px-4 py-6 relative z-10 max-w-400">
         <Suspense
           fallback={
-            <LoadingState
+            <LoadingStateLight
               message="Loading volunteer experiences..."
               variant="pink"
             />

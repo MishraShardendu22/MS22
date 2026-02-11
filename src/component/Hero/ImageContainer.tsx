@@ -24,7 +24,7 @@ export const ImageContainer = () => {
           alt="Shardendu Mishra - Professional Software Developer photo"
           fill
           className="object-cover opacity-0 scale-98 transition-all duration-300 delay-150 group-hover:opacity-100 group-hover:scale-100"
-          priority
+          loading="lazy"
           sizes="(max-width: 768px) 100vw, 50vw"
         />
         <div className="pixel-grid" />

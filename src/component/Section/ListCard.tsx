@@ -56,6 +56,7 @@ export function ListCard({
                 height={48}
                 className="object-contain"
                 loading="lazy"
+                sizes="48px"
               />
             </div>
           )}

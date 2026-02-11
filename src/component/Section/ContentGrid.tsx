@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { LoadingState } from "@/component/Loading";
+import { LoadingStateLight } from "@/component/Loading";
 
 interface ContentGridProps {
   minHeight?: string;
@@ -33,7 +33,7 @@ export function ContentGrid({
         }`}
         style={{ minHeight }}
       >
-        <LoadingState message={loadingMessage} variant={loadingVariant} />
+        <LoadingStateLight message={loadingMessage} variant={loadingVariant} />
       </div>
       <div
         className={`grid ${gridCols[columns]} gap-4 md:gap-6 transition-opacity duration-300 ${

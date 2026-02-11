@@ -6,7 +6,7 @@ export {
   ImageContainer,
   TextContent,
 } from "./Hero";
-export { LoadingState, NameLoader } from "./Loading";
+export { LoadingStateLight } from "./Loading";
 export { PaginationControls, type PaginationTheme } from "./Pagination";
 export {
   HeaderSearchButton,

@@ -9,7 +9,7 @@ import {
 } from "@/component/Experience";
 import { FooterSection, FooterSectionMobile } from "@/component/Footer/Footer";
 import { HeroSection } from "@/component/Hero/HeroSectionWrapper";
-import { LoadingState } from "@/component/Loading";
+import { LoadingStateLight } from "@/component/Loading";
 import {
   ProjectsDisplayMobile,
   ProjectsDisplayServer,
@@ -65,7 +65,7 @@ const page = async ({ searchParams }: PageProps) => {
         <section id="skills" aria-label="Technical skills and expertise">
           <Suspense
             fallback={
-              <LoadingState message="Loading skills..." variant="cyan" />
+              <LoadingStateLight message="Loading skills..." variant="cyan" />
             }
           >
             {isMobile ? (
@@ -83,7 +83,10 @@ const page = async ({ searchParams }: PageProps) => {
           >
             <Suspense
               fallback={
-                <LoadingState message="Loading timeline..." variant="blue" />
+                <LoadingStateLight
+                  message="Loading timeline..."
+                  variant="blue"
+                />
               }
             >
               <Time />
@@ -93,7 +96,7 @@ const page = async ({ searchParams }: PageProps) => {
         <section id="projects" aria-label="Featured projects and work">
           <Suspense
             fallback={
-              <LoadingState message="Loading projects..." variant="cyan" />
+              <LoadingStateLight message="Loading projects..." variant="cyan" />
             }
           >
             {isMobile ? (
@@ -106,7 +109,10 @@ const page = async ({ searchParams }: PageProps) => {
         <section id="experience" aria-label="Professional experience">
           <Suspense
             fallback={
-              <LoadingState message="Loading experiences..." variant="blue" />
+              <LoadingStateLight
+                message="Loading experiences..."
+                variant="blue"
+              />
             }
           >
             {isMobile ? (
@@ -119,7 +125,7 @@ const page = async ({ searchParams }: PageProps) => {
         <section id="volunteer" aria-label="Volunteer experience">
           <Suspense
             fallback={
-              <LoadingState
+              <LoadingStateLight
                 message="Loading volunteer experiences..."
                 variant="pink"
               />
@@ -135,7 +141,7 @@ const page = async ({ searchParams }: PageProps) => {
         <section id="certifications" aria-label="Professional certifications">
           <Suspense
             fallback={
-              <LoadingState
+              <LoadingStateLight
                 message="Loading certifications..."
                 variant="emerald"
               />
