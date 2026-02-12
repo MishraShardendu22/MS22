@@ -121,7 +121,9 @@ export const EducationSection = () => {
                   <span className="text-xs sm:text-sm font-semibold text-gray-300">
                     Class 12th
                   </span>
-                  <span className="text-xl sm:text-2xl font-bold text-cyan-400">96.4%</span>
+                  <span className="text-xl sm:text-2xl font-bold text-cyan-400">
+                    96.4%
+                  </span>
                   <div className="flex items-center gap-1.5">
                     <BookOpen className="w-3 h-3 text-cyan-400/70" />
                     <p className="text-xs text-gray-500">
@@ -137,7 +139,9 @@ export const EducationSection = () => {
                   <span className="text-xs sm:text-sm font-semibold text-gray-300">
                     Class 10th
                   </span>
-                  <span className="text-xl sm:text-2xl font-bold text-cyan-400">84%</span>
+                  <span className="text-xl sm:text-2xl font-bold text-cyan-400">
+                    84%
+                  </span>
                   <div className="flex items-center gap-1.5">
                     <BookOpen className="w-3 h-3 text-cyan-400/70" />
                     <p className="text-xs text-gray-500">All Subjects</p>
