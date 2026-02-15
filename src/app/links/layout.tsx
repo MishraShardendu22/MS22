@@ -34,5 +34,9 @@ export default function LinksLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div className="flex-1 w-full">{children}</div>;
+  return (
+    <div className="fixed inset-0 z-50 lg:relative lg:flex-1 lg:z-auto">
+      {children}
+    </div>
+  );
 }
