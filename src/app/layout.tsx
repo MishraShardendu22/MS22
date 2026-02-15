@@ -1,9 +1,12 @@
 import "./globals.css";
+import "./hindu-traditional.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
 import { Archivo, Inter } from "next/font/google";
 import { SidebarWrapper } from "@/component/Sidebar/SidebarWrapper";
+import { ThemeProvider } from "@/component/ThemeToggle";
+import { MobileThemeToggle } from "@/component/ThemeToggle/MobileThemeToggle";
 
 const BASE_URL =
   process.env.NEXT_PUBLIC_BASE_URL ||
@@ -275,10 +278,13 @@ export default function RootLayout({
         </noscript>
         <Analytics />
         <SpeedInsights />
-        <div className="flex min-h-screen">
-          <SidebarWrapper />
-          {children}
-        </div>
+        <ThemeProvider>
+          <div className="flex min-h-screen">
+            <SidebarWrapper />
+            {children}
+          </div>
+          <MobileThemeToggle />
+        </ThemeProvider>
       </body>
     </html>
   );

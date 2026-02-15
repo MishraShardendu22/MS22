@@ -14,6 +14,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { SidebarSearchButton } from "@/component/Search";
+import { ThemeToggleButton } from "@/component/ThemeToggle";
 
 const CDN_BARCA_SVG =
   "https://res.cloudinary.com/dkxw15and/image/upload/v1770811194/image-upload-app/bmif2nh9ceq0xv4wlahz.svg";
@@ -80,6 +81,14 @@ export function Sidebar() {
               </Link>
             );
           })}
+
+          {/* Theme Toggle */}
+          <div
+            className="nav-tooltip relative flex items-center justify-center"
+            data-tooltip="Theme"
+          >
+            <ThemeToggleButton variant="sidebar" />
+          </div>
         </div>
       </nav>
 

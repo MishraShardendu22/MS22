@@ -1,6 +1,6 @@
 import { EducationSection } from "./EducationSection";
-import { ImageContainer } from "./ImageContainer";
 import { TextContent } from "./TextContent";
+import { ThemedImageContainer } from "./ThemedImageContainer";
 
 export const HeroSectionDesktop = () => {
   return (
@@ -8,7 +8,7 @@ export const HeroSectionDesktop = () => {
       <div className="container mx-auto max-w-400 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 lg:gap-8 items-center mb-12 md:mb-16 lg:mb-20">
           <TextContent />
-          <ImageContainer />
+          <ThemedImageContainer />
         </div>
         <EducationSection />
       </div>

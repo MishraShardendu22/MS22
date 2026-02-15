@@ -1,0 +1,497 @@
+/* ==================================================================
+   Hindu Traditional Theme — CSS Custom Property Override Layer
+   Applied via html[data-theme="hindu-traditional"]
+   ================================================================== */
+
+/* ------------------------------------------------
+   1. Color Palette Override
+   ------------------------------------------------ */
+html[data-theme="hindu-traditional"] {
+  /* Core surfaces */
+  --background: #1a0f08;
+  --foreground: #f5e6d3;
+  --surface: #231510;
+  --surface-elevated: #2e1c14;
+  --border: #4a3228;
+
+  /* Text */
+  --text-primary: #f5e6d3;
+  --text-secondary: #c9a882;
+  --text-disabled: #8b6f5a;
+
+  /* Saffron primary */
+  --saffron-primary: #ff8c00;
+  --saffron-hover: #ffa033;
+  --saffron-dark: #cc7000;
+
+  /* Deep maroon secondary */
+  --maroon-primary: #800020;
+  --maroon-hover: #9a0030;
+  --maroon-light: #a83252;
+
+  /* Gold accent */
+  --gold-accent: #d4a843;
+  --gold-hover: #e6be5a;
+  --gold-dark: #b8922e;
+
+  /* Sandalwood background tone */
+  --sandalwood: #2a1f16;
+  --sandalwood-light: #3d2e22;
+  --sandalwood-warm: #4a3828;
+
+  /* Map existing design tokens to traditional palette */
+  --blue-primary: #2a1508;
+  --blue-hover: #3d2415;
+  --blue-active: #5a3820;
+
+  --lime-primary: #d4a843;
+  --lime-hover: #e6be5a;
+  --lime-dark: #6b5420;
+
+  --red-accent: #800020;
+
+  --success: #d4a843;
+  --warning: #ff8c00;
+  --error: #800020;
+  --info: #d4a843;
+
+  /* Font override */
+  --font-heading-traditional: "Noto Serif", "Georgia", "Times New Roman", serif;
+}
+
+/* ------------------------------------------------
+   2. Typography
+   ------------------------------------------------ */
+html[data-theme="hindu-traditional"] h1,
+html[data-theme="hindu-traditional"] h2,
+html[data-theme="hindu-traditional"] h3,
+html[data-theme="hindu-traditional"] h4,
+html[data-theme="hindu-traditional"] h5,
+html[data-theme="hindu-traditional"] h6 {
+  font-family: var(--font-heading-traditional);
+}
+
+/* ------------------------------------------------
+   4. Selection & Focus
+   ------------------------------------------------ */
+html[data-theme="hindu-traditional"] ::selection {
+  background: var(--saffron-primary);
+  color: #1a0f08;
+}
+
+html[data-theme="hindu-traditional"] :focus-visible {
+  outline-color: var(--gold-accent);
+}
+
+/* ------------------------------------------------
+   5. Ornamental Borders
+   ------------------------------------------------ */
+html[data-theme="hindu-traditional"] .border-border {
+  border-color: var(--border);
+  border-image: repeating-linear-gradient(
+      90deg,
+      var(--gold-accent) 0px,
+      var(--gold-accent) 4px,
+      transparent 4px,
+      transparent 8px,
+      var(--saffron-primary) 8px,
+      var(--saffron-primary) 12px,
+      transparent 12px,
+      transparent 16px
+    )
+    1;
+}
+
+/* ------------------------------------------------
+   6. Buttons — Temple-style
+   ------------------------------------------------ */
+html[data-theme="hindu-traditional"] button,
+html[data-theme="hindu-traditional"] [role="button"] {
+  --btn-bg: linear-gradient(
+    135deg,
+    var(--gold-dark),
+    var(--gold-accent),
+    var(--gold-dark)
+  );
+}
+
+html[data-theme="hindu-traditional"] .social-link {
+  background: linear-gradient(135deg, #2e1c14, #3d2e22);
+  border-color: var(--gold-accent);
+}
+
+html[data-theme="hindu-traditional"] .social-link:hover {
+  background: linear-gradient(135deg, #3d2e22, #4a3828);
+  border-color: var(--saffron-primary);
+  box-shadow: 0 0 15px rgba(255, 140, 0, 0.2);
+}
+
+html[data-theme="hindu-traditional"] .social-link span,
+html[data-theme="hindu-traditional"] .social-link svg {
+  color: var(--gold-accent);
+}
+
+html[data-theme="hindu-traditional"] .social-link:hover span,
+html[data-theme="hindu-traditional"] .social-link:hover svg {
+  color: var(--saffron-primary);
+}
+
+/* ------------------------------------------------
+   7. Sidebar Theme Override
+   ------------------------------------------------ */
+html[data-theme="hindu-traditional"] nav[aria-label="Main navigation"] {
+  background: var(--background);
+  border-color: var(--gold-accent);
+  border-right-width: 2px;
+  border-image: linear-gradient(
+      to bottom,
+      var(--gold-accent),
+      var(--saffron-primary),
+      var(--maroon-primary),
+      var(--saffron-primary),
+      var(--gold-accent)
+    )
+    1;
+}
+
+html[data-theme="hindu-traditional"] nav[aria-label="Main navigation"] a {
+  color: var(--text-secondary);
+}
+
+html[data-theme="hindu-traditional"] nav[aria-label="Main navigation"] a:hover {
+  background: var(--surface-elevated);
+  color: var(--saffron-primary);
+}
+
+html[data-theme="hindu-traditional"] .nav-tooltip::after {
+  background: var(--surface-elevated);
+  color: var(--text-primary);
+  border-color: var(--gold-accent);
+}
+
+/* ------------------------------------------------
+   8. Hero Section Override
+   ------------------------------------------------ */
+html[data-theme="hindu-traditional"] .glow-effect {
+  background: linear-gradient(
+    to right,
+    var(--saffron-primary),
+    var(--gold-accent)
+  );
+}
+
+/* Override cyan/blue gradient text in hero */
+html[data-theme="hindu-traditional"] h1.bg-clip-text {
+  background-image: linear-gradient(to right, #f5e6d3, #d4a843, #ff8c00);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* Role subtitle */
+html[data-theme="hindu-traditional"] .from-cyan-400.to-blue-400 {
+  --tw-gradient-from: var(--saffron-primary);
+  --tw-gradient-to: var(--gold-accent);
+}
+
+/* Cyan text → saffron */
+html[data-theme="hindu-traditional"] .text-cyan-400 {
+  color: var(--saffron-primary);
+}
+
+html[data-theme="hindu-traditional"] .text-cyan-300 {
+  color: var(--saffron-hover);
+}
+
+html[data-theme="hindu-traditional"] .text-blue-400 {
+  color: var(--gold-accent);
+}
+
+/* Hover text overrides */
+html[data-theme="hindu-traditional"] .hover\:text-cyan-400:hover {
+  color: var(--saffron-primary);
+}
+
+html[data-theme="hindu-traditional"]
+  .group-hover\:text-cyan-400:is(:where(.group):hover *) {
+  color: var(--saffron-primary);
+}
+
+/* Border color overrides */
+html[data-theme="hindu-traditional"] .border-cyan-500\/30,
+html[data-theme="hindu-traditional"] .border-cyan-500\/50,
+html[data-theme="hindu-traditional"] .hover\:border-cyan-500:hover,
+html[data-theme="hindu-traditional"] .hover\:border-cyan-500\/50:hover {
+  border-color: var(--gold-accent);
+}
+
+/* Gradient from-cyan to-blue → saffron to gold */
+html[data-theme="hindu-traditional"] .from-cyan-500,
+html[data-theme="hindu-traditional"] .from-cyan-500\/20 {
+  --tw-gradient-from: var(--saffron-primary);
+}
+
+html[data-theme="hindu-traditional"] .to-blue-500,
+html[data-theme="hindu-traditional"] .to-blue-500\/20 {
+  --tw-gradient-to: var(--gold-accent);
+}
+
+/* Background overrides for surfaces */
+html[data-theme="hindu-traditional"] .bg-gray-900\/80,
+html[data-theme="hindu-traditional"] .bg-gray-900 {
+  background-color: var(--surface);
+}
+
+html[data-theme="hindu-traditional"] .bg-gray-800\/80 {
+  background-color: var(--surface-elevated);
+}
+
+html[data-theme="hindu-traditional"] .bg-gray-950,
+html[data-theme="hindu-traditional"] .bg-gray-950\/50 {
+  background-color: var(--background);
+}
+
+html[data-theme="hindu-traditional"] .border-gray-700,
+html[data-theme="hindu-traditional"] .border-gray-800 {
+  border-color: var(--border);
+}
+
+/* Text grays → sandalwood tones */
+html[data-theme="hindu-traditional"] .text-gray-300 {
+  color: var(--text-primary);
+}
+
+html[data-theme="hindu-traditional"] .text-gray-400 {
+  color: var(--text-secondary);
+}
+
+html[data-theme="hindu-traditional"] .text-gray-500 {
+  color: var(--text-disabled);
+}
+
+html[data-theme="hindu-traditional"] .text-white {
+  color: var(--text-primary);
+}
+
+/* ------------------------------------------------
+   9. Card & Section Overrides
+   ------------------------------------------------ */
+
+/* Section gradient blobs */
+html[data-theme="hindu-traditional"] .from-cyan-500\/5,
+html[data-theme="hindu-traditional"] .from-cyan-500\/10 {
+  --tw-gradient-from: rgba(255, 140, 0, 0.05);
+}
+
+html[data-theme="hindu-traditional"] .from-blue-500\/5,
+html[data-theme="hindu-traditional"] .from-blue-500\/10 {
+  --tw-gradient-from: rgba(212, 168, 67, 0.05);
+}
+
+html[data-theme="hindu-traditional"] .from-pink-500\/5,
+html[data-theme="hindu-traditional"] .from-pink-500\/10 {
+  --tw-gradient-from: rgba(128, 0, 32, 0.06);
+}
+
+html[data-theme="hindu-traditional"] .from-emerald-500\/5,
+html[data-theme="hindu-traditional"] .from-emerald-500\/10 {
+  --tw-gradient-from: rgba(212, 168, 67, 0.06);
+}
+
+html[data-theme="hindu-traditional"] .from-purple-500\/5,
+html[data-theme="hindu-traditional"] .from-purple-500\/10 {
+  --tw-gradient-from: rgba(128, 0, 32, 0.05);
+}
+
+/* Section header gradient text overrides */
+html[data-theme="hindu-traditional"] .bg-gradient-to-r.from-pink-400,
+html[data-theme="hindu-traditional"] .bg-linear-to-r.from-pink-400 {
+  --tw-gradient-from: var(--maroon-light);
+  --tw-gradient-to: var(--saffron-primary);
+}
+
+/* ------------------------------------------------
+   10. Decorative Separators
+   ------------------------------------------------ */
+html[data-theme="hindu-traditional"] hr,
+html[data-theme="hindu-traditional"] .h-1.bg-linear-to-r {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--gold-accent),
+    var(--saffron-primary),
+    var(--gold-accent),
+    transparent
+  );
+  height: 2px;
+}
+
+/* ------------------------------------------------
+   11. Scrollbar
+   ------------------------------------------------ */
+html[data-theme="hindu-traditional"] .sidebar-scroll::-webkit-scrollbar-thumb {
+  background: rgba(212, 168, 67, 0.4);
+}
+
+html[data-theme="hindu-traditional"]
+  .sidebar-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 168, 67, 0.6);
+}
+
+/* ------------------------------------------------
+   12. Mandala Background Pattern (SVG, lightweight)
+   ------------------------------------------------ */
+html[data-theme="hindu-traditional"] body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23d4a843' stroke-width='0.5'%3E%3Ccircle cx='60' cy='60' r='50'/%3E%3Ccircle cx='60' cy='60' r='40'/%3E%3Ccircle cx='60' cy='60' r='30'/%3E%3Ccircle cx='60' cy='60' r='20'/%3E%3Ccircle cx='60' cy='60' r='10'/%3E%3Cpath d='M60 10 L60 110 M10 60 L110 60 M25 25 L95 95 M95 25 L25 95'/%3E%3Cpath d='M60 10 Q85 35 60 60 Q35 35 60 10Z'/%3E%3Cpath d='M110 60 Q85 85 60 60 Q85 35 110 60Z'/%3E%3Cpath d='M60 110 Q35 85 60 60 Q85 85 60 110Z'/%3E%3Cpath d='M10 60 Q35 35 60 60 Q35 85 10 60Z'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 120px 120px;
+}
+
+/* ------------------------------------------------
+   13. Theme Transition — GPU accelerated
+   ------------------------------------------------ */
+html[data-theme="hindu-traditional"] *,
+html[data-theme="hindu-traditional"] *::before,
+html[data-theme="hindu-traditional"] *::after {
+  transition:
+    color 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+/* Disable transition storm during theme swap — intentional !important */
+html.theme-transitioning * {
+  transition: none !important;
+}
+
+/* Respect reduced motion — intentional !important for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme="hindu-traditional"] *,
+  html[data-theme="hindu-traditional"] *::before,
+  html[data-theme="hindu-traditional"] *::after {
+    transition: none !important;
+  }
+}
+
+/* ------------------------------------------------
+   14. Pixel Grid Override — saffron tint
+   ------------------------------------------------ */
+html[data-theme="hindu-traditional"] .pixel-grid {
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 12.5%,
+      rgba(255, 140, 0, 0.5) 12.5%,
+      rgba(255, 140, 0, 0.5) 25%
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 16.66%,
+      rgba(212, 168, 67, 0.5) 16.66%,
+      rgba(212, 168, 67, 0.5) 33.33%
+    );
+}
+
+/* ------------------------------------------------
+   15. Loading Spinner Override
+   ------------------------------------------------ */
+html[data-theme="hindu-traditional"] .animate-spin {
+  color: var(--saffron-primary);
+}
+
+/* ------------------------------------------------
+   16. Badge / Tag Overrides
+   ------------------------------------------------ */
+html[data-theme="hindu-traditional"] .bg-cyan-500\/10,
+html[data-theme="hindu-traditional"] .bg-cyan-500\/15 {
+  background-color: rgba(255, 140, 0, 0.1);
+}
+
+html[data-theme="hindu-traditional"] .bg-blue-500\/10,
+html[data-theme="hindu-traditional"] .bg-blue-500\/15 {
+  background-color: rgba(212, 168, 67, 0.1);
+}
+
+html[data-theme="hindu-traditional"] .bg-emerald-500\/10 {
+  background-color: rgba(212, 168, 67, 0.12);
+}
+
+html[data-theme="hindu-traditional"] .bg-pink-500\/10 {
+  background-color: rgba(128, 0, 32, 0.1);
+}
+
+html[data-theme="hindu-traditional"] .bg-purple-500\/10 {
+  background-color: rgba(128, 0, 32, 0.08);
+}
+
+html[data-theme="hindu-traditional"] .text-emerald-400,
+html[data-theme="hindu-traditional"] .text-green-400 {
+  color: var(--gold-accent);
+}
+
+html[data-theme="hindu-traditional"] .text-pink-400 {
+  color: var(--maroon-light);
+}
+
+html[data-theme="hindu-traditional"] .text-purple-400 {
+  color: var(--maroon-primary);
+}
+
+/* ------------------------------------------------
+   17. Ring / Focus Overrides
+   ------------------------------------------------ */
+html[data-theme="hindu-traditional"] .ring-cyan-400,
+html[data-theme="hindu-traditional"]
+  .focus-visible\:ring-cyan-400:focus-visible {
+  --tw-ring-color: var(--gold-accent);
+}
+
+html[data-theme="hindu-traditional"] .ring-offset-background {
+  --tw-ring-offset-color: var(--background);
+}
+
+/* ------------------------------------------------
+   18. Shadow Overrides
+   ------------------------------------------------ */
+html[data-theme="hindu-traditional"] .shadow-cyan-500\/10,
+html[data-theme="hindu-traditional"] [class*="shadow-cyan"] {
+  --tw-shadow-color: rgba(255, 140, 0, 0.1);
+}
+
+html[data-theme="hindu-traditional"] [class*="shadow-blue"] {
+  --tw-shadow-color: rgba(212, 168, 67, 0.1);
+}
+
+/* ------------------------------------------------
+   19. Education Card Overrides
+   ------------------------------------------------ */
+html[data-theme="hindu-traditional"] .hover\:border-cyan-500\/50:hover {
+  border-color: var(--saffron-primary);
+}
+
+html[data-theme="hindu-traditional"] .bg-cyan-500\/8,
+html[data-theme="hindu-traditional"] .bg-cyan-500\/10 {
+  background-color: rgba(255, 140, 0, 0.08);
+}
+
+/* ------------------------------------------------
+   20. Pagination & Controls
+   ------------------------------------------------ */
+html[data-theme="hindu-traditional"] .bg-cyan-500 {
+  background-color: var(--saffron-primary);
+}
+
+html[data-theme="hindu-traditional"] .hover\:bg-cyan-500\/10:hover {
+  background-color: rgba(255, 140, 0, 0.1);
+}
+
+html[data-theme="hindu-traditional"] .border-cyan-500 {
+  border-color: var(--saffron-primary);
+}

@@ -458,3 +458,32 @@ p {
     display: none;
   }
 }
+
+/* ------------------------------
+   Theme Toggle Glow Animation
+------------------------------ */
+
+@keyframes themeGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 4px rgba(255, 140, 0, 0.15);
+    opacity: 0.6;
+  }
+  50% {
+    box-shadow:
+      0 0 16px rgba(255, 140, 0, 0.3),
+      0 0 32px rgba(212, 168, 67, 0.15);
+    opacity: 1;
+  }
+}
+
+.animate-theme-glow {
+  animation: themeGlow 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-theme-glow {
+    animation: none;
+    box-shadow: 0 0 8px rgba(255, 140, 0, 0.2);
+  }
+}
