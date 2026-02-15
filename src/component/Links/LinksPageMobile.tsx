@@ -10,7 +10,7 @@ import {
 
 export function LinksPageMobile() {
   return (
-    <div className="min-h-screen bg-linear-to-br from-gray-950 via-gray-900 to-gray-950 relative overflow-hidden">
+    <div className="min-h-screen bg-linear-to-br from-gray-950 via-gray-900 to-gray-950 relative">
       {/* Animated Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" />
