@@ -7,15 +7,18 @@ const CDN_PROFESSIONAL_AVIF =
 
 export const ImageContainer = () => {
   return (
-    <div className="lg:col-span-5 relative order-1 lg:order-2 mb-8 lg:mb-0">
+    <div
+      className="lg:col-span-5 relative order-1 lg:order-2 mb-8 lg:mb-0"
+      style={{ perspective: "1000px" }}
+    >
       <div className="glow-effect" />
 
-      <div className="image-container group relative w-full aspect-3/4 max-w-[280px] sm:max-w-[320px] md:max-w-[400px] lg:max-w-[450px] xl:max-w-[500px] rounded-2xl overflow-hidden cursor-pointer mx-auto shadow-2xl">
+      <div className="image-container group relative w-full aspect-3/4 max-w-[280px] sm:max-w-[320px] md:max-w-[400px] lg:max-w-[450px] xl:max-w-[500px] rounded-2xl overflow-hidden cursor-pointer mx-auto shadow-2xl transition-all duration-500 ease-out hover:-translate-y-2 hover:rotate-y-2">
         <Image
           src={CDN_ICON_AVIF}
           alt="Shardendu Mishra - Software Developer and Engineer portrait"
           fill
-          className="object-cover transition-all duration-300 group-hover:opacity-0 group-hover:scale-98"
+          className="object-cover transition-opacity duration-500 group-hover:opacity-0"
           priority
           sizes="(max-width: 768px) 100vw, 50vw"
         />
@@ -23,10 +26,11 @@ export const ImageContainer = () => {
           src={CDN_PROFESSIONAL_AVIF}
           alt="Shardendu Mishra - Professional Software Developer photo"
           fill
-          className="object-cover opacity-0 scale-98 transition-all duration-300 delay-150 group-hover:opacity-100 group-hover:scale-100"
+          className="object-cover opacity-0 transition-opacity duration-500 delay-150 group-hover:opacity-100"
           loading="lazy"
           sizes="(max-width: 768px) 100vw, 50vw"
         />
+        <div className="shimmer-effect" />
         <div className="pixel-grid" />
       </div>
     </div>
