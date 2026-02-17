@@ -57,7 +57,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   try {
-    // Fetch dynamic routes - up to 500 items each
     const [projectsRes, experiencesRes, certificatesRes, volunteersRes] =
       await Promise.all([
         projectsAPI
@@ -74,7 +73,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           .catch(() => ({ data: { volunteer_experiences: [] } })),
       ]);
 
-    // Add project routes
     if (projectsRes.data?.projects) {
       projectsRes.data.projects.forEach((project) => {
         routes.push({
@@ -115,7 +113,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       });
     }
 
-    // Add volunteer routes
     if (volunteersRes.data?.volunteer_experiences) {
       volunteersRes.data.volunteer_experiences.forEach((volunteer) => {
         routes.push({
