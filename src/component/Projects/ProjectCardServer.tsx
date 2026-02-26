@@ -147,7 +147,7 @@ export async function ProjectsDisplayMobile() {
       <p className="text-gray-400 text-sm mb-4">
         A showcase of my work and open-source contributions
       </p>
-      <div className="space-y-4">
+      <div className="space-y-2">
         {projects.map((project, _idx) => (
           <div
             key={project.inline?.id}
@@ -180,7 +180,7 @@ export async function ProjectsDisplayMobile() {
                   href={project.project_repository}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1 px-2 py-1 text-xs bg-gray-800 text-gray-400 rounded"
+                  className="flex items-center gap-2 px-2 text-xs bg-gray-800 text-gray-400 rounded"
                 >
                   <Github className="w-3 h-3" />
                   <span>Code</span>
@@ -191,7 +191,7 @@ export async function ProjectsDisplayMobile() {
                   href={project.project_live_link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1 px-2 py-1 text-xs bg-gray-800 text-gray-400 rounded"
+                  className="flex items-center gap-1 px-2 text-xs bg-gray-800 text-gray-400 rounded"
                 >
                   <ExternalLink className="w-3 h-3" />
                   <span>Live</span>
