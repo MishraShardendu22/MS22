@@ -5,6 +5,7 @@ import { EmptyState, ListCard, ServerPageHeader } from "@/component/Section";
 import { generatePageMetadata } from "@/lib/metadata";
 import { certificatesAPI } from "@/static/api/api.request";
 import type { Certificate } from "@/static/api/api.types";
+import { PAGE_ITEMS_PER_PAGE } from "@/static/pagination";
 
 export const revalidate = 3600;
 
@@ -24,8 +25,6 @@ export const metadata: Metadata = generatePageMetadata({
     "verified skills",
   ],
 });
-
-const ITEMS_PER_PAGE = 8;
 
 interface PageProps {
   searchParams: Promise<{
@@ -50,13 +49,13 @@ async function CertificatesContent({ searchParams }: PageProps) {
 
       // Calculate pagination
       total = allCertificates.length;
-      totalPages = Math.max(1, Math.ceil(total / ITEMS_PER_PAGE));
+      totalPages = Math.max(1, Math.ceil(total / PAGE_ITEMS_PER_PAGE));
 
       // Get current page slice
-      const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+      const startIndex = (currentPage - 1) * PAGE_ITEMS_PER_PAGE;
       certificates = allCertificates.slice(
         startIndex,
-        startIndex + ITEMS_PER_PAGE,
+        startIndex + PAGE_ITEMS_PER_PAGE,
       );
     }
   } catch (error) {

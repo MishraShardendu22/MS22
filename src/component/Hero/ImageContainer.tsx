@@ -1,9 +1,5 @@
 import Image from "next/image";
-
-const CDN_ICON_AVIF =
-  "https://res.cloudinary.com/dkxw15and/image/upload/v1770811228/image-upload-app/pimoqdnzgxttynbims86.avif";
-const CDN_PROFESSIONAL_AVIF =
-  "https://res.cloudinary.com/dkxw15and/image/upload/v1770811228/image-upload-app/iyeqraabcu6gn77dg48d.avif";
+import { CDN_ICON_AVIF, CDN_PROFESSIONAL_AVIF } from "@/static/cdn";
 
 export const ImageContainer = () => {
   return (

@@ -11,13 +11,11 @@ import type {
   Project,
   Volunteer,
 } from "@/static/api/api.types";
+import { BaseURL } from "@/static/data";
 import type { RSSItem } from "@/static/info/types";
+import { SITE_DESCRIPTION, SITE_NAME } from "@/static/site";
 
-const SITE_NAME = "Shardendu Mishra";
-const SITE_URL =
-  process.env.NEXT_PUBLIC_BASE_URL || "https://mishrashardendu22.is-a.dev";
-const SITE_DESCRIPTION =
-  "Professional personal website showcasing projects, experiences, skills, and certifications";
+const SITE_URL = BaseURL;
 
 function escapeXml(unsafe: string): string {
   return unsafe

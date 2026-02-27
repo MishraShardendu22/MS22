@@ -1,3 +1,5 @@
+import { DATE_FORMAT_OPTIONS } from "@/static/timeline";
+
 /**
  * Format a date string to a human-readable format
  * @param dateString - ISO date string or undefined
@@ -13,12 +15,6 @@ interface FormatDateOptions {
   /** Fallback string when date is undefined/null */
   fallback?: string;
 }
-
-const DATE_FORMAT_OPTIONS: Record<DateFormatStyle, Intl.DateTimeFormatOptions> =
-  {
-    short: { month: "short", year: "numeric" },
-    long: { month: "long", year: "numeric" },
-  } as const;
 
 /**
  * Formats a date string to locale format

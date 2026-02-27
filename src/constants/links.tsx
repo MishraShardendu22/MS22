@@ -172,8 +172,5 @@ export const LINK_CATEGORIES = {
   coding: "Coding Platforms",
 } as const;
 
-export const CDN_PROFESSIONAL_AVIF =
-  "https://res.cloudinary.com/dkxw15and/image/upload/v1770811228/image-upload-app/iyeqraabcu6gn77dg48d.avif";
-
-export const CDN_SHARDENDU_QR_AVIF =
-  "https://res.cloudinary.com/dkxw15and/image/upload/v1770811228/image-upload-app/hzfeaawknkizoejbkzjv.avif";
+// Re-export CDN URLs from centralized location for backwards compatibility
+export { CDN_PROFESSIONAL_AVIF, CDN_SHARDENDU_QR_AVIF } from "@/static/cdn";

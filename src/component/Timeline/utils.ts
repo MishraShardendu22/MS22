@@ -1,3 +1,4 @@
+import { MONTH_NAMES, VOLUNTEER_COLORS, WORK_COLORS } from "@/static/timeline";
 import type {
   ExperienceInput,
   MonthData,
@@ -83,25 +84,11 @@ export const processTimelineData = (
   );
 
   while (current <= latestEnd) {
-    const monthNames = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
     months.push({
       date: new Date(current),
       year: current.getFullYear(),
       month: current.getMonth(),
-      monthName: monthNames[current.getMonth()],
+      monthName: MONTH_NAMES[current.getMonth()],
       isYearStart: current.getMonth() === 0,
     });
     current.setMonth(current.getMonth() + 1);
@@ -114,28 +101,7 @@ export const getCompanyColor = (
   companyName: string,
   type: "work" | "volunteer",
 ): string => {
-  const colors =
-    type === "work"
-      ? [
-          "#06b6d4",
-          "#3b82f6",
-          "#8b5cf6",
-          "#0ea5e9",
-          "#2563eb",
-          "#6366f1",
-          "#0891b2",
-          "#1d4ed8",
-        ]
-      : [
-          "#10b981",
-          "#059669",
-          "#14b8a6",
-          "#0d9488",
-          "#06b6d4",
-          "#0891b2",
-          "#047857",
-          "#0f766e",
-        ];
+  const colors = type === "work" ? WORK_COLORS : VOLUNTEER_COLORS;
 
   let hash = 0;
   for (let i = 0; i < companyName.length; i++) {

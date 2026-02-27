@@ -9,6 +9,7 @@ import {
 import { UnifiedCard } from "@/component/UnifiedCard";
 import { experiencesAPI } from "@/static/api/api.request";
 import type { Experience } from "@/static/api/api.types";
+import { EXPERIENCES_PER_PAGE } from "@/static/pagination";
 import { formatDate } from "@/utils/formatDate";
 
 interface ExperienceCardProps {
@@ -40,8 +41,6 @@ export const ExperienceCard = ({ experience, index }: ExperienceCardProps) => {
     />
   );
 };
-
-const EXPERIENCES_PER_PAGE = 2;
 
 // Mobile-optimized server component
 export async function ExperiencesDisplayMobile() {

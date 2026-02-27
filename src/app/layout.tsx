@@ -4,17 +4,14 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
 import { Archivo, Inter } from "next/font/google";
 import { SidebarWrapper } from "@/component/Sidebar/SidebarWrapper";
+import { CDN_ICON_PNG, CDN_PROFESSIONAL_AVIF } from "@/static/cdn";
+import { getRootJsonLd } from "@/static/site";
 
 const BASE_URL =
   process.env.NEXT_PUBLIC_BASE_URL ||
   (process.env.VERCEL_URL
     ? `https://${process.env.VERCEL_URL}`
     : "http://localhost:3000");
-
-const CDN_ICON_PNG =
-  "https://res.cloudinary.com/dkxw15and/image/upload/v1770811006/image-upload-app/ehth0fbefclihy2a2qmj.png";
-const CDN_PROFESSIONAL_AVIF =
-  "https://res.cloudinary.com/dkxw15and/image/upload/v1770811228/image-upload-app/iyeqraabcu6gn77dg48d.avif";
 
 const archivo = Archivo({
   variable: "--font-heading",
@@ -36,7 +33,6 @@ const inter = Inter({
   adjustFontFallback: true,
 });
 
-// Separate viewport export (Next.js 14+ best practice)
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -195,37 +191,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Shardendu Mishra",
-    url: BASE_URL,
-    image: CDN_PROFESSIONAL_AVIF,
-    jobTitle: "Software Developer and Engineer",
-    worksFor: {
-      "@type": "Organization",
-      name: "IIIT Dharwad",
-    },
-    alumniOf: {
-      "@type": "EducationalOrganization",
-      name: "Indian Institute of Information Technology Dharwad",
-    },
-    sameAs: [
-      "https://twitter.com/Shardendu_M",
-      "https://github.com/MishraShardendu22",
-      "https://leetcode.com/MishraShardendu22",
-      "https://linkedin.com/in/shardendu-mishra",
-    ],
-    knowsAbout: [
-      "Software Development",
-      "Go Programming",
-      "React",
-      "Next.js",
-      "TypeScript",
-      "Web Development",
-      "Cloud Computing",
-    ],
-  };
+  const jsonLd = getRootJsonLd(BASE_URL);
 
   return (
     <html lang="en" dir="ltr" className="scroll-smooth">

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { PageSearch } from "@/component/Search";
 import { DETAIL_TREE_VIEW_THEME_CONFIG } from "@/constants/theme";
+import { BADGE_VARIANTS } from "@/static/ui";
 import type { DetailTreeData } from "@/types/detailTree";
 import { getLinkLabel } from "@/utils/linkDetection";
 import { ExpandableTreeSection } from "./ExpandableTreeSection";
@@ -11,13 +12,6 @@ import { TreeContainer } from "./TreeContainer";
 interface DetailTreeViewProps {
   data: DetailTreeData;
 }
-
-const badgeVariants = {
-  default: "bg-gray-500/10 border-gray-500/20 text-gray-400",
-  success: "bg-green-500/10 border-green-500/20 text-green-400",
-  info: "bg-blue-500/10 border-blue-500/20 text-blue-400",
-  warning: "bg-yellow-500/10 border-yellow-500/20 text-yellow-400",
-};
 
 export function DetailTreeView({ data }: DetailTreeViewProps) {
   const colors = DETAIL_TREE_VIEW_THEME_CONFIG[data.theme];
@@ -62,7 +56,7 @@ export function DetailTreeView({ data }: DetailTreeViewProps) {
                 </h1>
                 {data.badge && (
                   <span
-                    className={`px-2 py-0.5 text-xs font-medium border rounded-full ${badgeVariants[data.badge.variant]}`}
+                    className={`px-2 py-0.5 text-xs font-medium border rounded-full ${BADGE_VARIANTS[data.badge.variant]}`}
                   >
                     {data.badge.label}
                   </span>

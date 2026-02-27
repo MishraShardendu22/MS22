@@ -8,6 +8,7 @@ import {
 } from "@/component/Section";
 import { projectsAPI } from "@/static/api/api.request";
 import type { Project } from "@/static/api/api.types";
+import { PROJECTS_PER_PAGE } from "@/static/pagination";
 
 interface ProjectCardProps {
   project: Project;
@@ -113,8 +114,6 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
     </div>
   );
 };
-
-const PROJECTS_PER_PAGE = 4;
 
 const sortByOrder = (items: Project[]) =>
   [...items].sort((a, b) => a.order - b.order);

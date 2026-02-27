@@ -1,12 +1,11 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { skillsAPI } from "@/static/api/api.request";
+import { SKILLS_PER_PAGE } from "@/static/pagination";
 
 interface SkillsDisplayProps {
   searchParams?: Promise<{ page?: string }>;
 }
-
-const SKILLS_PER_PAGE = 15;
 
 async function SkillsDisplayMobileServer({
   page,

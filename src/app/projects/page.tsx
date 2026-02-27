@@ -6,6 +6,7 @@ import { EmptyState, ListCard, ServerPageHeader } from "@/component/Section";
 import { generatePageMetadata } from "@/lib/metadata";
 import { projectsAPI } from "@/static/api/api.request";
 import type { Project } from "@/static/api/api.types";
+import { PAGE_ITEMS_PER_PAGE } from "@/static/pagination";
 
 export const revalidate = 3600;
 
@@ -27,8 +28,6 @@ export const metadata: Metadata = generatePageMetadata({
     "GitHub projects",
   ],
 });
-
-const ITEMS_PER_PAGE = 8;
 
 interface PageProps {
   searchParams: Promise<{
@@ -53,11 +52,11 @@ async function ProjectsContent({ searchParams }: PageProps) {
 
     // Calculate pagination
     total = totalCount;
-    totalPages = Math.max(1, Math.ceil(total / ITEMS_PER_PAGE));
+    totalPages = Math.max(1, Math.ceil(total / PAGE_ITEMS_PER_PAGE));
 
     // Get current page slice
-    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    projects = allProjects.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+    const startIndex = (currentPage - 1) * PAGE_ITEMS_PER_PAGE;
+    projects = allProjects.slice(startIndex, startIndex + PAGE_ITEMS_PER_PAGE);
   } catch (err) {
     error = err instanceof Error ? err.message : "An error occurred";
   }

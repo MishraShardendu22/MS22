@@ -9,6 +9,7 @@ import {
 import { UnifiedCard } from "@/component/UnifiedCard";
 import { certificatesAPI } from "@/static/api/api.request";
 import type { Certificate } from "@/static/api/api.types";
+import { CERTIFICATES_PER_PAGE } from "@/static/pagination";
 import { formatDate } from "@/utils/formatDate";
 
 interface CertificateCardProps {
@@ -68,8 +69,6 @@ export const CertificateCard = ({
     />
   );
 };
-
-const CERTIFICATES_PER_PAGE = 4;
 
 const sortByOrder = (items: Certificate[]) =>
   [...items].sort((a, b) => (a.order ?? 999) - (b.order ?? 999));

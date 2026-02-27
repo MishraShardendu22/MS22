@@ -10,6 +10,7 @@ import {
 import { UnifiedCard } from "@/component/UnifiedCard";
 import { volunteerAPI } from "@/static/api/api.request";
 import type { Volunteer } from "@/static/api/api.types";
+import { VOLUNTEERS_PER_PAGE } from "@/static/pagination";
 import { formatDate } from "@/utils/formatDate";
 
 interface VolunteerCardProps {
@@ -67,8 +68,6 @@ export const VolunteerCard = ({ volunteer, index }: VolunteerCardProps) => {
     />
   );
 };
-
-const VOLUNTEERS_PER_PAGE = 4;
 
 const sortByOrder = (items: Volunteer[]) =>
   [...items].sort((a, b) => (a.order ?? 999) - (b.order ?? 999));

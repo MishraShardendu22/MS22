@@ -1,76 +1,24 @@
 "use client";
 
-import {
-  Award,
-  Briefcase,
-  Command,
-  FolderGit2,
-  Heart,
-  Loader2,
-  Search,
-  X,
-} from "lucide-react";
+import { Command, Loader2, Search, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useReducer, useRef } from "react";
 import { searchAPI } from "@/static/api/api.request";
 import type { SearchResult, SearchResultType } from "@/static/api/api.types";
+import { FILTER_CONFIG, FILTER_TYPES, getPageFilter } from "@/static/search";
 import {
   closeSearchModal,
   openSearchModal,
   useModalState,
 } from "./HeaderSearchButton";
 
-const FILTER_CONFIG = {
-  project: {
-    icon: FolderGit2,
-    label: "Projects",
-    color: "text-cyan-400",
-    bgColor: "bg-cyan-500/15",
-    borderColor: "border-cyan-500/50",
-  },
-  experience: {
-    icon: Briefcase,
-    label: "Experience",
-    color: "text-emerald-400",
-    bgColor: "bg-emerald-500/15",
-    borderColor: "border-emerald-500/50",
-  },
-  certificate: {
-    icon: Award,
-    label: "Certificates",
-    color: "text-purple-400",
-    bgColor: "bg-purple-500/15",
-    borderColor: "border-purple-500/50",
-  },
-  volunteer: {
-    icon: Heart,
-    label: "Volunteer",
-    color: "text-rose-400",
-    bgColor: "bg-rose-500/15",
-    borderColor: "border-rose-500/50",
-  },
-} as const;
-
-const FILTER_TYPES = Object.keys(FILTER_CONFIG) as SearchResultType[];
-
-// Path to filter - pure function
-function getPageFilter(pathname: string): SearchResultType | undefined {
-  if (pathname.startsWith("/projects")) return "project";
-  if (pathname.startsWith("/experiences")) return "experience";
-  if (pathname.startsWith("/certificates")) return "certificate";
-  if (pathname.startsWith("/volunteer")) return "volunteer";
-  return undefined;
-}
-
-// Search Modal - AbortController for native debouncing (cancels previous request)
 export function SearchModalContent() {
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
   const abortRef = useRef<AbortController | null>(null);
   const [, forceRender] = useReducer((x) => x + 1, 0);
 
-  // Mutable refs instead of state
   const data = useRef({
     results: [] as SearchResult[],
     loading: false,
@@ -82,15 +30,13 @@ export function SearchModalContent() {
 
   const { open, filter: initialFilter } = useModalState();
 
-  // Reset on open
   if (open && inputRef.current && !data.current.query) {
     data.current.filter = initialFilter;
     queueMicrotask(() => inputRef.current?.focus());
   }
 
-  // AbortController-based search - no setTimeout, cancels previous request immediately
   async function search(query: string, filter: SearchResultType | undefined) {
-    abortRef.current?.abort(); // Cancel previous
+    abortRef.current?.abort();
 
     if (query.length < 2) {
       data.current = {
@@ -193,7 +139,6 @@ export function SearchModalContent() {
       onKeyDown={onKeyDown}
     >
       <div className="w-full max-w-3xl mx-4 bg-gray-900/98 backdrop-blur-xl border border-gray-700/80 rounded-2xl shadow-2xl overflow-hidden">
-        {/* Filters */}
         <div className="flex items-center gap-2 px-5 py-3 border-b border-gray-800/70">
           <span className="text-xs text-gray-500 font-medium shrink-0">
             Filter:

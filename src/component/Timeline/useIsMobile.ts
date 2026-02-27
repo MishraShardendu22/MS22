@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-
-const MOBILE_QUERY = "(max-width: 767px)";
+import { MOBILE_QUERY } from "@/static/timeline";
 
 export const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(false);

@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { LoadingStateLight } from "@/component/Loading";
+import { GRID_COLS } from "@/static/ui";
 
 interface ContentGridProps {
   minHeight?: string;
@@ -9,13 +10,6 @@ interface ContentGridProps {
   loadingMessage?: string;
   loadingVariant?: "cyan" | "purple" | "emerald" | "pink" | "blue";
 }
-
-const gridCols: Record<number, string> = {
-  1: "grid-cols-1",
-  2: "grid-cols-1 md:grid-cols-2",
-  3: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
-  4: "grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
-};
 
 export function ContentGrid({
   children,
@@ -36,7 +30,7 @@ export function ContentGrid({
         <LoadingStateLight message={loadingMessage} variant={loadingVariant} />
       </div>
       <div
-        className={`grid ${gridCols[columns]} gap-4 md:gap-6 transition-opacity duration-300 ${
+        className={`grid ${GRID_COLS[columns]} gap-4 md:gap-6 transition-opacity duration-300 ${
           isLoading ? "opacity-0" : "opacity-100"
         }`}
       >

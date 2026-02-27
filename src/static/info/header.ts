@@ -7,12 +7,13 @@ import {
   Mail,
   School,
 } from "lucide-react";
+import { CDN_ICON_AVIF, CDN_PROFESSIONAL_AVIF } from "@/static/cdn";
 import type { Education, Introduction, SocialLink } from "./types";
 
-export const Icon: string =
-  "https://res.cloudinary.com/dkxw15and/image/upload/v1770811228/image-upload-app/pimoqdnzgxttynbims86.avif";
-export const professionalImage: string =
-  "https://res.cloudinary.com/dkxw15and/image/upload/v1770811228/image-upload-app/iyeqraabcu6gn77dg48d.avif";
+/** @deprecated Use CDN_ICON_AVIF from @/static/cdn directly */
+export const Icon: string = CDN_ICON_AVIF;
+/** @deprecated Use CDN_PROFESSIONAL_AVIF from @/static/cdn directly */
+export const professionalImage: string = CDN_PROFESSIONAL_AVIF;
 
 export const mail: SocialLink = {
   url: "mishrashardendu22@gmail.com",

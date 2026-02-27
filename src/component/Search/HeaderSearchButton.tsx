@@ -8,29 +8,33 @@ import {
 } from "@/constants/theme";
 import type { SearchResultType } from "@/static/api/api.types";
 
-// Minimal external store for modal state
 let modalState = {
   open: false,
   filter: undefined as SearchResultType | undefined,
 };
+
 const listeners = new Set<() => void>();
 const notify = () => {
   for (const listener of listeners) {
     listener();
   }
 };
+
 export const openSearchModal = (filter?: SearchResultType) => {
   modalState = { open: true, filter };
   notify();
 };
+
 export const closeSearchModal = () => {
   modalState = { open: false, filter: undefined };
   notify();
 };
+
 export const subscribeModal = (cb: () => void) => {
   listeners.add(cb);
   return () => listeners.delete(cb);
 };
+
 export const getModalSnapshot = () => modalState;
 export const getServerModalSnapshot = () => ({
   open: false,
@@ -75,7 +79,6 @@ export function HeaderSearchButton({
   );
 }
 
-// Re-export for use in SearchBar
 export function useModalState() {
   return useSyncExternalStore(
     subscribeModal,

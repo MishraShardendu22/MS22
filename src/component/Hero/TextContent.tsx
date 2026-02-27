@@ -1,10 +1,5 @@
 import { myIntro, SocialLinks } from "@/static/info/header";
-
-const buttonLabels: Record<string, string> = {
-  resume: "View Resume",
-  GitHub: "View My Projects",
-  LinkedIn: "Connect With Me",
-};
+import { BUTTON_LABELS } from "@/static/ui";
 
 export const TextContent = () => {
   return (
@@ -44,7 +39,7 @@ export const TextContent = () => {
             >
               <IconComponent className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 text-gray-400 group-hover:text-cyan-400 transition-colors duration-300 shrink-0" />
               <span className="font-medium text-gray-300 group-hover:text-cyan-400 transition-colors duration-300 whitespace-nowrap">
-                {buttonLabels[key] || key}
+                {BUTTON_LABELS[key] || key}
               </span>
             </a>
           );

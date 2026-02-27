@@ -5,17 +5,9 @@ import {
   PAGE_HEADER_THEME_CONFIG,
   type PageHeaderTheme,
 } from "@/constants/theme";
-import type { SearchResultType } from "@/static/api/api.types";
+import { THEME_TO_SEARCH_FILTER } from "@/static/search";
 
 export type { PageHeaderTheme } from "@/constants/theme";
-
-// Map theme to search filter type
-const themeToSearchFilter: Record<PageHeaderTheme, SearchResultType> = {
-  cyan: "project",
-  blue: "experience",
-  purple: "certificate",
-  pink: "volunteer",
-};
 
 interface ServerPageHeaderProps {
   title: string;
@@ -74,7 +66,7 @@ export function ServerPageHeader({
     page: String(currentPage + 1),
   });
 
-  const searchFilterType = themeToSearchFilter[theme];
+  const searchFilterType = THEME_TO_SEARCH_FILTER[theme];
 
   return (
     <div className="mb-6 space-y-4">

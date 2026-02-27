@@ -1,46 +1,8 @@
-import {
-  Award,
-  Briefcase,
-  Clock,
-  Code2,
-  FileText,
-  FolderGit2,
-  GraduationCap,
-  Heart,
-  Home,
-  Link as LinkIcon,
-  Mail,
-} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { SidebarSearchButton } from "@/component/Search";
-
-const CDN_BARCA_SVG =
-  "https://res.cloudinary.com/dkxw15and/image/upload/v1770811194/image-upload-app/bmif2nh9ceq0xv4wlahz.svg";
-
-interface NavItem {
-  name: string;
-  href: string;
-  icon: React.ComponentType<{ className?: string }>;
-}
-
-const navItems: NavItem[] = [
-  { name: "Home", href: "/", icon: Home },
-  { name: "Education", href: "/#education", icon: GraduationCap },
-  { name: "Skills", href: "/#skills", icon: Code2 },
-  { name: "Timeline", href: "/#timeline", icon: Clock },
-  { name: "Projects", href: "/projects", icon: FolderGit2 },
-  { name: "Experience", href: "/experiences", icon: Briefcase },
-  { name: "Volunteer", href: "/volunteer", icon: Heart },
-  { name: "Certifications", href: "/certificates", icon: Award },
-  { name: "My Socials", href: "/links", icon: LinkIcon },
-  { name: "Contact", href: "/#contact", icon: Mail },
-  {
-    name: "Blog",
-    href: "https://blogs.mishrashardendu22.is-a.dev/read",
-    icon: FileText,
-  },
-];
+import { CDN_BARCA_SVG } from "@/static/cdn";
+import { NAV_ITEMS } from "@/static/navigation";
 
 export function Sidebar() {
   return (
@@ -65,7 +27,7 @@ export function Sidebar() {
           {/* Search Button */}
           <SidebarSearchButton />
 
-          {navItems.map((item) => {
+          {NAV_ITEMS.map((item) => {
             const Icon = item.icon;
 
             return (

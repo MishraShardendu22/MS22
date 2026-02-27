@@ -1,7 +1,6 @@
+import { CDN_PROFESSIONAL_AVIF } from "@/static/cdn";
 import { BaseURL } from "@/static/data";
-
-const CDN_PROFESSIONAL_AVIF =
-  "https://res.cloudinary.com/dkxw15and/image/upload/v1770811228/image-upload-app/iyeqraabcu6gn77dg48d.avif";
+import { SAME_AS_URLS } from "@/static/site";
 
 export interface PersonSchema {
   "@context": string;
@@ -61,21 +60,7 @@ export function generatePersonSchema(): PersonSchema {
     "@type": "Person",
     name: "Shardendu Mishra",
     url: BaseURL,
-    sameAs: [
-      "https://github.com/MishraShardendu22",
-      "https://github.com/ShardenduMishra22",
-      "https://www.linkedin.com/in/shardendumishra22/",
-      "https://x.com/Shardendu_M",
-      "https://twitter.com/Shardendu_M",
-      "https://www.instagram.com/mishrashardendu22/",
-      "https://leetcode.com/u/ShardenduMishra22/",
-      "https://www.reddit.com/user/SouLVaGeTa/",
-      "https://t.me/MishraShardendu22",
-      "https://www.youtube.com/@Shardendu_Mishra",
-      "https://blogs.mishrashardendu22.is-a.dev",
-      "https://treasure-hunt.mishrashardendu22.is-a.dev",
-      "https://pixel-art-8-bit.mishrashardendu22.is-a.dev",
-    ],
+    sameAs: SAME_AS_URLS,
     jobTitle: "Software Developer and Engineer",
     alumniOf: {
       "@type": "CollegeOrUniversity",

@@ -5,6 +5,7 @@ import { EmptyState, ListCard, ServerPageHeader } from "@/component/Section";
 import { generatePageMetadata } from "@/lib/metadata";
 import { volunteerAPI } from "@/static/api/api.request";
 import type { Volunteer } from "@/static/api/api.types";
+import { PAGE_ITEMS_PER_PAGE } from "@/static/pagination";
 
 export const revalidate = 3600;
 
@@ -23,8 +24,6 @@ export const metadata: Metadata = generatePageMetadata({
     "volunteer experience",
   ],
 });
-
-const ITEMS_PER_PAGE = 8;
 
 interface PageProps {
   searchParams: Promise<{
@@ -49,11 +48,14 @@ async function VolunteerContent({ searchParams }: PageProps) {
 
       // Calculate pagination
       total = allVolunteers.length;
-      totalPages = Math.max(1, Math.ceil(total / ITEMS_PER_PAGE));
+      totalPages = Math.max(1, Math.ceil(total / PAGE_ITEMS_PER_PAGE));
 
       // Get current page slice
-      const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-      volunteers = allVolunteers.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+      const startIndex = (currentPage - 1) * PAGE_ITEMS_PER_PAGE;
+      volunteers = allVolunteers.slice(
+        startIndex,
+        startIndex + PAGE_ITEMS_PER_PAGE,
+      );
     }
   } catch (error) {
     console.error("Error fetching volunteers:", error);
