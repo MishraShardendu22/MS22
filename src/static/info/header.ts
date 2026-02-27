@@ -29,7 +29,7 @@ export const SocialLinks = {
     icon: Linkedin,
   },
   resume: {
-    url: "https://drive.google.com/file/d/1F-ORaZyX8iMmBFhX2i-rtn21rdDMnsew/view?usp=sharing",
+    url: "https://drive.google.com/drive/folders/1s48wtD34inP2tK5FxQjaj2OtBpFAi7l8?usp=sharing",
     icon: FileText,
   },
 };
