@@ -75,9 +75,9 @@ export function LinksPageDesktop() {
 
               <div className="space-y-3">
                 {SOCIAL_LINKS.filter((link) => link.category === category).map(
-                  (link, index) => (
+                  (link) => (
                     <a
-                      key={`${link.url}-${link.name}-${index}`}
+                      key={`${link.url}-${link.name}`}
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"

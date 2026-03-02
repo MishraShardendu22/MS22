@@ -167,9 +167,9 @@ function SectionContent({ content, theme }: SectionContentProps) {
               )}
               {project.technologies && project.technologies.length > 0 && (
                 <div className="flex flex-wrap gap-1.5 mt-2">
-                  {project.technologies.slice(0, 4).map((tech, idx) => (
+                  {project.technologies.slice(0, 4).map((tech) => (
                     <span
-                      key={`${project.id}-tech-${idx}`}
+                      key={`${project.id}-tech-${tech}`}
                       className="px-2 py-0.5 text-xs font-medium bg-gray-700/50 text-gray-300 rounded"
                     >
                       {tech}

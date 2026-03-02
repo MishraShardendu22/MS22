@@ -193,7 +193,7 @@ export async function ExperiencesDisplayServer({
       <ContentGrid columns={2}>
         {experiences.map((experience, index) => (
           <ExperienceCard
-            key={`${experience.inline?.id}-${index}`}
+            key={experience.inline?.id ?? String(index)}
             experience={experience}
             index={index}
           />

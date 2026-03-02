@@ -308,6 +308,7 @@ function TreeRow({
         <div className="flex items-center shrink-0">
           {parentPath.map((showLine, depthIndex) => (
             <div
+              // biome-ignore lint/suspicious/noArrayIndexKey: depth index is semantically meaningful here
               key={`depth-${depthIndex}-${showLine}`}
               className="w-5 h-7 flex justify-center shrink-0"
             >

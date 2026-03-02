@@ -263,7 +263,7 @@ export async function ProjectsDisplayServer({
       <ContentGrid columns={2}>
         {projects.map((project, index) => (
           <ProjectCard
-            key={`${project.inline?.id}-${index}`}
+            key={project.inline?.id ?? String(index)}
             project={project}
             index={index}
           />
