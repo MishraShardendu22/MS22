@@ -55,13 +55,13 @@
     "next": "16.1.6",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "recharts": "^3.7.0",
+    "recharts": "^3.8.0",
     "resend": "^6.9.3"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.6",
     "@tailwindcss/postcss": "^4.2.1",
-    "@types/node": "^25.3.5",
+    "@types/node": "^25.4.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "babel-plugin-react-compiler": "1.0.0",
