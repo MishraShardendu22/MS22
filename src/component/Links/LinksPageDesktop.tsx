@@ -81,7 +81,7 @@ export function LinksPageDesktop() {
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group block"
+                      className="group block relative z-0 hover:z-10 focus-visible:z-10"
                     >
                       <div className="relative overflow-hidden rounded-xl">
                         <div
