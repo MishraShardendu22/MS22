@@ -81,16 +81,13 @@ export function LinksPageDesktop() {
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group block relative z-0 hover:z-10 focus-visible:z-10"
+                      className="group block"
                     >
                       <div className="relative overflow-hidden rounded-xl">
-                        <div
-                          className={`absolute -inset-0.5 bg-linear-to-r ${link.color} rounded-xl blur opacity-0 group-hover:opacity-75 transition duration-300`}
-                        />
-                        <div className="relative bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 rounded-xl p-5 hover:border-gray-700/50 transition-all duration-300 group-hover:scale-[1.02]">
+                        <div className="relative bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 rounded-xl p-5 hover:border-gray-700/50 transition-all duration-300">
                           <div className="flex items-center gap-4">
                             <div
-                              className={`p-3 rounded-lg bg-linear-to-br ${link.color} text-white shrink-0 group-hover:scale-110 transition-transform duration-300`}
+                              className={`p-3 rounded-lg bg-linear-to-br ${link.color} text-white shrink-0 transition-transform duration-300`}
                             >
                               <link.icon className="w-6 h-6" />
                             </div>
