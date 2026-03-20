@@ -37,9 +37,7 @@ export function FooterSectionMobile() {
           </div>
         </div>
 
-        {/* Quick Links Grid */}
         <div className="grid grid-cols-2 gap-6 mb-8">
-          {/* Quick Links */}
           <div>
             <h3 className="text-base font-bold text-gray-100 mb-3">
               Quick Links
@@ -62,7 +60,6 @@ export function FooterSectionMobile() {
             </ul>
           </div>
 
-          {/* Social Media */}
           <div>
             <h3 className="text-base font-bold text-gray-100 mb-3">Social</h3>
             <ul className="space-y-2">
@@ -86,7 +83,6 @@ export function FooterSectionMobile() {
           </div>
         </div>
 
-        {/* Copyright and Back to Top */}
         <div className="pt-4 flex items-center justify-between">
           <p className="text-xs text-gray-600">© 2025 Shardendu Mishra</p>
           <ScrollToTop variant="mobile" />
@@ -99,7 +95,6 @@ export function FooterSectionMobile() {
 export function FooterSection() {
   return (
     <footer className="relative bg-linear-to-b from-transparent via-gray-950/50 to-transparent pt-12 sm:pt-16 md:pt-32 lg:pt-40 pb-0 px-4 sm:px-6 md:px-8 overflow-hidden">
-      {/* Background Effects */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute bottom-0 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-cyan-500/5 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-blue-500/5 rounded-full blur-3xl" />
@@ -107,9 +102,7 @@ export function FooterSection() {
       </div>
 
       <div className="container mx-auto max-w-400 relative z-10">
-        {/* Top Section: Brand + Contact Form */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-16 lg:gap-24 mb-12 sm:mb-16 md:mb-24 lg:mb-32">
-          {/* Left: Brand Info */}
           <div className="space-y-5 sm:space-y-6 md:space-y-10 lg:space-y-12">
             <div>
               <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4 md:mb-6">
@@ -125,7 +118,6 @@ export function FooterSection() {
               </p>
             </div>
 
-            {/* Made with */}
             <div className="flex flex-wrap items-center gap-2 sm:gap-3 md:gap-4 text-xs sm:text-sm md:text-lg lg:text-xl text-gray-400">
               <span>Made with</span>
               <Heart className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-6 md:h-6 lg:w-7 lg:h-7 text-red-500" />
@@ -134,7 +126,6 @@ export function FooterSection() {
               <span>by Shardendu Sankritya Mishra</span>
             </div>
 
-            {/* Tech Stack Badges */}
             <div className="flex flex-wrap gap-2 sm:gap-2.5 md:gap-4 lg:gap-5">
               <span className="px-2.5 sm:px-3 md:px-6 lg:px-8 py-1.5 sm:py-2 md:py-3 lg:py-4 bg-cyan-500/10 border border-cyan-500/30 rounded-lg text-xs sm:text-sm md:text-lg lg:text-xl text-cyan-400 font-semibold">
                 Go
@@ -153,14 +144,11 @@ export function FooterSection() {
               </span>
             </div>
 
-            {/* Copyright */}
             <p className="text-xs md:text-base lg:text-lg text-gray-600">
-              © 2025 Shardendu Sankritya Mishra. All rights reserved.
+              © 2026 Shardendu Sankritya Mishra. All rights reserved.
             </p>
 
-            {/* Made in GO and Fedora + Back to Top */}
             <div className="flex items-center gap-4 md:gap-6 flex-wrap">
-              {/* Made in GO and Fedora */}
               <div className="flex items-center gap-3 md:gap-4 text-base md:text-lg lg:text-xl text-gray-400">
                 <span>Made</span>
                 <div className="relative w-8 h-8 md:w-12 md:h-12 lg:w-14 lg:h-14">
@@ -207,24 +195,22 @@ export function FooterSection() {
           </div>
         </div>
 
-        <div className="w-full h-px bg-linear-to-r from-transparent via-cyan-500/30 to-transparent mb-16 md:mb-24 lg:mb-32" />
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-16 lg:gap-20 mb-16 md:mb-24 lg:mb-32">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-20 lg:gap-24 mb-16 md:mb-24 lg:mb-32">
           <div>
-            <h3 className="text-lg md:text-2xl lg:text-3xl font-bold text-gray-100 mb-5 md:mb-8">
+            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-100 mb-6 md:mb-10 tracking-wide">
               Quick Links
             </h3>
-            <ul className="space-y-4 md:space-y-6">
+            <ul className="space-y-5 md:space-y-7 lg:space-y-8">
               {Object.entries(QuickLinks).map(([key, data]) => {
                 const IconComponent = data.icon;
                 return (
                   <li key={key}>
                     <a
                       href={data.url}
-                      className="flex items-center gap-2 md:gap-3 text-sm md:text-lg lg:text-xl text-gray-400 hover:text-cyan-400 transition-colors duration-500 group"
+                      className="flex items-center gap-3 md:gap-4 text-base md:text-lg lg:text-2xl text-gray-400 hover:text-cyan-400 transition-all duration-500 group hover:translate-x-1"
                     >
-                      <IconComponent className="w-4 h-4 md:w-6 md:h-6 lg:w-7 lg:h-7" />
-                      <span>{key}</span>
+                      <IconComponent className="w-5 h-5 md:w-7 md:h-7 lg:w-8 lg:h-8 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                      <span className="font-medium">{key}</span>
                     </a>
                   </li>
                 );
@@ -233,10 +219,10 @@ export function FooterSection() {
           </div>
 
           <div>
-            <h3 className="text-lg md:text-2xl lg:text-3xl font-bold text-gray-100 mb-5 md:mb-8">
+            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-100 mb-6 md:mb-10 tracking-wide">
               My Websites
             </h3>
-            <ul className="space-y-4 md:space-y-6">
+            <ul className="space-y-5 md:space-y-7 lg:space-y-8">
               {Object.entries(MyWebsites).map(([websiteKey, data]) => {
                 const IconComponent = data.icon;
                 return (
@@ -245,10 +231,10 @@ export function FooterSection() {
                       href={data.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 md:gap-3 text-sm md:text-lg lg:text-xl text-gray-400 hover:text-cyan-400 transition-colors duration-500 group"
+                      className="flex items-center gap-3 md:gap-4 text-base md:text-lg lg:text-2xl text-gray-400 hover:text-cyan-400 transition-all duration-500 group hover:translate-x-1"
                     >
-                      <IconComponent className="w-4 h-4 md:w-6 md:h-6 lg:w-7 lg:h-7" />
-                      <span>{data.name}</span>
+                      <IconComponent className="w-5 h-5 md:w-7 md:h-7 lg:w-8 lg:h-8 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                      <span className="font-medium">{data.name}</span>
                     </a>
                   </li>
                 );
@@ -257,10 +243,10 @@ export function FooterSection() {
           </div>
 
           <div>
-            <h3 className="text-lg md:text-2xl lg:text-3xl font-bold text-gray-100 mb-5 md:mb-8">
+            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-100 mb-6 md:mb-10 tracking-wide">
               Social Media
             </h3>
-            <ul className="space-y-4 md:space-y-6">
+            <ul className="space-y-5 md:space-y-7 lg:space-y-8">
               {Object.entries(SocialMedia).map(([key, data]) => {
                 const IconComponent = data.icon;
                 return (
@@ -269,10 +255,10 @@ export function FooterSection() {
                       href={data.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 md:gap-3 text-sm md:text-lg lg:text-xl text-gray-400 hover:text-cyan-400 transition-colors duration-500 group"
+                      className="flex items-center gap-3 md:gap-4 text-base md:text-lg lg:text-2xl text-gray-400 hover:text-cyan-400 transition-all duration-500 group hover:translate-x-1"
                     >
-                      <IconComponent className="w-4 h-4 md:w-6 md:h-6 lg:w-7 lg:h-7" />
-                      <span>{key}</span>
+                      <IconComponent className="w-5 h-5 md:w-7 md:h-7 lg:w-8 lg:h-8 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                      <span className="font-medium">{key}</span>
                     </a>
                   </li>
                 );
@@ -281,10 +267,10 @@ export function FooterSection() {
           </div>
 
           <div>
-            <h3 className="text-lg md:text-2xl lg:text-3xl font-bold text-gray-100 mb-5 md:mb-8">
+            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-100 mb-6 md:mb-10 tracking-wide">
               Coding
             </h3>
-            <ul className="space-y-4 md:space-y-6">
+            <ul className="space-y-5 md:space-y-7 lg:space-y-8">
               {Object.entries(CodingProfiles).map(([key, data]) => {
                 const IconComponent = data.icon;
                 return (
@@ -293,10 +279,10 @@ export function FooterSection() {
                       href={data.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 md:gap-3 text-sm md:text-lg lg:text-xl text-gray-400 hover:text-cyan-400 transition-colors duration-500 group"
+                      className="flex items-center gap-3 md:gap-4 text-base md:text-lg lg:text-2xl text-gray-400 hover:text-cyan-400 transition-all duration-500 group hover:translate-x-1"
                     >
-                      <IconComponent className="w-4 h-4 md:w-6 md:h-6 lg:w-7 lg:h-7" />
-                      <span>{key}</span>
+                      <IconComponent className="w-5 h-5 md:w-7 md:h-7 lg:w-8 lg:h-8 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                      <span className="font-medium">{key}</span>
                     </a>
                   </li>
                 );
@@ -313,7 +299,7 @@ export function FooterSection() {
                 fontStyle: "italic",
               }}
             >
-              VISCA EL{" "}
+              VISCA{" "}
             </span>
             <span
               className="text-[#A50044]"

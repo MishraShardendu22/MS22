@@ -73,8 +73,15 @@ const sortByOrder = (items: Volunteer[]) =>
   [...items].sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
 
 export async function VolunteerDisplayMobile() {
-  const response = await volunteerAPI.getAllVolunteers(1, 4);
-  const volunteers = sortByOrder(response.data?.volunteer_experiences || []);
+  let volunteers: Volunteer[] = [];
+
+  try {
+    const response = await volunteerAPI.getAllVolunteers(1, 4);
+    volunteers = sortByOrder(response.data?.volunteer_experiences || []);
+  } catch (error) {
+    console.error("Error loading mobile volunteers:", error);
+    // Fallback to empty state when backend is rate-limited or unavailable.
+  }
 
   if (volunteers.length === 0) {
     return (
@@ -178,19 +185,24 @@ export async function VolunteerDisplayServer({
   const params = await searchParams;
   const page = Number(params?.volunteerPage) || 1;
 
-  const response = await volunteerAPI.getAllVolunteers(
-    page,
-    VOLUNTEERS_PER_PAGE,
-  );
+  let volunteers: Volunteer[] = [];
+  let totalPages = 1;
+  let hasNext = false;
+  let hasPrevious = false;
 
-  if (!response.data) {
-    throw new Error("Failed to load volunteer experiences");
+  try {
+    const response = await volunteerAPI.getAllVolunteers(
+      page,
+      VOLUNTEERS_PER_PAGE,
+    );
+    volunteers = sortByOrder(response.data?.volunteer_experiences || []);
+    totalPages = response.data?.total_pages || 1;
+    hasNext = response.data?.has_next || false;
+    hasPrevious = response.data?.has_previous || false;
+  } catch (error) {
+    console.error("Error loading volunteers:", error);
+    // Fallback to empty state when backend is rate-limited or unavailable.
   }
-
-  const volunteers = sortByOrder(response.data?.volunteer_experiences || []);
-  const totalPages = response.data?.total_pages || 1;
-  const hasNext = response.data?.has_next || false;
-  const hasPrevious = response.data?.has_previous || false;
 
   const headerContent = (
     <SectionHeader

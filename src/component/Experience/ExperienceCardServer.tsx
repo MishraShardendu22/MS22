@@ -44,8 +44,15 @@ export const ExperienceCard = ({ experience, index }: ExperienceCardProps) => {
 
 // Mobile-optimized server component
 export async function ExperiencesDisplayMobile() {
-  const response = await experiencesAPI.getAllExperiences(1, 2);
-  const experiences = response.data?.experiences || [];
+  let experiences: Experience[] = [];
+
+  try {
+    const response = await experiencesAPI.getAllExperiences(1, 2);
+    experiences = response.data?.experiences || [];
+  } catch (error) {
+    console.error("Error loading mobile experiences:", error);
+    // Fallback to empty state when backend is rate-limited or unavailable.
+  }
 
   if (experiences.length === 0) {
     return (
@@ -141,19 +148,24 @@ export async function ExperiencesDisplayServer({
   const params = await searchParams;
   const page = Number(params?.experiencesPage) || 1;
 
-  const response = await experiencesAPI.getAllExperiences(
-    page,
-    EXPERIENCES_PER_PAGE,
-  );
+  let experiences: Experience[] = [];
+  let totalPages = 1;
+  let hasNext = false;
+  let hasPrevious = false;
 
-  if (!response.data) {
-    throw new Error("Failed to load experiences");
+  try {
+    const response = await experiencesAPI.getAllExperiences(
+      page,
+      EXPERIENCES_PER_PAGE,
+    );
+    experiences = response.data?.experiences || [];
+    totalPages = response.data?.total_pages || 1;
+    hasNext = response.data?.has_next || false;
+    hasPrevious = response.data?.has_previous || false;
+  } catch (error) {
+    console.error("Error loading experiences:", error);
+    // Fallback to empty state when backend is rate-limited or unavailable.
   }
-
-  const experiences = response.data?.experiences || [];
-  const totalPages = response.data?.total_pages || 1;
-  const hasNext = response.data?.has_next || false;
-  const hasPrevious = response.data?.has_previous || false;
 
   const headerContent = (
     <SectionHeader

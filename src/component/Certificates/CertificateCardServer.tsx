@@ -75,8 +75,15 @@ const sortByOrder = (items: Certificate[]) =>
 
 // Mobile-optimized server component
 export async function CertificatesDisplayMobile() {
-  const response = await certificatesAPI.getAllCertificates(1, 4);
-  const certificates = sortByOrder(response.data?.certifications || []);
+  let certificates: Certificate[] = [];
+
+  try {
+    const response = await certificatesAPI.getAllCertificates(1, 4);
+    certificates = sortByOrder(response.data?.certifications || []);
+  } catch (error) {
+    console.error("Error loading mobile certificates:", error);
+    // Fallback to empty state when backend is rate-limited or unavailable.
+  }
 
   if (certificates.length === 0) {
     return (
@@ -155,19 +162,24 @@ export async function CertificatesDisplayServer({
   const params = await searchParams;
   const page = Number(params?.certificatesPage) || 1;
 
-  const response = await certificatesAPI.getAllCertificates(
-    page,
-    CERTIFICATES_PER_PAGE,
-  );
+  let certificates: Certificate[] = [];
+  let totalPages = 1;
+  let hasNext = false;
+  let hasPrevious = false;
 
-  if (!response.data) {
-    throw new Error("Failed to load certificates");
+  try {
+    const response = await certificatesAPI.getAllCertificates(
+      page,
+      CERTIFICATES_PER_PAGE,
+    );
+    certificates = sortByOrder(response.data?.certifications || []);
+    totalPages = response.data?.total_pages || 1;
+    hasNext = response.data?.has_next || false;
+    hasPrevious = response.data?.has_previous || false;
+  } catch (error) {
+    console.error("Error loading certificates:", error);
+    // Fallback to empty state when backend is rate-limited or unavailable.
   }
-
-  const certificates = sortByOrder(response.data?.certifications || []);
-  const totalPages = response.data?.total_pages || 1;
-  const hasNext = response.data?.has_next || false;
-  const hasPrevious = response.data?.has_previous || false;
 
   const headerContent = (
     <SectionHeader

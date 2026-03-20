@@ -96,11 +96,21 @@ export async function SkillsDisplayMobile({
   const params = await searchParams;
   const page = Number(params?.page) || 1;
 
-  const response = await skillsAPI.getSkills(page, SKILLS_PER_PAGE);
-  const skills = response.data?.skills || [];
-  const totalPages = response.data?.total_pages || 1;
-  const hasNext = response.data?.has_next || false;
-  const hasPrevious = response.data?.has_previous || false;
+  let skills: string[] = [];
+  let totalPages = 1;
+  let hasNext = false;
+  let hasPrevious = false;
+
+  try {
+    const response = await skillsAPI.getSkills(page, SKILLS_PER_PAGE);
+    skills = response.data?.skills || [];
+    totalPages = response.data?.total_pages || 1;
+    hasNext = response.data?.has_next || false;
+    hasPrevious = response.data?.has_previous || false;
+  } catch (error) {
+    console.error("Error loading mobile skills:", error);
+    // Fallback to empty state when backend is rate-limited or unavailable.
+  }
 
   return (
     <SkillsDisplayMobileServer
@@ -119,13 +129,21 @@ export default async function SkillsDisplay({
   const params = await searchParams;
   const page = Number(params?.page) || 1;
 
-  const response = await skillsAPI.getSkills(page, SKILLS_PER_PAGE);
+  let skills: string[] = [];
+  let totalPages = 1;
+  let hasNext = false;
+  let hasPrevious = false;
 
-  if (!response.data) {
-    throw new Error("Failed to load skills");
+  try {
+    const response = await skillsAPI.getSkills(page, SKILLS_PER_PAGE);
+    skills = response.data?.skills || [];
+    totalPages = response.data?.total_pages || 1;
+    hasNext = response.data?.has_next || false;
+    hasPrevious = response.data?.has_previous || false;
+  } catch (error) {
+    console.error("Error loading skills:", error);
+    // Fallback to empty state when backend is rate-limited or unavailable.
   }
-
-  const { skills, total_pages, has_next, has_previous } = response.data;
 
   return (
     <section className="relative py-6 sm:py-8 md:py-12 px-4 sm:px-6 md:px-8 bg-linear-to-b from-transparent via-gray-950/50 to-transparent overflow-hidden">
@@ -146,9 +164,9 @@ export default async function SkillsDisplay({
                   Technical Skills
                 </h2>
               </div>
-              {total_pages > 1 && (
+              {totalPages > 1 && (
                 <div className="flex items-center justify-center gap-1.5 sm:gap-2 md:gap-3 flex-wrap shrink-0">
-                  {has_previous ? (
+                  {hasPrevious ? (
                     <Link
                       href={`?page=${page - 1}#skills`}
                       scroll={false}
@@ -176,11 +194,11 @@ export default async function SkillsDisplay({
                     <span className="hidden sm:inline"> of </span>
                     <span className="sm:hidden">/</span>
                     <span className="text-cyan-400 font-bold">
-                      {total_pages}
+                      {totalPages}
                     </span>
                   </span>
 
-                  {has_next ? (
+                  {hasNext ? (
                     <Link
                       href={`?page=${page + 1}#skills`}
                       scroll={false}

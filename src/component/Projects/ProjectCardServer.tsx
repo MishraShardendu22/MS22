@@ -120,8 +120,15 @@ const sortByOrder = (items: Project[]) =>
 
 // Mobile-optimized server component
 export async function ProjectsDisplayMobile() {
-  const response = await projectsAPI.getAllProjects(1, 4);
-  const projects = sortByOrder(response.data?.projects || []);
+  let projects: Project[] = [];
+
+  try {
+    const response = await projectsAPI.getAllProjects(1, 4);
+    projects = sortByOrder(response.data?.projects || []);
+  } catch (error) {
+    console.error("Error loading mobile projects:", error);
+    // Fallback to empty state when backend is rate-limited or unavailable.
+  }
 
   if (projects.length === 0) {
     return (
@@ -214,16 +221,21 @@ export async function ProjectsDisplayServer({
   const params = await searchParams;
   const page = Number(params?.projectsPage) || 1;
 
-  const response = await projectsAPI.getAllProjects(page, PROJECTS_PER_PAGE);
+  let projects: Project[] = [];
+  let totalPages = 1;
+  let hasNext = false;
+  let hasPrevious = false;
 
-  if (!response.data) {
-    throw new Error("Failed to load projects");
+  try {
+    const response = await projectsAPI.getAllProjects(page, PROJECTS_PER_PAGE);
+    projects = sortByOrder(response.data?.projects || []);
+    totalPages = response.data?.total_pages || 1;
+    hasNext = response.data?.has_next || false;
+    hasPrevious = response.data?.has_previous || false;
+  } catch (error) {
+    console.error("Error loading projects:", error);
+    // Fallback to empty state when backend is rate-limited or unavailable.
   }
-
-  const projects = sortByOrder(response.data?.projects || []);
-  const totalPages = response.data?.total_pages || 1;
-  const hasNext = response.data?.has_next || false;
-  const hasPrevious = response.data?.has_previous || false;
 
   const headerContent = (
     <SectionHeader
