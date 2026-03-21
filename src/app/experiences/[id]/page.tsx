@@ -12,21 +12,21 @@ interface PageProps {
 export default async function ExperienceDetailPage({ params }: PageProps) {
   const { id } = await params;
 
-  try {
-    const response = await getCachedExperienceById(id);
+  const response = await getCachedExperienceById(id);
 
-    if (response.status !== 200 || !response.data) {
-      notFound();
-    }
-
-    const treeData = normalizeExperience(response.data);
-
-    return (
-      <main className="flex-1 min-h-screen bg-gray-950">
-        <DetailTreeView data={treeData} />
-      </main>
-    );
-  } catch {
+  if (response.status === 404 || !response.data) {
     notFound();
   }
+
+  if (response.status !== 200) {
+    throw new Error(`Failed to load experience ${id}: ${response.status}`);
+  }
+
+  const treeData = normalizeExperience(response.data);
+
+  return (
+    <main className="flex-1 min-h-screen bg-gray-950">
+      <DetailTreeView data={treeData} />
+    </main>
+  );
 }

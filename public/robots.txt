@@ -4,14 +4,18 @@
 User-agent: *
 Allow: /
 Disallow: /api/
-Disallow: /_next/static/
+Disallow: /private/
 
 # Allow important crawlers full access
 User-agent: Googlebot
 Allow: /
+Disallow: /api/
+Disallow: /private/
 
 User-agent: Bingbot
 Allow: /
+Disallow: /api/
+Disallow: /private/
 
 User-agent: Slurp
 Allow: /

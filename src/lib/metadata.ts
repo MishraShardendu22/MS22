@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { BaseURL } from "@/static/data";
 
+function normalizeBaseUrl(url: string): string {
+  return url.endsWith("/") ? url.slice(0, -1) : url;
+}
+
 export function generatePageMetadata({
   title,
   description,
@@ -16,13 +20,18 @@ export function generatePageMetadata({
   images?: Array<{ url: string; width: number; height: number; alt: string }>;
   noIndex?: boolean;
 }): Metadata {
-  const url = `${BaseURL}${path}`;
+  const normalizedBaseUrl = normalizeBaseUrl(BaseURL);
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  const url =
+    normalizedPath === "/"
+      ? normalizedBaseUrl
+      : `${normalizedBaseUrl}${normalizedPath}`;
   const defaultImages =
     images.length > 0
       ? images
       : [
           {
-            url: `${BaseURL}/opengraph-image`,
+            url: `${normalizedBaseUrl}/opengraph-image`,
             width: 1200,
             height: 630,
             alt: `${title} - Shardendu Mishra`,
@@ -38,7 +47,7 @@ export function generatePageMetadata({
       "Software Developer",
       "Portfolio",
     ],
-    authors: [{ name: "Shardendu Mishra", url: BaseURL }],
+    authors: [{ name: "Shardendu Mishra", url: normalizedBaseUrl }],
     creator: "Shardendu Mishra",
     publisher: "Shardendu Mishra",
     openGraph: {
@@ -80,7 +89,7 @@ export function generatePageMetadata({
       "og:url": url,
       "og:type": "website",
       "article:author": "Shardendu Mishra",
-      "twitter:domain": BaseURL.replace(/^https?:\/\//, ""),
+      "twitter:domain": normalizedBaseUrl.replace(/^https?:\/\//, ""),
       "twitter:url": url,
     },
   };

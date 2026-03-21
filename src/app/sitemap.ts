@@ -7,54 +7,56 @@ import {
 } from "@/static/api/api.request";
 import { BaseURL } from "@/static/data";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = BaseURL || "https://mishrashardendu22.is-a.dev";
+function normalizeBaseUrl(url: string): string {
+  return url.endsWith("/") ? url.slice(0, -1) : url;
+}
 
-  // Static routes
-  const routes: MetadataRoute.Sitemap = [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: "weekly" as const,
-      priority: 1.0,
-    },
-    {
-      url: `${baseUrl}/projects`,
-      lastModified: new Date(),
-      changeFrequency: "weekly" as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/experiences`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/certificates`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/volunteer`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/links`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/contact`,
-      lastModified: new Date(),
-      changeFrequency: "yearly" as const,
-      priority: 0.6,
-    },
-  ];
+function normalizePath(path: string): string {
+  if (!path || path === "/") return "";
+  return `/${path.replace(/^\/+|\/+$/g, "")}`;
+}
+
+function normalizeId(id: unknown): string | null {
+  if (id === null || id === undefined) return null;
+  const normalized = String(id).trim();
+  if (!normalized || normalized === "undefined" || normalized === "null") {
+    return null;
+  }
+  return normalized;
+}
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const baseUrl = normalizeBaseUrl(BaseURL);
+  const routes: MetadataRoute.Sitemap = [];
+  const seen = new Set<string>();
+
+  const addRoute = (
+    path: string,
+    changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"],
+    priority: number,
+    lastModified = new Date(),
+  ) => {
+    const url = `${baseUrl}${normalizePath(path)}` || baseUrl;
+
+    if (seen.has(url)) return;
+    seen.add(url);
+
+    routes.push({
+      url,
+      lastModified,
+      changeFrequency,
+      priority,
+    });
+  };
+
+  addRoute("/", "weekly", 1.0);
+  addRoute("/projects", "weekly", 0.9);
+  addRoute("/experiences", "monthly", 0.8);
+  addRoute("/certificates", "monthly", 0.7);
+  addRoute("/volunteer", "monthly", 0.7);
+  addRoute("/links", "monthly", 0.9);
+  addRoute("/contact", "yearly", 0.6);
+  addRoute("/feed.xml", "monthly", 0.3);
 
   try {
     const [projectsRes, experiencesRes, certificatesRes, volunteersRes] =
@@ -75,54 +77,60 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     if (projectsRes.data?.projects) {
       projectsRes.data.projects.forEach((project) => {
-        routes.push({
-          url: `${baseUrl}/projects/${project.inline?.id}`,
+        const id = normalizeId(project.inline?.id);
+        if (!id) return;
 
-          lastModified: project.inline?.updated_at
+        addRoute(
+          `/projects/${id}`,
+          "monthly",
+          0.8,
+          project.inline?.updated_at
             ? new Date(project.inline.updated_at)
             : new Date(),
-          changeFrequency: "monthly" as const,
-          priority: 0.8,
-        });
+        );
       });
     }
 
     // Add experience routes
     if (experiencesRes.data?.experiences) {
       experiencesRes.data.experiences.forEach((experience) => {
-        routes.push({
-          url: `${baseUrl}/experiences/${experience.inline?.id}`,
-          lastModified: new Date(),
-          changeFrequency: "monthly" as const,
-          priority: 0.7,
-        });
+        const id = normalizeId(experience.inline?.id);
+        if (!id) return;
+
+        addRoute("/experiences/" + id, "monthly", 0.7, new Date());
       });
     }
 
     // Add certificate routes
     if (certificatesRes.data?.certifications) {
       certificatesRes.data.certifications.forEach((certificate) => {
-        routes.push({
-          url: `${baseUrl}/certificates/${certificate.inline?.id}`,
-          lastModified: certificate.inline?.updated_at
+        const id = normalizeId(certificate.inline?.id);
+        if (!id) return;
+
+        addRoute(
+          `/certificates/${id}`,
+          "yearly",
+          0.6,
+          certificate.inline?.updated_at
             ? new Date(certificate.inline.updated_at)
             : new Date(),
-          changeFrequency: "yearly" as const,
-          priority: 0.6,
-        });
+        );
       });
     }
 
     if (volunteersRes.data?.volunteer_experiences) {
       volunteersRes.data.volunteer_experiences.forEach((volunteer) => {
-        routes.push({
-          url: `${baseUrl}/volunteer/${volunteer.inline?.id}`,
-          lastModified: volunteer.inline?.updated_at
+        const id = normalizeId(volunteer.inline?.id);
+        if (!id) return;
+
+        addRoute(
+          `/volunteer/${id}`,
+          "yearly",
+          0.6,
+          volunteer.inline?.updated_at
             ? new Date(volunteer.inline.updated_at)
             : new Date(),
-          changeFrequency: "yearly" as const,
-          priority: 0.6,
-        });
+        );
       });
     }
   } catch (error) {

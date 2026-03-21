@@ -5,13 +5,8 @@ import type { Metadata, Viewport } from "next";
 import { Archivo, Inter } from "next/font/google";
 import { SidebarWrapper } from "@/component/Sidebar/SidebarWrapper";
 import { CDN_ICON_PNG, CDN_PROFESSIONAL_AVIF } from "@/static/cdn";
+import { BaseURL } from "@/static/data";
 import { getRootJsonLd } from "@/static/site";
-
-const BASE_URL =
-  process.env.NEXT_PUBLIC_BASE_URL ||
-  (process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : "http://localhost:3000");
 
 const archivo = Archivo({
   variable: "--font-heading",
@@ -47,7 +42,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(BASE_URL),
+  metadataBase: new URL(BaseURL),
   title: {
     template: "%s | Shardendu Mishra",
     default: "Shardendu Mishra | Software Developer and Engineer",
@@ -71,7 +66,7 @@ export const metadata: Metadata = {
     "Docker",
     "Kubernetes",
   ],
-  authors: [{ name: "Shardendu Mishra", url: BASE_URL }],
+  authors: [{ name: "Shardendu Mishra", url: BaseURL }],
   creator: "Shardendu Mishra",
   publisher: "Shardendu Mishra",
   manifest: "/manifest.json",
@@ -103,7 +98,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: BASE_URL,
+    url: BaseURL,
     title: "Shardendu Mishra - Software Developer and Engineer",
     description:
       "Software Developer specializing in Go, React, Next.js & TypeScript. Building scalable web applications with Docker, Kubernetes & cloud-native tech.",
@@ -166,9 +161,9 @@ export const metadata: Metadata = {
     telephone: false,
   },
   alternates: {
-    canonical: BASE_URL,
+    canonical: BaseURL,
     languages: {
-      "en-US": BASE_URL,
+      "en-US": BaseURL,
     },
     types: {
       "application/rss+xml": [{ url: "/feed.xml", title: "RSS Feed" }],
@@ -191,7 +186,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = getRootJsonLd(BASE_URL);
+  const jsonLd = getRootJsonLd(BaseURL);
 
   return (
     <html lang="en" dir="ltr" className="scroll-smooth">

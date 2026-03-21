@@ -84,6 +84,13 @@ export async function generateMetadata({
   return {
     title: "Certificate Details | Shardendu Mishra",
     description: "View professional certification details by Shardendu Mishra.",
+    alternates: {
+      canonical: `${BaseURL}/certificates`,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
   };
 }
 

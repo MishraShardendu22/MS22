@@ -85,6 +85,13 @@ export async function generateMetadata({
   return {
     title: "Volunteer Details | Shardendu Mishra",
     description: "View volunteer experience details by Shardendu Mishra.",
+    alternates: {
+      canonical: `${BaseURL}/volunteer`,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
   };
 }
 

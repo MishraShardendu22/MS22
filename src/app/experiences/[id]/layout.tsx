@@ -87,6 +87,13 @@ export async function generateMetadata({
     title: "Experience Details | Shardendu Mishra",
     description:
       "View professional work experience details by Shardendu Mishra.",
+    alternates: {
+      canonical: `${BaseURL}/experiences`,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
   };
 }
 

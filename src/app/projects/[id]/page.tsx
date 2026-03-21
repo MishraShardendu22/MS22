@@ -12,21 +12,21 @@ interface PageProps {
 export default async function ProjectDetailPage({ params }: PageProps) {
   const { id } = await params;
 
-  try {
-    const response = await getCachedProjectById(id);
+  const response = await getCachedProjectById(id);
 
-    if (response.status !== 200 || !response.data) {
-      notFound();
-    }
-
-    const treeData = normalizeProject(response.data);
-
-    return (
-      <main className="flex-1 min-h-screen bg-gray-950">
-        <DetailTreeView data={treeData} />
-      </main>
-    );
-  } catch {
+  if (response.status === 404 || !response.data) {
     notFound();
   }
+
+  if (response.status !== 200) {
+    throw new Error(`Failed to load project ${id}: ${response.status}`);
+  }
+
+  const treeData = normalizeProject(response.data);
+
+  return (
+    <main className="flex-1 min-h-screen bg-gray-950">
+      <DetailTreeView data={treeData} />
+    </main>
+  );
 }

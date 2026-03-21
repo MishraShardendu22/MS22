@@ -12,21 +12,21 @@ interface PageProps {
 export default async function VolunteerDetailPage({ params }: PageProps) {
   const { id } = await params;
 
-  try {
-    const response = await getCachedVolunteerById(id);
+  const response = await getCachedVolunteerById(id);
 
-    if (response.status !== 200 || !response.data) {
-      notFound();
-    }
-
-    const treeData = normalizeVolunteer(response.data);
-
-    return (
-      <main className="flex-1 min-h-screen bg-gray-950">
-        <DetailTreeView data={treeData} />
-      </main>
-    );
-  } catch {
+  if (response.status === 404 || !response.data) {
     notFound();
   }
+
+  if (response.status !== 200) {
+    throw new Error(`Failed to load volunteer ${id}: ${response.status}`);
+  }
+
+  const treeData = normalizeVolunteer(response.data);
+
+  return (
+    <main className="flex-1 min-h-screen bg-gray-950">
+      <DetailTreeView data={treeData} />
+    </main>
+  );
 }

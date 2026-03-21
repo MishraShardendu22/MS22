@@ -84,6 +84,13 @@ export async function generateMetadata({
   return {
     title: "Project Details | Shardendu Mishra",
     description: "View software project details by Shardendu Mishra.",
+    alternates: {
+      canonical: `${BaseURL}/projects`,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
   };
 }
 

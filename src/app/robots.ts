@@ -1,8 +1,12 @@
 import type { MetadataRoute } from "next";
+import { BaseURL } from "@/static/data";
+
+function normalizeBaseUrl(url: string): string {
+  return url.endsWith("/") ? url.slice(0, -1) : url;
+}
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL || "https://mishrashardendu22.is-a.dev";
+  const baseUrl = normalizeBaseUrl(BaseURL);
 
   return {
     rules: [
@@ -14,14 +18,15 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "Googlebot",
         allow: "/",
-        disallow: ["/api/"],
+        disallow: ["/api/", "/private/"],
       },
       {
         userAgent: "Bingbot",
         allow: "/",
-        disallow: ["/api/"],
+        disallow: ["/api/", "/private/"],
       },
     ],
+    host: baseUrl,
     sitemap: `${baseUrl}/sitemap.xml`,
   };
 }
