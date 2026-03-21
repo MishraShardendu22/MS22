@@ -308,7 +308,7 @@ export function FooterSection() {
                 fontStyle: "italic",
               }}
             >
-              BARÇA
+              BARÇA{" "}
             </span>
           </h2>
         </div>
