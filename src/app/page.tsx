@@ -82,40 +82,6 @@ const page = async ({ searchParams }: PageProps) => {
       />
       <main className="flex-1 lg:ml-0" aria-label="Main content">
         <HeroSection />
-        <nav aria-label="Portfolio pages" className="px-4 sm:px-6 lg:px-8 py-4">
-          <ul className="flex flex-wrap items-center gap-2 text-sm text-cyan-300">
-            <li>
-              <Link className="hover:underline" href="/projects">
-                Projects
-              </Link>
-            </li>
-            <li>
-              <Link className="hover:underline" href="/experiences">
-                Experience
-              </Link>
-            </li>
-            <li>
-              <Link className="hover:underline" href="/certificates">
-                Certificates
-              </Link>
-            </li>
-            <li>
-              <Link className="hover:underline" href="/volunteer">
-                Volunteer
-              </Link>
-            </li>
-            <li>
-              <Link className="hover:underline" href="/links">
-                Links
-              </Link>
-            </li>
-            <li>
-              <Link className="hover:underline" href="/contact">
-                Contact
-              </Link>
-            </li>
-          </ul>
-        </nav>
         <section id="skills" aria-label="Technical skills and expertise">
           <Suspense
             fallback={
