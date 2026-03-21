@@ -1,6 +1,6 @@
-import { Suspense } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import {
   CertificatesDisplayMobile,
   CertificatesDisplayServer,
@@ -25,6 +25,7 @@ import {
   VolunteerDisplayServer,
 } from "@/component/Volunteer";
 import { getIsMobile } from "@/lib/isMobile";
+import { generatePageMetadata } from "@/lib/metadata";
 import {
   generateFAQSchema,
   generatePersonSchema,
@@ -32,7 +33,6 @@ import {
   generateProfilePageSchema,
   generateWebSiteSchema,
 } from "@/lib/structuredData";
-import { generatePageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = generatePageMetadata({
   title: "Shardendu Mishra | Software Developer and Engineer",
@@ -82,10 +82,7 @@ const page = async ({ searchParams }: PageProps) => {
       />
       <main className="flex-1 lg:ml-0" aria-label="Main content">
         <HeroSection />
-        <nav
-          aria-label="Portfolio pages"
-          className="px-4 sm:px-6 lg:px-8 py-4"
-        >
+        <nav aria-label="Portfolio pages" className="px-4 sm:px-6 lg:px-8 py-4">
           <ul className="flex flex-wrap items-center gap-2 text-sm text-cyan-300">
             <li>
               <Link className="hover:underline" href="/projects">

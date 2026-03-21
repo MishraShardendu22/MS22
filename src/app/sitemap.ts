@@ -97,7 +97,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         const id = normalizeId(experience.inline?.id);
         if (!id) return;
 
-        addRoute("/experiences/" + id, "monthly", 0.7, new Date());
+        addRoute(`/experiences/${id}`, "monthly", 0.7, new Date());
       });
     }
 
