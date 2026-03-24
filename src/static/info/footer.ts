@@ -1,52 +1,33 @@
-import {
-  Book,
-  Briefcase,
-  CompassIcon,
-  Link,
-  LockKeyhole,
-  PackagePlus,
-  Rss,
-  ShieldCheck,
-} from "lucide-react";
-
 export const QuickLinks = {
   Social_Media: {
     url: "https://mishrashardendu22.is-a.dev/links",
-    icon: Link,
   },
   RSS_Feed: {
     url: "https://mishrashardendu22.is-a.dev/feed.xml",
-    icon: Rss,
   },
   Project: {
     url: "https://mishrashardendu22.is-a.dev/projects",
-    icon: Briefcase,
   },
   Certification: {
     url: "https://mishrashardendu22.is-a.dev/certificates",
-    icon: PackagePlus,
   },
 };
 
 export const MyWebsites = {
   adminPortal: {
     url: "https://admin.mishrashardendu22.is-a.dev",
-    icon: ShieldCheck,
     name: "Admin Portal",
   },
   techBlog: {
     url: "https://blogs.mishrashardendu22.is-a.dev",
-    icon: Book,
     name: "Blog Website",
   },
   treasureHunt: {
     url: "https://treasure-hunt.mishrashardendu22.is-a.dev/",
-    icon: LockKeyhole,
     name: "Treasure Hunt",
   },
   uiLibrary: {
     url: "https://pixel-art-8-bit.mishrashardendu22.is-a.dev",
-    icon: CompassIcon,
     name: "My UI Library",
   },
 };
