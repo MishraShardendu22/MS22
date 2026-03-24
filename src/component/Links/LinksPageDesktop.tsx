@@ -86,11 +86,6 @@ export function LinksPageDesktop() {
                       <div className="relative overflow-hidden rounded-xl">
                         <div className="relative bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 rounded-xl p-5 hover:border-gray-700/50 transition-all duration-300">
                           <div className="flex items-center gap-4">
-                            <div
-                              className={`p-3 rounded-lg bg-linear-to-br ${link.color} text-white shrink-0 transition-transform duration-300`}
-                            >
-                              <link.icon className="w-6 h-6" />
-                            </div>
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center gap-2 mb-1">
                                 <h3 className="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">

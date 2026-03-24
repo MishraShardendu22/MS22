@@ -1,18 +1,8 @@
-import {
-  BookOpen,
-  FileText,
-  Github,
-  GraduationCap,
-  Linkedin,
-  Mail,
-  School,
-} from "lucide-react";
+import { BookOpen, GraduationCap, Mail, School } from "lucide-react";
 import { CDN_ICON_AVIF, CDN_PROFESSIONAL_AVIF } from "@/static/cdn";
 import type { Education, Introduction, SocialLink } from "./types";
 
-/** @deprecated Use CDN_ICON_AVIF from @/static/cdn directly */
 export const Icon: string = CDN_ICON_AVIF;
-/** @deprecated Use CDN_PROFESSIONAL_AVIF from @/static/cdn directly */
 export const professionalImage: string = CDN_PROFESSIONAL_AVIF;
 
 export const mail: SocialLink = {
@@ -23,15 +13,12 @@ export const mail: SocialLink = {
 export const SocialLinks = {
   GitHub: {
     url: "https://github.com/MishraShardendu22",
-    icon: Github,
   },
   LinkedIn: {
     url: "https://www.linkedin.com/in/shardendumishra22",
-    icon: Linkedin,
   },
   resume: {
     url: "https://drive.google.com/drive/folders/1s48wtD34inP2tK5FxQjaj2OtBpFAi7l8?usp=sharing",
-    icon: FileText,
   },
 };
 

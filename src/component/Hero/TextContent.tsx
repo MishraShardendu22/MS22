@@ -27,7 +27,6 @@ export const TextContent = () => {
       {/* Social Links */}
       <div className="flex gap-2 md:gap-3 lg:gap-4 justify-center lg:justify-start flex-wrap pt-2 md:pt-4 lg:pt-6">
         {Object.entries(SocialLinks).map(([key, link]) => {
-          const IconComponent = link.icon;
           return (
             <a
               key={key}
@@ -37,7 +36,6 @@ export const TextContent = () => {
               className="social-link group relative flex items-center gap-2 md:gap-2.5 lg:gap-3 px-3 md:px-4 lg:px-6 py-2 md:py-2.5 lg:py-3 bg-gray-900/80 hover:bg-gray-800/80 border border-gray-700 hover:border-cyan-500 rounded-lg transition-all duration-300 shadow-lg backdrop-blur-sm text-xs sm:text-sm md:text-base"
               aria-label={key}
             >
-              <IconComponent className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 text-gray-400 group-hover:text-cyan-400 transition-colors duration-300 shrink-0" />
               <span className="font-medium text-gray-300 group-hover:text-cyan-400 transition-colors duration-300 whitespace-nowrap">
                 {BUTTON_LABELS[key] || key}
               </span>

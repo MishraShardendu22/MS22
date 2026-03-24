@@ -1,12 +1,4 @@
-import {
-  BookOpen,
-  Code,
-  Github,
-  MapPin,
-  Star,
-  User,
-  Users,
-} from "lucide-react";
+import { BookOpen, Code, MapPin, Star, User, Users } from "lucide-react";
 import type { GitHubData } from "@/types/stats";
 
 interface StatsCardProps {
@@ -46,9 +38,7 @@ export const GitHubProfileCard = ({
 }: GitHubProfileCardProps) => (
   <div className="bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:border-cyan-500/40 transition-all duration-300">
     <div className="flex items-center gap-3 mb-6">
-      <div className="p-3 bg-cyan-500/10 rounded-lg border border-cyan-500/30">
-        <Github className="w-5 h-5 text-cyan-400" />
-      </div>
+      <div className="p-3 bg-cyan-500/10 rounded-lg border border-cyan-500/30"></div>
       <div>
         <h3 className="text-lg font-bold text-white">GitHub Profile</h3>
         <p className="text-xs text-gray-400">Development Activity</p>

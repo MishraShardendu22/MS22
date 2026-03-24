@@ -64,7 +64,6 @@ export function FooterSectionMobile() {
             <h3 className="text-base font-bold text-gray-100 mb-3">Social</h3>
             <ul className="space-y-2">
               {Object.entries(SocialMedia).map(([key, data]) => {
-                const IconComponent = data.icon;
                 return (
                   <li key={key}>
                     <a
@@ -73,7 +72,6 @@ export function FooterSectionMobile() {
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 text-xs text-gray-400 hover:text-cyan-400 transition-colors"
                     >
-                      <IconComponent className="w-3 h-3" />
                       <span>{key}</span>
                     </a>
                   </li>
@@ -248,7 +246,6 @@ export function FooterSection() {
             </h3>
             <ul className="space-y-5 md:space-y-7 lg:space-y-8">
               {Object.entries(SocialMedia).map(([key, data]) => {
-                const IconComponent = data.icon;
                 return (
                   <li key={key}>
                     <a
@@ -257,7 +254,6 @@ export function FooterSection() {
                       rel="noopener noreferrer"
                       className="flex items-center gap-3 md:gap-4 text-base md:text-lg lg:text-2xl text-gray-400 hover:text-cyan-400 transition-all duration-500 group hover:translate-x-1"
                     >
-                      <IconComponent className="w-5 h-5 md:w-7 md:h-7 lg:w-8 lg:h-8 flex-shrink-0 group-hover:scale-110 transition-transform" />
                       <span className="font-medium">{key}</span>
                     </a>
                   </li>
@@ -272,7 +268,6 @@ export function FooterSection() {
             </h3>
             <ul className="space-y-5 md:space-y-7 lg:space-y-8">
               {Object.entries(CodingProfiles).map(([key, data]) => {
-                const IconComponent = data.icon;
                 return (
                   <li key={key}>
                     <a
@@ -281,7 +276,6 @@ export function FooterSection() {
                       rel="noopener noreferrer"
                       className="flex items-center gap-3 md:gap-4 text-base md:text-lg lg:text-2xl text-gray-400 hover:text-cyan-400 transition-all duration-500 group hover:translate-x-1"
                     >
-                      <IconComponent className="w-5 h-5 md:w-7 md:h-7 lg:w-8 lg:h-8 flex-shrink-0 group-hover:scale-110 transition-transform" />
                       <span className="font-medium">{key}</span>
                     </a>
                   </li>
