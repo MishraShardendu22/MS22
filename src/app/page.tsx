@@ -15,7 +15,6 @@ import {
   ProjectsDisplayMobile,
   ProjectsDisplayServer,
 } from "@/component/Projects";
-import { SkillsDisplay, SkillsDisplayMobile } from "@/component/Skill";
 import { StatsLoadingSkeleton, StatsSection } from "@/component/Stats";
 import { StructuredData } from "@/component/StructuredData";
 import { Time } from "@/component/Timeline/Time";
@@ -81,19 +80,6 @@ const page = async ({ searchParams }: PageProps) => {
       />
       <main className="flex-1 lg:ml-0" aria-label="Main content">
         <HeroSection />
-        <section id="skills" aria-label="Technical skills and expertise">
-          <Suspense
-            fallback={
-              <LoadingStateLight message="Loading skills..." variant="cyan" />
-            }
-          >
-            {isMobile ? (
-              <SkillsDisplayMobile searchParams={searchParams} />
-            ) : (
-              <SkillsDisplay searchParams={searchParams} />
-            )}
-          </Suspense>
-        </section>
         {!isMobile && (
           <section
             id="timeline"

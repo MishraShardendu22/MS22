@@ -23,7 +23,6 @@ export {
   type SectionTheme,
   SectionWrapper,
 } from "./Section";
-export { SkillsDisplay } from "./Skill";
 export { StatsLoadingSkeleton, StatsSection } from "./Stats";
 export { Time, TimelineDisplay } from "./Timeline";
 export { UnifiedCard } from "./UnifiedCard";
