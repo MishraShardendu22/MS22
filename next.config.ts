@@ -32,6 +32,15 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
+        source: "/((?!_next).*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=3600",
+          },
+        ],
+      },
+      {
         source: "/:path*",
         headers: [
           { key: "X-DNS-Prefetch-Control", value: "on" },
