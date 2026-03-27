@@ -1,64 +1,80 @@
 export const QuickLinks = {
-  Social_Media: {
+  "Social Media": {
     url: "https://mishrashardendu22.is-a.dev/links",
+    icon: "Users",
   },
-  RSS_Feed: {
+  "RSS Feed": {
     url: "https://mishrashardendu22.is-a.dev/feed.xml",
+    icon: "Rss",
   },
   Project: {
     url: "https://mishrashardendu22.is-a.dev/projects",
+    icon: "Folder",
   },
   Certification: {
     url: "https://mishrashardendu22.is-a.dev/certificates",
+    icon: "Award",
   },
 };
 
 export const MyWebsites = {
-  adminPortal: {
+  "Admin Portal": {
     url: "https://admin.mishrashardendu22.is-a.dev",
     name: "Admin Portal",
+    icon: "Shield",
   },
-  techBlog: {
+  "Tech Blog": {
     url: "https://blogs.mishrashardendu22.is-a.dev",
     name: "Blog Website",
+    icon: "BookOpen",
   },
-  treasureHunt: {
+  "Treasure Hunt": {
     url: "https://treasure-hunt.mishrashardendu22.is-a.dev/",
     name: "Treasure Hunt",
+    icon: "MapPin",
   },
-  uiLibrary: {
+  "My UI Library": {
     url: "https://pixel-art-8-bit.mishrashardendu22.is-a.dev",
     name: "My UI Library",
+    icon: "Package",
   },
 };
 
 export const SocialMedia = {
   Twitter: {
     url: "https://x.com/Shardendu_M",
+    icon: "Share2",
   },
   LinkedIn: {
     url: "https://www.linkedin.com/in/shardendumishra22",
+    icon: "Users",
   },
   YouTube: {
     url: "https://www.youtube.com/@Shardendu_Mishra",
+    icon: "Play",
   },
   Instagram: {
     url: "https://www.instagram.com/mishrashardendu22",
+    icon: "Camera",
   },
 };
 
 export const CodingProfiles = {
-  GitHubMain: {
-    url: "https://github.com/MishraShardendu22",
-  },
   LeetCode: {
     url: "https://leetcode.com/mishrashardendu22",
+    icon: "Award",
   },
-  GitHubProject: {
+  "GitHub Main": {
+    url: "https://github.com/MishraShardendu22",
+    icon: "Code",
+  },
+  "GitHub Learning": {
     url: "https://github.com/ShardenduMishra22",
+    icon: "Folder",
   },
   Codeforces: {
     url: "https://codeforces.com/profile/MishraShardendu22",
+    icon: "Terminal",
   },
 };
 

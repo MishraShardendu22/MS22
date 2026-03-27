@@ -1,4 +1,23 @@
-import { Code2, Coffee, Heart } from "lucide-react";
+import {
+  Award,
+  BookOpen,
+  Camera,
+  Code,
+  Code2,
+  Coffee,
+  Cpu,
+  Folder,
+  Heart,
+  MapPin,
+  Package,
+  Play,
+  Rss,
+  Send,
+  Share2,
+  Shield,
+  Terminal,
+  Users,
+} from "lucide-react";
 import Image from "next/image";
 import { ContactFormWrapper } from "@/component/Contact/ContactFormWrapper";
 import {
@@ -9,6 +28,24 @@ import {
   SocialMedia,
 } from "@/static/info/footer";
 import { ScrollToTop } from "./ScrollToTop";
+
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  Code,
+  Cpu,
+  Terminal,
+  Send,
+  Users,
+  Play,
+  Camera,
+  Share2,
+  Rss,
+  Folder,
+  Award,
+  Shield,
+  BookOpen,
+  MapPin,
+  Package,
+};
 
 export function FooterSectionMobile() {
   return (
@@ -44,12 +81,17 @@ export function FooterSectionMobile() {
             </h3>
             <ul className="space-y-2">
               {Object.entries(QuickLinks).map(([key, data]) => {
+                const IconComponent =
+                  iconMap[data.icon as keyof typeof iconMap];
                 return (
                   <li key={key}>
                     <a
                       href={data.url}
-                      className="flex items-center gap-2 text-xs text-gray-400 hover:text-cyan-400 transition-colors"
+                      className="flex items-center gap-2 text-xs text-gray-400 hover:text-cyan-400 transition-colors hover:scale-105"
                     >
+                      {IconComponent && (
+                        <IconComponent className="w-3.5 h-3.5 flex-shrink-0" />
+                      )}
                       <span>{key}</span>
                     </a>
                   </li>
@@ -62,14 +104,19 @@ export function FooterSectionMobile() {
             <h3 className="text-base font-bold text-gray-100 mb-3">Social</h3>
             <ul className="space-y-2">
               {Object.entries(SocialMedia).map(([key, data]) => {
+                const IconComponent =
+                  iconMap[data.icon as keyof typeof iconMap];
                 return (
                   <li key={key}>
                     <a
                       href={data.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-xs text-gray-400 hover:text-cyan-400 transition-colors"
+                      className="flex items-center gap-2 text-xs text-gray-400 hover:text-cyan-400 transition-colors hover:scale-105"
                     >
+                      {IconComponent && (
+                        <IconComponent className="w-3.5 h-3.5 flex-shrink-0" />
+                      )}
                       <span>{key}</span>
                     </a>
                   </li>
@@ -130,13 +177,10 @@ export function FooterSection() {
                 Next.js
               </span>
               <span className="px-2.5 sm:px-3 md:px-6 lg:px-8 py-1.5 sm:py-2 md:py-3 lg:py-4 bg-purple-500/10 border border-purple-500/30 rounded-lg text-xs sm:text-sm md:text-lg lg:text-xl text-purple-400 font-semibold">
-                React
+                Kubernetes
               </span>
               <span className="px-2.5 sm:px-3 md:px-6 lg:px-8 py-1.5 sm:py-2 md:py-3 lg:py-4 bg-green-500/10 border border-green-500/30 rounded-lg text-xs sm:text-sm md:text-lg lg:text-xl text-green-400 font-semibold">
-                TypeScript
-              </span>
-              <span className="px-2.5 sm:px-3 md:px-6 lg:px-8 py-1.5 sm:py-2 md:py-3 lg:py-4 bg-pink-500/10 border border-pink-500/30 rounded-lg text-xs sm:text-sm md:text-lg lg:text-xl text-pink-400 font-semibold">
-                Tailwind
+                AI/ML and DL
               </span>
             </div>
 
@@ -198,12 +242,17 @@ export function FooterSection() {
             </h3>
             <ul className="space-y-5 md:space-y-7 lg:space-y-8">
               {Object.entries(QuickLinks).map(([key, data]) => {
+                const IconComponent =
+                  iconMap[data.icon as keyof typeof iconMap];
                 return (
                   <li key={key}>
                     <a
                       href={data.url}
                       className="flex items-center gap-3 md:gap-4 text-base md:text-lg lg:text-2xl text-gray-400 hover:text-cyan-400 transition-all duration-500 group hover:translate-x-1"
                     >
+                      {IconComponent && (
+                        <IconComponent className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                      )}
                       <span className="font-medium">{key}</span>
                     </a>
                   </li>
@@ -218,6 +267,8 @@ export function FooterSection() {
             </h3>
             <ul className="space-y-5 md:space-y-7 lg:space-y-8">
               {Object.entries(MyWebsites).map(([websiteKey, data]) => {
+                const IconComponent =
+                  iconMap[data.icon as keyof typeof iconMap];
                 return (
                   <li key={websiteKey}>
                     <a
@@ -226,6 +277,9 @@ export function FooterSection() {
                       rel="noopener noreferrer"
                       className="flex items-center gap-3 md:gap-4 text-base md:text-lg lg:text-2xl text-gray-400 hover:text-cyan-400 transition-all duration-500 group hover:translate-x-1"
                     >
+                      {IconComponent && (
+                        <IconComponent className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                      )}
                       <span className="font-medium">{data.name}</span>
                     </a>
                   </li>
@@ -240,6 +294,8 @@ export function FooterSection() {
             </h3>
             <ul className="space-y-5 md:space-y-7 lg:space-y-8">
               {Object.entries(SocialMedia).map(([key, data]) => {
+                const IconComponent =
+                  iconMap[data.icon as keyof typeof iconMap];
                 return (
                   <li key={key}>
                     <a
@@ -248,6 +304,9 @@ export function FooterSection() {
                       rel="noopener noreferrer"
                       className="flex items-center gap-3 md:gap-4 text-base md:text-lg lg:text-2xl text-gray-400 hover:text-cyan-400 transition-all duration-500 group hover:translate-x-1"
                     >
+                      {IconComponent && (
+                        <IconComponent className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                      )}
                       <span className="font-medium">{key}</span>
                     </a>
                   </li>
@@ -262,6 +321,8 @@ export function FooterSection() {
             </h3>
             <ul className="space-y-5 md:space-y-7 lg:space-y-8">
               {Object.entries(CodingProfiles).map(([key, data]) => {
+                const IconComponent =
+                  iconMap[data.icon as keyof typeof iconMap];
                 return (
                   <li key={key}>
                     <a
@@ -270,6 +331,9 @@ export function FooterSection() {
                       rel="noopener noreferrer"
                       className="flex items-center gap-3 md:gap-4 text-base md:text-lg lg:text-2xl text-gray-400 hover:text-cyan-400 transition-all duration-500 group hover:translate-x-1"
                     >
+                      {IconComponent && (
+                        <IconComponent className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                      )}
                       <span className="font-medium">{key}</span>
                     </a>
                   </li>
