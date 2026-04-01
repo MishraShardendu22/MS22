@@ -1,4 +1,4 @@
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -91,7 +91,6 @@ export function LinksPageDesktop() {
                                 <h3 className="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">
                                   {link.name}
                                 </h3>
-                                <ExternalLink className="w-4 h-4 text-gray-500 group-hover:text-cyan-400 transition-colors" />
                               </div>
                               <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors mb-1">
                                 {link.username}

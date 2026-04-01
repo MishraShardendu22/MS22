@@ -1,4 +1,3 @@
-import { ExternalLink, Play } from "lucide-react";
 import Link from "next/link";
 import { PaginationLinks } from "@/component/Pagination";
 import {
@@ -91,7 +90,6 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
                 className="flex items-center gap-1 md:gap-1.5 px-2.5 md:px-3 py-1 md:py-1.5 text-xs font-medium bg-gray-800/40 hover:bg-gray-800/60 text-gray-400 hover:text-blue-400 rounded-lg transition-all duration-200 group/icon"
                 aria-label="View live project"
               >
-                <ExternalLink className="w-3 h-3 md:w-3.5 md:h-3.5" />
                 <span>Live</span>
               </Link>
             )}
@@ -103,7 +101,6 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
                 className="flex items-center gap-1 md:gap-1.5 px-2.5 md:px-3 py-1 md:py-1.5 text-xs font-medium bg-gray-800/40 hover:bg-gray-800/60 text-gray-400 hover:text-purple-400 rounded-lg transition-all duration-200 group/icon"
                 aria-label="Watch video"
               >
-                <Play className="w-3 h-3 md:w-3.5 md:h-3.5" />
                 <span>Demo</span>
               </Link>
             )}
@@ -197,7 +194,6 @@ export async function ProjectsDisplayMobile() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-1 px-2 text-xs bg-gray-800 text-gray-400 rounded"
                 >
-                  <ExternalLink className="w-3 h-3" />
                   <span>Live</span>
                 </Link>
               )}

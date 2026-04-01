@@ -1,4 +1,4 @@
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -91,7 +91,6 @@ export function LinksPageMobile() {
                                 <h3 className="text-sm font-bold text-white group-hover:text-cyan-400 transition-colors truncate">
                                   {link.name}
                                 </h3>
-                                <ExternalLink className="w-3.5 h-3.5 text-gray-500 group-hover:text-cyan-400 transition-colors shrink-0" />
                               </div>
                               <p className="text-xs text-gray-400 group-hover:text-gray-300 transition-colors truncate">
                                 {link.username}

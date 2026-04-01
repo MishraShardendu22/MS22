@@ -1,6 +1,5 @@
 "use client";
 
-import { Send } from "lucide-react";
 import { useFormStatus } from "react-dom";
 
 interface SubmitButtonProps {
@@ -27,10 +26,7 @@ export function SubmitButton({ variant = "default" }: SubmitButtonProps) {
           Sending...
         </>
       ) : (
-        <>
-          <Send className="w-4 h-4 sm:w-5 sm:h-5" />
-          Send message
-        </>
+        <>Send message</>
       )}
     </button>
   );

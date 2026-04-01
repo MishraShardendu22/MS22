@@ -1,4 +1,4 @@
-import { Building, Calendar, ExternalLink } from "lucide-react";
+import { Building, Calendar } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
@@ -109,7 +109,6 @@ export const UnifiedCard = ({
                   className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium ${colors.certificateBg} ${colors.certificateText} rounded-lg transition-all duration-200 ${colors.certificateBorder}`}
                   aria-label={`View ${certificateLabel.toLowerCase()}`}
                 >
-                  <ExternalLink className="w-3.5 h-3.5" />
                   <span>{certificateLabel}</span>
                 </Link>
               )}
