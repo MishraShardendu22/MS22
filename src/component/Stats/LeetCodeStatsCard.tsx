@@ -28,9 +28,6 @@ interface LeetCodeStatsCardProps {
 export const LeetCodeStatsCard = ({ leetcode }: LeetCodeStatsCardProps) => (
   <div className="bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:border-cyan-500/40 transition-all duration-300">
     <div className="flex items-center gap-3 mb-6">
-      <div className="p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30">
-        <Trophy className="w-5 h-5 text-yellow-400" />
-      </div>
       <div>
         <h3 className="text-lg font-bold text-white">LeetCode Stats</h3>
         <p className="text-xs text-gray-400">Problem Solving</p>
