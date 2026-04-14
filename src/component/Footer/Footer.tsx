@@ -87,7 +87,7 @@ export function FooterSectionMobile() {
                   <li key={key}>
                     <a
                       href={data.url}
-                      className="flex items-center gap-2 text-xs text-gray-400 hover:text-cyan-400 transition-colors hover:scale-105"
+                      className="flex items-center gap-2 text-xs text-gray-400 hover:text-cyan-400 transition-colors"
                     >
                       {IconComponent && (
                         <IconComponent className="w-3.5 h-3.5 flex-shrink-0" />
@@ -112,7 +112,7 @@ export function FooterSectionMobile() {
                       href={data.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-xs text-gray-400 hover:text-cyan-400 transition-colors hover:scale-105"
+                      className="flex items-center gap-2 text-xs text-gray-400 hover:text-cyan-400 transition-colors"
                     >
                       {IconComponent && (
                         <IconComponent className="w-3.5 h-3.5 flex-shrink-0" />
@@ -248,10 +248,10 @@ export function FooterSection() {
                   <li key={key}>
                     <a
                       href={data.url}
-                      className="flex items-center gap-3 md:gap-4 text-base md:text-lg lg:text-2xl text-gray-400 hover:text-cyan-400 transition-all duration-500 group hover:translate-x-1"
+                      className="flex items-center gap-3 md:gap-4 text-base md:text-lg lg:text-2xl text-gray-400 hover:text-cyan-400 transition-colors duration-500"
                     >
                       {IconComponent && (
-                        <IconComponent className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                        <IconComponent className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 flex-shrink-0" />
                       )}
                       <span className="font-medium">{key}</span>
                     </a>
@@ -275,10 +275,10 @@ export function FooterSection() {
                       href={data.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 md:gap-4 text-base md:text-lg lg:text-2xl text-gray-400 hover:text-cyan-400 transition-all duration-500 group hover:translate-x-1"
+                      className="flex items-center gap-3 md:gap-4 text-base md:text-lg lg:text-2xl text-gray-400 hover:text-cyan-400 transition-colors duration-500"
                     >
                       {IconComponent && (
-                        <IconComponent className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                        <IconComponent className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 flex-shrink-0" />
                       )}
                       <span className="font-medium">{data.name}</span>
                     </a>
@@ -302,10 +302,10 @@ export function FooterSection() {
                       href={data.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 md:gap-4 text-base md:text-lg lg:text-2xl text-gray-400 hover:text-cyan-400 transition-all duration-500 group hover:translate-x-1"
+                      className="flex items-center gap-3 md:gap-4 text-base md:text-lg lg:text-2xl text-gray-400 hover:text-cyan-400 transition-colors duration-500"
                     >
                       {IconComponent && (
-                        <IconComponent className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                        <IconComponent className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 flex-shrink-0" />
                       )}
                       <span className="font-medium">{key}</span>
                     </a>
@@ -329,10 +329,10 @@ export function FooterSection() {
                       href={data.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 md:gap-4 text-base md:text-lg lg:text-2xl text-gray-400 hover:text-cyan-400 transition-all duration-500 group hover:translate-x-1"
+                      className="flex items-center gap-3 md:gap-4 text-base md:text-lg lg:text-2xl text-gray-400 hover:text-cyan-400 transition-colors duration-500"
                     >
                       {IconComponent && (
-                        <IconComponent className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                        <IconComponent className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 flex-shrink-0" />
                       )}
                       <span className="font-medium">{key}</span>
                     </a>
