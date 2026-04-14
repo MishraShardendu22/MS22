@@ -1,4 +1,4 @@
-import { Award, Trophy, User } from "lucide-react";
+import { Award, User } from "lucide-react";
 import type { LeetCodeData } from "@/types/stats";
 
 const DifficultyCard = ({
