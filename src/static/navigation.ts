@@ -2,7 +2,6 @@ import {
   Award,
   Briefcase,
   Clock,
-  Code2,
   FileText,
   FolderGit2,
   GraduationCap,
@@ -21,7 +20,6 @@ export interface NavItem {
 export const NAV_ITEMS: NavItem[] = [
   { name: "Home", href: "/", icon: Home },
   { name: "Education", href: "/#education", icon: GraduationCap },
-  { name: "Skills", href: "/#skills", icon: Code2 },
   { name: "Timeline", href: "/#timeline", icon: Clock },
   { name: "Projects", href: "/projects", icon: FolderGit2 },
   { name: "Experience", href: "/experiences", icon: Briefcase },
