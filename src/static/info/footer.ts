@@ -61,7 +61,7 @@ export const SocialMedia = {
 
 export const CodingProfiles = {
   LeetCode: {
-    url: "https://leetcode.com/mishrashardendu22",
+    url: "https://leetcode.com/u/ShardenduMishra22/",
     icon: "Award",
   },
   "GitHub Main": {
