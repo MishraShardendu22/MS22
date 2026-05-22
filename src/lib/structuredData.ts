@@ -225,14 +225,6 @@ export function generateWebSiteSchema(): WebSiteSchema {
       "@type": "Person",
       name: "Shardendu Mishra",
     },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: `${BaseURL}/search?q={search_term_string}`,
-      },
-      "query-input": "required name=search_term_string",
-    },
   };
 }
 

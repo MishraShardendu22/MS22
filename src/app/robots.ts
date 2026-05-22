@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { BaseURL } from "@/static/data";
 
+export const revalidate = 3600;
+
 function normalizeBaseUrl(url: string): string {
   return url.endsWith("/") ? url.slice(0, -1) : url;
 }

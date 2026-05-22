@@ -9,7 +9,7 @@ import { PAGE_ITEMS_PER_PAGE } from "@/static/pagination";
 
 export const revalidate = 3600;
 
-export const metadata: Metadata = generatePageMetadata({
+const VOLUNTEER_METADATA = {
   title: "Volunteer Experience",
   description:
     "Community involvement and volunteer work. Discover my contributions to open-source projects, tech communities, and social initiatives. Making a positive impact through technology.",
@@ -23,7 +23,19 @@ export const metadata: Metadata = generatePageMetadata({
     "community involvement",
     "volunteer experience",
   ],
-});
+};
+
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams?: { page?: string };
+}): Promise<Metadata> {
+  const hasPageParam = typeof searchParams?.page === "string";
+  return generatePageMetadata({
+    ...VOLUNTEER_METADATA,
+    noIndex: hasPageParam,
+  });
+}
 
 interface PageProps {
   searchParams: Promise<{
@@ -78,7 +90,8 @@ async function VolunteerContent({ searchParams }: PageProps) {
       {volunteers.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {volunteers.map((volunteer) => {
-            const volunteerId = volunteer.inline?.id as string;
+            const volunteerId = volunteer.inline?.id;
+            if (!volunteerId) return null;
 
             const latestFromTimeline = volunteer.volunteer_time_line?.[0];
             const position = latestFromTimeline?.position || volunteer.position;

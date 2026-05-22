@@ -9,7 +9,7 @@ import { PAGE_ITEMS_PER_PAGE } from "@/static/pagination";
 
 export const revalidate = 3600;
 
-export const metadata: Metadata = generatePageMetadata({
+const EXPERIENCES_METADATA = {
   title: "Work Experience",
   description:
     "Professional work experience as a Software Developer and Engineer. Explore my career journey, roles, responsibilities, and technical achievements in software development.",
@@ -23,7 +23,19 @@ export const metadata: Metadata = generatePageMetadata({
     "professional journey",
     "tech career",
   ],
-});
+};
+
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams?: { page?: string };
+}): Promise<Metadata> {
+  const hasPageParam = typeof searchParams?.page === "string";
+  return generatePageMetadata({
+    ...EXPERIENCES_METADATA,
+    noIndex: hasPageParam,
+  });
+}
 
 interface PageProps {
   searchParams: Promise<{

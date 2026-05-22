@@ -9,7 +9,7 @@ import { PAGE_ITEMS_PER_PAGE } from "@/static/pagination";
 
 export const revalidate = 3600;
 
-export const metadata: Metadata = generatePageMetadata({
+const CERTIFICATES_METADATA = {
   title: "Certifications & Achievements",
   description:
     "Professional certifications, technical credentials, and achievements in software development. View my verified skills and qualifications in programming, cloud technologies, and software engineering.",
@@ -24,7 +24,19 @@ export const metadata: Metadata = generatePageMetadata({
     "cloud certifications",
     "verified skills",
   ],
-});
+};
+
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams?: { page?: string };
+}): Promise<Metadata> {
+  const hasPageParam = typeof searchParams?.page === "string";
+  return generatePageMetadata({
+    ...CERTIFICATES_METADATA,
+    noIndex: hasPageParam,
+  });
+}
 
 interface PageProps {
   searchParams: Promise<{
@@ -79,7 +91,8 @@ async function CertificatesContent({ searchParams }: PageProps) {
       {certificates.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {certificates.map((certificate) => {
-            const certificateId = certificate.inline?.id as string;
+            const certificateId = certificate.inline?.id;
+            if (!certificateId) return null;
             const dateRange = certificate.issue_date
               ? certificate.expiry_date
                 ? `${certificate.issue_date} - ${certificate.expiry_date}`

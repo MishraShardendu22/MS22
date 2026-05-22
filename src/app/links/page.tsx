@@ -3,8 +3,6 @@ import { LinksPageDesktop, LinksPageMobile } from "@/component/Links";
 import { getIsMobile } from "@/lib/isMobile";
 import { generatePageMetadata } from "@/lib/metadata";
 
-export const dynamic = "force-static";
-
 export const metadata: Metadata = generatePageMetadata({
   title: "All My Links",
   description:

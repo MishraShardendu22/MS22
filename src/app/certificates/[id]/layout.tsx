@@ -16,6 +16,7 @@ export async function generateMetadata({
   params,
 }: LayoutProps): Promise<Metadata> {
   const { id } = await params;
+  const baseUrl = BaseURL.endsWith("/") ? BaseURL.slice(0, -1) : BaseURL;
 
   try {
     const response = await getCachedCertificateById(id);
@@ -41,13 +42,13 @@ export async function generateMetadata({
         openGraph: {
           title: `${certificate.title} - ${certificate.issuer} | Shardendu Mishra`,
           description: description,
-          url: `${BaseURL}/certificates/${id}`,
+          url: `${baseUrl}/certificates/${id}`,
           siteName: "Shardendu Mishra Portfolio",
           type: "article",
           locale: "en_US",
           images: [
             {
-              url: `${BaseURL}/opengraph-image`,
+              url: `${baseUrl}/opengraph-image`,
               width: 1200,
               height: 630,
               alt: `${certificate.title} - Certificate by Shardendu Mishra`,
@@ -61,7 +62,7 @@ export async function generateMetadata({
           creator: "@Shardendu_M",
         },
         alternates: {
-          canonical: `${BaseURL}/certificates/${id}`,
+          canonical: `${baseUrl}/certificates/${id}`,
         },
         robots: {
           index: true,
@@ -85,7 +86,7 @@ export async function generateMetadata({
     title: "Certificate Details | Shardendu Mishra",
     description: "View professional certification details by Shardendu Mishra.",
     alternates: {
-      canonical: `${BaseURL}/certificates`,
+      canonical: `${baseUrl}/certificates`,
     },
     robots: {
       index: true,
@@ -99,6 +100,7 @@ export default async function CertificateDetailLayout({
   children,
 }: LayoutProps) {
   const { id } = await params;
+  const baseUrl = BaseURL.endsWith("/") ? BaseURL.slice(0, -1) : BaseURL;
 
   let certificationSchema = null;
   let breadcrumbSchema = null;
@@ -118,9 +120,9 @@ export default async function CertificateDetailLayout({
       });
 
       breadcrumbSchema = generateBreadcrumbSchema([
-        { name: "Home", url: BaseURL },
-        { name: "Certificates", url: `${BaseURL}/certificates` },
-        { name: certificate.title, url: `${BaseURL}/certificates/${id}` },
+        { name: "Home", url: baseUrl },
+        { name: "Certificates", url: `${baseUrl}/certificates` },
+        { name: certificate.title, url: `${baseUrl}/certificates/${id}` },
       ]);
     }
   } catch (error) {

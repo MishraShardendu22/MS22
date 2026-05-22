@@ -360,7 +360,7 @@ export function normalizeProject(project: Project): DetailTreeData {
     tree.push(
       createFolderNode("details", sectionsChildren, {
         icon: "folder",
-        defaultExpanded: false,
+        defaultExpanded: true,
         id: "details",
       }),
     );
@@ -380,7 +380,7 @@ export function normalizeProject(project: Project): DetailTreeData {
         ],
         {
           icon: "package",
-          defaultExpanded: false,
+          defaultExpanded: true,
           id: "technologies",
         },
       ),
@@ -395,7 +395,7 @@ export function normalizeProject(project: Project): DetailTreeData {
     tree.push(
       createFolderNode("links", linkNodes, {
         icon: "link",
-        defaultExpanded: false,
+        defaultExpanded: true,
         id: "links",
       }),
     );
@@ -507,7 +507,7 @@ export function normalizeCertificate(
         ],
         {
           icon: "tag",
-          defaultExpanded: false,
+          defaultExpanded: true,
           id: "skills",
         },
       ),
@@ -546,7 +546,7 @@ export function normalizeCertificate(
     tree.push(
       createFolderNode("links", linkNodes, {
         icon: "link",
-        defaultExpanded: false,
+        defaultExpanded: true,
         id: "links",
       }),
     );
@@ -652,7 +652,7 @@ export function normalizeExperience(experience: Experience): DetailTreeData {
   tree.push(
     createFolderNode("company", companyChildren, {
       icon: "folder",
-      defaultExpanded: false,
+      defaultExpanded: true,
       id: "company",
     }),
   );
@@ -671,7 +671,7 @@ export function normalizeExperience(experience: Experience): DetailTreeData {
         ],
         {
           icon: "package",
-          defaultExpanded: false,
+          defaultExpanded: true,
           id: "technologies",
         },
       ),
@@ -691,7 +691,7 @@ export function normalizeExperience(experience: Experience): DetailTreeData {
     tree.push(
       createFolderNode("links", linkNodes, {
         icon: "link",
-        defaultExpanded: false,
+        defaultExpanded: true,
         id: "links",
       }),
     );
@@ -837,7 +837,7 @@ export function normalizeVolunteer(volunteer: Volunteer): DetailTreeData {
         ],
         {
           icon: "package",
-          defaultExpanded: false,
+          defaultExpanded: true,
           id: "technologies",
         },
       ),
@@ -857,7 +857,7 @@ export function normalizeVolunteer(volunteer: Volunteer): DetailTreeData {
     tree.push(
       createFolderNode("links", linkNodes, {
         icon: "link",
-        defaultExpanded: false,
+        defaultExpanded: true,
         id: "links",
       }),
     );

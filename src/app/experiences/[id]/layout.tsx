@@ -16,6 +16,7 @@ export async function generateMetadata({
   params,
 }: LayoutProps): Promise<Metadata> {
   const { id } = await params;
+  const baseUrl = BaseURL.endsWith("/") ? BaseURL.slice(0, -1) : BaseURL;
 
   try {
     const response = await getCachedExperienceById(id);
@@ -43,13 +44,13 @@ export async function generateMetadata({
         openGraph: {
           title: `${experience.company_name} - ${position} | Shardendu Mishra`,
           description: description,
-          url: `${BaseURL}/experiences/${id}`,
+          url: `${baseUrl}/experiences/${id}`,
           siteName: "Shardendu Mishra Portfolio",
           type: "article",
           locale: "en_US",
           images: [
             {
-              url: `${BaseURL}/opengraph-image`,
+              url: `${baseUrl}/opengraph-image`,
               width: 1200,
               height: 630,
               alt: `${experience.company_name} - Experience by Shardendu Mishra`,
@@ -63,7 +64,7 @@ export async function generateMetadata({
           creator: "@Shardendu_M",
         },
         alternates: {
-          canonical: `${BaseURL}/experiences/${id}`,
+          canonical: `${baseUrl}/experiences/${id}`,
         },
         robots: {
           index: true,
@@ -88,7 +89,7 @@ export async function generateMetadata({
     description:
       "View professional work experience details by Shardendu Mishra.",
     alternates: {
-      canonical: `${BaseURL}/experiences`,
+      canonical: `${baseUrl}/experiences`,
     },
     robots: {
       index: true,
@@ -102,6 +103,7 @@ export default async function ExperienceDetailLayout({
   children,
 }: LayoutProps) {
   const { id } = await params;
+  const baseUrl = BaseURL.endsWith("/") ? BaseURL.slice(0, -1) : BaseURL;
 
   let organizationSchema = null;
   let breadcrumbSchema = null;
@@ -124,9 +126,12 @@ export default async function ExperienceDetailLayout({
       }
 
       breadcrumbSchema = generateBreadcrumbSchema([
-        { name: "Home", url: BaseURL },
-        { name: "Experiences", url: `${BaseURL}/experiences` },
-        { name: experience.company_name, url: `${BaseURL}/experiences/${id}` },
+        { name: "Home", url: baseUrl },
+        { name: "Experiences", url: `${baseUrl}/experiences` },
+        {
+          name: experience.company_name,
+          url: `${baseUrl}/experiences/${id}`,
+        },
       ]);
     }
   } catch (error) {

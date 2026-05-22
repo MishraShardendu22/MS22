@@ -32,7 +32,7 @@ import {
   generateWebSiteSchema,
 } from "@/lib/structuredData";
 
-export const metadata: Metadata = generatePageMetadata({
+const HOME_METADATA = {
   title: "Shardendu Mishra | Software Developer and Engineer",
   description:
     "Software Developer specializing in Go, React, Next.js & TypeScript. Explore projects, experience, certifications, volunteer work, and contact details.",
@@ -47,7 +47,30 @@ export const metadata: Metadata = generatePageMetadata({
     "Volunteer",
     "Contact",
   ],
-});
+};
+
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams?: {
+    projectsPage?: string;
+    experiencesPage?: string;
+    volunteerPage?: string;
+    certificatesPage?: string;
+  };
+}): Promise<Metadata> {
+  const hasPageParams = Boolean(
+    searchParams?.projectsPage ||
+      searchParams?.experiencesPage ||
+      searchParams?.volunteerPage ||
+      searchParams?.certificatesPage,
+  );
+
+  return generatePageMetadata({
+    ...HOME_METADATA,
+    noIndex: hasPageParams,
+  });
+}
 
 interface PageProps {
   searchParams: Promise<{

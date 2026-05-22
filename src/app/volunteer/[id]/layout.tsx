@@ -16,6 +16,7 @@ export async function generateMetadata({
   params,
 }: LayoutProps): Promise<Metadata> {
   const { id } = await params;
+  const baseUrl = BaseURL.endsWith("/") ? BaseURL.slice(0, -1) : BaseURL;
 
   try {
     const response = await getCachedVolunteerById(id);
@@ -42,13 +43,13 @@ export async function generateMetadata({
         openGraph: {
           title: `${volunteer.organisation} - ${position} | Shardendu Mishra`,
           description: description,
-          url: `${BaseURL}/volunteer/${id}`,
+          url: `${baseUrl}/volunteer/${id}`,
           siteName: "Shardendu Mishra Portfolio",
           type: "article",
           locale: "en_US",
           images: [
             {
-              url: `${BaseURL}/opengraph-image`,
+              url: `${baseUrl}/opengraph-image`,
               width: 1200,
               height: 630,
               alt: `${volunteer.organisation} - Volunteer Experience by Shardendu Mishra`,
@@ -62,7 +63,7 @@ export async function generateMetadata({
           creator: "@Shardendu_M",
         },
         alternates: {
-          canonical: `${BaseURL}/volunteer/${id}`,
+          canonical: `${baseUrl}/volunteer/${id}`,
         },
         robots: {
           index: true,
@@ -86,7 +87,7 @@ export async function generateMetadata({
     title: "Volunteer Details | Shardendu Mishra",
     description: "View volunteer experience details by Shardendu Mishra.",
     alternates: {
-      canonical: `${BaseURL}/volunteer`,
+      canonical: `${baseUrl}/volunteer`,
     },
     robots: {
       index: true,
@@ -100,6 +101,7 @@ export default async function VolunteerDetailLayout({
   children,
 }: LayoutProps) {
   const { id } = await params;
+  const baseUrl = BaseURL.endsWith("/") ? BaseURL.slice(0, -1) : BaseURL;
 
   let organizationSchema = null;
   let breadcrumbSchema = null;
@@ -119,9 +121,9 @@ export default async function VolunteerDetailLayout({
       });
 
       breadcrumbSchema = generateBreadcrumbSchema([
-        { name: "Home", url: BaseURL },
-        { name: "Volunteer", url: `${BaseURL}/volunteer` },
-        { name: volunteer.organisation, url: `${BaseURL}/volunteer/${id}` },
+        { name: "Home", url: baseUrl },
+        { name: "Volunteer", url: `${baseUrl}/volunteer` },
+        { name: volunteer.organisation, url: `${baseUrl}/volunteer/${id}` },
       ]);
     }
   } catch (error) {

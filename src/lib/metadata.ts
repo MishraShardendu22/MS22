@@ -12,6 +12,7 @@ export function generatePageMetadata({
   keywords = [],
   images = [],
   noIndex = false,
+  follow = true,
 }: {
   title: string;
   description: string;
@@ -19,6 +20,7 @@ export function generatePageMetadata({
   keywords?: string[];
   images?: Array<{ url: string; width: number; height: number; alt: string }>;
   noIndex?: boolean;
+  follow?: boolean;
 }): Metadata {
   const normalizedBaseUrl = normalizeBaseUrl(BaseURL);
   const normalizedPath = path.startsWith("/") ? path : `/${path}`;
@@ -37,6 +39,7 @@ export function generatePageMetadata({
             alt: `${title} - Shardendu Mishra`,
           },
         ];
+  const shouldFollow = noIndex ? follow : true;
 
   return {
     title,
@@ -75,11 +78,11 @@ export function generatePageMetadata({
     },
     robots: {
       index: !noIndex,
-      follow: !noIndex,
+      follow: shouldFollow,
       nocache: false,
       googleBot: {
         index: !noIndex,
-        follow: !noIndex,
+        follow: shouldFollow,
         "max-video-preview": -1,
         "max-image-preview": "large",
         "max-snippet": -1,

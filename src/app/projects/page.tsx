@@ -10,7 +10,7 @@ import { PAGE_ITEMS_PER_PAGE } from "@/static/pagination";
 
 export const revalidate = 3600;
 
-export const metadata: Metadata = generatePageMetadata({
+const PROJECTS_METADATA = {
   title: "Projects",
   description:
     "Explore my portfolio of software development projects including web applications, APIs, and open-source contributions. Built with Go, React, Next.js, TypeScript, and modern technologies.",
@@ -27,7 +27,19 @@ export const metadata: Metadata = generatePageMetadata({
     "open source",
     "GitHub projects",
   ],
-});
+};
+
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams?: { page?: string };
+}): Promise<Metadata> {
+  const hasPageParam = typeof searchParams?.page === "string";
+  return generatePageMetadata({
+    ...PROJECTS_METADATA,
+    noIndex: hasPageParam,
+  });
+}
 
 interface PageProps {
   searchParams: Promise<{
@@ -82,7 +94,8 @@ async function ProjectsContent({ searchParams }: PageProps) {
       {projects.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {projects.map((project) => {
-            const projectId = project.inline?.id as string;
+            const projectId = project.inline?.id;
+            if (!projectId) return null;
 
             // Build links array from available URLs
             const links: Array<{ label: string; url: string }> = [];

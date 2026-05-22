@@ -26,7 +26,7 @@ export const NAV_ITEMS: NavItem[] = [
   { name: "Volunteer", href: "/volunteer", icon: Heart },
   { name: "Certifications", href: "/certificates", icon: Award },
   { name: "My Socials", href: "/links", icon: LinkIcon },
-  { name: "Contact", href: "/#contact", icon: Mail },
+  { name: "Contact", href: "/contact", icon: Mail },
   {
     name: "Blog",
     href: "https://blogs.mishrashardendu22.is-a.dev/read",
