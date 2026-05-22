@@ -1,13 +1,7 @@
 #!/usr/bin/env sh
 
-pnpm type-check || {
-  exit 1
-}
+set -e
 
-pnpm lint || {
-  exit 1
-}
-
-pnpm build || {
-  exit 1
-}
+pnpm test
+pnpm lint
+pnpm type-check

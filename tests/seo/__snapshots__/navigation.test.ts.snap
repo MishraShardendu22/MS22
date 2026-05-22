@@ -1,0 +1,86 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`navigation integrity > keeps navigation links stable 1`] = `
+[
+  {
+    "href": "/",
+    "icon": {
+      "$$typeof": Symbol(react.forward_ref),
+      "render": [Function],
+    },
+    "name": "Home",
+  },
+  {
+    "href": "/#education",
+    "icon": {
+      "$$typeof": Symbol(react.forward_ref),
+      "render": [Function],
+    },
+    "name": "Education",
+  },
+  {
+    "href": "/#timeline",
+    "icon": {
+      "$$typeof": Symbol(react.forward_ref),
+      "render": [Function],
+    },
+    "name": "Timeline",
+  },
+  {
+    "href": "/projects",
+    "icon": {
+      "$$typeof": Symbol(react.forward_ref),
+      "render": [Function],
+    },
+    "name": "Projects",
+  },
+  {
+    "href": "/experiences",
+    "icon": {
+      "$$typeof": Symbol(react.forward_ref),
+      "render": [Function],
+    },
+    "name": "Experience",
+  },
+  {
+    "href": "/volunteer",
+    "icon": {
+      "$$typeof": Symbol(react.forward_ref),
+      "render": [Function],
+    },
+    "name": "Volunteer",
+  },
+  {
+    "href": "/certificates",
+    "icon": {
+      "$$typeof": Symbol(react.forward_ref),
+      "render": [Function],
+    },
+    "name": "Certifications",
+  },
+  {
+    "href": "/links",
+    "icon": {
+      "$$typeof": Symbol(react.forward_ref),
+      "render": [Function],
+    },
+    "name": "My Socials",
+  },
+  {
+    "href": "/contact",
+    "icon": {
+      "$$typeof": Symbol(react.forward_ref),
+      "render": [Function],
+    },
+    "name": "Contact",
+  },
+  {
+    "href": "https://blogs.mishrashardendu22.is-a.dev/read",
+    "icon": {
+      "$$typeof": Symbol(react.forward_ref),
+      "render": [Function],
+    },
+    "name": "Blog",
+  },
+]
+`;

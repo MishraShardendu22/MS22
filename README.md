@@ -376,6 +376,10 @@ Contributions are welcome! Please read [CONTRIBUTING.md](./CONTRIBUTING.md) for 
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
+### Branch Protection (Recommended)
+
+Require the **SEO Quality Gate** GitHub Actions workflow to pass before merging. This blocks merges when SEO regression tests, linting, type checks, or builds fail.
+
 ---
 
 ## 📄 License
