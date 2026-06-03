@@ -18,12 +18,7 @@ export const QuickLinks = {
 };
 
 export const MyWebsites = {
-  "Admin Portal": {
-    url: "https://admin.mishrashardendu22.is-a.dev",
-    name: "Admin Portal",
-    icon: "Shield",
-  },
-  GitHub: {
+  "GitHub Backup": {
     url: "https://github.mishrashardendu22.is-a.dev",
     name: "GitHub",
     icon: "Code",
@@ -33,10 +28,10 @@ export const MyWebsites = {
     name: "Blog Website",
     icon: "BookOpen",
   },
-  "Treasure Hunt": {
-    url: "https://treasure-hunt.mishrashardendu22.is-a.dev/",
-    name: "Treasure Hunt",
-    icon: "MapPin",
+  "Admin Portal": {
+    url: "https://admin.mishrashardendu22.is-a.dev",
+    name: "Admin Portal",
+    icon: "Shield",
   },
   "My UI Library": {
     url: "https://pixel-art-8-bit.mishrashardendu22.is-a.dev",

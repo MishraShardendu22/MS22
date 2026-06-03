@@ -13,6 +13,11 @@ let modalState = {
   filter: undefined as SearchResultType | undefined,
 };
 
+const serverModalSnapshot = {
+  open: false,
+  filter: undefined as SearchResultType | undefined,
+};
+
 const listeners = new Set<() => void>();
 const notify = () => {
   for (const listener of listeners) {
@@ -36,10 +41,7 @@ export const subscribeModal = (cb: () => void) => {
 };
 
 export const getModalSnapshot = () => modalState;
-export const getServerModalSnapshot = () => ({
-  open: false,
-  filter: undefined,
-});
+export const getServerModalSnapshot = () => serverModalSnapshot;
 
 interface HeaderSearchButtonProps {
   filterType?: SearchResultType;

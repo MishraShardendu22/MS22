@@ -29,9 +29,10 @@ const CERTIFICATES_METADATA = {
 export async function generateMetadata({
   searchParams,
 }: {
-  searchParams?: { page?: string };
+  searchParams?: Promise<{ page?: string }> | { page?: string };
 }): Promise<Metadata> {
-  const hasPageParam = typeof searchParams?.page === "string";
+  const params = searchParams ? await searchParams : undefined;
+  const hasPageParam = typeof params?.page === "string";
   return generatePageMetadata({
     ...CERTIFICATES_METADATA,
     noIndex: hasPageParam,

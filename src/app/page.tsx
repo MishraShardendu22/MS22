@@ -52,18 +52,26 @@ const HOME_METADATA = {
 export async function generateMetadata({
   searchParams,
 }: {
-  searchParams?: {
-    projectsPage?: string;
-    experiencesPage?: string;
-    volunteerPage?: string;
-    certificatesPage?: string;
-  };
+  searchParams?:
+    | Promise<{
+        projectsPage?: string;
+        experiencesPage?: string;
+        volunteerPage?: string;
+        certificatesPage?: string;
+      }>
+    | {
+        projectsPage?: string;
+        experiencesPage?: string;
+        volunteerPage?: string;
+        certificatesPage?: string;
+      };
 }): Promise<Metadata> {
+  const params = searchParams ? await searchParams : undefined;
   const hasPageParams = Boolean(
-    searchParams?.projectsPage ||
-      searchParams?.experiencesPage ||
-      searchParams?.volunteerPage ||
-      searchParams?.certificatesPage,
+    params?.projectsPage ||
+      params?.experiencesPage ||
+      params?.volunteerPage ||
+      params?.certificatesPage,
   );
 
   return generatePageMetadata({

@@ -1,4 +1,5 @@
 import {
+  ArrowUpRight,
   Award,
   BookOpen,
   Camera,
@@ -49,37 +50,70 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 
 export function FooterSectionMobile() {
   return (
-    <footer className="bg-gray-950 pt-12 pb-6 px-4">
-      <div className="container mx-auto max-w-400">
-        <div className="mb-8">
-          <div className="flex items-center gap-2 mb-3">
-            <div className="w-10 h-10 rounded-lg bg-gray-900 flex items-center justify-center border border-gray-800">
-              <Code2 className="w-5 h-5 text-cyan-400" />
+    <footer className="relative overflow-hidden bg-slate-950 px-4 pb-8 pt-14">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -top-16 right-[-4rem] h-40 w-40 rounded-full bg-cyan-500/20 blur-3xl" />
+        <div className="absolute bottom-[-6rem] left-[-6rem] h-56 w-56 rounded-full bg-blue-500/20 blur-3xl" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4b556310_1px,transparent_1px),linear-gradient(to_bottom,#4b556310_1px,transparent_1px)] bg-size-[2.5rem_2.5rem]" />
+      </div>
+
+      <div className="container mx-auto max-w-400 relative z-10">
+        <div className="mb-8 rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
+          <div className="flex items-center gap-3">
+            <div className="h-11 w-11 rounded-xl bg-gradient-to-br from-cyan-500/30 to-blue-500/30 border border-cyan-500/30 flex items-center justify-center">
+              <Code2 className="w-5 h-5 text-cyan-200" />
             </div>
-            <h2 className="text-xl font-bold">
-              <span className="text-white">Shardendu</span>{" "}
-              <span className="text-white">Sankritya</span>{" "}
-              <span className="text-cyan-400">Mishra</span>
-            </h2>
+            <div>
+              <h2
+                className="text-lg font-semibold text-white"
+                style={{
+                  fontFamily: "'Playfair Display', serif",
+                }}
+              >
+                Shardendu Sankritya Mishra
+              </h2>
+              <p className="text-[10px] uppercase tracking-[0.3em] text-cyan-300/70">
+                Software Engineer
+              </p>
+            </div>
           </div>
-          <p className="text-gray-400 text-sm leading-relaxed">
+          <p className="mt-3 text-sm text-gray-300 leading-relaxed">
             Software Engineer building innovative solutions.
           </p>
+          <div className="mt-4 flex flex-wrap gap-2 text-[10px] uppercase tracking-[0.2em] text-gray-400">
+            <span className="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-2.5 py-1 text-cyan-200">
+              Go
+            </span>
+            <span className="rounded-full border border-blue-500/30 bg-blue-500/10 px-2.5 py-1 text-blue-200">
+              Next.js
+            </span>
+            <span className="rounded-full border border-green-500/30 bg-green-500/10 px-2.5 py-1 text-green-200">
+              AI/ML
+            </span>
+          </div>
         </div>
 
-        <div className="mb-8">
-          <h3 className="text-xl font-bold text-cyan-400 mb-4">Let's Talk</h3>
-          <div className="bg-gray-900 p-4 rounded-xl border border-gray-800">
+        <div className="mb-8 rounded-2xl border border-white/10 bg-gradient-to-br from-gray-900/80 to-gray-950/80 p-5 shadow-[0_0_40px_rgba(59,130,246,0.12)]">
+          <h3
+            className="text-lg font-semibold text-white mb-4"
+            style={{
+              fontFamily: "'Playfair Display', serif",
+            }}
+          >
+            Let's Talk
+          </h3>
+          <div className="bg-gray-950/60 p-3 rounded-xl border border-white/10">
             <ContactFormWrapper variant="compact" includeSubject={false} />
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
-          <div>
-            <h3 className="text-base font-bold text-gray-100 mb-3">
+        <div className="grid gap-4 sm:grid-cols-2">
+          <section className="rounded-2xl border border-white/10 bg-white/5 p-4">
+            <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-cyan-300/80">
+              <span className="h-2 w-2 rounded-full bg-cyan-400" />
               Quick Links
-            </h3>
-            <ul className="space-y-2">
+            </div>
+            <ul className="mt-3 space-y-2">
               {Object.entries(QuickLinks).map(([key, data]) => {
                 const IconComponent =
                   iconMap[data.icon as keyof typeof iconMap];
@@ -87,49 +121,28 @@ export function FooterSectionMobile() {
                   <li key={key}>
                     <a
                       href={data.url}
-                      className="flex items-center gap-2 text-xs text-gray-400 hover:text-cyan-400 transition-colors"
+                      className="group flex items-center justify-between rounded-lg border border-transparent bg-gray-900/60 px-3 py-2 text-xs text-gray-300 transition hover:border-cyan-500/30 hover:bg-cyan-500/10 hover:text-cyan-200"
                     >
-                      {IconComponent && (
-                        <IconComponent className="w-3.5 h-3.5 flex-shrink-0" />
-                      )}
-                      <span>{key}</span>
+                      <span className="flex items-center gap-2">
+                        {IconComponent && (
+                          <IconComponent className="w-3.5 h-3.5 text-cyan-300/70 group-hover:text-cyan-200" />
+                        )}
+                        <span>{key}</span>
+                      </span>
+                      <ArrowUpRight className="w-3.5 h-3.5 text-gray-500 group-hover:text-cyan-200" />
                     </a>
                   </li>
                 );
               })}
             </ul>
-          </div>
+          </section>
 
-          <div>
-            <h3 className="text-base font-bold text-gray-100 mb-3">Social</h3>
-            <ul className="space-y-2">
-              {Object.entries(SocialMedia).map(([key, data]) => {
-                const IconComponent =
-                  iconMap[data.icon as keyof typeof iconMap];
-                return (
-                  <li key={key}>
-                    <a
-                      href={data.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-xs text-gray-400 hover:text-cyan-400 transition-colors"
-                    >
-                      {IconComponent && (
-                        <IconComponent className="w-3.5 h-3.5 flex-shrink-0" />
-                      )}
-                      <span>{key}</span>
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-base font-bold text-gray-100 mb-3">
+          <section className="rounded-2xl border border-white/10 bg-white/5 p-4">
+            <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-cyan-300/80">
+              <span className="h-2 w-2 rounded-full bg-blue-400" />
               My Websites
-            </h3>
-            <ul className="space-y-2">
+            </div>
+            <ul className="mt-3 space-y-2">
               {Object.entries(MyWebsites).map(([key, data]) => {
                 const IconComponent =
                   iconMap[data.icon as keyof typeof iconMap];
@@ -139,22 +152,56 @@ export function FooterSectionMobile() {
                       href={data.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-xs text-gray-400 hover:text-cyan-400 transition-colors"
+                      className="group flex items-center justify-between rounded-lg border border-transparent bg-gray-900/60 px-3 py-2 text-xs text-gray-300 transition hover:border-blue-500/30 hover:bg-blue-500/10 hover:text-blue-200"
                     >
-                      {IconComponent && (
-                        <IconComponent className="w-3.5 h-3.5 flex-shrink-0" />
-                      )}
-                      <span>{data.name}</span>
+                      <span className="flex items-center gap-2">
+                        {IconComponent && (
+                          <IconComponent className="w-3.5 h-3.5 text-blue-300/70 group-hover:text-blue-200" />
+                        )}
+                        <span>{data.name}</span>
+                      </span>
+                      <ArrowUpRight className="w-3.5 h-3.5 text-gray-500 group-hover:text-blue-200" />
                     </a>
                   </li>
                 );
               })}
             </ul>
-          </div>
+          </section>
+
+          <section className="rounded-2xl border border-white/10 bg-white/5 p-4 sm:col-span-2">
+            <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-cyan-300/80">
+              <span className="h-2 w-2 rounded-full bg-purple-400" />
+              Social
+            </div>
+            <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+              {Object.entries(SocialMedia).map(([key, data]) => {
+                const IconComponent =
+                  iconMap[data.icon as keyof typeof iconMap];
+                return (
+                  <li key={key}>
+                    <a
+                      href={data.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center justify-between rounded-lg border border-transparent bg-gray-900/60 px-3 py-2 text-xs text-gray-300 transition hover:border-purple-500/30 hover:bg-purple-500/10 hover:text-purple-200"
+                    >
+                      <span className="flex items-center gap-2">
+                        {IconComponent && (
+                          <IconComponent className="w-3.5 h-3.5 text-purple-300/70 group-hover:text-purple-200" />
+                        )}
+                        <span>{key}</span>
+                      </span>
+                      <ArrowUpRight className="w-3.5 h-3.5 text-gray-500 group-hover:text-purple-200" />
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
         </div>
 
-        <div className="pt-4 flex items-center justify-between">
-          <p className="text-xs text-gray-600">© 2025 Shardendu Mishra</p>
+        <div className="mt-8 flex items-center justify-between border-t border-white/10 pt-4 text-xs text-gray-500">
+          <p>Shardendu Sankritya Mishra</p>
           <ScrollToTop variant="mobile" />
         </div>
       </div>

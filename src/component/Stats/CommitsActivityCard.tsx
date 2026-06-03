@@ -218,8 +218,13 @@ export const CommitsActivityCard = ({
         </div>
       </div>
 
-      <div className="h-80 w-full">
-        <ResponsiveContainer width="100%" height="100%">
+      <div className="h-80 min-h-[18rem] w-full min-w-0">
+        <ResponsiveContainer
+          width="100%"
+          height="100%"
+          minHeight={280}
+          minWidth={0}
+        >
           <ComposedChart
             data={enrichedData}
             margin={{ top: 20, right: 20, left: 0, bottom: 40 }}

@@ -132,6 +132,14 @@ export const SOCIAL_LINKS: SocialLink[] = [
     color: "from-rose-500 to-pink-600",
     description: "Retro pixel art creation tool",
   },
+  {
+    name: "GitHub Backup",
+    username: "github.mishrashardendu22.is-a.dev",
+    url: "https://github.mishrashardendu22.is-a.dev",
+    category: "projects",
+    color: "from-gray-600 to-gray-800",
+    description: "GitHub repository backup and analytics tool",
+  },
 ];
 
 export const LINK_CATEGORIES = {

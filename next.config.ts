@@ -1,6 +1,8 @@
 import path from "node:path";
 import type { NextConfig } from "next";
 
+const isProd = process.env.NODE_ENV === "production";
+
 const nextConfig: NextConfig = {
   reactCompiler: true,
   turbopack: {
@@ -30,7 +32,7 @@ const nextConfig: NextConfig = {
   compress: true,
   productionBrowserSourceMaps: false,
   async headers() {
-    return [
+    const headerEntries = [
       {
         source: "/((?!_next).*)",
         headers: [
@@ -94,15 +96,6 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: "/_next/static/:path*",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-      {
         source: "/:path*.{jpg,jpeg,png,gif,webp,avif,svg,ico}",
         headers: [
           {
@@ -112,6 +105,20 @@ const nextConfig: NextConfig = {
         ],
       },
     ];
+
+    if (isProd) {
+      headerEntries.push({
+        source: "/_next/static/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      });
+    }
+
+    return headerEntries;
   },
   async rewrites() {
     return [];

@@ -18,7 +18,7 @@ export function Sidebar() {
             width={40}
             height={40}
             unoptimized
-            className="object-contain"
+            className="h-10 w-10 object-contain"
             title="Shardendu Mishra"
           />
         </div>
