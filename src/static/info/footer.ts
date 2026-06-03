@@ -23,6 +23,11 @@ export const MyWebsites = {
     name: "Admin Portal",
     icon: "Shield",
   },
+  GitHub: {
+    url: "https://github.mishrashardendu22.is-a.dev",
+    name: "GitHub",
+    icon: "Code",
+  },
   "Tech Blog": {
     url: "https://blogs.mishrashardendu22.is-a.dev",
     name: "Blog Website",

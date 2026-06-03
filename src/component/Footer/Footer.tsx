@@ -74,7 +74,7 @@ export function FooterSectionMobile() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
           <div>
             <h3 className="text-base font-bold text-gray-100 mb-3">
               Quick Links
@@ -118,6 +118,33 @@ export function FooterSectionMobile() {
                         <IconComponent className="w-3.5 h-3.5 flex-shrink-0" />
                       )}
                       <span>{key}</span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-base font-bold text-gray-100 mb-3">
+              My Websites
+            </h3>
+            <ul className="space-y-2">
+              {Object.entries(MyWebsites).map(([key, data]) => {
+                const IconComponent =
+                  iconMap[data.icon as keyof typeof iconMap];
+                return (
+                  <li key={key}>
+                    <a
+                      href={data.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-xs text-gray-400 hover:text-cyan-400 transition-colors"
+                    >
+                      {IconComponent && (
+                        <IconComponent className="w-3.5 h-3.5 flex-shrink-0" />
+                      )}
+                      <span>{data.name}</span>
                     </a>
                   </li>
                 );
