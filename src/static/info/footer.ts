@@ -18,9 +18,9 @@ export const QuickLinks = {
 };
 
 export const MyWebsites = {
-  "GitHub Backup": {
+  "GitHub Backup Obsevatory": {
     url: "https://github.mishrashardendu22.is-a.dev",
-    name: "GitHub",
+    name: "GitHub Backup Obsevatory",
     icon: "Code",
   },
   "Tech Blog": {

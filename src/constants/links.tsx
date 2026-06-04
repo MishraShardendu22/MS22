@@ -133,7 +133,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
     description: "Retro pixel art creation tool",
   },
   {
-    name: "GitHub Backup",
+    name: "GitHub Backup Observatory",
     username: "github.mishrashardendu22.is-a.dev",
     url: "https://github.mishrashardendu22.is-a.dev",
     category: "projects",
