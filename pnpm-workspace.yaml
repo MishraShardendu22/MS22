@@ -1,4 +1,2 @@
 allowBuilds:
   sharp: true
-onlyBuiltDependencies:
-  - sharp

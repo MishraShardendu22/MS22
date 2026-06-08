@@ -140,7 +140,7 @@ export const EducationSection = () => {
                     Class 10th
                   </span>
                   <span className="text-xl sm:text-2xl font-bold text-cyan-400">
-                    84%
+                    87.6%
                   </span>
                   <div className="flex items-center gap-1.5">
                     <BookOpen className="w-3 h-3 text-cyan-400/70" />
