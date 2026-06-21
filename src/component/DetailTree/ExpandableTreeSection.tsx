@@ -64,7 +64,7 @@ export function ExpandableTreeSection({
 
 interface SectionContentProps {
   content: TreeSection["content"];
-  theme: "cyan" | "blue" | "purple" | "pink";
+  theme: DetailTreeTheme;
 }
 
 function SectionContent({ content, theme }: SectionContentProps) {

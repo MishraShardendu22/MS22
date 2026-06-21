@@ -1,6 +1,6 @@
-import { BookOpen, GraduationCap, Mail, School } from "lucide-react";
+import { Mail } from "lucide-react";
 import { CDN_ICON_AVIF, CDN_PROFESSIONAL_AVIF } from "@/static/cdn";
-import type { Education, Introduction, SocialLink } from "./types";
+import type { Introduction, SocialLink } from "./types";
 
 export const Icon: string = CDN_ICON_AVIF;
 export const professionalImage: string = CDN_PROFESSIONAL_AVIF;

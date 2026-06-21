@@ -1,41 +1,40 @@
 @import "tailwindcss";
 
 /* ------------------------------
-   M Sport Dark Theme - Global Vars
+   Premium Zinc & Violet Dark Theme
 ------------------------------ */
 
 :root {
   /* Core Dark Base */
-  --background: #0a0d11;
-  --foreground: #e5eaf0;
+  --background: #09090b; /* zinc-950 */
+  --foreground: #fafafa; /* zinc-50 */
 
-  --surface: #0f141a;
-  --surface-elevated: #141b24;
-  --border: #1e2630;
+  --surface: #18181b; /* zinc-900 */
+  --surface-elevated: #27272a; /* zinc-800 */
+  --border: #27272a; /* zinc-800 */
 
   /* Text */
-  --text-primary: #e5eaf0;
-  --text-secondary: #9aa4af;
-  --text-disabled: #6b7280;
+  --text-primary: #fafafa;
+  --text-secondary: #a1a1aa; /* zinc-400 */
+  --text-disabled: #71717a; /* zinc-500 */
 
-  /* Near-Black BMW Blue */
-  --blue-primary: #0e1b2b;
-  --blue-hover: #142a44;
-  --blue-active: #1b3f6b;
+  /* Violet Accent */
+  --blue-primary: #7c3aed; /* mapped blue vars to violet */
+  --blue-hover: #8b5cf6;
+  --blue-active: #6d28d9;
 
-  /* Yellow-Green Accent */
-  --lime-primary: #aeea00;
-  --lime-hover: #c4ff1a;
-  --lime-dark: #445a00;
+  --lime-primary: #7c3aed; /* mapped lime vars to violet to fix legacy classes */
+  --lime-hover: #8b5cf6;
+  --lime-dark: #4c1d95;
 
-  /* Minimal M Red */
-  --red-accent: #c1121f;
+  /* Accent Red */
+  --red-accent: #ef4444;
 
   /* Status */
-  --success: #1ec98b;
-  --warning: #eab308;
-  --error: #dc2626;
-  --info: #38bdf8;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #3b82f6;
 }
 
 /* ------------------------------
@@ -132,12 +131,12 @@ body {
 ------------------------------ */
 
 ::selection {
-  background: var(--lime-primary);
-  color: #000000;
+  background: var(--blue-primary);
+  color: #ffffff;
 }
 
 :focus-visible {
-  outline: 2px solid var(--lime-primary);
+  outline: 2px solid var(--blue-primary);
   outline-offset: 2px;
 }
 
@@ -315,7 +314,7 @@ p {
 
 @layer components {
   .glow-effect {
-    @apply absolute -inset-4 md:-inset-8 bg-linear-to-r from-cyan-500 to-blue-500 rounded-full blur-3xl opacity-0 transition-all duration-700;
+    @apply absolute -inset-4 md:-inset-8 bg-linear-to-r from-violet-600/30 to-indigo-600/30 rounded-full blur-[64px] opacity-0 transition-all duration-700;
   }
 
   .image-container:hover .glow-effect {
@@ -325,71 +324,12 @@ p {
   @keyframes glowPulse {
     0%,
     100% {
-      opacity: 0.2;
+      opacity: 0.3;
       transform: scale(1);
     }
     50% {
-      opacity: 0.4;
+      opacity: 0.6;
       transform: scale(1.05);
-    }
-  }
-
-  .shimmer-effect {
-    @apply absolute inset-0 z-10 pointer-events-none;
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      rgba(255, 255, 255, 0.1) 45%,
-      rgba(255, 255, 255, 0.3) 50%,
-      rgba(255, 255, 255, 0.1) 55%,
-      transparent 100%
-    );
-    transform: translateX(-100%);
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .image-container:hover .shimmer-effect {
-    transform: translateX(100%);
-  }
-
-  .pixel-grid {
-    @apply absolute inset-0 rounded-2xl z-10 pointer-events-none;
-    background:
-      repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 12.5%,
-        rgba(6, 182, 212, 0.7) 12.5%,
-        rgba(6, 182, 212, 0.7) 25%
-      ),
-      repeating-linear-gradient(
-        90deg,
-        transparent,
-        transparent 16.66%,
-        rgba(59, 130, 246, 0.7) 16.66%,
-        rgba(59, 130, 246, 0.7) 33.33%
-      );
-    background-size: 100% 100%;
-    opacity: 0;
-    transform: scale(0);
-    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-
-  @media (min-width: 768px) {
-    .image-container:hover .pixel-grid {
-      animation: pixelPulse 0.5s ease-out;
-    }
-  }
-
-  @keyframes pixelPulse {
-    0%,
-    100% {
-      opacity: 0;
-      transform: scale(0);
-    }
-    50% {
-      opacity: 0.7;
-      transform: scale(1.1);
     }
   }
 }

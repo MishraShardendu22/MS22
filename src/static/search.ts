@@ -49,4 +49,5 @@ export const THEME_TO_SEARCH_FILTER: Record<PageHeaderTheme, SearchResultType> =
     blue: "experience",
     pink: "volunteer",
     purple: "certificate",
+    violet: "project",
   };

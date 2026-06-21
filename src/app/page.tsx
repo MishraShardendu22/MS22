@@ -1,28 +1,48 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { Suspense } from "react";
-import {
-  CertificatesDisplayMobile,
-  CertificatesDisplayServer,
-} from "@/component/Certificates";
-import {
-  ExperiencesDisplayMobile,
-  ExperiencesDisplayServer,
-} from "@/component/Experience";
 import { FooterSection, FooterSectionMobile } from "@/component/Footer/Footer";
 import { HeroSection } from "@/component/Hero/HeroSectionWrapper";
 import { LoadingStateLight } from "@/component/Loading";
-import {
-  ProjectsDisplayMobile,
-  ProjectsDisplayServer,
-} from "@/component/Projects";
-import { StatsLoadingSkeleton, StatsSection } from "@/component/Stats";
+import { StatsLoadingSkeleton } from "@/component/Stats";
 import { StructuredData } from "@/component/StructuredData";
-import { Time } from "@/component/Timeline/Time";
-import {
-  VolunteerDisplayMobile,
-  VolunteerDisplayServer,
-} from "@/component/Volunteer";
 import { getIsMobile } from "@/lib/isMobile";
+
+const Time = dynamic(() =>
+  import("@/component/Timeline/Time").then((mod) => mod.Time),
+);
+const StatsSection = dynamic(() =>
+  import("@/component/Stats").then((mod) => mod.StatsSection),
+);
+const ProjectsDisplayServer = dynamic(() =>
+  import("@/component/Projects").then((mod) => mod.ProjectsDisplayServer),
+);
+const ProjectsDisplayMobile = dynamic(() =>
+  import("@/component/Projects").then((mod) => mod.ProjectsDisplayMobile),
+);
+const ExperiencesDisplayServer = dynamic(() =>
+  import("@/component/Experience").then((mod) => mod.ExperiencesDisplayServer),
+);
+const ExperiencesDisplayMobile = dynamic(() =>
+  import("@/component/Experience").then((mod) => mod.ExperiencesDisplayMobile),
+);
+const VolunteerDisplayServer = dynamic(() =>
+  import("@/component/Volunteer").then((mod) => mod.VolunteerDisplayServer),
+);
+const VolunteerDisplayMobile = dynamic(() =>
+  import("@/component/Volunteer").then((mod) => mod.VolunteerDisplayMobile),
+);
+const CertificatesDisplayServer = dynamic(() =>
+  import("@/component/Certificates").then(
+    (mod) => mod.CertificatesDisplayServer,
+  ),
+);
+const CertificatesDisplayMobile = dynamic(() =>
+  import("@/component/Certificates").then(
+    (mod) => mod.CertificatesDisplayMobile,
+  ),
+);
+
 import { generatePageMetadata } from "@/lib/metadata";
 import {
   generateFAQSchema,

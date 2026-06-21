@@ -3,22 +3,34 @@
  * Used across components for consistent color theming
  */
 
-// Base theme colors
 export const THEME_COLORS = [
   "cyan",
   "blue",
   "pink",
   "purple",
   "emerald",
+  "violet",
 ] as const;
 export type ThemeColor = (typeof THEME_COLORS)[number];
 
 // Common theme types for different components
-export type ListCardTheme = "cyan" | "blue" | "pink" | "purple";
-export type PageHeaderTheme = "cyan" | "blue" | "pink" | "purple";
-export type PaginationTheme = "cyan" | "blue" | "emerald" | "pink" | "purple";
-export type SectionTheme = "cyan" | "blue" | "emerald" | "pink" | "purple";
-export type DetailTreeTheme = "cyan" | "blue" | "purple" | "pink";
+export type ListCardTheme = "cyan" | "blue" | "pink" | "purple" | "violet";
+export type PageHeaderTheme = "cyan" | "blue" | "pink" | "purple" | "violet";
+export type PaginationTheme =
+  | "cyan"
+  | "blue"
+  | "emerald"
+  | "pink"
+  | "purple"
+  | "violet";
+export type SectionTheme =
+  | "cyan"
+  | "blue"
+  | "emerald"
+  | "pink"
+  | "purple"
+  | "violet";
+export type DetailTreeTheme = "cyan" | "blue" | "purple" | "pink" | "violet";
 
 // Shared active/status badge styles (green for active status)
 export const ACTIVE_BADGE_STYLES = {
@@ -90,6 +102,17 @@ export const LIST_CARD_THEME_CONFIG: Record<
     viewColor: "text-purple-400",
     ...ACTIVE_BADGE_STYLES,
   },
+  violet: {
+    border: "hover:border-violet-500/40",
+    gradientBg: "from-violet-500 via-indigo-500 to-purple-500",
+    titleHover: "group-hover:text-violet-400",
+    subtitleColor: "text-violet-400/80",
+    techExtraBg: "bg-violet-500/10",
+    techExtraText: "text-violet-400",
+    techExtraBorder: "border-violet-500/25",
+    viewColor: "text-violet-400",
+    ...ACTIVE_BADGE_STYLES,
+  },
 };
 
 export interface PageHeaderThemeConfig {
@@ -142,6 +165,15 @@ export const PAGE_HEADER_THEME_CONFIG: Record<
     hoverBorder: "hover:border-purple-500/30",
     hoverText: "hover:text-purple-400",
   },
+  violet: {
+    accentColor: "text-violet-400",
+    accentBg: "bg-violet-500/10",
+    accentBorder: "border-violet-500/40",
+    focusBorder: "focus:border-violet-500/50",
+    focusRing: "focus:ring-violet-500/20",
+    hoverBorder: "hover:border-violet-500/30",
+    hoverText: "hover:text-violet-400",
+  },
 };
 
 // Empty state theme configuration
@@ -151,6 +183,8 @@ export const EMPTY_STATE_THEME_CONFIG: Record<ListCardTheme, string> = {
   pink: "bg-pink-500/10 text-pink-400 border-pink-500/30 hover:bg-pink-500/20",
   purple:
     "bg-purple-500/10 text-purple-400 border-purple-500/30 hover:bg-purple-500/20",
+  violet:
+    "bg-violet-500/10 text-violet-400 border-violet-500/30 hover:bg-violet-500/20",
 };
 
 export const EMPTY_STATE_DEFAULT_ICONS: Record<ListCardTheme, string> = {
@@ -158,6 +192,7 @@ export const EMPTY_STATE_DEFAULT_ICONS: Record<ListCardTheme, string> = {
   blue: "💼",
   pink: "❤️",
   purple: "🏆",
+  violet: "✨",
 };
 
 // Error state theme configuration
@@ -244,6 +279,11 @@ export const PAGINATION_THEME_CONFIG: Record<
     hoverText: "hover:text-purple-400",
     activeText: "text-purple-400",
   },
+  violet: {
+    hoverBorder: "hover:border-violet-500/30",
+    hoverText: "hover:text-violet-400",
+    activeText: "text-violet-400",
+  },
 };
 
 export interface DetailTreeThemeConfig {
@@ -295,6 +335,15 @@ export const DETAIL_TREE_THEME_CONFIG: Record<
     bgHover: "hover:bg-pink-500/5",
     bullet: "bg-pink-500",
     line: "border-pink-500/20",
+  },
+  violet: {
+    text: "text-violet-400",
+    textHover: "hover:text-violet-300",
+    border: "border-violet-500/30",
+    bg: "bg-violet-500/10",
+    bgHover: "hover:bg-violet-500/5",
+    bullet: "bg-violet-500",
+    line: "border-violet-500/20",
   },
 };
 
@@ -369,6 +418,19 @@ export const DETAIL_TREE_VIEW_THEME_CONFIG: Record<
     headerBg: "bg-pink-950/20",
     headerBorder: "border-pink-500/20",
   },
+  violet: {
+    accent: "text-violet-400",
+    border: "border-violet-500/40",
+    bg: "bg-violet-500/10",
+    hover: "hover:border-violet-500/50",
+    gradient: "from-violet-500 via-indigo-500 to-purple-600",
+    glow: "from-violet-500/10 to-purple-500/10",
+    linkBg: "bg-linear-to-r from-violet-500/20 to-indigo-500/20",
+    linkBorder: "border-violet-500/40",
+    linkHover: "hover:from-violet-500/30 hover:to-indigo-500/30",
+    headerBg: "bg-violet-950/20",
+    headerBorder: "border-violet-500/20",
+  },
 };
 
 // Loading state theme configuration
@@ -412,6 +474,7 @@ export const SECTION_HEADER_GRADIENTS: Record<SectionTheme, string> = {
   blue: "from-blue-400 via-indigo-400 to-purple-400",
   emerald: "from-emerald-400 via-teal-400 to-green-400",
   purple: "from-purple-400 via-violet-400 to-indigo-400",
+  violet: "from-violet-500 via-indigo-500 to-purple-600",
 };
 
 // Section wrapper theme configuration
@@ -429,10 +492,16 @@ export const SECTION_WRAPPER_THEME_CONFIG: Record<
   emerald: { primary: "bg-emerald-500/5", secondary: "bg-teal-500/5" },
   pink: { primary: "bg-pink-500/5", secondary: "bg-rose-500/5" },
   purple: { primary: "bg-purple-500/5", secondary: "bg-violet-500/5" },
+  violet: { primary: "bg-violet-500/5", secondary: "bg-indigo-500/5" },
 };
 
 // Unified card theme configuration
-export type UnifiedCardTheme = "blue" | "pink" | "emerald" | "purple";
+export type UnifiedCardTheme =
+  | "blue"
+  | "pink"
+  | "emerald"
+  | "purple"
+  | "violet";
 
 export interface UnifiedCardThemeConfig {
   border: string;
@@ -499,16 +568,29 @@ export const UNIFIED_CARD_THEME_CONFIG: Record<
     techExtraText: "text-purple-400",
     techExtraBorder: "border-purple-500/30",
   },
+  violet: {
+    border: "hover:border-violet-500/40",
+    shadow: "hover:shadow-violet-500/10",
+    gradient: "from-violet-500/5 via-transparent to-indigo-500/5",
+    titleHover: "group-hover:text-violet-400",
+    certificateBg: "bg-violet-500/10 hover:bg-violet-500/20",
+    certificateText: "text-violet-400 hover:text-violet-300",
+    certificateBorder: "border-violet-500/30",
+    techExtraBg: "bg-violet-500/10",
+    techExtraText: "text-violet-400",
+    techExtraBorder: "border-violet-500/30",
+  },
 };
 
 // Search button theme configuration
-export type SearchButtonTheme = "cyan" | "blue" | "purple" | "pink";
+export type SearchButtonTheme = "cyan" | "blue" | "purple" | "pink" | "violet";
 
 export const SEARCH_BUTTON_THEME_CONFIG: Record<SearchButtonTheme, string> = {
   cyan: "hover:border-cyan-500/50 hover:text-cyan-400",
   blue: "hover:border-blue-500/50 hover:text-blue-400",
   purple: "hover:border-purple-500/50 hover:text-purple-400",
   pink: "hover:border-pink-500/50 hover:text-pink-400",
+  violet: "hover:border-violet-500/50 hover:text-violet-400",
 };
 
 export const VARIANT_COLORS = {
@@ -519,5 +601,9 @@ export const VARIANT_COLORS = {
   emerald: {
     gradient: "from-emerald-400 to-cyan-400",
     text: "text-emerald-400",
+  },
+  violet: {
+    gradient: "from-violet-400 to-indigo-400",
+    text: "text-violet-400",
   },
 };
