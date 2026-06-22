@@ -1,4 +1,4 @@
-import { Building, Calendar } from "lucide-react";
+import { Calendar } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
@@ -89,7 +89,7 @@ export const UnifiedCard = ({
                 {title}
               </h3>
               <div className="flex items-center gap-1.5 sm:gap-2 text-gray-400 text-xs sm:text-sm font-medium">
-                {subtitleIcon || <Building className="w-3.5 h-3.5" />}
+                {subtitleIcon}
                 <span className="line-clamp-1">{subtitle}</span>
               </div>
             </div>
