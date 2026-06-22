@@ -1,3 +1,4 @@
+import { Code2 } from "lucide-react";
 import Link from "next/link";
 import { PaginationLinks } from "@/component/Pagination";
 import {
@@ -5,6 +6,7 @@ import {
   SectionHeader,
   SectionWrapper,
 } from "@/component/Section";
+import { UnifiedCard } from "@/component/UnifiedCard";
 import { projectsAPI } from "@/static/api/api.request";
 import type { Project } from "@/static/api/api.types";
 import { PROJECTS_PER_PAGE } from "@/static/pagination";
@@ -15,99 +17,55 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard = ({ project, index }: ProjectCardProps) => {
-  return (
-    <div
-      className="group relative"
-      style={{
-        opacity: 0,
-        animation: `fadeInUp 0.3s ease-out ${Math.min(index * 0.05, 0.3)}s forwards`,
-        contain: "layout style paint",
-      }}
-    >
-      <style
-        // biome-ignore lint/security/noDangerouslySetInnerHtml: CSS animation keyframes - static trusted content
-        dangerouslySetInnerHTML={{
-          __html: `
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(15px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `,
-        }}
-      />
-
-      <div className="relative bg-zinc-900/50 border border-zinc-800 rounded-xl md:rounded-2xl overflow-hidden transition-all duration-300 hover:border-violet-500/50 hover:shadow-xl hover:shadow-violet-500/10 hover:-translate-y-1 backdrop-blur-md">
-        <div className="absolute inset-0 bg-linear-to-br from-violet-500/5 via-transparent to-indigo-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-        <div className="relative p-4 md:p-6">
-          <h3 className="text-base md:text-xl font-bold text-zinc-100 mb-2 md:mb-3 line-clamp-1 group-hover:text-violet-400 transition-colors duration-300">
-            {project.project_name}
-          </h3>
-
-          <p className="text-zinc-400 text-xs md:text-sm leading-relaxed mb-4 md:mb-5 line-clamp-2">
-            {project.small_description}
-          </p>
-
-          <div className="flex flex-wrap gap-1.5 md:gap-2 mb-4 md:mb-5">
-            {project.skills.slice(0, 4).map((skill) => (
-              <span
-                key={skill}
-                className="px-2 md:px-2.5 py-1 text-xs font-medium bg-zinc-800/50 text-zinc-300 rounded-md border border-zinc-700/50 hover:border-violet-500/30 transition-colors duration-300"
-              >
-                {skill}
-              </span>
-            ))}
-            {project.skills.length > 4 && (
-              <span className="px-2 md:px-2.5 py-1 text-xs font-medium bg-violet-500/10 text-violet-400 rounded-md border border-violet-500/20">
-                +{project.skills.length - 4}
-              </span>
-            )}
-          </div>
-
-          <div className="flex items-center gap-2 pt-3 md:pt-4 border-t border-zinc-800/50 flex-wrap">
-            {project.project_repository && (
-              <Link
-                href={project.project_repository}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1 md:gap-1.5 px-3 md:px-4 py-1.5 md:py-2 text-xs font-medium bg-zinc-800/40 hover:bg-violet-500/10 text-zinc-400 hover:text-violet-400 rounded-lg transition-all duration-300 group/icon border border-transparent hover:border-violet-500/20"
-                aria-label="View repository"
-              >
-                <span>Code</span>
-              </Link>
-            )}
-            {project.project_live_link && (
-              <Link
-                href={project.project_live_link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1 md:gap-1.5 px-3 md:px-4 py-1.5 md:py-2 text-xs font-medium bg-zinc-800/40 hover:bg-violet-500/10 text-zinc-400 hover:text-indigo-400 rounded-lg transition-all duration-300 group/icon border border-transparent hover:border-indigo-500/20"
-                aria-label="View live project"
-              >
-                <span>Live</span>
-              </Link>
-            )}
-            {project.project_video && (
-              <Link
-                href={project.project_video}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1 md:gap-1.5 px-3 md:px-4 py-1.5 md:py-2 text-xs font-medium bg-zinc-800/40 hover:bg-violet-500/10 text-zinc-400 hover:text-violet-400 rounded-lg transition-all duration-300 group/icon border border-transparent hover:border-violet-500/20"
-                aria-label="Watch video"
-              >
-                <span>Demo</span>
-              </Link>
-            )}
-          </div>
-        </div>
-      </div>
+  const extraInfo = (
+    <div className="flex items-center gap-2 mt-1 flex-wrap">
+      {project.project_repository && (
+        <Link
+          href={project.project_repository}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-1.5 px-3 py-1 text-xs font-medium bg-zinc-800/60 hover:bg-violet-500/10 text-zinc-400 hover:text-violet-400 rounded-md border border-zinc-700/50 hover:border-violet-500/30 transition-all duration-200"
+          aria-label="View repository"
+        >
+          <span>Code</span>
+        </Link>
+      )}
+      {project.project_live_link && (
+        <Link
+          href={project.project_live_link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-1.5 px-3 py-1 text-xs font-medium bg-zinc-800/60 hover:bg-indigo-500/10 text-zinc-400 hover:text-indigo-400 rounded-md border border-zinc-700/50 hover:border-indigo-500/30 transition-all duration-200"
+          aria-label="View live project"
+        >
+          <span>Live</span>
+        </Link>
+      )}
+      {project.project_video && (
+        <Link
+          href={project.project_video}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-1.5 px-3 py-1 text-xs font-medium bg-zinc-800/60 hover:bg-violet-500/10 text-zinc-400 hover:text-violet-400 rounded-md border border-zinc-700/50 hover:border-violet-500/30 transition-all duration-200"
+          aria-label="Watch video"
+        >
+          <span>Demo</span>
+        </Link>
+      )}
     </div>
+  );
+
+  return (
+    <UnifiedCard
+      index={index}
+      theme="violet"
+      title={project.project_name}
+      subtitle="Software Project"
+      subtitleIcon={<Code2 className="w-3.5 h-3.5" />}
+      description={project.small_description}
+      technologies={project.skills}
+      extraInfo={extraInfo}
+    />
   );
 };
 

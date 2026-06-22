@@ -44,7 +44,7 @@ export const TextContent = () => {
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="social-link group relative flex items-center gap-2 md:gap-2.5 lg:gap-3 px-4 md:px-5 lg:px-6 py-2.5 md:py-3 lg:py-3.5 bg-zinc-900/50 hover:bg-zinc-800/80 border border-zinc-800 hover:border-violet-500/50 rounded-xl transition-all duration-500 shadow-lg hover:shadow-violet-500/20 hover:-translate-y-1 backdrop-blur-md text-xs sm:text-sm md:text-base font-medium"
+              className="social-link group relative flex items-center gap-2 md:gap-2.5 lg:gap-3 px-4 md:px-5 lg:px-6 py-2.5 md:py-3 lg:py-3.5 bg-zinc-900/50 hover:bg-zinc-800/80 border border-zinc-800 hover:border-violet-500/50 rounded-xl transition-all duration-500 shadow-lg hover:shadow-violet-500/20 backdrop-blur-md text-xs sm:text-sm md:text-base font-medium"
               aria-label={key}
             >
               <span className="text-zinc-300 group-hover:text-violet-400 transition-colors duration-300 whitespace-nowrap">

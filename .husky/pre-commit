@@ -1,9 +1,5 @@
 #!/usr/bin/env sh
-
-pnpm type-check || {
-  exit 1
-}
-
-pnpm lint || {
+pnpm run validate || {
+  echo "Validation failed! Fix lint, tests, and build before committing."
   exit 1
 }

@@ -47,7 +47,7 @@
     "clean": "rm -rf .next out",
     "preview": "pnpm build && pnpm start",
     "prepare": "husky",
-    "validate": "pnpm type-check && pnpm lint && pnpm build",
+    "validate": "pnpm type-check && pnpm lint && pnpm test && pnpm build",
     "audit:lh": "lighthouse http://localhost:3000 --chrome-flags=\"--headless\" --output html --output-path ./lighthouse-report.html"
   },
   "dependencies": {

@@ -9,7 +9,7 @@ export const ImageContainer = () => {
     >
       <div className="glow-effect" />
 
-      <div className="image-container group relative w-full aspect-3/4 max-w-[280px] sm:max-w-[320px] md:max-w-[400px] lg:max-w-[450px] xl:max-w-[500px] rounded-2xl overflow-hidden cursor-pointer mx-auto shadow-2xl shadow-violet-500/20 border border-zinc-800 hover:border-violet-500/50 transition-all duration-700 hover:-translate-y-2">
+      <div className="image-container group relative w-full aspect-3/4 max-w-[280px] sm:max-w-[320px] md:max-w-[400px] lg:max-w-[450px] xl:max-w-[500px] rounded-2xl overflow-hidden cursor-pointer mx-auto shadow-2xl shadow-violet-500/20 border border-zinc-800 hover:border-violet-500/50 transition-all duration-700">
         <Image
           src={CDN_ICON_AVIF}
           alt="Shardendu Mishra - Software Developer and Engineer portrait"
