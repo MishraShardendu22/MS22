@@ -60,8 +60,6 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
       index={index}
       theme="violet"
       title={project.project_name}
-      subtitle="Software Project"
-      subtitleIcon={<Code2 className="w-3.5 h-3.5" />}
       description={project.small_description}
       technologies={project.skills}
       extraInfo={extraInfo}

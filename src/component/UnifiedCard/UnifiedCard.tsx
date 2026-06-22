@@ -13,7 +13,7 @@ interface UnifiedCardProps {
   logo?: string;
   logoAlt?: string;
   title: string;
-  subtitle: string;
+  subtitle?: string;
   subtitleIcon?: ReactNode;
   startDate?: string;
   endDate?: string;
@@ -69,15 +69,17 @@ export const UnifiedCard = ({
           <div className="flex items-start gap-2 sm:gap-3 mb-2 sm:mb-3">
             {logo && (
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gray-800/50 border border-gray-700/50 flex items-center justify-center overflow-hidden shrink-0">
-                <Image
-                  src={logo}
-                  alt={logoAlt || subtitle}
-                  width={48}
-                  height={48}
-                  className="object-contain p-1"
-                  loading="lazy"
-                  sizes="(max-width: 768px) 40px, 48px"
-                />
+                {(logoAlt || subtitle) && (
+                  <Image
+                    src={logo}
+                    alt={logoAlt || subtitle || ""}
+                    width={48}
+                    height={48}
+                    className="object-contain p-1"
+                    loading="lazy"
+                    sizes="(max-width: 768px) 40px, 48px"
+                  />
+                )}
               </div>
             )}
             <div className="flex-1 min-w-0">
