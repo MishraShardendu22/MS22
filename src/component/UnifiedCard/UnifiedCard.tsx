@@ -51,7 +51,7 @@ export const UnifiedCard = ({
 
   return (
     <div
-      className="group relative"
+      className="group relative h-full"
       style={{
         opacity: 0,
         animation: `fadeInUp 0.25s ease-out ${Math.min(index * 0.04, 0.2)}s forwards`,
@@ -59,7 +59,7 @@ export const UnifiedCard = ({
       }}
     >
       <div
-        className={`relative bg-linear-to-br from-gray-900/50 to-gray-950/50 border border-gray-800/50 rounded-xl md:rounded-2xl overflow-hidden transition-colors duration-200 ${colors.border}`}
+        className={`relative h-full flex flex-col bg-linear-to-br from-gray-900/50 to-gray-950/50 border border-gray-800/50 rounded-xl md:rounded-2xl overflow-hidden transition-colors duration-200 ${colors.border}`}
       >
         <div
           className={`absolute inset-0 bg-linear-to-br ${colors.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-200`}
