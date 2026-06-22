@@ -1,4 +1,3 @@
-import { Code2 } from "lucide-react";
 import Link from "next/link";
 import { PaginationLinks } from "@/component/Pagination";
 import {
