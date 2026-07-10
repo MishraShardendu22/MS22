@@ -4,7 +4,7 @@ import { BUTTON_LABELS } from "@/static/ui";
 export const TextContent = () => {
   return (
     <div className="lg:col-span-7 text-center lg:text-left space-y-4 md:space-y-6 lg:space-y-8 relative z-10 order-2 lg:order-1">
-      <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black bg-linear-to-b from-white to-zinc-400 bg-clip-text text-transparent leading-[1.1] wrap-break-word drop-shadow-sm">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black bg-linear-to-b from-white to-zinc-400 bg-clip-text text-transparent leading-[1.1] break-words drop-shadow-sm">
         {myIntro.name}
       </h1>
 

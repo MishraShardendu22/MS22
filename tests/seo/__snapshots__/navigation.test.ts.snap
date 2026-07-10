@@ -67,7 +67,7 @@ exports[`navigation integrity > keeps navigation links stable 1`] = `
     "name": "My Socials",
   },
   {
-    "href": "/contact",
+    "href": "/#contact",
     "icon": {
       "$$typeof": Symbol(react.forward_ref),
       "render": [Function],

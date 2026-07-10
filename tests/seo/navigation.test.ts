@@ -41,8 +41,8 @@ function anchorExists(anchor: string): boolean {
 }
 
 describe("navigation integrity", () => {
-  it("includes the /contact navigation route", () => {
-    const hasContact = NAV_ITEMS.some((item) => item.href === "/contact");
+  it("includes the /#contact navigation route", () => {
+    const hasContact = NAV_ITEMS.some((item) => item.href === "/#contact");
     expect(hasContact).toBe(true);
   });
 
