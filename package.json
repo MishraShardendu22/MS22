@@ -54,27 +54,27 @@
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
     "axios": "^1.18.1",
-    "lucide-react": "^1.23.0",
+    "lucide-react": "^1.25.0",
     "next": "16.2.10",
     "react": "19.2.7",
     "react-dom": "19.2.7",
     "recharts": "^3.9.2",
-    "resend": "^6.17.1"
+    "resend": "^6.17.2"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.2",
+    "@biomejs/biome": "2.5.4",
     "@playwright/test": "^1.61.1",
-    "@tailwindcss/postcss": "^4.3.2",
-    "@types/node": "^26.1.0",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^26.1.1",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "babel-plugin-react-compiler": "1.0.0",
     "cheerio": "^1.2.0",
     "husky": "^9.1.7",
     "jsdom": "^29.1.1",
-    "tailwindcss": "^4.3.2",
+    "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.9"
+    "vitest": "^4.1.10"
   },
   "packageManager": "pnpm@10.15.0"
 }
