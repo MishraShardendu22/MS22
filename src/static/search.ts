@@ -6,9 +6,9 @@ export const FILTER_CONFIG = {
   project: {
     icon: FolderGit2,
     label: "Projects",
-    color: "text-cyan-400",
-    bgColor: "bg-cyan-500/15",
-    borderColor: "border-cyan-500/50",
+    color: "text-violet-400",
+    bgColor: "bg-violet-500/15",
+    borderColor: "border-violet-500/50",
   },
   experience: {
     icon: Briefcase,
@@ -45,7 +45,6 @@ export function getPageFilter(pathname: string): SearchResultType | undefined {
 
 export const THEME_TO_SEARCH_FILTER: Record<PageHeaderTheme, SearchResultType> =
   {
-    cyan: "project",
     blue: "experience",
     pink: "volunteer",
     purple: "certificate",

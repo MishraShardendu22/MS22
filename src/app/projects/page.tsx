@@ -83,7 +83,7 @@ async function ProjectsContent({ searchParams }: PageProps) {
       {/* Server-rendered Header with Link-based pagination */}
       <ServerPageHeader
         title="Projects"
-        theme="cyan"
+        theme="violet"
         currentPage={currentPage}
         totalPages={totalPages}
         basePath="/projects"
@@ -121,7 +121,7 @@ async function ProjectsContent({ searchParams }: PageProps) {
                 key={projectId}
                 id={projectId}
                 href={`/projects/${projectId}`}
-                theme="cyan"
+                theme="violet"
                 title={project.project_name}
                 description={project.small_description}
                 technologies={project.skills}
@@ -135,7 +135,7 @@ async function ProjectsContent({ searchParams }: PageProps) {
         <EmptyState
           title="No projects found"
           description="No projects available at the moment"
-          theme="cyan"
+          theme="violet"
         />
       )}
     </div>
@@ -147,14 +147,14 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
     <main className="flex-1 min-h-screen bg-gray-950 relative overflow-hidden">
       {/* Subtle Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <div className="absolute top-0 -left-4 w-72 h-72 bg-cyan-500/8 rounded-full mix-blend-multiply filter blur-3xl" />
+        <div className="absolute top-0 -left-4 w-72 h-72 bg-violet-500/8 rounded-full mix-blend-multiply filter blur-3xl" />
         <div className="absolute top-0 -right-4 w-72 h-72 bg-teal-500/8 rounded-full mix-blend-multiply filter blur-3xl" />
       </div>
 
       <div className="container mx-auto px-4 py-6 relative z-10 max-w-400">
         <Suspense
           fallback={
-            <LoadingStateLight message="Loading projects..." variant="cyan" />
+            <LoadingStateLight message="Loading projects..." variant="violet" />
           }
         >
           <ProjectsContent searchParams={searchParams} />

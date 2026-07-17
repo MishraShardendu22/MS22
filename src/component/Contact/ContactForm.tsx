@@ -43,7 +43,7 @@ export function ContactForm({
             id="name"
             name="name"
             required
-            className={`w-full ${isCompact ? "bg-gray-900/50 border-gray-700 px-4 py-3 text-sm" : "bg-gray-900/50 border-gray-700 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 px-4 py-3"} border rounded-lg text-gray-200 placeholder-gray-500 outline-none transition-all ${state?.errors?.name ? "border-red-500" : ""}`}
+            className={`w-full bg-zinc-950 border-zinc-800 focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 ${isCompact ? "px-4 py-3 text-sm" : "px-4 py-3"} border rounded-lg text-gray-200 placeholder-zinc-500 outline-none transition-all ${state?.errors?.name ? "border-red-500" : ""}`}
             placeholder={isCompact ? "Full name" : "Your name"}
           />
           {state?.errors?.name && (
@@ -67,7 +67,7 @@ export function ContactForm({
             id="email"
             name="email"
             required
-            className={`w-full ${isCompact ? "bg-gray-900/50 border-gray-700 px-4 py-3 text-sm" : "bg-gray-900/50 border-gray-700 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 px-4 py-3"} border rounded-lg text-gray-200 placeholder-gray-500 outline-none transition-all ${state?.errors?.email ? "border-red-500" : ""}`}
+            className={`w-full bg-zinc-950 border-zinc-800 focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 ${isCompact ? "px-4 py-3 text-sm" : "px-4 py-3"} border rounded-lg text-gray-200 placeholder-zinc-500 outline-none transition-all ${state?.errors?.email ? "border-red-500" : ""}`}
             placeholder={isCompact ? "Email address" : "your.email@example.com"}
           />
           {state?.errors?.email && (
@@ -93,7 +93,7 @@ export function ContactForm({
             id="subject"
             name="subject"
             required
-            className={`w-full ${isCompact ? "bg-gray-900/50 border-gray-700 px-4 py-3 text-sm" : "bg-gray-900/50 border-gray-700 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 px-4 py-3"} border rounded-lg text-gray-200 placeholder-gray-500 outline-none transition-all ${state?.errors?.subject ? "border-red-500" : ""}`}
+            className={`w-full bg-zinc-950 border-zinc-800 focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 ${isCompact ? "px-4 py-3 text-sm" : "px-4 py-3"} border rounded-lg text-gray-200 placeholder-zinc-500 outline-none transition-all ${state?.errors?.subject ? "border-red-500" : ""}`}
             placeholder="What's this about?"
           />
           {state?.errors?.subject && (
@@ -124,7 +124,7 @@ export function ContactForm({
           required
           minLength={10}
           rows={isCompact ? 4 : 5}
-          className={`w-full ${isCompact ? "bg-gray-900/50 border-gray-700 px-4 py-3 text-sm" : "bg-gray-900/50 border-gray-700 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 px-4 py-3"} border rounded-lg text-gray-200 placeholder-gray-500 outline-none transition-all resize-none ${state?.errors?.message ? "border-red-500" : ""}`}
+          className={`w-full bg-zinc-950 border-zinc-800 focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 ${isCompact ? "px-4 py-3 text-sm" : "px-4 py-3"} border rounded-lg text-gray-200 placeholder-zinc-500 outline-none transition-all resize-none ${state?.errors?.message ? "border-red-500" : ""}`}
           placeholder={
             isCompact
               ? "Share details or say hello..."

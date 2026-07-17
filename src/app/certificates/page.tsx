@@ -141,7 +141,7 @@ export default async function CertificatesPage({ searchParams }: PageProps) {
     <main className="flex-1 min-h-screen bg-gray-950 relative overflow-hidden">
       {/* Subtle Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <div className="absolute top-0 -left-4 w-72 h-72 bg-cyan-500/8 rounded-full mix-blend-multiply filter blur-3xl" />
+        <div className="absolute top-0 -left-4 w-72 h-72 bg-violet-500/8 rounded-full mix-blend-multiply filter blur-3xl" />
         <div className="absolute top-0 -right-4 w-72 h-72 bg-blue-500/8 rounded-full mix-blend-multiply filter blur-3xl" />
       </div>
 
@@ -150,7 +150,7 @@ export default async function CertificatesPage({ searchParams }: PageProps) {
           fallback={
             <LoadingStateLight
               message="Loading certifications..."
-              variant="cyan"
+              variant="violet"
             />
           }
         >

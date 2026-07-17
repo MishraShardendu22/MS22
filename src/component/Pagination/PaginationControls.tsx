@@ -26,7 +26,7 @@ export function PaginationControls({
   onPrevPage,
   onNextPage,
   isLoading = false,
-  theme = "cyan",
+  theme = "violet",
   viewAllHref,
   showViewAll = true,
 }: PaginationControlsProps) {

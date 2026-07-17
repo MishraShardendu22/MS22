@@ -27,7 +27,7 @@ export function PaginationLinks({
   hasNext,
   hasPrevious,
   baseHref = "",
-  theme = "cyan",
+  theme = "violet",
   viewAllHref,
   showViewAll = true,
   pageParam = "page",

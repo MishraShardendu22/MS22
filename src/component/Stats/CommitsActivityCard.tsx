@@ -75,7 +75,7 @@ const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
           })}
         </p>
         <div className="space-y-1">
-          <p className="text-sm text-cyan-400 font-semibold flex items-center gap-2">
+          <p className="text-sm text-violet-400 font-semibold flex items-center gap-2">
             <GitCommit className="w-3 h-3" />
             {data.commits} commits
           </p>
@@ -181,10 +181,10 @@ export const CommitsActivityCard = ({
   ).toFixed(1);
 
   return (
-    <div className="bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:border-cyan-500/40 transition-all duration-300">
+    <div className="bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:border-violet-500/40 transition-all duration-300">
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-3 bg-cyan-500/10 rounded-lg border border-cyan-500/30">
-          <Activity className="w-5 h-5 text-cyan-400" />
+        <div className="p-3 bg-violet-500/10 rounded-lg border border-violet-500/30">
+          <Activity className="w-5 h-5 text-violet-400" />
         </div>
         <div>
           <h3 className="text-lg font-bold text-white">Development Activity</h3>
@@ -201,7 +201,7 @@ export const CommitsActivityCard = ({
         </div>
         <div className="p-3 bg-gray-800/30 rounded-lg border border-gray-700/50">
           <p className="text-xs text-gray-400 mb-1">Avg/Week</p>
-          <p className="text-xl font-bold text-cyan-400">{avgPerWeek}</p>
+          <p className="text-xl font-bold text-violet-400">{avgPerWeek}</p>
         </div>
         <div className="p-3 bg-gray-800/30 rounded-lg border border-gray-700/50">
           <p className="text-xs text-gray-400 mb-1">Peak Week</p>
@@ -312,7 +312,7 @@ export const CommitsActivityCard = ({
         <p className="text-gray-500">Last 52 weeks</p>
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-cyan-500/60"></div>
+            <div className="w-3 h-3 rounded-full bg-violet-500/60"></div>
             <span className="text-gray-400">Commits</span>
           </div>
           <div className="flex items-center gap-2">

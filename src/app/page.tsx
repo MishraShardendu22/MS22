@@ -152,7 +152,10 @@ const page = async ({ searchParams }: PageProps) => {
         <section id="projects" aria-label="Featured projects and work">
           <Suspense
             fallback={
-              <LoadingStateLight message="Loading projects..." variant="cyan" />
+              <LoadingStateLight
+                message="Loading projects..."
+                variant="violet"
+              />
             }
           >
             {isMobile ? (

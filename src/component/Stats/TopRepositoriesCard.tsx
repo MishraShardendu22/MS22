@@ -24,10 +24,10 @@ const RepoCard = ({
       href={repoUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="p-4 bg-gray-800/30 rounded-lg border border-gray-700/50 hover:border-cyan-500/40 transition-all duration-200 group"
+      className="p-4 bg-gray-800/30 rounded-lg border border-gray-700/50 hover:border-violet-500/40 transition-all duration-200 group"
     >
       <div className="flex items-start justify-between mb-2">
-        <h4 className="text-sm font-semibold text-white group-hover:text-cyan-400 transition-colors line-clamp-1">
+        <h4 className="text-sm font-semibold text-white group-hover:text-violet-400 transition-colors line-clamp-1">
           {repo.name}
         </h4>
         <span className="text-xs text-gray-500">#{index + 1}</span>
@@ -44,7 +44,7 @@ const RepoCard = ({
         </div>
         {repo.language && (
           <div className="flex items-center gap-1">
-            <div className="w-2 h-2 rounded-full bg-cyan-400" />
+            <div className="w-2 h-2 rounded-full bg-violet-400" />
             <span>{repo.language}</span>
           </div>
         )}
@@ -72,7 +72,7 @@ export const TopRepositoriesCard = ({ topRepos }: TopRepositoriesCardProps) => {
   }
 
   return (
-    <div className="bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:border-cyan-500/40 transition-all duration-300">
+    <div className="bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:border-violet-500/40 transition-all duration-300">
       <div className="flex items-center gap-3 mb-6">
         <div className="p-3 bg-green-500/10 rounded-lg border border-green-500/30">
           <TrendingUp className="w-5 h-5 text-green-400" />

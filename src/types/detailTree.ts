@@ -170,7 +170,7 @@ export interface DetailTreeData {
     label: string;
   };
   /** Color theme */
-  theme: "cyan" | "blue" | "purple" | "pink";
+  theme: "violet" | "blue" | "purple" | "pink";
   /** Entity type for context */
   entityType: "project" | "certificate" | "experience" | "volunteer";
 

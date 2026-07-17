@@ -52,7 +52,7 @@ interface HeaderSearchButtonProps {
 export function HeaderSearchButton({
   filterType,
   label = "Search",
-  theme = "cyan",
+  theme = "violet",
 }: HeaderSearchButtonProps) {
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {

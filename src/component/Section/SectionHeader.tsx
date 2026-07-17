@@ -11,7 +11,7 @@ interface SectionHeaderProps {
 export function SectionHeader({
   title,
   description,
-  theme = "cyan",
+  theme = "violet",
   children,
 }: SectionHeaderProps) {
   const gradient = SECTION_HEADER_GRADIENTS[theme];

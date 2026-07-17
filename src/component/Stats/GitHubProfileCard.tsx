@@ -12,7 +12,7 @@ const StatsCard = ({
   label,
   value,
   icon: Icon,
-  iconColor = "text-cyan-400",
+  iconColor = "text-violet-400",
 }: StatsCardProps) => (
   <div className="p-4 bg-gray-800/30 rounded-lg border border-gray-700/50 hover:border-gray-600 transition-colors">
     <div className="flex items-center gap-3">
@@ -36,7 +36,7 @@ export const GitHubProfileCard = ({
   github,
   stars,
 }: GitHubProfileCardProps) => (
-  <div className="bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:border-cyan-500/40 transition-all duration-300">
+  <div className="bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:border-violet-500/40 transition-all duration-300">
     <div className="flex items-center gap-3 mb-6">
       <div>
         <h3 className="text-lg font-bold text-white">GitHub Profile</h3>
@@ -65,7 +65,7 @@ export const GitHubProfileCard = ({
       {github.name && (
         <div className="p-3 bg-gray-800/30 rounded-lg border border-gray-700/50">
           <div className="flex items-center gap-2">
-            <User className="w-4 h-4 text-cyan-400" />
+            <User className="w-4 h-4 text-violet-400" />
             <span className="text-sm text-gray-300">{github.name}</span>
           </div>
         </div>

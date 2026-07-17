@@ -226,7 +226,7 @@ export function SearchModalContent() {
                         d.selected = i;
                         forceRender();
                       }}
-                      className={`flex flex-col sm:flex-row items-start gap-2 sm:gap-4 px-3 sm:px-5 py-3 sm:py-4 ${sel ? "bg-gray-800/90 border-l-2 border-cyan-500" : "hover:bg-gray-800/60 border-l-2 border-transparent"}`}
+                      className={`flex flex-col sm:flex-row items-start gap-2 sm:gap-4 px-3 sm:px-5 py-3 sm:py-4 ${sel ? "bg-gray-800/90 border-l-2 border-violet-500" : "hover:bg-gray-800/60 border-l-2 border-transparent"}`}
                     >
                       <div className={`shrink-0 p-2 rounded-xl ${c.bgColor}`}>
                         <Icon className={`w-4 h-4 ${c.color}`} />
@@ -434,7 +434,7 @@ export function SidebarSearchButton() {
       <button
         type="button"
         onClick={() => openSearchModal(getPageFilter(pathname))}
-        className="group relative flex items-center justify-center p-3 rounded-xl text-gray-400 hover:bg-surface-elevated hover:text-cyan-400"
+        className="group relative flex items-center justify-center p-3 rounded-xl text-gray-400 hover:bg-surface-elevated hover:text-violet-400"
         data-tooltip="Search (⌘K)"
         aria-label="Search"
       >

@@ -2,30 +2,39 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
-import { Archivo, Inter } from "next/font/google";
+import { IBM_Plex_Mono, IBM_Plex_Sans, Space_Grotesk } from "next/font/google";
 import { SidebarWrapper } from "@/component/Sidebar/SidebarWrapper";
 import { CDN_ICON_PNG, CDN_PROFESSIONAL_AVIF } from "@/static/cdn";
 import { BaseURL } from "@/static/data";
 import { getRootJsonLd } from "@/static/site";
 
-const archivo = Archivo({
+const spaceGrotesk = Space_Grotesk({
   variable: "--font-heading",
   subsets: ["latin"],
-  weight: ["600"],
+  weight: ["500", "600", "700"],
   display: "swap",
   fallback: ["system-ui", "Arial", "sans-serif"],
   preload: true,
   adjustFontFallback: true,
 });
 
-const inter = Inter({
+const ibmPlexSans = IBM_Plex_Sans({
   variable: "--font-body",
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
   fallback: ["system-ui", "Arial", "sans-serif"],
   preload: true,
   adjustFontFallback: true,
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  display: "swap",
+  fallback: ["ui-monospace", "monospace"],
+  preload: true,
 });
 
 export const viewport: Viewport = {
@@ -209,7 +218,9 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${archivo.variable} ${inter.variable} antialiased`}>
+      <body
+        className={`${spaceGrotesk.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable} antialiased`}
+      >
         <noscript>
           <div
             style={{

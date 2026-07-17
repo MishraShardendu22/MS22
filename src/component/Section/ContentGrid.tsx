@@ -8,14 +8,14 @@ interface ContentGridProps {
   isLoading?: boolean;
   columns?: 1 | 2 | 3 | 4;
   loadingMessage?: string;
-  loadingVariant?: "cyan" | "purple" | "emerald" | "pink" | "blue";
+  loadingVariant?: "violet" | "purple" | "emerald" | "pink" | "blue";
 }
 
 export function ContentGrid({
   children,
   isLoading = false,
   loadingMessage = "Loading...",
-  loadingVariant = "cyan",
+  loadingVariant = "violet",
   columns = 2,
   minHeight = "300px",
 }: ContentGridProps) {

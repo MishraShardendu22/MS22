@@ -69,14 +69,22 @@
   --color-info: var(--info);
 
   --font-sans: var(--font-body);
-  --font-mono:
-    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",
-    monospace;
+  --font-heading: var(--font-heading);
+  --font-mono: var(--font-mono);
 }
 
 /* ------------------------------
    Global Base Styles
 ------------------------------ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading), system-ui, sans-serif;
+}
 
 html,
 body {
@@ -224,7 +232,7 @@ p {
 
   /* Reduce shadow complexity on mobile */
   .shadow-2xl,
-  [class*="shadow-cyan"],
+  [class*="shadow-violet"],
   [class*="shadow-blue"],
   [class*="shadow-purple"] {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);

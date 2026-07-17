@@ -12,7 +12,7 @@ test.describe("Home Page", () => {
     // Check Heading
     const heading = page.locator("h1");
     await expect(heading).toBeVisible();
-    await expect(heading).toContainText(/Shardendu Sankritya Mishra/i);
+    await expect(heading).toContainText(/Shardendu Mishra/i);
   });
 
   test("should navigate to projects section", async ({ page }) => {

@@ -14,7 +14,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
     username: "@MishraShardendu22",
     url: "https://mishrashardendu22.is-a.dev",
     category: "projects",
-    color: "from-cyan-500 to-blue-600",
+    color: "from-violet-500 to-blue-600",
     description: "My complete portfolio showcasing projects and experience",
   },
   // Social Media
@@ -95,7 +95,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
     username: "@personahonestly8a347f9823",
     url: "https://gravatar.com/personahonestly8a347f9823",
     category: "social",
-    color: "from-blue-500 to-cyan-600",
+    color: "from-blue-500 to-violet-600",
     description: "My globally recognized avatar profile",
   },
   // Coding Platforms

@@ -7,17 +7,17 @@
 
 import { VARIANT_COLORS } from "@/constants/theme";
 
-type LoadingVariant = "cyan" | "blue" | "purple" | "pink" | "emerald";
+type LoadingVariant = "blue" | "purple" | "pink" | "emerald" | "violet";
 
 interface LoadingStateLightProps {
   variant?: LoadingVariant;
   message?: string;
 }
 
-function LoadingSpinner({ variant = "cyan" }: { variant?: LoadingVariant }) {
+function LoadingSpinner({ variant = "violet" }: { variant?: LoadingVariant }) {
   const colors =
     VARIANT_COLORS[variant as keyof typeof VARIANT_COLORS] ||
-    VARIANT_COLORS.cyan;
+    VARIANT_COLORS.violet;
   return (
     <div className="flex flex-col items-center gap-4">
       <div className="relative w-10 h-10">
@@ -36,12 +36,12 @@ function LoadingSpinner({ variant = "cyan" }: { variant?: LoadingVariant }) {
 }
 
 export function LoadingStateLight({
-  variant = "cyan",
+  variant = "violet",
   message = "Loading...",
 }: LoadingStateLightProps) {
   const colors =
     VARIANT_COLORS[variant as keyof typeof VARIANT_COLORS] ||
-    VARIANT_COLORS.cyan;
+    VARIANT_COLORS.violet;
   return (
     <div className="flex items-center justify-center min-h-[400px]">
       <div className="flex flex-col items-center gap-4">

@@ -16,8 +16,8 @@ export function SubmitButton({ variant = "default" }: SubmitButtonProps) {
       disabled={pending}
       className={`w-full ${
         isCompact
-          ? "bg-cyan-500 hover:bg-cyan-600 text-sm py-3"
-          : "bg-linear-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 hover:shadow-lg hover:shadow-cyan-500/50 text-base py-3"
+          ? "bg-violet-600 hover:bg-violet-500 text-sm py-3"
+          : "bg-linear-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 hover:shadow-lg hover:shadow-violet-600/50 text-base py-3"
       } disabled:from-gray-600 disabled:to-gray-700 disabled:bg-gray-600 text-white font-semibold rounded-lg flex items-center justify-center gap-2 transition-all duration-500`}
     >
       {pending ? (

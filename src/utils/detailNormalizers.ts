@@ -421,7 +421,7 @@ export function normalizeProject(project: Project): DetailTreeData {
       href: "/projects",
       label: "Back to Projects",
     },
-    theme: "cyan",
+    theme: "violet",
     entityType: "project",
   };
 }

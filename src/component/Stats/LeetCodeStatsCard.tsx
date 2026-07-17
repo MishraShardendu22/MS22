@@ -26,7 +26,7 @@ interface LeetCodeStatsCardProps {
 }
 
 export const LeetCodeStatsCard = ({ leetcode }: LeetCodeStatsCardProps) => (
-  <div className="bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:border-cyan-500/40 transition-all duration-300">
+  <div className="bg-linear-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:border-violet-500/40 transition-all duration-300">
     <div className="flex items-center gap-3 mb-6">
       <div>
         <h3 className="text-lg font-bold text-white">LeetCode Stats</h3>
@@ -38,7 +38,7 @@ export const LeetCodeStatsCard = ({ leetcode }: LeetCodeStatsCardProps) => (
       {leetcode.profile.realName && (
         <div className="p-3 bg-gray-800/30 rounded-lg border border-gray-700/50">
           <div className="flex items-center gap-2">
-            <User className="w-4 h-4 text-cyan-400" />
+            <User className="w-4 h-4 text-violet-400" />
             <span className="text-sm text-gray-300">
               {leetcode.profile.realName}
             </span>

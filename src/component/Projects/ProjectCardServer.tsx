@@ -207,7 +207,7 @@ export async function ProjectsDisplayServer({
 
   if (projects.length === 0) {
     return (
-      <SectionWrapper theme="cyan">
+      <SectionWrapper theme="violet">
         {headerContent}
         <div className="py-12 flex items-center justify-center">
           <p className="text-lg text-gray-400">
@@ -219,7 +219,7 @@ export async function ProjectsDisplayServer({
   }
 
   return (
-    <SectionWrapper theme="cyan">
+    <SectionWrapper theme="violet">
       {headerContent}
       <ContentGrid columns={2}>
         {projects.map((project, index) => (

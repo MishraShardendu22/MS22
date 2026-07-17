@@ -156,7 +156,7 @@ export const ExperienceCard = ({
           })
         ) : (
           <span
-            className={`${exp.type === "work" ? "text-cyan-400" : "text-purple-400"} font-bold`}
+            className={`${exp.type === "work" ? "text-violet-400" : "text-purple-400"} font-bold`}
           >
             Present
           </span>

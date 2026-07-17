@@ -15,7 +15,7 @@ interface SectionWrapperProps {
  */
 export function SectionWrapper({
   children,
-  theme = "cyan",
+  theme = "violet",
   className = "",
 }: SectionWrapperProps) {
   const gradients = SECTION_WRAPPER_THEME_CONFIG[theme];

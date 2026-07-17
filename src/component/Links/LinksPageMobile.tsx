@@ -13,7 +13,7 @@ export function LinksPageMobile() {
     <div className="min-h-screen bg-linear-to-br from-gray-950 via-gray-900 to-gray-950 relative">
       {/* Animated Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-violet-500/10 rounded-full blur-3xl animate-pulse" />
         <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-500" />
       </div>
@@ -23,7 +23,7 @@ export function LinksPageMobile() {
         <nav aria-label="Back navigation">
           <Link
             href="/"
-            className="group inline-flex items-center gap-2 mb-6 px-3 py-2 bg-gray-900/50 hover:bg-gray-800/50 border border-gray-800 hover:border-cyan-500/50 rounded-lg transition-all duration-300 text-gray-400 hover:text-cyan-400"
+            className="group inline-flex items-center gap-2 mb-6 px-3 py-2 bg-gray-900/50 hover:bg-gray-800/50 border border-gray-800 hover:border-violet-500/50 rounded-lg transition-all duration-300 text-gray-400 hover:text-violet-400"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
             <span className="text-sm font-medium">Back to Home</span>
@@ -34,7 +34,7 @@ export function LinksPageMobile() {
         <header className="text-center mb-8 animate-fadeIn">
           {/* Profile image */}
           <div className="relative mb-4 inline-block">
-            <div className="absolute -inset-1 bg-linear-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-full blur opacity-75 animate-pulse" />
+            <div className="absolute -inset-1 bg-linear-to-r from-violet-500 via-purple-500 to-pink-500 rounded-full blur opacity-75 animate-pulse" />
             <div className="relative w-20 h-20 rounded-full overflow-hidden border-4 border-gray-900 shadow-2xl bg-gray-900">
               <Image
                 src={CDN_PROFESSIONAL_AVIF}
@@ -47,7 +47,7 @@ export function LinksPageMobile() {
             </div>
           </div>
 
-          <h1 className="text-2xl font-black text-white mb-2 bg-clip-text bg-linear-to-r from-cyan-400 via-purple-400 to-pink-400">
+          <h1 className="text-2xl font-black text-white mb-2 bg-clip-text bg-linear-to-r from-violet-400 via-purple-400 to-pink-400">
             Shardendu Mishra
           </h1>
           <p className="text-sm text-gray-400 mb-3 px-2">
@@ -88,7 +88,7 @@ export function LinksPageMobile() {
                           <div className="flex items-center gap-3">
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center gap-1.5 mb-0.5">
-                                <h3 className="text-sm font-bold text-white group-hover:text-cyan-400 transition-colors truncate">
+                                <h3 className="text-sm font-bold text-white group-hover:text-violet-400 transition-colors truncate">
                                   {link.name}
                                 </h3>
                               </div>
@@ -116,7 +116,7 @@ export function LinksPageMobile() {
               <span className="h-px flex-1 max-w-[80px] bg-linear-to-r from-transparent via-gray-700 to-transparent" />
             </h2>
             <div className="relative inline-block">
-              <div className="absolute -inset-1 bg-linear-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-2xl blur opacity-50 animate-pulse" />
+              <div className="absolute -inset-1 bg-linear-to-r from-violet-500 via-purple-500 to-pink-500 rounded-2xl blur opacity-50 animate-pulse" />
               <div className="relative bg-white p-3 rounded-2xl shadow-2xl">
                 <Image
                   src={CDN_SHARDENDU_QR_AVIF}

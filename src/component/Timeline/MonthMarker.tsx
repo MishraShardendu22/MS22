@@ -24,7 +24,7 @@ export const MonthMarker = ({ month, index, isMobile }: MonthMarkerProps) => {
         <div
           className={`w-4 h-4 rounded-full border-2 shadow-lg z-10 transition-all duration-300 ${
             isCurrentMonth
-              ? "bg-cyan-400 border-cyan-300 animate-pulse ring-4 ring-cyan-400/30 scale-125"
+              ? "bg-violet-400 border-violet-300 animate-pulse ring-4 ring-violet-400/30 scale-125"
               : month.isYearStart
                 ? "bg-blue-400 border-blue-300 ring-2 ring-blue-400/20"
                 : "bg-purple-400 border-purple-300"
@@ -32,7 +32,7 @@ export const MonthMarker = ({ month, index, isMobile }: MonthMarkerProps) => {
         />
         {isCurrentMonth && (
           <div className="absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap z-30">
-            <div className="px-3 py-1.5 bg-linear-to-r from-cyan-500 to-blue-500 text-white text-xs font-bold rounded-lg shadow-lg shadow-cyan-500/50">
+            <div className="px-3 py-1.5 bg-linear-to-r from-violet-500 to-blue-500 text-white text-xs font-bold rounded-lg shadow-lg shadow-violet-500/50">
               Current
             </div>
           </div>
@@ -43,7 +43,7 @@ export const MonthMarker = ({ month, index, isMobile }: MonthMarkerProps) => {
         <div
           className={`text-xs sm:text-sm font-bold transition-all duration-300 px-2 py-1 rounded-md ${
             isCurrentMonth
-              ? "text-cyan-300 scale-110 bg-cyan-500/20 shadow-lg shadow-cyan-500/30"
+              ? "text-violet-300 scale-110 bg-violet-500/20 shadow-lg shadow-violet-500/30"
               : month.isYearStart
                 ? "text-blue-300 bg-blue-500/20 shadow-md shadow-blue-500/20"
                 : "text-purple-300 bg-purple-500/10"
