@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { SidebarSearchButton } from "@/component/Search";
-import { CDN_BARCA_SVG } from "@/static/cdn";
+import { CDN_GO_SVG } from "@/static/cdn";
 import { NAV_ITEMS } from "@/static/navigation";
 
 export function Sidebar() {
@@ -13,8 +13,8 @@ export function Sidebar() {
       >
         <div className="h-20 flex items-center justify-center border-b border-border">
           <Image
-            src={CDN_BARCA_SVG}
-            alt="FCB Logo"
+            src={CDN_GO_SVG}
+            alt="Golang Logo"
             width={40}
             height={40}
             unoptimized

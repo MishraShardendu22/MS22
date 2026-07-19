@@ -18,13 +18,13 @@ export const QuickLinks = {
 };
 
 export const MyWebsites = {
-  "Systems Lab": {
-    url: "https://github.mishrashardendu22.is-a.dev",
-    name: "Systems Lab",
+  Blogs: {
+    url: "https://blogs.mishrashardendu22.is-a.dev",
+    name: "Blogs",
     icon: "Code",
   },
   "Github Backup": {
-    url: "https://blogs.mishrashardendu22.is-a.dev",
+    url: "https://github.mishrashardendu22.is-a.dev",
     name: "Github Backup",
     icon: "BookOpen",
   },

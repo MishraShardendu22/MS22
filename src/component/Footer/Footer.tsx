@@ -402,29 +402,6 @@ export function FooterSection() {
             </ul>
           </div>
         </div>
-
-        <div className="text-center py-8 md:py-12 lg:py-16">
-          <h2 className="font-black text-5xl sm:text-7xl md:text-9xl lg:text-[10rem] xl:text-[14rem] 2xl:text-[18rem] tracking-wider leading-none">
-            <span
-              className="text-[#3b82f6]"
-              style={{
-                fontFamily: "'Space Grotesk', sans-serif",
-                fontStyle: "italic",
-              }}
-            >
-              VISCA{" "}
-            </span>
-            <span
-              className="text-[#ef4444]"
-              style={{
-                fontFamily: "'Space Grotesk', sans-serif",
-                fontStyle: "italic",
-              }}
-            >
-              BARÇA{" "}
-            </span>
-          </h2>
-        </div>
       </div>
     </footer>
   );
