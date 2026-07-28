@@ -1,4 +1,4 @@
-import { Calendar } from "lucide-react";
+import { ArrowUpRight, Calendar } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
@@ -159,25 +159,40 @@ export const UnifiedCard = ({
             )}
           </div>
 
-          {technologies && technologies.length > 0 && (
-            <div className="flex items-center gap-1.5 flex-nowrap overflow-hidden text-xs pointer-events-auto pt-1">
-              {technologies.slice(0, maxTechDisplay).map((tech) => (
-                <span
-                  key={tech}
-                  className="px-2 py-0.5 font-medium bg-gray-800/60 text-gray-300 rounded-md border border-gray-700/50 whitespace-nowrap shrink-0"
-                >
-                  {tech}
-                </span>
-              ))}
-              {technologies.length > maxTechDisplay && (
-                <span
-                  className={`px-2 py-0.5 font-medium ${colors.techExtraBg} ${colors.techExtraText} rounded-md border ${colors.techExtraBorder} whitespace-nowrap shrink-0`}
-                >
-                  +{technologies.length - maxTechDisplay}
-                </span>
+          <div className="flex items-center justify-between gap-2 pointer-events-auto pt-1 mt-auto">
+            <div className="flex items-center gap-1.5 flex-nowrap overflow-hidden text-xs min-w-0 flex-1">
+              {technologies && technologies.length > 0 && (
+                <>
+                  {technologies.slice(0, maxTechDisplay).map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-2 py-0.5 font-medium bg-gray-800/60 text-gray-300 rounded-md border border-gray-700/50 whitespace-nowrap shrink-0"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                  {technologies.length > maxTechDisplay && (
+                    <span
+                      className={`px-2 py-0.5 font-medium ${colors.techExtraBg} ${colors.techExtraText} rounded-md border ${colors.techExtraBorder} whitespace-nowrap shrink-0`}
+                    >
+                      +{technologies.length - maxTechDisplay}
+                    </span>
+                  )}
+                </>
               )}
             </div>
-          )}
+
+            {href && (
+              <Link
+                href={href}
+                className={`flex items-center gap-1 px-2.5 py-1 text-xs font-medium ${colors.certificateBg} ${colors.certificateText} rounded-md border ${colors.certificateBorder} transition-all duration-200 shrink-0 relative z-10 ml-auto hover:scale-105`}
+                aria-label={`View details for ${title}`}
+              >
+                <span>View</span>
+                <ArrowUpRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </div>

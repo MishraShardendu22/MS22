@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { PaginationLinks } from "@/component/Pagination";
@@ -125,19 +126,30 @@ export async function ExperiencesDisplayMobile() {
               <p className="text-sm text-zinc-400 leading-relaxed mb-4 line-clamp-2 relative z-10">
                 {experience.description}
               </p>
-              <div className="flex items-center gap-1 flex-nowrap overflow-hidden text-xs relative z-10">
-                {experience.technologies?.slice(0, 3).map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-2 py-0.5 text-xs bg-zinc-800 text-zinc-300 rounded whitespace-nowrap shrink-0"
+              <div className="flex items-center justify-between gap-2 relative z-10 pt-1">
+                <div className="flex items-center gap-1 flex-nowrap overflow-hidden text-xs min-w-0 flex-1">
+                  {experience.technologies?.slice(0, 3).map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-2 py-0.5 text-xs bg-zinc-800 text-zinc-300 rounded whitespace-nowrap shrink-0"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                  {(experience.technologies?.length ?? 0) > 3 && (
+                    <span className="px-2 py-0.5 text-xs bg-violet-900/30 text-violet-400 rounded whitespace-nowrap shrink-0">
+                      +{(experience.technologies?.length ?? 0) - 3}
+                    </span>
+                  )}
+                </div>
+                {expId && (
+                  <Link
+                    href={`/experiences/${expId}`}
+                    className="flex items-center gap-1 px-2 py-0.5 text-xs font-medium bg-blue-500/10 text-blue-400 rounded border border-blue-500/30 shrink-0 ml-auto"
                   >
-                    {tech}
-                  </span>
-                ))}
-                {(experience.technologies?.length ?? 0) > 3 && (
-                  <span className="px-2 py-0.5 text-xs bg-violet-900/30 text-violet-400 rounded whitespace-nowrap shrink-0">
-                    +{(experience.technologies?.length ?? 0) - 3}
-                  </span>
+                    <span>View</span>
+                    <ArrowUpRight className="w-3 h-3" />
+                  </Link>
                 )}
               </div>
             </div>

@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { PaginationLinks } from "@/component/Pagination";
 import {
@@ -154,19 +155,30 @@ export async function ProjectsDisplayMobile() {
               <p className="text-zinc-400 text-xs leading-relaxed mb-3 line-clamp-2">
                 {project.small_description || project.description}
               </p>
-              <div className="flex items-center gap-1 flex-nowrap overflow-hidden text-xs">
-                {project.skills.slice(0, 3).map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-2 py-0.5 text-xs bg-zinc-800 text-zinc-300 rounded whitespace-nowrap shrink-0"
+              <div className="flex items-center justify-between gap-2 relative z-10 pt-1">
+                <div className="flex items-center gap-1 flex-nowrap overflow-hidden text-xs min-w-0 flex-1">
+                  {project.skills.slice(0, 3).map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-2 py-0.5 text-xs bg-zinc-800 text-zinc-300 rounded whitespace-nowrap shrink-0"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                  {project.skills.length > 3 && (
+                    <span className="px-2 py-0.5 text-xs bg-violet-900/30 text-violet-400 rounded whitespace-nowrap shrink-0">
+                      +{project.skills.length - 3}
+                    </span>
+                  )}
+                </div>
+                {projectId && (
+                  <Link
+                    href={`/projects/${projectId}`}
+                    className="flex items-center gap-1 px-2 py-0.5 text-xs font-medium bg-violet-500/10 text-violet-400 rounded border border-violet-500/30 shrink-0 ml-auto"
                   >
-                    {skill}
-                  </span>
-                ))}
-                {project.skills.length > 3 && (
-                  <span className="px-2 py-0.5 text-xs bg-violet-900/30 text-violet-400 rounded whitespace-nowrap shrink-0">
-                    +{project.skills.length - 3}
-                  </span>
+                    <span>View</span>
+                    <ArrowUpRight className="w-3 h-3" />
+                  </Link>
                 )}
               </div>
             </div>
