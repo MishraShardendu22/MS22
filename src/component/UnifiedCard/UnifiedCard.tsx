@@ -134,7 +134,7 @@ export const UnifiedCard = ({
           )}
 
           {description && (
-            <p className="text-gray-400 text-sm leading-relaxed mb-3 line-clamp-3">
+            <p className="text-gray-400 text-sm leading-relaxed mb-3 line-clamp-2">
               {description}
             </p>
           )}

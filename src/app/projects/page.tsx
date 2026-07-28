@@ -123,10 +123,10 @@ async function ProjectsContent({ searchParams }: PageProps) {
                 href={`/projects/${projectId}`}
                 theme="violet"
                 title={project.project_name}
-                description={project.small_description}
+                description={project.description || project.small_description}
                 technologies={project.skills}
                 links={links}
-                maxTechDisplay={3}
+                maxTechDisplay={4}
               />
             );
           })}

@@ -54,14 +54,17 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
     </div>
   );
 
+  const displayDescription = project.description || project.small_description;
+
   return (
     <UnifiedCard
       index={index}
       theme="violet"
       title={project.project_name}
-      description={project.small_description}
+      description={displayDescription}
       technologies={project.skills}
       extraInfo={extraInfo}
+      maxTechDisplay={5}
     />
   );
 };
@@ -114,7 +117,7 @@ export async function ProjectsDisplayMobile() {
               {project.project_name}
             </h3>
             <p className="text-zinc-400 text-sm leading-relaxed mb-3 line-clamp-2">
-              {project.small_description}
+              {project.description || project.small_description}
             </p>
             <div className="flex flex-wrap gap-1.5 mb-4">
               {project.skills.slice(0, 3).map((skill) => (
