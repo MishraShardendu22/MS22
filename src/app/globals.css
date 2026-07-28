@@ -436,3 +436,81 @@ p {
     display: none;
   }
 }
+
+/* ------------------------------
+   Motion & Animation System
+------------------------------ */
+
+@keyframes cardStaggerFade {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes skeletonPulseShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.stagger-card {
+  animation: cardStaggerFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.stagger-card:nth-child(1) {
+  animation-delay: 0.04s;
+}
+.stagger-card:nth-child(2) {
+  animation-delay: 0.08s;
+}
+.stagger-card:nth-child(3) {
+  animation-delay: 0.12s;
+}
+.stagger-card:nth-child(4) {
+  animation-delay: 0.16s;
+}
+.stagger-card:nth-child(5) {
+  animation-delay: 0.2s;
+}
+
+.skeleton-shimmer-pulse {
+  background: linear-gradient(
+    90deg,
+    var(--surface),
+    var(--surface-elevated),
+    var(--surface)
+  );
+  background-size: 200% 100%;
+  animation: skeletonPulseShimmer 2s infinite linear;
+}
+
+button:active:not(:disabled),
+a.btn:active:not(:disabled) {
+  transform: scale(0.98);
+  transition: transform 0.1s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stagger-card,
+  .animate-pulse,
+  .skeleton-shimmer-pulse {
+    animation: none;
+    transition: none;
+    transform: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms;
+    animation-duration: 0.01ms;
+  }
+}
