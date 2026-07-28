@@ -33,6 +33,7 @@ export const VolunteerCard = ({ volunteer, index }: VolunteerCardProps) => {
       ? formatDate(volunteer.end_date, { fallback: "" })
       : "Present";
   const isCurrent = !latestTimeline?.end_date && !volunteer.end_date;
+  const volId = volunteer.inline?.id;
 
   const badges = [];
   if (isCurrent) {
@@ -65,6 +66,7 @@ export const VolunteerCard = ({ volunteer, index }: VolunteerCardProps) => {
       certificateLabel="Certificate"
       badges={badges}
       extraInfo={extraInfo}
+      href={volId ? `/volunteer/${volId}` : undefined}
     />
   );
 };
@@ -123,46 +125,54 @@ export async function VolunteerDisplayMobile() {
             : vol.end_date
               ? formatDate(vol.end_date, { fallback: "" })
               : "Present";
+          const volId = vol.inline?.id;
 
           return (
             <div
-              key={vol.inline?.id}
-              className="bg-gray-900/80 border border-gray-800 rounded-xl p-4"
+              key={volId}
+              className="group relative bg-gray-900/80 border border-gray-800 rounded-xl p-4 hover:border-pink-500/40 transition-colors duration-200"
             >
-              <div className="flex items-start gap-3 mb-3">
+              {volId && (
+                <Link
+                  href={`/volunteer/${volId}`}
+                  className="absolute inset-0 z-0"
+                  aria-label={`View ${position}`}
+                />
+              )}
+              <div className="flex items-start gap-3 mb-3 relative z-10">
                 {vol.organisation_logo && (
                   <Image
                     src={vol.organisation_logo}
                     alt={vol.organisation}
                     width={40}
                     height={40}
-                    className="w-10 h-10 rounded-lg object-contain bg-white/5 p-1"
+                    className="w-10 h-10 rounded-lg object-contain bg-white/5 p-1 shrink-0"
                   />
                 )}
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-base font-bold text-white line-clamp-1">
+                  <h3 className="text-base font-bold text-white line-clamp-1 group-hover:text-pink-400 transition-colors">
                     {position}
                   </h3>
                   <p className="text-sm text-gray-400">{vol.organisation}</p>
                 </div>
               </div>
-              <p className="text-xs text-gray-500 mb-2">
+              <p className="text-xs text-gray-500 mb-2 relative z-10">
                 {startDate} - {endDate}
               </p>
-              <p className="text-sm text-gray-400 leading-relaxed mb-3 line-clamp-2">
+              <p className="text-sm text-gray-400 leading-relaxed mb-3 line-clamp-2 relative z-10">
                 {vol.description}
               </p>
-              <div className="flex flex-wrap gap-1">
+              <div className="flex items-center gap-1 flex-nowrap overflow-hidden text-xs relative z-10">
                 {vol.technologies?.slice(0, 3).map((tech) => (
                   <span
                     key={tech}
-                    className="px-2 py-0.5 text-xs bg-gray-800 text-gray-300 rounded"
+                    className="px-2 py-0.5 text-xs bg-gray-800 text-gray-300 rounded whitespace-nowrap shrink-0"
                   >
                     {tech}
                   </span>
                 ))}
                 {(vol.technologies?.length ?? 0) > 3 && (
-                  <span className="px-2 py-0.5 text-xs bg-pink-900/50 text-pink-400 rounded">
+                  <span className="px-2 py-0.5 text-xs bg-pink-900/50 text-pink-400 rounded whitespace-nowrap shrink-0">
                     +{(vol.technologies?.length ?? 0) - 3}
                   </span>
                 )}

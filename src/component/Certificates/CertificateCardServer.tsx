@@ -22,6 +22,7 @@ export const CertificateCard = ({
   index,
 }: CertificateCardProps) => {
   const issueDate = formatDate(certificate.issue_date, { fallback: "" });
+  const certId = certificate.inline?.id;
 
   const badges = [];
   if (certificate.verified) {
@@ -66,6 +67,7 @@ export const CertificateCard = ({
       certificateLabel="Certificate"
       badges={badges}
       extraInfo={extraInfo}
+      href={certId ? `/certificates/${certId}` : undefined}
     />
   );
 };
@@ -113,33 +115,45 @@ export async function CertificatesDisplayMobile() {
       <div className="space-y-4">
         {certificates.map((cert) => {
           const issueDate = formatDate(cert.issue_date, { fallback: "" });
+          const certId = cert.inline?.id;
 
           return (
             <div
-              key={cert.inline?.id}
-              className="bg-gray-900/80 border border-gray-800 rounded-xl p-4"
+              key={certId}
+              className="group relative bg-gray-900/80 border border-gray-800 rounded-xl p-4 hover:border-emerald-500/40 transition-colors duration-200"
             >
-              <h3 className="text-base font-bold text-white mb-1 line-clamp-1">
+              {certId && (
+                <Link
+                  href={`/certificates/${certId}`}
+                  className="absolute inset-0 z-0"
+                  aria-label={`View ${cert.title}`}
+                />
+              )}
+              <h3 className="text-base font-bold text-white mb-1 line-clamp-1 group-hover:text-emerald-400 transition-colors relative z-10">
                 {cert.title}
               </h3>
-              <p className="text-sm text-gray-400 mb-2">{cert.issuer}</p>
-              <p className="text-xs text-gray-500 mb-2">Issued {issueDate}</p>
+              <p className="text-sm text-gray-400 mb-2 relative z-10">
+                {cert.issuer}
+              </p>
+              <p className="text-xs text-gray-500 mb-2 relative z-10">
+                Issued {issueDate}
+              </p>
               {cert.description && (
-                <p className="text-sm text-gray-400 leading-relaxed mb-3 line-clamp-2">
+                <p className="text-sm text-gray-400 leading-relaxed mb-3 line-clamp-2 relative z-10">
                   {cert.description}
                 </p>
               )}
-              <div className="flex flex-wrap gap-1">
+              <div className="flex items-center gap-1 flex-nowrap overflow-hidden text-xs relative z-10">
                 {cert.skills?.slice(0, 3).map((skill) => (
                   <span
                     key={skill}
-                    className="px-2 py-0.5 text-xs bg-gray-800 text-gray-300 rounded"
+                    className="px-2 py-0.5 text-xs bg-gray-800 text-gray-300 rounded whitespace-nowrap shrink-0"
                   >
                     {skill}
                   </span>
                 ))}
                 {(cert.skills?.length ?? 0) > 3 && (
-                  <span className="px-2 py-0.5 text-xs bg-emerald-900/50 text-emerald-400 rounded">
+                  <span className="px-2 py-0.5 text-xs bg-emerald-900/50 text-emerald-400 rounded whitespace-nowrap shrink-0">
                     +{(cert.skills?.length ?? 0) - 3}
                   </span>
                 )}

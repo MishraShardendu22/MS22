@@ -26,7 +26,9 @@ interface UnifiedCardProps {
     icon?: ReactNode;
   }[];
   extraInfo?: ReactNode;
+  headerActions?: ReactNode;
   maxTechDisplay?: number;
+  href?: string;
 }
 
 export const UnifiedCard = ({
@@ -45,7 +47,9 @@ export const UnifiedCard = ({
   certificateLabel = "Certificate",
   badges,
   extraInfo,
+  headerActions,
   maxTechDisplay = 4,
+  href,
 }: UnifiedCardProps) => {
   const colors = UNIFIED_CARD_THEME_CONFIG[theme];
 
@@ -61,97 +65,113 @@ export const UnifiedCard = ({
       <div
         className={`relative h-full flex flex-col bg-linear-to-br from-gray-900/50 to-gray-950/50 border border-gray-800/50 rounded-xl overflow-hidden transition-colors duration-200 ${colors.border}`}
       >
+        {href && (
+          <Link
+            href={href}
+            className="absolute inset-0 z-0"
+            aria-label={`View details for ${title}`}
+          />
+        )}
         <div
-          className={`absolute inset-0 bg-linear-to-br ${colors.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-200`}
+          className={`absolute inset-0 bg-linear-to-br ${colors.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none`}
         />
 
-        <div className="relative p-3 sm:p-4 md:p-5">
-          <div className="flex items-start gap-2 sm:gap-3 mb-2 sm:mb-3">
-            {logo && (
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gray-800/50 border border-gray-700/50 flex items-center justify-center overflow-hidden shrink-0">
-                {(logoAlt || subtitle) && (
-                  <Image
-                    src={logo}
-                    alt={logoAlt || subtitle || ""}
-                    width={48}
-                    height={48}
-                    className="object-contain p-1"
-                    loading="lazy"
-                    sizes="(max-width: 768px) 40px, 48px"
-                  />
+        <div className="relative p-3.5 sm:p-4 flex flex-col justify-between h-full pointer-events-none">
+          <div>
+            <div className="flex items-center justify-between gap-2.5 mb-2 pointer-events-auto">
+              <div className="flex items-center gap-2.5 min-w-0 flex-1">
+                {logo && (
+                  <div className="w-9 h-9 rounded-lg bg-gray-800/50 border border-gray-700/50 flex items-center justify-center overflow-hidden shrink-0">
+                    {(logoAlt || subtitle) && (
+                      <Image
+                        src={logo}
+                        alt={logoAlt || subtitle || ""}
+                        width={36}
+                        height={36}
+                        className="object-contain p-1"
+                        loading="lazy"
+                        sizes="36px"
+                      />
+                    )}
+                  </div>
+                )}
+                <div className="flex-1 min-w-0">
+                  <h3
+                    className={`text-base font-bold text-white line-clamp-1 transition-colors duration-200 ${colors.titleHover}`}
+                  >
+                    {title}
+                  </h3>
+                  {subtitle && (
+                    <div className="flex items-center gap-1.5 text-gray-400 text-xs font-medium">
+                      {subtitleIcon}
+                      <span className="line-clamp-1">{subtitle}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Top-Right Header Action Buttons / Badges */}
+              <div className="flex items-center gap-1.5 shrink-0 relative z-10">
+                {headerActions}
+                {badges?.map((badge) => (
+                  <span
+                    key={badge.label}
+                    className={`flex items-center gap-1 px-2.5 py-1 text-xs font-bold ${colors.certificateBg} ${colors.certificateText} rounded-md ${colors.certificateBorder}`}
+                  >
+                    {badge.icon}
+                    {badge.label}
+                  </span>
+                ))}
+                {certificateUrl && (
+                  <Link
+                    href={certificateUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium ${colors.certificateBg} ${colors.certificateText} rounded-md transition-all duration-200 ${colors.certificateBorder}`}
+                    aria-label={`View ${certificateLabel.toLowerCase()}`}
+                  >
+                    <span>{certificateLabel}</span>
+                  </Link>
                 )}
               </div>
-            )}
-            <div className="flex-1 min-w-0">
-              <h3
-                className={`text-base sm:text-lg font-bold text-white mb-1 line-clamp-1 transition-colors duration-300 ${colors.titleHover}`}
-              >
-                {title}
-              </h3>
-              <div className="flex items-center gap-1.5 sm:gap-2 text-gray-400 text-xs sm:text-sm font-medium">
-                {subtitleIcon}
-                <span className="line-clamp-1">{subtitle}</span>
+            </div>
+
+            {(startDate || endDate || extraInfo) && (
+              <div className="flex flex-wrap items-center gap-2 text-xs text-gray-500 mb-2 pointer-events-auto">
+                {(startDate || endDate) && (
+                  <div className="flex items-center gap-1">
+                    <Calendar className="w-3.5 h-3.5" />
+                    <span>
+                      {startDate && endDate
+                        ? `${startDate} - ${endDate}`
+                        : startDate || endDate}
+                    </span>
+                  </div>
+                )}
+                {extraInfo}
               </div>
-            </div>
-            <div className="flex flex-col items-end gap-2 shrink-0">
-              {badges?.map((badge) => (
-                <span
-                  key={badge.label}
-                  className={`flex items-center gap-1 px-2.5 py-1 text-xs font-bold ${colors.certificateBg} ${colors.certificateText} rounded-md ${colors.certificateBorder}`}
-                >
-                  {badge.icon}
-                  {badge.label}
-                </span>
-              ))}
-              {certificateUrl && (
-                <Link
-                  href={certificateUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium ${colors.certificateBg} ${colors.certificateText} rounded-lg transition-all duration-200 ${colors.certificateBorder}`}
-                  aria-label={`View ${certificateLabel.toLowerCase()}`}
-                >
-                  <span>{certificateLabel}</span>
-                </Link>
-              )}
-            </div>
+            )}
+
+            {description && (
+              <p className="text-gray-400 text-xs sm:text-sm leading-relaxed mb-2.5 line-clamp-2 pointer-events-auto">
+                {description}
+              </p>
+            )}
           </div>
 
-          {(startDate || endDate || extraInfo) && (
-            <div className="flex flex-wrap items-center gap-3 text-xs text-gray-500 mb-3">
-              {(startDate || endDate) && (
-                <div className="flex items-center gap-1">
-                  <Calendar className="w-3.5 h-3.5" />
-                  <span>
-                    {startDate && endDate
-                      ? `${startDate} - ${endDate}`
-                      : startDate || endDate}
-                  </span>
-                </div>
-              )}
-              {extraInfo}
-            </div>
-          )}
-
-          {description && (
-            <p className="text-gray-400 text-sm leading-relaxed mb-3 line-clamp-2">
-              {description}
-            </p>
-          )}
-
           {technologies && technologies.length > 0 && (
-            <div className="flex flex-wrap gap-2">
+            <div className="flex items-center gap-1.5 flex-nowrap overflow-hidden text-xs pointer-events-auto pt-1">
               {technologies.slice(0, maxTechDisplay).map((tech) => (
                 <span
                   key={tech}
-                  className="px-2.5 py-1 text-xs font-medium bg-gray-800/50 text-gray-300 rounded-md border border-gray-700/50 hover:border-gray-600 transition-colors duration-200"
+                  className="px-2 py-0.5 font-medium bg-gray-800/60 text-gray-300 rounded-md border border-gray-700/50 whitespace-nowrap shrink-0"
                 >
                   {tech}
                 </span>
               ))}
               {technologies.length > maxTechDisplay && (
                 <span
-                  className={`px-2.5 py-1 text-xs font-medium ${colors.techExtraBg} ${colors.techExtraText} rounded-md ${colors.techExtraBorder}`}
+                  className={`px-2 py-0.5 font-medium ${colors.techExtraBg} ${colors.techExtraText} rounded-md border ${colors.techExtraBorder} whitespace-nowrap shrink-0`}
                 >
                   +{technologies.length - maxTechDisplay}
                 </span>

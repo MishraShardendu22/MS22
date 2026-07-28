@@ -23,6 +23,7 @@ export const ExperienceCard = ({ experience, index }: ExperienceCardProps) => {
   const endDate = latestPosition?.end_date
     ? formatDate(latestPosition.end_date)
     : "Present";
+  const expId = experience.inline?.id;
 
   return (
     <UnifiedCard
@@ -38,6 +39,7 @@ export const ExperienceCard = ({ experience, index }: ExperienceCardProps) => {
       technologies={experience.technologies}
       certificateUrl={experience.certificate_url}
       certificateLabel="Certificate"
+      href={expId ? `/experiences/${expId}` : undefined}
     />
   );
 };
@@ -84,24 +86,32 @@ export async function ExperiencesDisplayMobile() {
           const endDate = latestPosition?.end_date
             ? formatDate(latestPosition.end_date)
             : "Present";
+          const expId = experience.inline?.id;
 
           return (
             <div
-              key={experience.inline?.id}
-              className="bg-zinc-900/80 border border-zinc-800 rounded-xl p-5 hover:border-violet-500/30 transition-colors duration-300"
+              key={expId}
+              className="group relative bg-zinc-900/80 border border-zinc-800 rounded-xl p-5 hover:border-violet-500/30 transition-colors duration-300"
             >
-              <div className="flex items-start gap-3 mb-3">
+              {expId && (
+                <Link
+                  href={`/experiences/${expId}`}
+                  className="absolute inset-0 z-0"
+                  aria-label={`View ${latestPosition?.position || "experience"}`}
+                />
+              )}
+              <div className="flex items-start gap-3 mb-3 relative z-10">
                 {experience.company_logo && (
                   <Image
                     src={experience.company_logo}
                     alt={experience.company_name}
                     width={40}
                     height={40}
-                    className="w-10 h-10 rounded-lg object-contain bg-white/5 p-1"
+                    className="w-10 h-10 rounded-lg object-contain bg-white/5 p-1 shrink-0"
                   />
                 )}
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-base font-bold text-zinc-100 line-clamp-1">
+                  <h3 className="text-base font-bold text-zinc-100 line-clamp-1 group-hover:text-violet-400 transition-colors">
                     {latestPosition?.position || "Position"}
                   </h3>
                   <p className="text-sm text-zinc-400">
@@ -109,23 +119,23 @@ export async function ExperiencesDisplayMobile() {
                   </p>
                 </div>
               </div>
-              <p className="text-xs text-zinc-500 mb-2 font-medium">
+              <p className="text-xs text-zinc-500 mb-2 font-medium relative z-10">
                 {startDate} - {endDate}
               </p>
-              <p className="text-sm text-zinc-400 leading-relaxed mb-4 line-clamp-2">
+              <p className="text-sm text-zinc-400 leading-relaxed mb-4 line-clamp-2 relative z-10">
                 {experience.description}
               </p>
-              <div className="flex flex-wrap gap-1.5">
+              <div className="flex items-center gap-1 flex-nowrap overflow-hidden text-xs relative z-10">
                 {experience.technologies?.slice(0, 3).map((tech) => (
                   <span
                     key={tech}
-                    className="px-2 py-0.5 text-xs bg-zinc-800 text-zinc-300 rounded"
+                    className="px-2 py-0.5 text-xs bg-zinc-800 text-zinc-300 rounded whitespace-nowrap shrink-0"
                   >
                     {tech}
                   </span>
                 ))}
                 {(experience.technologies?.length ?? 0) > 3 && (
-                  <span className="px-2 py-0.5 text-xs bg-violet-900/30 text-violet-400 rounded">
+                  <span className="px-2 py-0.5 text-xs bg-violet-900/30 text-violet-400 rounded whitespace-nowrap shrink-0">
                     +{(experience.technologies?.length ?? 0) - 3}
                   </span>
                 )}

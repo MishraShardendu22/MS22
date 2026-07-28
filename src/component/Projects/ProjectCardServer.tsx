@@ -16,14 +16,14 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard = ({ project, index }: ProjectCardProps) => {
-  const extraInfo = (
-    <div className="flex items-center gap-2 mt-1 flex-wrap">
+  const headerActions = (
+    <div className="flex items-center gap-1.5 shrink-0">
       {project.project_repository && (
         <Link
           href={project.project_repository}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-1.5 px-3 py-1 text-xs font-medium bg-zinc-800/60 hover:bg-violet-500/10 text-zinc-400 hover:text-violet-400 rounded-md border border-zinc-700/50 hover:border-violet-500/30 transition-all duration-200"
+          className="flex items-center gap-1 px-2.5 py-1 text-xs font-medium bg-zinc-800/80 hover:bg-violet-500/20 text-zinc-300 hover:text-violet-300 rounded-md border border-zinc-700/60 hover:border-violet-500/40 transition-all duration-200"
           aria-label="View repository"
         >
           <span>Code</span>
@@ -34,7 +34,7 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
           href={project.project_live_link}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-1.5 px-3 py-1 text-xs font-medium bg-zinc-800/60 hover:bg-indigo-500/10 text-zinc-400 hover:text-indigo-400 rounded-md border border-zinc-700/50 hover:border-indigo-500/30 transition-all duration-200"
+          className="flex items-center gap-1 px-2.5 py-1 text-xs font-medium bg-zinc-800/80 hover:bg-indigo-500/20 text-zinc-300 hover:text-indigo-300 rounded-md border border-zinc-700/60 hover:border-indigo-500/40 transition-all duration-200"
           aria-label="View live project"
         >
           <span>Live</span>
@@ -45,7 +45,7 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
           href={project.project_video}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-1.5 px-3 py-1 text-xs font-medium bg-zinc-800/60 hover:bg-violet-500/10 text-zinc-400 hover:text-violet-400 rounded-md border border-zinc-700/50 hover:border-violet-500/30 transition-all duration-200"
+          className="flex items-center gap-1 px-2.5 py-1 text-xs font-medium bg-zinc-800/80 hover:bg-violet-500/20 text-zinc-300 hover:text-violet-300 rounded-md border border-zinc-700/60 hover:border-violet-500/40 transition-all duration-200"
           aria-label="Watch video"
         >
           <span>Demo</span>
@@ -54,7 +54,8 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
     </div>
   );
 
-  const displayDescription = project.description || project.small_description;
+  const displayDescription = project.small_description || project.description;
+  const projectId = project.inline?.id;
 
   return (
     <UnifiedCard
@@ -63,8 +64,9 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
       title={project.project_name}
       description={displayDescription}
       technologies={project.skills}
-      extraInfo={extraInfo}
-      maxTechDisplay={5}
+      headerActions={headerActions}
+      href={projectId ? `/projects/${projectId}` : undefined}
+      maxTechDisplay={4}
     />
   );
 };
@@ -108,56 +110,68 @@ export async function ProjectsDisplayMobile() {
         A showcase of my work and open-source contributions
       </p>
       <div className="space-y-3">
-        {projects.map((project, _idx) => (
-          <div
-            key={project.inline?.id}
-            className="bg-zinc-900/80 border border-zinc-800 rounded-xl p-5 hover:border-violet-500/30 transition-colors duration-300"
-          >
-            <h3 className="text-base font-bold text-zinc-100 mb-2 line-clamp-1">
-              {project.project_name}
-            </h3>
-            <p className="text-zinc-400 text-sm leading-relaxed mb-3 line-clamp-2">
-              {project.description || project.small_description}
-            </p>
-            <div className="flex flex-wrap gap-1.5 mb-4">
-              {project.skills.slice(0, 3).map((skill) => (
-                <span
-                  key={skill}
-                  className="px-2 py-0.5 text-xs bg-zinc-800 text-zinc-300 rounded"
-                >
-                  {skill}
-                </span>
-              ))}
-              {project.skills.length > 3 && (
-                <span className="px-2 py-0.5 text-xs bg-violet-900/30 text-violet-400 rounded">
-                  +{project.skills.length - 3}
-                </span>
-              )}
-            </div>
-            <div className="flex items-center gap-2 pt-3 border-t border-zinc-800/50">
-              {project.project_repository && (
+        {projects.map((project) => {
+          const projectId = project.inline?.id;
+          return (
+            <div
+              key={projectId}
+              className="group relative bg-zinc-900/80 border border-zinc-800 rounded-xl p-4 hover:border-violet-500/40 transition-colors duration-200"
+            >
+              {projectId && (
                 <Link
-                  href={project.project_repository}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-2 py-1 text-xs bg-zinc-800 text-zinc-400 rounded hover:bg-violet-500/10 hover:text-violet-400 transition-colors"
-                >
-                  <span>Code</span>
-                </Link>
+                  href={`/projects/${projectId}`}
+                  className="absolute inset-0 z-0"
+                  aria-label={`View ${project.project_name}`}
+                />
               )}
-              {project.project_live_link && (
-                <Link
-                  href={project.project_live_link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1 px-2 py-1 text-xs bg-zinc-800 text-zinc-400 rounded hover:bg-indigo-500/10 hover:text-indigo-400 transition-colors"
-                >
-                  <span>Live</span>
-                </Link>
-              )}
+              <div className="flex items-start justify-between gap-2 mb-2 relative z-10">
+                <h3 className="text-base font-bold text-zinc-100 line-clamp-1 group-hover:text-violet-400 transition-colors">
+                  {project.project_name}
+                </h3>
+                <div className="flex items-center gap-1.5 shrink-0">
+                  {project.project_repository && (
+                    <Link
+                      href={project.project_repository}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-2 py-0.5 text-xs font-medium bg-zinc-800 text-zinc-300 rounded hover:bg-violet-500/20 hover:text-violet-300 transition-colors"
+                    >
+                      Code
+                    </Link>
+                  )}
+                  {project.project_live_link && (
+                    <Link
+                      href={project.project_live_link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-2 py-0.5 text-xs font-medium bg-zinc-800 text-zinc-300 rounded hover:bg-indigo-500/20 hover:text-indigo-300 transition-colors"
+                    >
+                      Live
+                    </Link>
+                  )}
+                </div>
+              </div>
+              <p className="text-zinc-400 text-xs leading-relaxed mb-3 line-clamp-2">
+                {project.small_description || project.description}
+              </p>
+              <div className="flex items-center gap-1 flex-nowrap overflow-hidden text-xs">
+                {project.skills.slice(0, 3).map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-2 py-0.5 text-xs bg-zinc-800 text-zinc-300 rounded whitespace-nowrap shrink-0"
+                  >
+                    {skill}
+                  </span>
+                ))}
+                {project.skills.length > 3 && (
+                  <span className="px-2 py-0.5 text-xs bg-violet-900/30 text-violet-400 rounded whitespace-nowrap shrink-0">
+                    +{project.skills.length - 3}
+                  </span>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
