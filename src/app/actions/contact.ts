@@ -1,5 +1,7 @@
 "use server";
 
+import { validateContactPayload } from "@/lib/contact";
+
 interface ContactFormState {
   success: boolean;
   message: string;
@@ -15,39 +17,18 @@ export async function submitContactForm(
   _prevState: ContactFormState | null,
   formData: FormData,
 ): Promise<ContactFormState> {
-  const name = formData.get("name") as string;
-  const email = formData.get("email") as string;
-  const subject = formData.get("subject") as string;
-  const message = formData.get("message") as string;
+  const validation = validateContactPayload({
+    name: formData.get("name"),
+    email: formData.get("email"),
+    subject: formData.get("subject"),
+    message: formData.get("message"),
+  });
 
-  // Server-side validation
-  const errors: ContactFormState["errors"] = {};
-
-  if (!name?.trim()) {
-    errors.name = "Name is required";
-  }
-
-  if (!email?.trim()) {
-    errors.email = "Email is required";
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    errors.email = "Invalid email format";
-  }
-
-  if (!subject?.trim()) {
-    errors.subject = "Subject is required";
-  }
-
-  if (!message?.trim()) {
-    errors.message = "Message is required";
-  } else if (message.length < 10) {
-    errors.message = "Message must be at least 10 characters";
-  }
-
-  if (Object.keys(errors).length > 0) {
+  if (!validation.data) {
     return {
       success: false,
       message: "Please fix the errors below",
-      errors,
+      errors: validation.errors,
     };
   }
 
@@ -60,10 +41,7 @@ export async function submitContactForm(
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name,
-        email,
-        subject,
-        message,
+        ...validation.data,
       }),
     });
 
