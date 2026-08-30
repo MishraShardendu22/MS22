@@ -22,6 +22,14 @@ import {
 import Image from "next/image";
 import { ContactFormWrapper } from "@/component/Contact/ContactFormWrapper";
 import {
+  GitHubIcon,
+  InstagramIcon,
+  LeetCodeIcon,
+  LinkedInIcon,
+  TwitterXIcon,
+  YouTubeIcon,
+} from "@/component/Icons";
+import {
   CodingProfiles,
   images,
   MyWebsites,
@@ -46,6 +54,12 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   BookOpen,
   MapPin,
   Package,
+  GitHub: GitHubIcon,
+  LinkedIn: LinkedInIcon,
+  Twitter: TwitterXIcon,
+  YouTube: YouTubeIcon,
+  Instagram: InstagramIcon,
+  LeetCode: LeetCodeIcon,
 };
 
 export function FooterSectionMobile() {

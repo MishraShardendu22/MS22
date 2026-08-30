@@ -1,12 +1,71 @@
-import { ArrowLeft } from "lucide-react";
+import {
+  ArrowLeft,
+  BookOpen,
+  Compass,
+  Database,
+  Globe,
+  Sparkles,
+  User,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  DiscordIcon,
+  GitHubIcon,
+  InstagramIcon,
+  LeetCodeIcon,
+  LinkedInIcon,
+  RedditIcon,
+  TelegramIcon,
+  TwitterXIcon,
+  YouTubeIcon,
+} from "@/component/Icons";
 import {
   CDN_PROFESSIONAL_AVIF,
   CDN_SHARDENDU_QR_AVIF,
   LINK_CATEGORIES,
   SOCIAL_LINKS,
 } from "@/constants";
+
+function getSocialLinkIcon(
+  name: string,
+): React.ComponentType<{ className?: string }> {
+  switch (name) {
+    case "Portfolio":
+      return Globe;
+    case "GitHub":
+    case "GitHub Alt":
+      return GitHubIcon;
+    case "LinkedIn":
+      return LinkedInIcon;
+    case "Twitter / X":
+      return TwitterXIcon;
+    case "Instagram":
+      return InstagramIcon;
+    case "Reddit":
+      return RedditIcon;
+    case "Telegram":
+      return TelegramIcon;
+    case "Discord":
+      return DiscordIcon;
+    case "YouTube":
+      return YouTubeIcon;
+    case "Gravatar":
+      return User;
+    case "LeetCode":
+      return LeetCodeIcon;
+    case "Tech Blog":
+      return BookOpen;
+    case "Treasure Hunt Game":
+      return Compass;
+    case "Pixel Art 8-Bit":
+      return Sparkles;
+    case "GitHub Backup Observatory":
+      return Database;
+    default:
+      return Globe;
+  }
+}
 
 export function LinksPageMobile() {
   return (
@@ -75,32 +134,39 @@ export function LinksPageMobile() {
 
               <div className="space-y-2.5">
                 {SOCIAL_LINKS.filter((link) => link.category === category).map(
-                  (link) => (
-                    <a
-                      key={`${link.url}-${link.name}`}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group block"
-                    >
-                      <div className="relative">
-                        <div className="relative bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 rounded-xl p-3 hover:border-gray-700/50 transition-all duration-300">
-                          <div className="flex items-center gap-3">
-                            <div className="flex-1 min-w-0">
-                              <div className="flex items-center gap-1.5 mb-0.5">
-                                <h3 className="text-sm font-bold text-white group-hover:text-violet-400 transition-colors truncate">
-                                  {link.name}
-                                </h3>
+                  (link) => {
+                    const IconComponent = getSocialLinkIcon(link.name);
+
+                    return (
+                      <a
+                        key={`${link.url}-${link.name}`}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group block"
+                      >
+                        <div className="relative">
+                          <div className="relative bg-gray-900/80 backdrop-blur-xl border border-gray-800/50 rounded-xl p-3 hover:border-gray-700/50 transition-all duration-300">
+                            <div className="flex items-center gap-3">
+                              <div className="w-9 h-9 rounded-lg bg-gray-800/80 border border-gray-700/60 flex items-center justify-center shrink-0 group-hover:border-violet-500/50 group-hover:bg-violet-500/10 transition-colors">
+                                <IconComponent className="w-4 h-4 text-gray-400 group-hover:text-violet-400 transition-colors" />
                               </div>
-                              <p className="text-xs text-gray-400 group-hover:text-gray-300 transition-colors truncate">
-                                {link.username}
-                              </p>
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center gap-1.5 mb-0.5">
+                                  <h3 className="text-sm font-bold text-white group-hover:text-violet-400 transition-colors truncate">
+                                    {link.name}
+                                  </h3>
+                                </div>
+                                <p className="text-xs text-gray-400 group-hover:text-gray-300 transition-colors truncate">
+                                  {link.username}
+                                </p>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </a>
-                  ),
+                      </a>
+                    );
+                  },
                 )}
               </div>
             </div>

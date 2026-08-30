@@ -8,11 +8,16 @@ export {
   TextContent,
 } from "./Hero";
 export {
+  DiscordIcon,
   GitHubIcon,
+  InstagramIcon,
   LeetCodeIcon,
   LinkedInIcon,
+  RedditIcon,
   ResumeIcon,
+  TelegramIcon,
   TwitterXIcon,
+  YouTubeIcon,
 } from "./Icons";
 export { LinksPageDesktop, LinksPageMobile } from "./Links";
 export { LoadingStateLight } from "./Loading";

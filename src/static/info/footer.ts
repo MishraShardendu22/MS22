@@ -43,34 +43,34 @@ export const MyWebsites = {
 export const SocialMedia = {
   Twitter: {
     url: "https://x.com/Shardendu_M",
-    icon: "Share2",
+    icon: "Twitter",
   },
   LinkedIn: {
     url: "https://www.linkedin.com/in/shardendumishra22",
-    icon: "Users",
+    icon: "LinkedIn",
   },
   YouTube: {
     url: "https://www.youtube.com/@Shardendu_Mishra",
-    icon: "Play",
+    icon: "YouTube",
   },
   Instagram: {
     url: "https://www.instagram.com/mishrashardendu22",
-    icon: "Camera",
+    icon: "Instagram",
   },
 };
 
 export const CodingProfiles = {
   LeetCode: {
     url: "https://leetcode.com/u/ShardenduMishra22/",
-    icon: "Award",
+    icon: "LeetCode",
   },
   "GitHub Main": {
     url: "https://github.com/MishraShardendu22",
-    icon: "Code",
+    icon: "GitHub",
   },
   "GitHub Learning": {
     url: "https://github.com/ShardenduMishra22",
-    icon: "Folder",
+    icon: "GitHub",
   },
   Codeforces: {
     url: "https://codeforces.com/profile/MishraShardendu22",

@@ -13,7 +13,7 @@ export const GRID_COLS: Record<number, string> = {
 };
 
 export const BUTTON_LABELS: Record<string, string> = {
-  GitHub: "GitHub",
-  LinkedIn: "LinkedIn",
+  GitHub: "@MishraShardendu22",
+  LinkedIn: "@shardendumishra22",
   resume: "View Resume",
 };
