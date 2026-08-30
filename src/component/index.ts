@@ -7,6 +7,13 @@ export {
   ImageContainer,
   TextContent,
 } from "./Hero";
+export {
+  GitHubIcon,
+  LeetCodeIcon,
+  LinkedInIcon,
+  ResumeIcon,
+  TwitterXIcon,
+} from "./Icons";
 export { LinksPageDesktop, LinksPageMobile } from "./Links";
 export { LoadingStateLight } from "./Loading";
 export { PaginationControls, type PaginationTheme } from "./Pagination";
