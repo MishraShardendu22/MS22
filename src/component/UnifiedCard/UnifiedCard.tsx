@@ -48,7 +48,7 @@ export const UnifiedCard = ({
   badges,
   extraInfo,
   headerActions,
-  maxTechDisplay = 4,
+  maxTechDisplay = 3,
   href,
 }: UnifiedCardProps) => {
   const colors = UNIFIED_CARD_THEME_CONFIG[theme];
@@ -159,21 +159,21 @@ export const UnifiedCard = ({
             )}
           </div>
 
-          <div className="flex items-center justify-between gap-2 pointer-events-auto pt-1 mt-auto">
-            <div className="flex items-center gap-1.5 flex-nowrap overflow-hidden text-xs min-w-0 flex-1">
+          <div className="flex items-center justify-between gap-2 pointer-events-auto pt-2 mt-auto">
+            <div className="flex flex-wrap items-center gap-1.5 text-xs min-w-0 flex-1">
               {technologies && technologies.length > 0 && (
                 <>
                   {technologies.slice(0, maxTechDisplay).map((tech) => (
                     <span
                       key={tech}
-                      className="px-2 py-0.5 font-medium bg-gray-800/60 text-gray-300 rounded-md border border-gray-700/50 whitespace-nowrap shrink-0"
+                      className="px-2 py-0.5 font-medium bg-gray-800/60 text-gray-300 rounded-md border border-gray-700/50"
                     >
                       {tech}
                     </span>
                   ))}
                   {technologies.length > maxTechDisplay && (
                     <span
-                      className={`px-2 py-0.5 font-medium ${colors.techExtraBg} ${colors.techExtraText} rounded-md border ${colors.techExtraBorder} whitespace-nowrap shrink-0`}
+                      className={`px-2 py-0.5 font-medium ${colors.techExtraBg} ${colors.techExtraText} rounded-md border ${colors.techExtraBorder}`}
                     >
                       +{technologies.length - maxTechDisplay}
                     </span>
@@ -185,7 +185,7 @@ export const UnifiedCard = ({
             {href && (
               <Link
                 href={href}
-                className={`flex items-center gap-1 px-2.5 py-1 text-xs font-medium ${colors.certificateBg} ${colors.certificateText} rounded-md border ${colors.certificateBorder} transition-all duration-200 shrink-0 relative z-10 ml-auto hover:scale-105`}
+                className={`flex items-center gap-1 px-2.5 py-1 text-xs font-medium ${colors.certificateBg} ${colors.certificateText} rounded-md border ${colors.certificateBorder} transition-all duration-200 shrink-0 relative z-10 self-end ml-auto hover:scale-105`}
                 aria-label={`View details for ${title}`}
               >
                 <span>View</span>

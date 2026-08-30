@@ -126,7 +126,7 @@ async function ProjectsContent({ searchParams }: PageProps) {
                 description={project.description || project.small_description}
                 technologies={project.skills}
                 links={links}
-                maxTechDisplay={4}
+                maxTechDisplay={3}
               />
             );
           })}

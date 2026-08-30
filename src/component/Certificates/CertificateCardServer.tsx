@@ -144,17 +144,17 @@ export async function CertificatesDisplayMobile() {
                 </p>
               )}
               <div className="flex items-center justify-between gap-2 relative z-10 pt-1">
-                <div className="flex items-center gap-1 flex-nowrap overflow-hidden text-xs min-w-0 flex-1">
+                <div className="flex flex-wrap items-center gap-1.5 text-xs min-w-0 flex-1">
                   {cert.skills?.slice(0, 3).map((skill) => (
                     <span
                       key={skill}
-                      className="px-2 py-0.5 text-xs bg-gray-800 text-gray-300 rounded whitespace-nowrap shrink-0"
+                      className="px-2 py-0.5 text-xs bg-gray-800 text-gray-300 rounded"
                     >
                       {skill}
                     </span>
                   ))}
                   {(cert.skills?.length ?? 0) > 3 && (
-                    <span className="px-2 py-0.5 text-xs bg-emerald-900/50 text-emerald-400 rounded whitespace-nowrap shrink-0">
+                    <span className="px-2 py-0.5 text-xs bg-emerald-900/50 text-emerald-400 rounded">
                       +{(cert.skills?.length ?? 0) - 3}
                     </span>
                   )}
@@ -162,7 +162,7 @@ export async function CertificatesDisplayMobile() {
                 {certId && (
                   <Link
                     href={`/certificates/${certId}`}
-                    className="flex items-center gap-1 px-2 py-0.5 text-xs font-medium bg-emerald-500/10 text-emerald-400 rounded border border-emerald-500/30 shrink-0 ml-auto"
+                    className="flex items-center gap-1 px-2 py-0.5 text-xs font-medium bg-emerald-500/10 text-emerald-400 rounded border border-emerald-500/30 shrink-0 self-end ml-auto"
                   >
                     <span>View</span>
                     <ArrowUpRight className="w-3 h-3" />

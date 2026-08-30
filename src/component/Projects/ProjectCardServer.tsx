@@ -67,7 +67,7 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
       technologies={project.skills}
       headerActions={headerActions}
       href={projectId ? `/projects/${projectId}` : undefined}
-      maxTechDisplay={4}
+      maxTechDisplay={3}
     />
   );
 };
@@ -156,17 +156,17 @@ export async function ProjectsDisplayMobile() {
                 {project.small_description || project.description}
               </p>
               <div className="flex items-center justify-between gap-2 relative z-10 pt-1">
-                <div className="flex items-center gap-1 flex-nowrap overflow-hidden text-xs min-w-0 flex-1">
+                <div className="flex flex-wrap items-center gap-1.5 text-xs min-w-0 flex-1">
                   {project.skills.slice(0, 3).map((skill) => (
                     <span
                       key={skill}
-                      className="px-2 py-0.5 text-xs bg-zinc-800 text-zinc-300 rounded whitespace-nowrap shrink-0"
+                      className="px-2 py-0.5 text-xs bg-zinc-800 text-zinc-300 rounded"
                     >
                       {skill}
                     </span>
                   ))}
                   {project.skills.length > 3 && (
-                    <span className="px-2 py-0.5 text-xs bg-violet-900/30 text-violet-400 rounded whitespace-nowrap shrink-0">
+                    <span className="px-2 py-0.5 text-xs bg-violet-900/30 text-violet-400 rounded">
                       +{project.skills.length - 3}
                     </span>
                   )}
@@ -174,7 +174,7 @@ export async function ProjectsDisplayMobile() {
                 {projectId && (
                   <Link
                     href={`/projects/${projectId}`}
-                    className="flex items-center gap-1 px-2 py-0.5 text-xs font-medium bg-violet-500/10 text-violet-400 rounded border border-violet-500/30 shrink-0 ml-auto"
+                    className="flex items-center gap-1 px-2 py-0.5 text-xs font-medium bg-violet-500/10 text-violet-400 rounded border border-violet-500/30 shrink-0 self-end ml-auto"
                   >
                     <span>View</span>
                     <ArrowUpRight className="w-3 h-3" />
