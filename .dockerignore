@@ -1,0 +1,14 @@
+node_modules
+.next
+.git
+.github
+.husky
+tests
+e2e
+playwright-report
+test-results
+docs
+*.log
+.env*.local
+tsconfig.tsbuildinfo
+.DS_Store

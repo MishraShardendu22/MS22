@@ -1,0 +1,18 @@
+services:
+  portfolio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: shardendumishra22/ms22-portfolio:latest
+    container_name: ms22-portfolio
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - NEXT_PUBLIC_BASE_URL=${NEXT_PUBLIC_BASE_URL:-https://shardendumishra22.is-a.dev}
+      - NEXT_PUBLIC_BACKEND_URL=${NEXT_PUBLIC_BACKEND_URL:-https://portfolio-backend-2iw4.onrender.com}
+      - NEXT_PUBLIC_GITHUB_USERNAME=${NEXT_PUBLIC_GITHUB_USERNAME:-MishraShardendu22}
+      - NEXT_PUBLIC_LEETCODE_USERNAME=${NEXT_PUBLIC_LEETCODE_USERNAME:-ShardenduMishra22}
+      - RESEND_API_KEY=${RESEND_API_KEY:-}
