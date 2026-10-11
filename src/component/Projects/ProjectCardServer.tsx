@@ -142,7 +142,7 @@ export async function ProjectsDisplayMobile() {
                       href={project.project_repository}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-mono font-medium bg-[#1e1a16] text-[#b9ae9d] border border-[#2f2923] rounded-full hover:border-[#d9a55b]/40 hover:text-[#d9a55b] transition-colors"
+                      className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-mono font-medium bg-[#1e1a16] text-[#b9ae9d] border border-[#2f2923] rounded-md hover:border-[#d9a55b]/40 hover:text-[#d9a55b] transition-colors"
                     >
                       <GitHubIcon className="w-3 h-3 text-[#d9a55b]" />
                       <span>Code</span>
@@ -153,7 +153,7 @@ export async function ProjectsDisplayMobile() {
                       href={project.project_live_link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-mono font-medium bg-[#1e1a16] text-[#b9ae9d] border border-[#2f2923] rounded-full hover:border-[#d9a55b]/40 hover:text-[#d9a55b] transition-colors"
+                      className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-mono font-medium bg-[#1e1a16] text-[#b9ae9d] border border-[#2f2923] rounded-md hover:border-[#d9a55b]/40 hover:text-[#d9a55b] transition-colors"
                     >
                       <Globe className="w-3 h-3 text-[#d9a55b]" />
                       <span>Live</span>
@@ -171,13 +171,13 @@ export async function ProjectsDisplayMobile() {
                   {project.skills.slice(0, 3).map((skill) => (
                     <span
                       key={skill}
-                      className="px-2.5 py-0.5 text-[11px] font-mono bg-[#1e1a16] text-[#b9ae9d] border border-[#2f2923] rounded-full"
+                      className="px-2.5 py-0.5 text-[11px] font-mono bg-[#1e1a16] text-[#b9ae9d] border border-[#2f2923] rounded-md"
                     >
                       {skill}
                     </span>
                   ))}
                   {project.skills.length > 3 && (
-                    <span className="px-2 py-0.5 text-[11px] font-mono bg-[#d9a55b]/10 text-[#d9a55b] border border-[#d9a55b]/20 rounded-full">
+                    <span className="px-2 py-0.5 text-[11px] font-mono bg-[#d9a55b]/10 text-[#d9a55b] border border-[#d9a55b]/20 rounded-md">
                       +{project.skills.length - 3}
                     </span>
                   )}
@@ -185,7 +185,7 @@ export async function ProjectsDisplayMobile() {
                 {projectId && (
                   <Link
                     href={`/projects/${projectId}`}
-                    className="inline-flex items-center gap-1 px-3 py-1 text-xs font-mono font-medium bg-[#d9a55b]/10 text-[#d9a55b] rounded-full border border-[#d9a55b]/30 shrink-0 self-end ml-auto hover:bg-[#d9a55b]/20 transition-colors"
+                    className="inline-flex items-center gap-1 px-3 py-1 text-xs font-mono font-medium bg-[#d9a55b]/10 text-[#d9a55b] rounded-md border border-[#d9a55b]/30 shrink-0 self-end ml-auto hover:bg-[#d9a55b]/20 transition-colors"
                   >
                     <span>View</span>
                     <ArrowUpRight className="w-3 h-3" />

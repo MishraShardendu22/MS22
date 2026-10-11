@@ -7,8 +7,8 @@ export default function NotFound() {
     <div className="flex items-center justify-center w-full min-h-screen bg-transparent px-6 py-12 relative">
       <div className="relative w-full max-w-xl mx-auto text-center z-10 space-y-8">
         {/* Eyebrow Kicker */}
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#2f2923] bg-[#161311] text-[11px] font-mono font-bold tracking-[0.14em] text-[#d9a55b] uppercase">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#d9a55b] animate-pulse" />
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-[#2f2923] bg-[#161311] text-[11px] font-mono font-bold tracking-[0.14em] text-[#d9a55b] uppercase">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#d9a55b]" />
           <span>{"404 // Trajectory Missing"}</span>
         </div>
 

@@ -502,7 +502,7 @@ export function GitHubContributionGraph({
 
         {/* Less -> More Legend */}
         <div className="flex items-center gap-3 self-end md:self-auto font-mono text-[11px]">
-          <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#39d353]/10 text-[#39d353] border border-[#39d353]/30">
+          <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#39d353]/10 text-[#39d353] border border-[#39d353]/30">
             Verified GitHub
           </span>
           <div className="flex items-center gap-1.5">

@@ -153,7 +153,7 @@ export function SearchModalContent() {
                   key={type}
                   type="button"
                   onClick={() => toggleFilter(type)}
-                  className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium shrink-0 ${active ? `${c.bgColor} ${c.color} border ${c.borderColor}` : "bg-[#1e1a16] text-[#8e8374] border border-[#2f2923] hover:bg-[#27221c] hover:text-[#f3ebdd]"}`}
+                  className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium shrink-0 ${active ? `${c.bgColor} ${c.color} border ${c.borderColor}` : "bg-[#1e1a16] text-[#8e8374] border border-[#2f2923] hover:bg-[#27221c] hover:text-[#f3ebdd]"}`}
                   style={{ minWidth: "90px" }}
                 >
                   <Icon className="w-3.5 h-3.5" />
@@ -168,7 +168,7 @@ export function SearchModalContent() {
                   data.current.filter = undefined;
                   search(d.query, undefined);
                 }}
-                className="flex items-center gap-1 px-2 py-1.5 rounded-full text-xs font-medium bg-[#1e1a16] text-[#8e8374] border border-[#2f2923] hover:bg-[#e06060]/20 hover:text-[#e06060] shrink-0"
+                className="flex items-center gap-1 px-2 py-1.5 rounded-md text-xs font-medium bg-[#1e1a16] text-[#8e8374] border border-[#2f2923] hover:bg-[#e06060]/20 hover:text-[#e06060] shrink-0"
               >
                 <X className="w-3 h-3" />
                 Clear

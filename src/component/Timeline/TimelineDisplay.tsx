@@ -56,8 +56,8 @@ export const TimelineDisplay = ({
       <div className="container mx-auto max-w-7xl w-full relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#2f2923] bg-[#161311] text-[11px] font-mono font-bold tracking-[0.14em] text-[#d9a55b] uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#d9a55b] animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-[#2f2923] bg-[#161311] text-[11px] font-mono font-bold tracking-[0.14em] text-[#d9a55b] uppercase">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#d9a55b]" />
             <span>{"Trajectory Registry // Career Chronology"}</span>
           </div>
 
@@ -117,7 +117,7 @@ export const TimelineDisplay = ({
               <span>Open Source / Community</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#d9a55b] animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-[#d9a55b]" />
               <span className="text-[#f3ebdd]">Active / Present Roles</span>
             </div>
           </div>

@@ -138,13 +138,13 @@ export function FooterSectionMobile() {
             Software Engineer engineering modern, high-impact systems.
           </p>
           <div className="mt-4 flex flex-wrap gap-2 text-xs uppercase tracking-[0.2em]">
-            <span className="rounded-full border border-[#2f2923] bg-[#1e1a16] px-3 py-1 text-[#b9ae9d]">
+            <span className="rounded-md border border-[#2f2923] bg-[#1e1a16] px-3 py-1 text-[#b9ae9d]">
               Go
             </span>
-            <span className="rounded-full border border-[#d9a55b]/25 bg-[#d9a55b]/10 px-3 py-1 text-[#d9a55b]">
+            <span className="rounded-md border border-[#d9a55b]/25 bg-[#d9a55b]/10 px-3 py-1 text-[#d9a55b]">
               Next.js
             </span>
-            <span className="rounded-full border border-[#2f2923] bg-[#1e1a16] px-3 py-1 text-[#b9ae9d]">
+            <span className="rounded-md border border-[#2f2923] bg-[#1e1a16] px-3 py-1 text-[#b9ae9d]">
               AI/ML
             </span>
           </div>
@@ -247,7 +247,7 @@ export function FooterSection() {
                   Shardendu{" "}
                   <span className="italic text-[#d9a55b]">Mishra</span>
                 </h2>
-                <span className="text-sm sm:text-base px-3.5 py-1 rounded-full border border-[#d9a55b]/30 bg-[#d9a55b]/10 text-[#d9a55b] font-mono font-medium">
+                <span className="text-sm sm:text-base px-3.5 py-1 rounded-md border border-[#d9a55b]/30 bg-[#d9a55b]/10 text-[#d9a55b] font-mono font-medium">
                   Ecosystem
                 </span>
               </div>

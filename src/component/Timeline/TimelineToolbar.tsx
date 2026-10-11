@@ -63,7 +63,6 @@ export const TimelineToolbar = ({
       {/* Horizon Telemetry Status Badge */}
       <div className="flex items-center gap-2.5 px-3 py-1.5 rounded-xl bg-[#161311] border border-[#2f2923] text-xs font-mono text-[#8e8374] self-start sm:self-auto select-none">
         <span className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#d9a55b] opacity-75" />
           <span className="relative inline-flex rounded-full h-2 w-2 bg-[#d9a55b]" />
         </span>
         <span className="text-[#f3ebdd] font-medium">Roadmap Horizon</span>

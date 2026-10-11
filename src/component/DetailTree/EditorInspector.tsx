@@ -74,7 +74,6 @@ export function EditorInspector({
         <div className="p-3 rounded-lg bg-[#161311] border border-[#2f2923] flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
             </span>
             <div className="flex flex-col">
@@ -88,7 +87,7 @@ export function EditorInspector({
           </div>
           {data.badge && (
             <span
-              className={`px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider font-semibold border rounded-full ${BADGE_VARIANTS[data.badge.variant]}`}
+              className={`px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider font-semibold border rounded-md ${BADGE_VARIANTS[data.badge.variant]}`}
             >
               {data.badge.label}
             </span>

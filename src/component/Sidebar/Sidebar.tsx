@@ -152,13 +152,6 @@ export function Sidebar() {
                 aria-label={item.name}
                 aria-current={isActive ? "page" : undefined}
               >
-                {/* Ubuntu-style active indicator dot on the left */}
-                {isActive && (
-                  <span
-                    className="absolute -left-1 w-1.5 h-1.5 rounded-full bg-[#d9a55b] shadow-[0_0_8px_rgba(217,165,91,0.9)] ring-2 ring-[#120f0d]"
-                    aria-hidden="true"
-                  />
-                )}
                 <Icon
                   className="w-[18px] h-[18px] shrink-0 transition-colors"
                   aria-hidden="true"
@@ -191,13 +184,6 @@ export function Sidebar() {
                 aria-label={item.name}
                 aria-current={isActive ? "page" : undefined}
               >
-                {/* Ubuntu-style active indicator dot on the left */}
-                {isActive && (
-                  <span
-                    className="absolute -left-1 w-1.5 h-1.5 rounded-full bg-[#d9a55b] shadow-[0_0_8px_rgba(217,165,91,0.9)] ring-2 ring-[#120f0d]"
-                    aria-hidden="true"
-                  />
-                )}
                 <Icon
                   className="w-[18px] h-[18px] shrink-0 transition-colors"
                   aria-hidden="true"

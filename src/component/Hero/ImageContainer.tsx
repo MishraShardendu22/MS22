@@ -28,7 +28,7 @@ export const ImageContainer = () => {
         {/* Mission Telemetry Overlay at Top */}
         <div className="absolute top-3 inset-x-3 flex items-center justify-between px-3 py-1.5 rounded-lg bg-[#0e0c0a]/80 backdrop-blur-md border border-[#2f2923] text-[10px] font-mono text-[#b9ae9d]">
           <span className="flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#4caf7d] animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#4caf7d]" />
             <span className="text-[#f3ebdd] font-semibold">OBS-PRIMARY</span>
           </span>
           <span className="text-[#8e8374]">LAT 15.45° N · LON 75.00° E</span>

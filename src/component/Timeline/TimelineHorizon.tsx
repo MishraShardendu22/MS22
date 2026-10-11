@@ -355,7 +355,7 @@ export const TimelineHorizon = ({
                         top: `${top}px`,
                         height: `${cardHeight}px`,
                         zIndex,
-                        transform: isHovered ? "translateY(-4px)" : "none",
+                        transform: "none",
                       }}
                       className={`absolute text-left rounded-xl border bg-[#161311] px-3 py-2 flex flex-col justify-between transition-all duration-200 shadow-md overflow-hidden group cursor-pointer select-none focus:outline-none ${
                         isHovered
@@ -405,7 +405,7 @@ export const TimelineHorizon = ({
                           )}
                           {item.isCurrent && (
                             <span
-                              className="w-2 h-2 rounded-full bg-[#d9a55b] animate-pulse"
+                              className="w-2 h-2 rounded-full bg-[#d9a55b]"
                               title="Active Role"
                             />
                           )}
@@ -520,7 +520,7 @@ export const TimelineHorizon = ({
                         top: `${top}px`,
                         height: `${cardHeight}px`,
                         zIndex,
-                        transform: isHovered ? "translateY(-4px)" : "none",
+                        transform: "none",
                       }}
                       className={`absolute text-left rounded-xl border bg-[#161311] px-3 py-2 flex flex-col justify-between transition-all duration-200 shadow-md overflow-hidden group cursor-pointer select-none focus:outline-none ${
                         isHovered
@@ -570,7 +570,7 @@ export const TimelineHorizon = ({
                           )}
                           {item.isCurrent && (
                             <span
-                              className="w-2 h-2 rounded-full bg-[#4caf7d] animate-pulse"
+                              className="w-2 h-2 rounded-full bg-[#4caf7d]"
                               title="Active Role"
                             />
                           )}
@@ -671,7 +671,7 @@ export const TimelineHorizon = ({
             {/* Meta Badges */}
             <div className="flex flex-wrap items-center gap-2 pt-1">
               <span
-                className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-mono border ${
+                className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[11px] font-mono border ${
                   selectedExp.type === "work"
                     ? "bg-[#d9a55b]/10 text-[#d9a55b] border-[#d9a55b]/30"
                     : "bg-[#4caf7d]/10 text-[#4caf7d] border-[#4caf7d]/30"
@@ -687,8 +687,8 @@ export const TimelineHorizon = ({
 
               {formatDateSpan(selectedExp.start_date, selectedExp.end_date)
                 .isCurrent && (
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-bold">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[10px] font-mono uppercase tracking-wider bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-bold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                   Active Role
                 </span>
               )}

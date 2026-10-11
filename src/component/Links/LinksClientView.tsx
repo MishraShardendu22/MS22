@@ -417,7 +417,7 @@ export function LinksClientView() {
                 {"SEC-ID // GRAVATAR-VERIFIED"}
               </span>
               <span className="inline-flex items-center gap-1.5 text-[11px] text-emerald-400 font-mono font-medium">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-emerald-400" />
                 Available for Consulting &amp; Engagements
               </span>
             </div>

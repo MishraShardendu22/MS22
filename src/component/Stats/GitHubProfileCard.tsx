@@ -98,7 +98,7 @@ export const GitHubProfileCard = ({
             </div>
           </div>
 
-          <div className="mt-2.5 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#d9a55b]/10 border border-[#d9a55b]/25 text-[10px] font-mono text-[#d9a55b]">
+          <div className="mt-2.5 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-[#d9a55b]/10 border border-[#d9a55b]/25 text-[10px] font-mono text-[#d9a55b]">
             <ShieldCheck className="w-3 h-3 shrink-0" />
             <span>Developer Program</span>
           </div>
@@ -147,7 +147,7 @@ export const GitHubProfileCard = ({
         {/* Metadata Details Strip: Places & Images/Organizations */}
         <div className="flex flex-wrap items-center gap-2 pt-0.5">
           {/* Location / Place Chip */}
-          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#1e1a16] border border-[#2f2923] text-[11px] sm:text-xs text-[#b9ae9d] shrink-0 max-w-full">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#1e1a16] border border-[#2f2923] text-[11px] sm:text-xs text-[#b9ae9d] shrink-0 max-w-full">
             <MapPin className="w-3.5 h-3.5 text-[#d9a55b] shrink-0" />
             <span className="truncate">{location}</span>
           </div>
@@ -157,7 +157,7 @@ export const GitHubProfileCard = ({
             href="https://github.com/ai-needl"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#1e1a16] hover:bg-[#25201b] border border-[#2f2923] hover:border-[#d9a55b]/40 text-[11px] sm:text-xs text-[#b9ae9d] hover:text-[#f3ebdd] transition-colors shrink-0"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#1e1a16] hover:bg-[#25201b] border border-[#2f2923] hover:border-[#d9a55b]/40 text-[11px] sm:text-xs text-[#b9ae9d] hover:text-[#f3ebdd] transition-colors shrink-0"
             title="ai-needl organization"
           >
             <Image

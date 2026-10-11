@@ -188,7 +188,7 @@ function MobileNodeRenderer({ node }: { node: TreeNode | null }) {
           {payload.items.map((tag) => (
             <span
               key={tag}
-              className="px-3 py-1 text-xs font-mono bg-[#1e1a16] text-[#d9a55b] border border-[#2f2923] rounded-full"
+              className="px-3 py-1 text-xs font-mono bg-[#1e1a16] text-[#d9a55b] border border-[#2f2923] rounded-md"
             >
               {tag}
             </span>
@@ -255,20 +255,26 @@ function MobileNodeRenderer({ node }: { node: TreeNode | null }) {
         <div className="space-y-2">
           {payload.items.map((item, idx) => (
             <div
-              key={idx}
+              key={`${item.title}-${item.startDate || idx}`}
               className="flex items-start gap-2.5 p-3 rounded-2xl bg-[#1e1a16] border border-[#2f2923] text-xs text-[#b9ae9d]"
             >
-              <span className="px-2 py-0.5 rounded-full bg-[#d9a55b]/10 text-[#d9a55b] text-[10px] font-mono shrink-0">
+              <span className="px-2 py-0.5 rounded-md bg-[#d9a55b]/10 text-[#d9a55b] text-[10px] font-mono shrink-0">
                 #{idx + 1}
               </span>
               <div className="flex-1 min-w-0">
-                <div className="font-semibold text-[#f3ebdd] leading-snug">{item.title}</div>
+                <div className="font-semibold text-[#f3ebdd] leading-snug">
+                  {item.title}
+                </div>
                 {item.subtitle && (
                   <div className="text-[#8e8374] mt-0.5">{item.subtitle}</div>
                 )}
                 <div className="text-[#8e8374] mt-1 font-mono text-[10px]">
                   {item.startDate}
-                  {item.endDate ? ` – ${item.endDate}` : item.isCurrent ? " – Present" : ""}
+                  {item.endDate
+                    ? ` – ${item.endDate}`
+                    : item.isCurrent
+                      ? " – Present"
+                      : ""}
                 </div>
               </div>
             </div>
@@ -385,7 +391,8 @@ export function DetailTreeView({ data }: DetailTreeViewProps) {
   }, [readableNodes, mobileActiveNode]);
 
   const techItems = useMemo<string[]>(() => {
-    if (data.technologies && data.technologies.length > 0) return data.technologies;
+    if (data.technologies && data.technologies.length > 0)
+      return data.technologies;
     const tagNode = treeNodes.find(
       (n) =>
         n.payload?.type === "tags" || n.label.toLowerCase().includes("tech"),
@@ -404,7 +411,7 @@ export function DetailTreeView({ data }: DetailTreeViewProps) {
         <div className="flex items-center justify-between gap-3">
           <Link
             href={data.backLink.href}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono bg-[#161311] hover:bg-[#1e1a16] border border-[#2f2923] hover:border-[#d9a55b]/40 text-[#b9ae9d] hover:text-[#f3ebdd] rounded-full transition-colors"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono bg-[#161311] hover:bg-[#1e1a16] border border-[#2f2923] hover:border-[#d9a55b]/40 text-[#b9ae9d] hover:text-[#f3ebdd] rounded-md transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5 text-[#d9a55b]" />
             <span>{data.backLink.label}</span>
@@ -437,7 +444,7 @@ export function DetailTreeView({ data }: DetailTreeViewProps) {
                 </h1>
                 {data.badge && (
                   <span
-                    className={`px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider font-semibold border rounded-full ${BADGE_VARIANTS[data.badge.variant]}`}
+                    className={`px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider font-semibold border rounded-md ${BADGE_VARIANTS[data.badge.variant]}`}
                   >
                     {data.badge.label}
                   </span>
@@ -486,7 +493,6 @@ export function DetailTreeView({ data }: DetailTreeViewProps) {
           <div className="flex items-center justify-between pb-2 border-b border-[#2f2923]/60">
             <div className="flex items-center gap-2">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
               </span>
               <span className="text-xs font-mono font-medium text-[#f3ebdd]">
@@ -509,7 +515,7 @@ export function DetailTreeView({ data }: DetailTreeViewProps) {
                 {(data.technologies || techItems).map((tech) => (
                   <span
                     key={tech}
-                    className="px-2.5 py-1 text-xs font-mono bg-[#1e1a16] text-[#b9ae9d] border border-[#2f2923] rounded-full"
+                    className="px-2.5 py-1 text-xs font-mono bg-[#1e1a16] text-[#b9ae9d] border border-[#2f2923] rounded-md"
                   >
                     {tech}
                   </span>
@@ -537,7 +543,7 @@ export function DetailTreeView({ data }: DetailTreeViewProps) {
                       key={node.id}
                       type="button"
                       onClick={() => setMobileActiveNode(node)}
-                      className={`px-3 py-1.5 text-xs font-mono rounded-full shrink-0 transition-all cursor-pointer ${
+                      className={`px-3 py-1.5 text-xs font-mono rounded-md shrink-0 transition-all cursor-pointer ${
                         isActive
                           ? "bg-[#d9a55b] text-[#0e0c0a] font-bold shadow-sm"
                           : "bg-[#161311] text-[#8e8374] hover:text-[#f3ebdd] border border-[#2f2923]"
@@ -599,7 +605,7 @@ export function DetailTreeView({ data }: DetailTreeViewProps) {
                   </h1>
                   {data.badge && (
                     <span
-                      className={`hidden xs:inline px-2 py-0.2 text-[10px] font-mono uppercase tracking-wider font-semibold border rounded-full ${BADGE_VARIANTS[data.badge.variant]}`}
+                      className={`hidden xs:inline px-2 py-0.2 text-[10px] font-mono uppercase tracking-wider font-semibold border rounded-md ${BADGE_VARIANTS[data.badge.variant]}`}
                     >
                       {data.badge.label}
                     </span>

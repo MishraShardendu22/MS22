@@ -71,8 +71,8 @@ export function ListCard({
                 {title}
               </Link>
               {isActive && (
-                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 text-[10px] font-mono font-medium rounded-full bg-[#4caf7d]/10 text-[#4caf7d] border border-[#4caf7d]/30">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#4caf7d] animate-pulse" />
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 text-[10px] font-mono font-medium rounded-md bg-[#4caf7d]/10 text-[#4caf7d] border border-[#4caf7d]/30">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#4caf7d]" />
                   Active
                 </span>
               )}
@@ -99,13 +99,13 @@ export function ListCard({
                 {technologies.slice(0, maxTechDisplay).map((tech) => (
                   <span
                     key={tech}
-                    className="px-2.5 py-0.5 bg-[#161311] text-[#b9ae9d] text-[11px] font-mono rounded-full border border-[#2f2923] hover:border-[#413930] hover:text-[#f3ebdd] transition-colors"
+                    className="px-2.5 py-0.5 bg-[#161311] text-[#b9ae9d] text-[11px] font-mono rounded-md border border-[#2f2923] hover:border-[#413930] hover:text-[#f3ebdd] transition-colors"
                   >
                     {tech}
                   </span>
                 ))}
                 {technologies.length > maxTechDisplay && (
-                  <span className="px-2 py-0.5 text-[11px] font-mono text-[#8e8374] rounded-full bg-[#1e1a16] border border-[#2f2923]">
+                  <span className="px-2 py-0.5 text-[11px] font-mono text-[#8e8374] rounded-md bg-[#1e1a16] border border-[#2f2923]">
                     +{technologies.length - maxTechDisplay}
                   </span>
                 )}
@@ -124,7 +124,7 @@ export function ListCard({
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#1e1a16] hover:bg-[#27221c] border border-[#2f2923] hover:border-[#d9a55b]/40 text-[#d9a55b] text-xs font-mono font-medium transition-colors"
+                  className="inline-flex items-center gap-1 px-3 py-1 rounded-md bg-[#1e1a16] hover:bg-[#27221c] border border-[#2f2923] hover:border-[#d9a55b]/40 text-[#d9a55b] text-xs font-mono font-medium transition-colors"
                 >
                   <span>{link.label}</span>
                   <ArrowUpRight className="w-3 h-3" />
@@ -135,7 +135,7 @@ export function ListCard({
 
           <Link
             href={href}
-            className="inline-flex items-center gap-1 text-xs font-semibold text-[#8e8374] group-hover:text-[#d9a55b] transition-all p-1.5 rounded-full hover:bg-[#1e1a16]"
+            className="inline-flex items-center gap-1 text-xs font-semibold text-[#8e8374] group-hover:text-[#d9a55b] transition-all p-1.5 rounded-md hover:bg-[#1e1a16]"
             aria-label={`View details for ${title}`}
           >
             <span className="hidden sm:inline">Details</span>
