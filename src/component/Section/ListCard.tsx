@@ -45,7 +45,7 @@ export function ListCard({
         {/* Left Stack: Leading Icon + Info */}
         <div className="flex items-start gap-3.5 min-w-0 flex-1">
           {logo ? (
-            <div className="shrink-0 w-10 h-10 rounded-2xl bg-[#1e1a16] border border-[#2f2923] flex items-center justify-center overflow-hidden group-hover:border-[#413930] transition-colors p-1">
+            <div className="shrink-0 w-10 h-10 rounded-md bg-[#1e1a16] border border-[#2f2923] flex items-center justify-center overflow-hidden group-hover:border-[#413930] transition-colors p-1">
               <Image
                 src={logo}
                 alt={title}
@@ -57,7 +57,7 @@ export function ListCard({
               />
             </div>
           ) : (
-            <div className="shrink-0 w-10 h-10 rounded-2xl bg-[#1e1a16] border border-[#2f2923] flex items-center justify-center text-[#d9a55b] font-mono text-sm font-bold group-hover:border-[#d9a55b]/40 transition-colors">
+            <div className="shrink-0 w-10 h-10 rounded-md bg-[#1e1a16] border border-[#2f2923] flex items-center justify-center text-[#d9a55b] font-mono text-sm font-bold group-hover:border-[#d9a55b]/40 transition-colors">
               {title.slice(0, 2).toUpperCase()}
             </div>
           )}

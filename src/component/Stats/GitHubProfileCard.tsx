@@ -26,10 +26,10 @@ const StatsCard = ({
   icon: Icon,
   iconColor = "text-[#d9a55b]",
 }: StatsCardProps) => (
-  <div className="p-3 bg-[#1e1a16] rounded-2xl border border-[#2f2923] hover:border-[#d9a55b]/40 transition-colors">
+  <div className="p-3 bg-[#1e1a16] rounded-xl border border-[#2f2923] hover:border-[#d9a55b]/40 transition-colors">
     <div className="flex items-center gap-2.5">
       <div
-        className={`p-2 rounded-xl bg-[#161311] border border-[#2f2923] shrink-0 ${iconColor}`}
+        className={`p-1.5 rounded-md bg-[#161311] border border-[#2f2923] shrink-0 ${iconColor}`}
       >
         <Icon className="w-3.5 h-3.5" />
       </div>

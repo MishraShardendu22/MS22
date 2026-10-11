@@ -26,11 +26,12 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
           href={project.project_repository}
           target="_blank"
           rel="noopener noreferrer"
-          className="p-1.5 rounded-lg bg-[#1e1a16] hover:bg-[#25201b] text-[#8e8374] hover:text-[#f3ebdd] border border-[#2f2923] hover:border-[#d9a55b]/40 transition-all duration-200"
+          className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-mono font-medium bg-[#1e1a16] text-[#b9ae9d] border border-[#2f2923] rounded-md hover:border-[#d9a55b]/40 hover:text-[#d9a55b] transition-colors"
           aria-label="View source repository"
           title="Source repository"
         >
-          <GitHubIcon className="w-3.5 h-3.5" />
+          <GitHubIcon className="w-3 h-3 text-[#d9a55b]" />
+          <span>Code</span>
         </Link>
       )}
       {project.project_live_link && (
@@ -38,11 +39,12 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
           href={project.project_live_link}
           target="_blank"
           rel="noopener noreferrer"
-          className="p-1.5 rounded-lg bg-[#1e1a16] hover:bg-[#25201b] text-[#8e8374] hover:text-[#d9a55b] border border-[#2f2923] hover:border-[#d9a55b]/40 transition-all duration-200"
+          className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-mono font-medium bg-[#1e1a16] text-[#b9ae9d] border border-[#2f2923] rounded-md hover:border-[#d9a55b]/40 hover:text-[#d9a55b] transition-colors"
           aria-label="View live project"
           title="Live system"
         >
-          <Globe className="w-3.5 h-3.5" />
+          <Globe className="w-3 h-3 text-[#d9a55b]" />
+          <span>Live</span>
         </Link>
       )}
       {project.project_video && (
@@ -50,11 +52,12 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
           href={project.project_video}
           target="_blank"
           rel="noopener noreferrer"
-          className="p-1.5 rounded-lg bg-[#1e1a16] hover:bg-[#25201b] text-[#8e8374] hover:text-[#e6b56c] border border-[#2f2923] hover:border-[#d9a55b]/40 transition-all duration-200"
+          className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-mono font-medium bg-[#1e1a16] text-[#b9ae9d] border border-[#2f2923] rounded-md hover:border-[#d9a55b]/40 hover:text-[#e6b56c] transition-colors"
           aria-label="Watch demo video"
           title="Demo video"
         >
-          <Play className="w-3.5 h-3.5" />
+          <Play className="w-3 h-3 text-[#e6b56c]" />
+          <span>Demo</span>
         </Link>
       )}
     </div>

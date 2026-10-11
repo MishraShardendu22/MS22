@@ -270,16 +270,16 @@ export function FooterSection() {
             </div>
 
             <div className="flex flex-wrap gap-3">
-              <span className="px-4 py-2 bg-[#1e1a16] border border-[#2f2923] rounded-xl text-sm sm:text-base text-[#b9ae9d] font-semibold">
+              <span className="px-4 py-2 bg-[#1e1a16] border border-[#2f2923] rounded-md text-sm sm:text-base text-[#b9ae9d] font-semibold">
                 Go
               </span>
-              <span className="px-4 py-2 bg-[#d9a55b]/10 border border-[#d9a55b]/25 rounded-xl text-sm sm:text-base text-[#d9a55b] font-semibold">
+              <span className="px-4 py-2 bg-[#d9a55b]/10 border border-[#d9a55b]/25 rounded-md text-sm sm:text-base text-[#d9a55b] font-semibold">
                 Next.js
               </span>
-              <span className="px-4 py-2 bg-[#1e1a16] border border-[#2f2923] rounded-xl text-sm sm:text-base text-[#b9ae9d] font-semibold">
+              <span className="px-4 py-2 bg-[#1e1a16] border border-[#2f2923] rounded-md text-sm sm:text-base text-[#b9ae9d] font-semibold">
                 Kubernetes
               </span>
-              <span className="px-4 py-2 bg-[#1e1a16] border border-[#2f2923] rounded-xl text-sm sm:text-base text-[#b9ae9d] font-semibold">
+              <span className="px-4 py-2 bg-[#1e1a16] border border-[#2f2923] rounded-md text-sm sm:text-base text-[#b9ae9d] font-semibold">
                 AI/ML
               </span>
             </div>

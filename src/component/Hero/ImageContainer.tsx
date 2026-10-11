@@ -26,17 +26,17 @@ export const ImageContainer = () => {
         <div className="absolute bottom-3 right-3 w-3 h-3 border-b-2 border-r-2 border-[#d9a55b]/70 pointer-events-none" />
 
         {/* Mission Telemetry Overlay at Top */}
-        <div className="absolute top-3 inset-x-3 flex items-center justify-between px-3 py-1.5 rounded-lg bg-[#0e0c0a]/80 backdrop-blur-md border border-[#2f2923] text-[10px] font-mono text-[#b9ae9d]">
+        <div className="absolute top-3 inset-x-3 flex items-center justify-between px-3 py-1.5 rounded-md bg-[#0e0c0a]/80 backdrop-blur-md border border-[#2f2923] text-[10px] font-mono text-[#b9ae9d]">
           <span className="flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#4caf7d]" />
+            <span className="w-1.5 h-1.5 rounded-sm bg-[#4caf7d]" />
             <span className="text-[#f3ebdd] font-semibold">OBS-PRIMARY</span>
           </span>
           <span className="text-[#8e8374]">LAT 15.45° N · LON 75.00° E</span>
         </div>
 
         {/* Engineer Profile Passport Strip at Bottom */}
-        <div className="absolute bottom-3 inset-x-3 p-3 rounded-xl bg-[#0e0c0a]/90 backdrop-blur-md border border-[#2f2923] flex items-center gap-3">
-          <div className="relative w-11 h-11 rounded-lg overflow-hidden shrink-0 border border-[#2f2923]">
+        <div className="absolute bottom-3 inset-x-3 p-3 rounded-md bg-[#0e0c0a]/90 backdrop-blur-md border border-[#2f2923] flex items-center gap-3">
+          <div className="relative w-11 h-11 rounded-md overflow-hidden shrink-0 border border-[#2f2923]">
             <Image
               src={CDN_PROFESSIONAL_AVIF}
               alt="Shardendu Mishra"
@@ -50,7 +50,7 @@ export const ImageContainer = () => {
               <span className="text-xs font-semibold text-[#f3ebdd] truncate">
                 Shardendu Mishra
               </span>
-              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#1e1a16] text-[#d9a55b] border border-[#2f2923]">
+              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-md bg-[#1e1a16] text-[#d9a55b] border border-[#2f2923]">
                 IIIT Dharwad
               </span>
             </div>
