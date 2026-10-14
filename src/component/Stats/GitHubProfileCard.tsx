@@ -70,7 +70,7 @@ export const GitHubProfileCard = ({
   const totalStars = stars > 0 ? stars : 684;
 
   return (
-    <div className="bg-[#161311] border border-[#2f2923] rounded-2xl p-4 sm:p-5 hover:border-[#d9a55b]/40 transition-all duration-300 flex flex-col justify-between h-full">
+    <div className="bg-[#161311] border border-[#2f2923] rounded-2xl p-4 sm:p-5 hover:border-[#d9a55b]/40 transition-all duration-300 flex flex-col justify-between h-full flex-1">
       <div className="space-y-3.5">
         {/* Header Profile Identity */}
         <div>

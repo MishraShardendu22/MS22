@@ -96,7 +96,7 @@ async function ContributionGraphSection() {
 
 function CardSkeleton() {
   return (
-    <div className="bg-[#161311] border border-[#2f2923] rounded-2xl p-6 animate-pulse">
+    <div className="bg-[#161311] border border-[#2f2923] rounded-2xl p-6 animate-pulse h-full flex-1">
       <div className="flex items-center gap-3 mb-6">
         <div className="w-11 h-11 bg-[#1e1a16] rounded-lg" />
         <div className="space-y-2">
@@ -118,7 +118,7 @@ function CardSkeleton() {
 // Wide card skeleton for contribution graph section
 function WideCardSkeleton() {
   return (
-    <div className="bg-[#161311] border border-[#2f2923] rounded-2xl p-6 animate-pulse h-full">
+    <div className="bg-[#161311] border border-[#2f2923] rounded-2xl p-6 animate-pulse h-full flex-1">
       <div className="flex items-center gap-3 mb-6">
         <div className="w-11 h-11 bg-[#1e1a16] rounded-lg" />
         <div className="space-y-2">
