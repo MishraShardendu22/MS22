@@ -72,10 +72,6 @@ export const CodingProfiles = {
     url: "https://github.com/ShardenduMishra22",
     icon: "GitHub",
   },
-  Codeforces: {
-    url: "https://codeforces.com/profile/MishraShardendu22",
-    icon: "Terminal",
-  },
 };
 
 export const images = {

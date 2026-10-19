@@ -22,6 +22,20 @@ export async function GET(
     );
   }
 
+  const isRaw =
+    _req.nextUrl.searchParams.get("raw") === "true" ||
+    _req.nextUrl.searchParams.get("format") === "raw" ||
+    _req.nextUrl.searchParams.get("format") === "markdown";
+
+  if (isRaw) {
+    return new NextResponse(runbook.markdown, {
+      headers: {
+        "Content-Type": "text/markdown; charset=utf-8",
+        "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
+      },
+    });
+  }
+
   return NextResponse.json(runbook, {
     headers: {
       "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",

@@ -21,7 +21,10 @@ interface SkillDetailViewProps {
   relatedSkills?: AgentSkill[];
 }
 
-function parseInlineMarkdown(text: string): React.ReactNode[] {
+function parseInlineMarkdown(
+  text: string,
+  currentSkillName?: string,
+): React.ReactNode[] {
   const parts: React.ReactNode[] = [];
   const regex = /(\*\*[^*]+\*\*|`[^`]+`|\[[^\]]+\]\([^)]+\))/g;
   let lastIndex = 0;
@@ -53,10 +56,19 @@ function parseInlineMarkdown(text: string): React.ReactNode[] {
     } else if (token.startsWith("[") && token.includes("](")) {
       const linkMatch = token.match(/\[([^\]]+)\]\(([^)]+)\)/);
       if (linkMatch) {
+        let href = linkMatch[2];
+        if (
+          href.endsWith(".md") &&
+          !href.startsWith("http") &&
+          !href.startsWith("/")
+        ) {
+          const cleanName = currentSkillName ? `${currentSkillName}/` : "";
+          href = `https://github.com/MishraShardendu22/agent-skills-hub-sync-engine/blob/main/.agents/skills/${cleanName}${href}`;
+        }
         parts.push(
           <a
             key={`a-${match.index}`}
-            href={linkMatch[2]}
+            href={href}
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#d9a55b] hover:text-[#e6b56c] underline underline-offset-2 transition-colors inline-flex items-center gap-0.5"
@@ -99,6 +111,7 @@ export function SkillDetailView({
     // Strip YAML frontmatter
     const cleanMd = rawMd.replace(/^---[\s\S]*?---\n*/, "");
     const lines = cleanMd.split("\n");
+    const parseInline = (t: string) => parseInlineMarkdown(t, skill.name);
 
     const elements: React.ReactNode[] = [];
     let inCodeBlock = false;
@@ -205,7 +218,7 @@ export function SkillDetailView({
                         key={`th-${col}`}
                         className="px-4 py-2.5 text-xs font-mono font-semibold text-[#d9a55b] uppercase tracking-wider"
                       >
-                        {parseInlineMarkdown(col)}
+                        {parseInline(col)}
                       </th>
                     ))}
                   </tr>
@@ -223,7 +236,7 @@ export function SkillDetailView({
                             key={`${rowKey}-td-${cell}`}
                             className="px-4 py-2 text-xs text-[#b9ae9d] leading-relaxed"
                           >
-                            {parseInlineMarkdown(cell)}
+                            {parseInline(cell)}
                           </td>
                         ))}
                       </tr>
@@ -265,7 +278,7 @@ export function SkillDetailView({
               {alertType}
             </span>
             <div className="text-xs sm:text-sm text-[#f3ebdd] leading-relaxed">
-              {parseInlineMarkdown(alertContent.join(" "))}
+              {parseInline(alertContent.join(" "))}
             </div>
           </div>,
         );
@@ -279,7 +292,7 @@ export function SkillDetailView({
             key={`h1-${keyIndex++}`}
             className="text-2xl sm:text-3xl font-normal font-heading text-[#f3ebdd] mt-8 mb-4 tracking-tight"
           >
-            {parseInlineMarkdown(line.replace("# ", ""))}
+            {parseInline(line.replace("# ", ""))}
           </h1>,
         );
         continue;
@@ -292,7 +305,7 @@ export function SkillDetailView({
             className="text-xl sm:text-2xl font-normal font-heading text-[#f3ebdd] mt-9 mb-3.5 border-b border-[#2f2923] pb-2.5 flex items-center gap-2"
           >
             <span className="w-1.5 h-5 rounded-full bg-[#d9a55b] inline-block shrink-0" />
-            <span>{parseInlineMarkdown(line.replace("## ", ""))}</span>
+            <span>{parseInline(line.replace("## ", ""))}</span>
           </h2>,
         );
         continue;
@@ -304,7 +317,7 @@ export function SkillDetailView({
             key={`h3-${keyIndex++}`}
             className="text-base sm:text-lg font-bold text-[#d9a55b] mt-7 mb-2 tracking-tight"
           >
-            {parseInlineMarkdown(line.replace("### ", ""))}
+            {parseInline(line.replace("### ", ""))}
           </h3>,
         );
         continue;
@@ -316,7 +329,7 @@ export function SkillDetailView({
             key={`h4-${keyIndex++}`}
             className="text-sm sm:text-base font-bold text-[#f3ebdd] mt-5 mb-1.5"
           >
-            {parseInlineMarkdown(line.replace("#### ", ""))}
+            {parseInline(line.replace("#### ", ""))}
           </h4>,
         );
         continue;
@@ -337,7 +350,7 @@ export function SkillDetailView({
             key={`li-${keyIndex++}`}
             className="ml-5 list-disc text-xs sm:text-sm text-[#b9ae9d] my-1.5 leading-relaxed"
           >
-            {parseInlineMarkdown(line.replace(/^[-*]\s+/, ""))}
+            {parseInline(line.replace(/^[-*]\s+/, ""))}
           </li>,
         );
         continue;
@@ -350,7 +363,7 @@ export function SkillDetailView({
             key={`oli-${keyIndex++}`}
             className="ml-5 list-decimal text-xs sm:text-sm text-[#b9ae9d] my-1.5 leading-relaxed"
           >
-            {parseInlineMarkdown(line.replace(/^\d+\.\s+/, ""))}
+            {parseInline(line.replace(/^\d+\.\s+/, ""))}
           </li>,
         );
         continue;
@@ -363,7 +376,7 @@ export function SkillDetailView({
             key={`p-${keyIndex++}`}
             className="text-xs sm:text-sm text-[#b9ae9d] my-3.5 leading-relaxed"
           >
-            {parseInlineMarkdown(line)}
+            {parseInline(line)}
           </p>,
         );
       }
