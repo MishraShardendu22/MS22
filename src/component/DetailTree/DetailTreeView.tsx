@@ -600,9 +600,9 @@ export function DetailTreeView({ data }: DetailTreeViewProps) {
 
               <div className="min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <h1 className="text-sm sm:text-base font-semibold text-[#f3ebdd] font-heading truncate">
+                  <span className="text-sm sm:text-base font-semibold text-[#f3ebdd] font-heading truncate">
                     {data.title}
-                  </h1>
+                  </span>
                   {data.badge && (
                     <span
                       className={`hidden xs:inline px-2 py-0.2 text-[10px] font-mono uppercase tracking-wider font-semibold border rounded-md ${BADGE_VARIANTS[data.badge.variant]}`}

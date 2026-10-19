@@ -231,15 +231,27 @@ export function generateWebSiteSchema(): WebSiteSchema {
 export function generateBreadcrumbSchema(
   items: Array<{ name: string; url?: string }>,
 ): BreadcrumbSchema {
+  const normalizedBase = BaseURL.endsWith("/") ? BaseURL.slice(0, -1) : BaseURL;
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: items.map((item, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: item.name,
-      ...(item.url && { item: item.url }),
-    })),
+    itemListElement: items.map((item, index) => {
+      let itemUrl = item.url;
+      if (!itemUrl) {
+        itemUrl =
+          index === 0
+            ? normalizedBase
+            : `${normalizedBase}/${encodeURIComponent(item.name.toLowerCase())}`;
+      } else if (!itemUrl.startsWith("http")) {
+        itemUrl = `${normalizedBase}${itemUrl.startsWith("/") ? "" : "/"}${itemUrl}`;
+      }
+      return {
+        "@type": "ListItem",
+        position: index + 1,
+        name: item.name,
+        item: itemUrl,
+      };
+    }),
   };
 }
 

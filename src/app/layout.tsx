@@ -219,7 +219,15 @@ export default function RootLayout({
               color: "#fff",
             }}
           >
-            <h1>Shardendu Mishra - Software Developer</h1>
+            <p
+              style={{
+                fontSize: "1.5rem",
+                fontWeight: "bold",
+                margin: "0 0 1rem",
+              }}
+            >
+              Shardendu Mishra - Software Developer
+            </p>
             <p>
               Please enable JavaScript to view the full portfolio experience.
             </p>

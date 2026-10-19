@@ -305,9 +305,9 @@ export function MarkdownRenderer({
               {lineNum}
             </span>
           )}
-          <h1 className="text-xl sm:text-2xl font-normal text-[#f3ebdd] font-heading flex-1">
+          <h2 className="text-xl sm:text-2xl font-normal text-[#f3ebdd] font-heading flex-1">
             {parseInlineMarkdown(trimmed.replace(/^#\s+/, ""))}
-          </h1>
+          </h2>
         </div>,
       );
       continue;

@@ -288,12 +288,12 @@ export function SkillDetailView({
       // Headings
       if (line.startsWith("# ")) {
         elements.push(
-          <h1
+          <h2
             key={`h1-${keyIndex++}`}
             className="text-2xl sm:text-3xl font-normal font-heading text-[#f3ebdd] mt-8 mb-4 tracking-tight"
           >
             {parseInline(line.replace("# ", ""))}
-          </h1>,
+          </h2>,
         );
         continue;
       }
