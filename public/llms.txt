@@ -1,23 +1,31 @@
-# Shardendu Mishra — Software Developer & Systems Engineer
-> Personal portfolio, projects, engineering runbooks, agent skills catalog, and technical experiences of Shardendu Mishra.
+# Shardendu Mishra — Full-Stack Engineer & AI Systems Developer
+> Personal portfolio, projects, skills, certifications, and technical architecture runbooks by Shardendu Mishra.
 
-## About
-Shardendu Mishra is a Software Developer specializing in Go, TypeScript, React, Next.js, and autonomous agent architectures. Education: IIIT Dharwad.
-
-## Core Navigation & Endpoints
-- [Developer Portfolio](https://mishrashardendu22.is-a.dev)
-- [Agent Skills Catalog & Runbooks](https://mishrashardendu22.is-a.dev/skills)
-- [Technical Projects](https://mishrashardendu22.is-a.dev/projects)
-- [Work Experiences](https://mishrashardendu22.is-a.dev/experiences)
-- [Professional Certifications](https://mishrashardendu22.is-a.dev/certificates)
-- [Volunteer Work](https://mishrashardendu22.is-a.dev/volunteer)
-- [Tech Blog](https://blogs.mishrashardendu22.is-a.dev)
-- [GitHub Backup Monitor](https://github.mishrashardendu22.is-a.dev)
-- [RSS Feed](https://mishrashardendu22.is-a.dev/feed.xml)
-- [XML Sitemap](https://mishrashardendu22.is-a.dev/sitemap.xml)
-
-## Verified Online Profiles
+## Overview
+- Website: https://mishrashardendu22.is-a.dev
+- Blog: https://blogs.mishrashardendu22.is-a.dev
+- Systems Lab: https://github.mishrashardendu22.is-a.dev
+- Documentation: https://docs.mishrashardendu22.is-a.dev
 - GitHub: https://github.com/MishraShardendu22
-- LinkedIn: https://www.linkedin.com/in/shardendumishra22/
-- X / Twitter: https://x.com/Shardendu_M
-- LeetCode: https://leetcode.com/u/ShardenduMishra22/
+- LinkedIn: https://linkedin.com/in/shardendu-mishra
+
+## Primary Sections
+- [Portfolio Homepage](https://mishrashardendu22.is-a.dev/) — Interactive developer terminal, featured systems, and live stack metrics.
+- [Projects Index](https://mishrashardendu22.is-a.dev/projects) — Enterprise automation systems, full-stack Next.js applications, and open-source tooling.
+- [Work Experiences](https://mishrashardendu22.is-a.dev/experiences) — Professional software engineering roles, architecture achievements, and engineering impact.
+- [Agent Skills & Runbooks](https://mishrashardendu22.is-a.dev/skills) — Standardized agent skill runbooks (`SKILL.md`) for Antigravity, Claude Code, and Cursor.
+- [CLI Quick-Install Hub](https://mishrashardendu22.is-a.dev/skills/cli) — One-line shell and PowerShell commands to pull agent skills directly into autonomous workspaces.
+- [Certificates](https://mishrashardendu22.is-a.dev/certificates) — Technical certifications and verified cloud/systems credentials.
+- [Community & Volunteering](https://mishrashardendu22.is-a.dev/volunteer) — Open-source mentorship, community events, and tech community contributions.
+- [Contact Channels](https://mishrashardendu22.is-a.dev/contact) — Direct communication channels, verification proofs, and developer contact form.
+- [Quick Links](https://mishrashardendu22.is-a.dev/links) — Consolidated social, repository, and platform links.
+
+## Core Technical Skills
+- Languages: TypeScript, JavaScript, Go, Python, SQL, HTML5, CSS3/Tailwind
+- Frameworks: Next.js (App Router), React, Svelte 5, Node.js, Express, Fiber
+- Systems: Docker, Linux, SSH Multiplexing, Git, GitHub Actions CI/CD, Cloudflare DNS, Vercel
+- AI & Agentic: Antigravity CLI, Claude Code, Cursor, LLM tool integration, Vector search
+
+## Sitemaps & Discovery
+- [XML Sitemap](https://mishrashardendu22.is-a.dev/sitemap.xml)
+- [Robots.txt](https://mishrashardendu22.is-a.dev/robots.txt)
