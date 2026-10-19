@@ -11,9 +11,17 @@ export const QuickLinks = {
     url: "https://mishrashardendu22.is-a.dev/projects",
     icon: "Folder",
   },
+  Skills: {
+    url: "https://mishrashardendu22.is-a.dev/skills",
+    icon: "Cpu",
+  },
   Certification: {
     url: "https://mishrashardendu22.is-a.dev/certificates",
     icon: "Award",
+  },
+  Contact: {
+    url: "https://mishrashardendu22.is-a.dev/contact",
+    icon: "Mail",
   },
 };
 

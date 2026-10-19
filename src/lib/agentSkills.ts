@@ -245,7 +245,16 @@ export async function getAgentSkillsData(): Promise<AgentSkillsData> {
       const markdown = await res.text();
       const parsed = parseSkillsFromReadme(markdown);
       if (parsed.length > 0) {
-        skills = parsed;
+        // Merge parsed skills with FALLBACK_SKILLS so all catalog skills
+        // remain permanently available and never return 404 or noindex
+        const mergedMap = new Map<string, AgentSkill>();
+        for (const s of FALLBACK_SKILLS) {
+          mergedMap.set(s.name.toLowerCase(), s);
+        }
+        for (const s of parsed) {
+          mergedMap.set(s.name.toLowerCase(), s);
+        }
+        skills = Array.from(mergedMap.values());
         isLive = true;
       }
     }

@@ -24,6 +24,13 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-transparent py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto space-y-8">
+        {/* Breadcrumb Navigation */}
+        <nav aria-label="Breadcrumbs" className="flex items-center gap-2 text-xs font-mono text-[#b9ae9d]">
+          <a href="/" className="hover:text-[#d9a55b] transition-colors">Home</a>
+          <span>/</span>
+          <span className="text-[#f3ebdd]">Contact</span>
+        </nav>
+
         {/* Page Header */}
         <div className="space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#d9a55b]/10 border border-[#d9a55b]/20 text-[#d9a55b] text-xs font-mono">
@@ -90,6 +97,24 @@ export default function ContactPage() {
               <ContactFormWrapper variant="default" includeSubject={true} />
             </div>
           </div>
+        </div>
+
+        {/* Internal Discovery Navigation */}
+        <div className="pt-8 border-t border-[#2f2923] flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-[#b9ae9d]">
+          <div className="flex items-center gap-4">
+            <a href="/projects" className="hover:text-[#d9a55b] transition-colors underline">
+              &larr; View Projects
+            </a>
+            <a href="/skills" className="hover:text-[#d9a55b] transition-colors underline">
+              Explore Skills
+            </a>
+            <a href="/experiences" className="hover:text-[#d9a55b] transition-colors underline">
+              Work Experience
+            </a>
+          </div>
+          <a href="/" className="hover:text-[#d9a55b] transition-colors">
+            Back to Homepage &rarr;
+          </a>
         </div>
       </div>
     </div>
