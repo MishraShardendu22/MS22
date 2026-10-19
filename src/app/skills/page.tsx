@@ -1,9 +1,9 @@
 import { SkillsPageClient } from "@/component/Skills";
 import { getAgentSkillsData } from "@/lib/agentSkills";
 
-// Automatically revalidate every 60 seconds (Incremental Static Regeneration)
-// Any commit pushed to MishraShardendu22/agent-skills will be reflected within 60s
-export const revalidate = 60;
+// Automatically revalidate every 3600 seconds (Incremental Static Regeneration)
+// Instant cached edge response; can be invalidated on-demand via webhook (/api/skills/revalidate)
+export const revalidate = 3600;
 
 export default async function SkillsPage() {
   const initialData = await getAgentSkillsData();

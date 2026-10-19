@@ -8,7 +8,7 @@ import {
 } from "@/lib/agentSkills";
 import { generatePageMetadata } from "@/lib/metadata";
 
-export const revalidate = 120;
+export const revalidate = 3600;
 
 interface PageProps {
   params: Promise<{ slug: string }>;

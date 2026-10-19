@@ -188,7 +188,7 @@ async function fetchLatestCommit(): Promise<AgentRepoCommit | null> {
     const res = await fetch(
       "https://api.github.com/repos/MishraShardendu22/agent-skills/commits/main",
       {
-        next: { revalidate: 60, tags: ["agent-skills-commit"] },
+        next: { revalidate: 3600, tags: ["agent-skills-commit"] },
         headers,
       },
     );
@@ -237,7 +237,7 @@ export async function getAgentSkillsData(): Promise<AgentSkillsData> {
     const res = await fetch(
       "https://raw.githubusercontent.com/MishraShardendu22/agent-skills/main/README.md",
       {
-        next: { revalidate: 60, tags: ["agent-skills"] },
+        next: { revalidate: 3600, tags: ["agent-skills"] },
       },
     );
 
@@ -291,7 +291,7 @@ export async function fetchSkillRunbook(slug: string): Promise<{
 
   try {
     const res = await fetch(url, {
-      next: { revalidate: 120, tags: [`skill-${cleanSlug}`] },
+      next: { revalidate: 3600, tags: [`skill-${cleanSlug}`] },
     });
 
     if (res.ok) {

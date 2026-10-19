@@ -147,7 +147,7 @@ export async function StatsSection() {
         {/* 30% - 70% Side-by-Side Ratio Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-10 gap-4 sm:gap-5 md:gap-6 items-stretch">
           <div className="lg:col-span-3 h-full flex flex-col">
-            <Suspense fallback={<CardSkeleton />} >
+            <Suspense fallback={<CardSkeleton />}>
               <div className="h-full flex flex-col flex-1">
                 <GitHubProfileSection />
               </div>

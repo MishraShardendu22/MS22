@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { fetchSkillRunbook } from "@/lib/agentSkills";
 
-export const revalidate = 120;
+export const revalidate = 3600;
 
 export async function GET(
   _req: NextRequest,
@@ -24,7 +24,7 @@ export async function GET(
 
   return NextResponse.json(runbook, {
     headers: {
-      "Cache-Control": "public, s-maxage=120, stale-while-revalidate=600",
+      "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
     },
   });
 }
