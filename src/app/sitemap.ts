@@ -66,7 +66,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   });
   addRoute("/links", "monthly", 0.9);
   addRoute("/contact", "yearly", 0.6);
-  addRoute("/feed.xml", "monthly", 0.3);
 
   try {
     const [projectsRes, experiencesRes, certificatesRes, volunteersRes] =
