@@ -144,7 +144,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {},
+  verification: {
+    google: "chI5V43cE0xK-V-aK_-sWYlvBiD5nVXde5dVhg_dDoY",
+  },
   category: "technology",
   classification: "Portfolio Website",
   appleWebApp: {
