@@ -1,48 +1,50 @@
+import { BaseURL, SUBDOMAINS } from "../data";
+
 export const QuickLinks = {
   "Social Media": {
-    url: "https://mishrashardendu22.is-a.dev/links",
+    url: `${BaseURL}/links`,
     icon: "Users",
   },
   "RSS Feed": {
-    url: "https://mishrashardendu22.is-a.dev/feed.xml",
+    url: `${BaseURL}/feed.xml`,
     icon: "Rss",
   },
   Project: {
-    url: "https://mishrashardendu22.is-a.dev/projects",
+    url: `${BaseURL}/projects`,
     icon: "Folder",
   },
   Skills: {
-    url: "https://mishrashardendu22.is-a.dev/skills",
+    url: `${BaseURL}/skills`,
     icon: "Cpu",
   },
   Certification: {
-    url: "https://mishrashardendu22.is-a.dev/certificates",
+    url: `${BaseURL}/certificates`,
     icon: "Award",
   },
   Contact: {
-    url: "https://mishrashardendu22.is-a.dev/contact",
+    url: `${BaseURL}/contact`,
     icon: "Mail",
   },
 };
 
 export const MyWebsites = {
   Blogs: {
-    url: "https://blogs.mishrashardendu22.is-a.dev",
+    url: SUBDOMAINS.blogs,
     name: "Blogs",
     icon: "Code",
   },
   "Github Backup": {
-    url: "https://github.mishrashardendu22.is-a.dev",
+    url: SUBDOMAINS.github,
     name: "Github Backup",
     icon: "BookOpen",
   },
   "Admin Portal": {
-    url: "https://admin.mishrashardendu22.is-a.dev",
+    url: SUBDOMAINS.admin,
     name: "Admin Portal",
     icon: "Shield",
   },
   "My UI Library": {
-    url: "https://pixel-art-8-bit.mishrashardendu22.is-a.dev",
+    url: SUBDOMAINS.pixelArt,
     name: "My UI Library",
     icon: "Package",
   },

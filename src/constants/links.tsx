@@ -1,3 +1,5 @@
+import { BaseURL, DomainName, SUBDOMAINS } from "@/static/data";
+
 export interface SocialLink {
   url: string;
   name: string;
@@ -11,8 +13,8 @@ export const SOCIAL_LINKS: SocialLink[] = [
   // Main Portfolio
   {
     name: "Portfolio",
-    username: "@MishraShardendu22",
-    url: "https://mishrashardendu22.is-a.dev",
+    username: `@${DomainName}`,
+    url: BaseURL,
     category: "projects",
     color: "from-violet-500 to-blue-600",
     description: "My complete portfolio showcasing projects and experience",
@@ -110,32 +112,32 @@ export const SOCIAL_LINKS: SocialLink[] = [
   // Projects
   {
     name: "Tech Blog",
-    username: "blogs.mishrashardendu22.is-a.dev",
-    url: "https://blogs.mishrashardendu22.is-a.dev",
+    username: SUBDOMAINS.blogs.replace(/^https?:\/\//, ""),
+    url: SUBDOMAINS.blogs,
     category: "projects",
     color: "from-green-500 to-emerald-600",
     description: "Technical articles and coding tutorials",
   },
   {
     name: "Treasure Hunt Game",
-    username: "treasure-hunt.mishrashardendu22.is-a.dev",
-    url: "https://treasure-hunt.mishrashardendu22.is-a.dev",
+    username: SUBDOMAINS.treasureHunt.replace(/^https?:\/\//, ""),
+    url: SUBDOMAINS.treasureHunt,
     category: "projects",
     color: "from-purple-500 to-indigo-600",
     description: "Interactive treasure hunt web game",
   },
   {
     name: "Pixel Art 8-Bit",
-    username: "pixel-art-8-bit.mishrashardendu22.is-a.dev",
-    url: "https://pixel-art-8-bit.mishrashardendu22.is-a.dev",
+    username: SUBDOMAINS.pixelArt.replace(/^https?:\/\//, ""),
+    url: SUBDOMAINS.pixelArt,
     category: "projects",
     color: "from-rose-500 to-pink-600",
     description: "Retro pixel art creation tool",
   },
   {
     name: "GitHub Backup Observatory",
-    username: "github.mishrashardendu22.is-a.dev",
-    url: "https://github.mishrashardendu22.is-a.dev",
+    username: SUBDOMAINS.github.replace(/^https?:\/\//, ""),
+    url: SUBDOMAINS.github,
     category: "projects",
     color: "from-gray-600 to-gray-800",
     description: "GitHub repository backup and analytics tool",

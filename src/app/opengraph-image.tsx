@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { DomainName } from "@/static/data";
 
 export const runtime = "edge";
 
@@ -107,7 +108,7 @@ export default async function Image() {
           color: "#4b5563",
         }}
       >
-        mishrashardendu22.is-a.dev
+        {DomainName}
       </div>
     </div>,
     {

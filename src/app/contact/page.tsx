@@ -1,7 +1,7 @@
+import { Mail, MapPin, MessageSquare, Send } from "lucide-react";
 import type { Metadata } from "next";
 import { ContactFormWrapper } from "@/component/Contact/ContactFormWrapper";
 import { generatePageMetadata } from "@/lib/metadata";
-import { Mail, MessageSquare, MapPin, Send } from "lucide-react";
 
 export const revalidate = 3600;
 
@@ -25,8 +25,13 @@ export default function ContactPage() {
     <div className="min-h-screen bg-transparent py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto space-y-8">
         {/* Breadcrumb Navigation */}
-        <nav aria-label="Breadcrumbs" className="flex items-center gap-2 text-xs font-mono text-[#b9ae9d]">
-          <a href="/" className="hover:text-[#d9a55b] transition-colors">Home</a>
+        <nav
+          aria-label="Breadcrumbs"
+          className="flex items-center gap-2 text-xs font-mono text-[#b9ae9d]"
+        >
+          <a href="/" className="hover:text-[#d9a55b] transition-colors">
+            Home
+          </a>
           <span>/</span>
           <span className="text-[#f3ebdd]">Contact</span>
         </nav>
@@ -41,8 +46,9 @@ export default function ContactPage() {
             Contact & Inquiries
           </h1>
           <p className="text-sm sm:text-base text-[#b9ae9d] max-w-2xl leading-relaxed">
-            Have a project in mind, an engineering question, or looking to collaborate?
-            Send me a message using the form below or reach out directly.
+            Have a project in mind, an engineering question, or looking to
+            collaborate? Send me a message using the form below or reach out
+            directly.
           </p>
         </div>
 
@@ -59,7 +65,9 @@ export default function ContactPage() {
                 <div className="flex items-start gap-3 text-[#b9ae9d]">
                   <Mail className="w-4 h-4 text-[#d9a55b] shrink-0 mt-0.5" />
                   <div>
-                    <span className="block font-medium text-[#f3ebdd]">Email</span>
+                    <span className="block font-medium text-[#f3ebdd]">
+                      Email
+                    </span>
                     <a
                       href="mailto:shardendumishra55@gmail.com"
                       className="hover:text-[#d9a55b] transition-colors"
@@ -72,7 +80,9 @@ export default function ContactPage() {
                 <div className="flex items-start gap-3 text-[#b9ae9d]">
                   <MapPin className="w-4 h-4 text-[#d9a55b] shrink-0 mt-0.5" />
                   <div>
-                    <span className="block font-medium text-[#f3ebdd]">Location</span>
+                    <span className="block font-medium text-[#f3ebdd]">
+                      Location
+                    </span>
                     <span>India (IST, UTC+5:30)</span>
                   </div>
                 </div>
@@ -80,7 +90,9 @@ export default function ContactPage() {
                 <div className="flex items-start gap-3 text-[#b9ae9d]">
                   <Send className="w-4 h-4 text-[#d9a55b] shrink-0 mt-0.5" />
                   <div>
-                    <span className="block font-medium text-[#f3ebdd]">Response Time</span>
+                    <span className="block font-medium text-[#f3ebdd]">
+                      Response Time
+                    </span>
                     <span>Typically within 24 hours</span>
                   </div>
                 </div>
@@ -102,13 +114,22 @@ export default function ContactPage() {
         {/* Internal Discovery Navigation */}
         <div className="pt-8 border-t border-[#2f2923] flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-[#b9ae9d]">
           <div className="flex items-center gap-4">
-            <a href="/projects" className="hover:text-[#d9a55b] transition-colors underline">
+            <a
+              href="/projects"
+              className="hover:text-[#d9a55b] transition-colors underline"
+            >
               &larr; View Projects
             </a>
-            <a href="/skills" className="hover:text-[#d9a55b] transition-colors underline">
+            <a
+              href="/skills"
+              className="hover:text-[#d9a55b] transition-colors underline"
+            >
               Explore Skills
             </a>
-            <a href="/experiences" className="hover:text-[#d9a55b] transition-colors underline">
+            <a
+              href="/experiences"
+              className="hover:text-[#d9a55b] transition-colors underline"
+            >
               Work Experience
             </a>
           </div>

@@ -5,6 +5,7 @@ import {
   checkContactRateLimit,
   getClientAddress,
 } from "@/lib/contactRateLimit";
+import { DomainName } from "@/static/data";
 
 export const runtime = "nodejs";
 
@@ -138,7 +139,7 @@ export async function POST(request: NextRequest) {
                 PORTFOLIO CONTACT SYSTEM
             </p>
             <p style="margin: 0; color: #a0a0a0; font-size: 11px;">
-                mishrashardendu22.is-a.dev
+                ${DomainName}
             </p>
         </div>
     </div>

@@ -114,7 +114,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     const projects = projectsRes.data?.projects?.length
       ? projectsRes.data.projects
-      : FALLBACK_PROJECT_IDS.map((id) => ({ inline: { id, updated_at: undefined } }));
+      : FALLBACK_PROJECT_IDS.map((id) => ({
+          inline: { id, updated_at: undefined },
+        }));
 
     projects.forEach((project) => {
       const id = normalizeId(project.inline?.id);
@@ -145,7 +147,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Add certificate routes
     const certificates = certificatesRes.data?.certifications?.length
       ? certificatesRes.data.certifications
-      : FALLBACK_CERTIFICATE_IDS.map((id) => ({ inline: { id, updated_at: undefined } }));
+      : FALLBACK_CERTIFICATE_IDS.map((id) => ({
+          inline: { id, updated_at: undefined },
+        }));
 
     certificates.forEach((certificate) => {
       const id = normalizeId(certificate.inline?.id);
@@ -164,7 +168,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Add volunteer routes
     const volunteers = volunteersRes.data?.volunteer_experiences?.length
       ? volunteersRes.data.volunteer_experiences
-      : FALLBACK_VOLUNTEER_IDS.map((id) => ({ inline: { id, updated_at: undefined } }));
+      : FALLBACK_VOLUNTEER_IDS.map((id) => ({
+          inline: { id, updated_at: undefined },
+        }));
 
     volunteers.forEach((volunteer) => {
       const id = normalizeId(volunteer.inline?.id);
@@ -182,10 +188,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   } catch (error) {
     console.error("Error generating dynamic sitemap entries:", error);
     // Guarantee fallback routes even on network crash
-    FALLBACK_PROJECT_IDS.forEach((id) => addRoute(`/projects/${id}`, "monthly", 0.8));
-    FALLBACK_EXPERIENCE_IDS.forEach((id) => addRoute(`/experiences/${id}`, "monthly", 0.7));
-    FALLBACK_CERTIFICATE_IDS.forEach((id) => addRoute(`/certificates/${id}`, "yearly", 0.6));
-    FALLBACK_VOLUNTEER_IDS.forEach((id) => addRoute(`/volunteer/${id}`, "yearly", 0.6));
+    FALLBACK_PROJECT_IDS.forEach((id) => {
+      addRoute(`/projects/${id}`, "monthly", 0.8);
+    });
+    FALLBACK_EXPERIENCE_IDS.forEach((id) => {
+      addRoute(`/experiences/${id}`, "monthly", 0.7);
+    });
+    FALLBACK_CERTIFICATE_IDS.forEach((id) => {
+      addRoute(`/certificates/${id}`, "yearly", 0.6);
+    });
+    FALLBACK_VOLUNTEER_IDS.forEach((id) => {
+      addRoute(`/volunteer/${id}`, "yearly", 0.6);
+    });
   }
 
   return routes;

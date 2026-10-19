@@ -1,4 +1,5 @@
 import { CDN_PROFESSIONAL_AVIF } from "./cdn";
+import { SUBDOMAINS } from "./data";
 
 export const SITE_NAME = "Shardendu Mishra";
 export const SITE_DESCRIPTION =
@@ -32,9 +33,10 @@ export const SAME_AS_URLS = [
   "https://www.reddit.com/user/SouLVaGeTa/",
   "https://t.me/MishraShardendu22",
   "https://www.youtube.com/@Shardendu_Mishra",
-  "https://blogs.mishrashardendu22.is-a.dev",
-  "https://treasure-hunt.mishrashardendu22.is-a.dev",
-  "https://pixel-art-8-bit.mishrashardendu22.is-a.dev",
+  SUBDOMAINS.blogs,
+  SUBDOMAINS.treasureHunt,
+  SUBDOMAINS.pixelArt,
+  SUBDOMAINS.github,
 ];
 
 const KNOWS_ABOUT = [
