@@ -38,15 +38,25 @@ export const MyWebsites = {
     name: "Github Backup",
     icon: "BookOpen",
   },
+  Documentation: {
+    url: SUBDOMAINS.docs,
+    name: "Documentation",
+    icon: "Folder",
+  },
+  "Design System": {
+    url: SUBDOMAINS.design,
+    name: "Design System",
+    icon: "Package",
+  },
+  "Observatory CDN": {
+    url: SUBDOMAINS.observatoryCdn,
+    name: "Observatory CDN",
+    icon: "Cpu",
+  },
   "Admin Portal": {
     url: SUBDOMAINS.admin,
     name: "Admin Portal",
     icon: "Shield",
-  },
-  "My UI Library": {
-    url: SUBDOMAINS.pixelArt,
-    name: "My UI Library",
-    icon: "Package",
   },
 };
 

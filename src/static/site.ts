@@ -34,9 +34,10 @@ export const SAME_AS_URLS = [
   "https://t.me/MishraShardendu22",
   "https://www.youtube.com/@Shardendu_Mishra",
   SUBDOMAINS.blogs,
-  SUBDOMAINS.treasureHunt,
-  SUBDOMAINS.pixelArt,
   SUBDOMAINS.github,
+  SUBDOMAINS.docs,
+  SUBDOMAINS.design,
+  SUBDOMAINS.observatoryCdn,
 ];
 
 const KNOWS_ABOUT = [

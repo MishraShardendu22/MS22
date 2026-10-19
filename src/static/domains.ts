@@ -35,13 +35,12 @@ export const SUBDOMAINS = {
     process.env.NEXT_PUBLIC_GITHUB_BACKUP_URL ||
     `https://github.${PRIMARY_DOMAIN}`,
   admin: process.env.NEXT_PUBLIC_ADMIN_URL || `https://admin.${PRIMARY_DOMAIN}`,
-  pixelArt:
-    process.env.NEXT_PUBLIC_PIXEL_ART_URL ||
-    `https://pixel-art-8-bit.${PRIMARY_DOMAIN}`,
-  treasureHunt:
-    process.env.NEXT_PUBLIC_TREASURE_HUNT_URL ||
-    `https://treasure-hunt.${PRIMARY_DOMAIN}`,
   docs: process.env.NEXT_PUBLIC_DOCS_URL || `https://docs.${PRIMARY_DOMAIN}`,
+  design:
+    process.env.NEXT_PUBLIC_DESIGN_URL || `https://design.${PRIMARY_DOMAIN}`,
+  observatoryCdn:
+    process.env.NEXT_PUBLIC_OBSERVATORY_CDN_URL ||
+    `https://observatory-cdn.${PRIMARY_DOMAIN}`,
 } as const;
 
 export const InternalRoutes = {

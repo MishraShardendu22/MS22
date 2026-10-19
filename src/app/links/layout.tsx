@@ -4,7 +4,7 @@ import { generatePageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = generatePageMetadata({
   title: "Links & Social Media",
   description:
-    "Connect with Shardendu Mishra across all platforms - GitHub, LinkedIn, Twitter, Instagram, LeetCode, and explore my projects including blogs, treasure hunt game, and pixel art tool.",
+    "Connect with Shardendu Mishra across all platforms - GitHub, LinkedIn, Twitter, Instagram, LeetCode, and explore my projects including blogs, GitHub Backup Observatory, documentation, and design systems.",
   path: "/links",
   keywords: [
     "Shardendu Mishra Links",
