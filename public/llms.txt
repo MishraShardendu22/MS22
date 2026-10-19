@@ -1,0 +1,23 @@
+# Shardendu Mishra — Software Developer & Systems Engineer
+> Personal portfolio, projects, engineering runbooks, agent skills catalog, and technical experiences of Shardendu Mishra.
+
+## About
+Shardendu Mishra is a Software Developer specializing in Go, TypeScript, React, Next.js, and autonomous agent architectures. Education: IIIT Dharwad.
+
+## Core Navigation & Endpoints
+- [Developer Portfolio](https://mishrashardendu22.is-a.dev)
+- [Agent Skills Catalog & Runbooks](https://mishrashardendu22.is-a.dev/skills)
+- [Technical Projects](https://mishrashardendu22.is-a.dev/projects)
+- [Work Experiences](https://mishrashardendu22.is-a.dev/experiences)
+- [Professional Certifications](https://mishrashardendu22.is-a.dev/certificates)
+- [Volunteer Work](https://mishrashardendu22.is-a.dev/volunteer)
+- [Tech Blog](https://blogs.mishrashardendu22.is-a.dev)
+- [GitHub Backup Monitor](https://github.mishrashardendu22.is-a.dev)
+- [RSS Feed](https://mishrashardendu22.is-a.dev/feed.xml)
+- [XML Sitemap](https://mishrashardendu22.is-a.dev/sitemap.xml)
+
+## Verified Online Profiles
+- GitHub: https://github.com/MishraShardendu22
+- LinkedIn: https://www.linkedin.com/in/shardendumishra22/
+- X / Twitter: https://x.com/Shardendu_M
+- LeetCode: https://leetcode.com/u/ShardenduMishra22/
