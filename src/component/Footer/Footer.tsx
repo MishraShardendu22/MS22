@@ -1,5 +1,4 @@
 import {
-  ArrowUpRight,
   Award,
   BookOpen,
   Camera,
@@ -98,13 +97,6 @@ function NavLink({
           />
         )}
         <span className="font-sans font-medium truncate">{label}</span>
-        {external && (
-          <ArrowUpRight
-            className={`ml-auto shrink-0 opacity-0 group-hover:opacity-75 transition-opacity ${
-              compact ? "w-3.5 h-3.5" : "w-4 h-4"
-            }`}
-          />
-        )}
       </a>
     </li>
   );
