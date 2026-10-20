@@ -26,6 +26,7 @@ import {
   InstagramIcon,
   LeetCodeIcon,
   LinkedInIcon,
+  ObservatoryIcon,
   TwitterXIcon,
   YouTubeIcon,
 } from "@/component/Icons";
@@ -60,6 +61,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   YouTube: YouTubeIcon,
   Instagram: InstagramIcon,
   LeetCode: LeetCodeIcon,
+  Observatory: ObservatoryIcon,
 };
 
 function NavLink({

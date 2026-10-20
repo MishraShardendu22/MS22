@@ -25,6 +25,11 @@ export const MyWebsites = {
     name: "Frozen UI",
     icon: "Package",
   },
+  "GitHub Backup": {
+    url: SUBDOMAINS.github,
+    name: "GitHub Backup",
+    icon: "Observatory",
+  },
   Blogs: {
     url: SUBDOMAINS.blogs,
     name: "Blogs",
@@ -34,11 +39,6 @@ export const MyWebsites = {
     url: SUBDOMAINS.design,
     name: "Observatory UI",
     icon: "Cpu",
-  },
-  Documentation: {
-    url: SUBDOMAINS.docs,
-    name: "Documentation",
-    icon: "BookOpen",
   },
 };
 
@@ -70,13 +70,13 @@ export const CodingProfiles = {
     url: "https://github.com/MishraShardendu22",
     icon: "GitHub",
   },
-  "GitHub Backup": {
-    url: SUBDOMAINS.github,
-    icon: "GitHub",
-  },
   "GitHub Learning": {
     url: "https://github.com/ShardenduMishra22",
     icon: "GitHub",
+  },
+  Documentation: {
+    url: SUBDOMAINS.docs,
+    icon: "BookOpen",
   },
 };
 

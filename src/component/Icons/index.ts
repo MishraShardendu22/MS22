@@ -4,6 +4,7 @@ export {
   InstagramIcon,
   LeetCodeIcon,
   LinkedInIcon,
+  ObservatoryIcon,
   RedditIcon,
   ResumeIcon,
   TelegramIcon,

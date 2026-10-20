@@ -183,3 +183,38 @@ export function RedditIcon({ className = "w-4 h-4", ...props }: IconProps) {
     </svg>
   );
 }
+
+/**
+ * Official Observatory product mark for GitHub Backup
+ */
+export function ObservatoryIcon({
+  className = "w-4 h-4",
+  ...props
+}: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 64 64"
+      fill="none"
+      aria-hidden="true"
+      className={className}
+      {...props}
+    >
+      <circle cx="31" cy="31" r="17" fill="currentColor" />
+      <path
+        d="M8 44c6 6 24 8 39-1 7-4.3 12-9.6 13-14.5"
+        stroke="currentColor"
+        strokeWidth="3.6"
+        strokeLinecap="round"
+      />
+      <rect
+        x="49"
+        y="11"
+        width="9"
+        height="9"
+        rx="2.4"
+        transform="rotate(-24 53.5 15.5)"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
