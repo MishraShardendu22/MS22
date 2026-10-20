@@ -28,35 +28,30 @@ export const QuickLinks = {
 };
 
 export const MyWebsites = {
-  Blogs: {
-    url: SUBDOMAINS.blogs,
-    name: "Blogs",
-    icon: "Code",
+  "Frozen UI": {
+    url: SUBDOMAINS.frozenUi,
+    name: "Frozen UI",
+    icon: "Package",
   },
   "Github Backup": {
     url: SUBDOMAINS.github,
     name: "Github Backup",
     icon: "BookOpen",
   },
+  Blogs: {
+    url: SUBDOMAINS.blogs,
+    name: "Blogs",
+    icon: "Code",
+  },
+  "Observatory UI": {
+    url: SUBDOMAINS.design,
+    name: "Observatory UI",
+    icon: "Cpu",
+  },
   Documentation: {
     url: SUBDOMAINS.docs,
     name: "Documentation",
     icon: "Folder",
-  },
-  "Design System": {
-    url: SUBDOMAINS.design,
-    name: "Design System",
-    icon: "Package",
-  },
-  "Observatory CDN": {
-    url: SUBDOMAINS.observatoryCdn,
-    name: "Observatory CDN",
-    icon: "Cpu",
-  },
-  "Admin Portal": {
-    url: SUBDOMAINS.admin,
-    name: "Admin Portal",
-    icon: "Shield",
   },
 };
 

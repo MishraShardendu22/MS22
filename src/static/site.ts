@@ -38,6 +38,7 @@ export const SAME_AS_URLS = [
   SUBDOMAINS.docs,
   SUBDOMAINS.design,
   SUBDOMAINS.observatoryCdn,
+  SUBDOMAINS.frozenUi,
 ];
 
 const KNOWS_ABOUT = [

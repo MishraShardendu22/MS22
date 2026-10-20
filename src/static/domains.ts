@@ -41,6 +41,8 @@ export const SUBDOMAINS = {
   observatoryCdn:
     process.env.NEXT_PUBLIC_OBSERVATORY_CDN_URL ||
     `https://observatory-cdn.${PRIMARY_DOMAIN}`,
+  frozenUi:
+    process.env.NEXT_PUBLIC_FROZEN_UI_URL || "https://shardendu.is-a.dev",
 } as const;
 
 export const InternalRoutes = {
