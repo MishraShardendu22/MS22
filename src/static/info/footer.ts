@@ -1,14 +1,6 @@
 import { BaseURL, SUBDOMAINS } from "../data";
 
 export const QuickLinks = {
-  "Social Media": {
-    url: `${BaseURL}/links`,
-    icon: "Users",
-  },
-  "RSS Feed": {
-    url: `${BaseURL}/feed.xml`,
-    icon: "Rss",
-  },
   Project: {
     url: `${BaseURL}/projects`,
     icon: "Folder",
@@ -21,9 +13,9 @@ export const QuickLinks = {
     url: `${BaseURL}/certificates`,
     icon: "Award",
   },
-  Contact: {
-    url: `${BaseURL}/contact`,
-    icon: "Mail",
+  "RSS Feed": {
+    url: `${BaseURL}/feed.xml`,
+    icon: "Rss",
   },
 };
 
@@ -32,11 +24,6 @@ export const MyWebsites = {
     url: SUBDOMAINS.frozenUi,
     name: "Frozen UI",
     icon: "Package",
-  },
-  "Github Backup": {
-    url: SUBDOMAINS.github,
-    name: "Github Backup",
-    icon: "BookOpen",
   },
   Blogs: {
     url: SUBDOMAINS.blogs,
@@ -51,7 +38,7 @@ export const MyWebsites = {
   Documentation: {
     url: SUBDOMAINS.docs,
     name: "Documentation",
-    icon: "Folder",
+    icon: "BookOpen",
   },
 };
 
@@ -81,6 +68,10 @@ export const CodingProfiles = {
   },
   "GitHub Main": {
     url: "https://github.com/MishraShardendu22",
+    icon: "GitHub",
+  },
+  "GitHub Backup": {
+    url: SUBDOMAINS.github,
     icon: "GitHub",
   },
   "GitHub Learning": {
